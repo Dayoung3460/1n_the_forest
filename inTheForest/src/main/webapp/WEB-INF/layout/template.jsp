@@ -13,9 +13,10 @@
         <meta name="author" content="1n the 숲" />
         <title>1n the 숲 캠핑장</title>
         <!-- Favicon.io 사이트에서 생성한 favicon.ico -->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/layout/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/template.css" rel="stylesheet" />
+        <link href="css/layout/template.css" rel="stylesheet" />
+        <link href="css/layout/template_custom.css" rel="stylesheet" /> <!-- Bootstrap 외 직접 추가한 css -->
     </head>
     <body>
         <header>
@@ -27,7 +28,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
                 <div class="container">
                     <a class="navbar-brand" href="#!">
-                        <img src="assets/logo_white_long.png" alt="logo">
+                        <img src="assets/layout/logo_white_long.png" alt="logo">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -45,19 +46,21 @@
         </header>
 
         <!-- Page content-->
-        <div class="container-fluid">
+        <div id="pageContent">
 			<tiles:insertAttribute name="body" />
         </div>
         
         <!-- Footer-->
-        <footer class="py-4 bg-custom">
-                <img src="assets/logo_white_vertical.png" alt="logo">
-                <span class="text-left text-white">
-                    TEL : 053-133-1333<br>주소 : 대구광역시 달서구 앞산순환로 248, 1n the 숲 캠핑장<br>
-                    <span class="text-muted">
-                        Copyright &copy; 1n the 숲 2024
-                    </span>
-                </span>
+        <footer>
+            <div class="py-4">
+	            <img src="assets/layout/logo_white_vertical.png" alt="logo">
+	            <span class="text-left text-white">
+	                TEL : 053-133-1333<br>주소 : 대구광역시 달서구 앞산순환로 248, 1n the 숲 캠핑장<br>
+	                <span class="text-muted">
+	                    Copyright &copy; 1n the 숲 2024
+	                </span>
+	            </span>
+            </div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

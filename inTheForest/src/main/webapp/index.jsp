@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>index.jsp
+<body>
+	index.jsp
+	<jsp:forward page="example.do"></jsp:forward>
 </body>
 </html>
