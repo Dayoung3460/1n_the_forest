@@ -26,6 +26,6 @@
 		</environment>
 	</environments>
 	<mappers>
-		<!-- 예시 <mapper resource="com/intheforest/mapper/MemberMapper.xml" /> -->
+		<mapper resource="com/intheforest/mapper/BoardMapper.xml" />
 	</mappers>
 </configuration>
