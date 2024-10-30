@@ -9,17 +9,17 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="tiles용입니다." />
+        <meta name="description" content="1n the 숲" />
         <meta name="author" content="1n the 숲" />
         <title>1n the 숲 캠핑장</title>
-        <!-- Favicon.io 사이트에서 생성 -->
-        <link rel="icon" type="image/x-icon" href="myassets/favicon.ico" />
+        <!-- Favicon.io 사이트에서 생성한 favicon.ico -->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="mycss/styles.css" rel="stylesheet" />
+        <link href="css/template.css" rel="stylesheet" />
     </head>
     <body>
         <header>
-            <div id="myTop" class="container">
+            <div class="loginTop container">
                 <a href="#">마이페이지</a>
                 <a href="#">로그인</a>
             </div>
@@ -27,7 +27,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
                 <div class="container">
                     <a class="navbar-brand" href="#!">
-                        <img src="myassets/1ntheForest_white_long.png" alt="logo">
+                        <img src="assets/logo_white_long.png" alt="logo">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -46,12 +46,12 @@
 
         <!-- Page content-->
         <div class="container-fluid">
-					<tiles:insertAttribute name="body" />
+			<tiles:insertAttribute name="body" />
         </div>
         
         <!-- Footer-->
         <footer class="py-4 bg-custom">
-                <img src="myassets/1ntheForest_white_vertical.png" alt="logo">
+                <img src="assets/logo_white_vertical.png" alt="logo">
                 <span class="text-left text-white">
                     TEL : 053-133-1333<br>주소 : 대구광역시 달서구 앞산순환로 248, 1n the 숲 캠핑장<br>
                     <span class="text-muted">

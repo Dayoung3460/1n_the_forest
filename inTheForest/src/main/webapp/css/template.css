@@ -11,64 +11,51 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
- /* Custom added style*/
- 
- #myTop {
+ /* Custom added style */
+.loginTop {
   display: flex;
   justify-content: end;
   gap: 30px;
   height: 35px;
- }
- 
- #myTop a {
-  /* float: right; */
+}
+.loginTop a {
   margin: auto 10px;
   color: rgb(120, 120, 120);
   text-decoration: none;
   font-size: 1rem;
- }
-
+}
 .bg-custom {
   --bs-bg-opacity: 1;
-  background: url(../myassets/starry_green_background.jpg) no-repeat scroll center;
+  background: url(../assets/starry_green_background.jpg) no-repeat scroll center;
   background-size: cover;
-  /* background-color: rgba(30, 130, 37, var(--bs-bg-opacity)) !important; */
 }
-
 .navbar-brand img {
   display: inline-block;
   height: 40px;
 }
-
 .navbar-nav .nav-item {
   margin-left: 20px;
 }
-
 .nav-link {
   color: rgb(180, 180, 180);
 }
-
 .nav-link:hover, .nav-link:focus {
   color: white;
 }
-
 footer {
-  background: url(../myassets/starry_background.jpg) no-repeat scroll center !important;
+  background: url(../assets/starry_background.jpg) no-repeat scroll center !important;
   display: flex;
   justify-content: center;
   gap: 10%;
 }
-
 footer img {
   height: 80px;
 }  
-
 footer span {
   margin: auto 0;
   word-break: keep-all;
 }
-
- /* Custom added style end*/
+ /* Custom added style end */
 
 :root {
   --bs-blue: #0d6efd;
