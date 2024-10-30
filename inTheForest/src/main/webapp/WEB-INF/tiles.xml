@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="home"
+		template="/WEB-INF/layout/template.jsp">
+		<put-attribute name="title" value="1n the 숲" />
+		
+	</definition>
+	
+	<definition name="WILDCARD:*" extends="home">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/{1}.jsp" />
+	</definition>
+	<definition name="WILDCARD:board/*" extends="home">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/board/{1}.jsp" />
+	</definition>
+	<definition name="WILDCARD:book/*" extends="home">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/book/{1}.jsp" />
+	</definition>
+	<definition name="WILDCARD:member/*" extends="home">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/{1}.jsp" />
+	</definition>
+	<definition name="WILDCARD:site/*" extends="home">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/site/{1}.jsp" />
+	</definition>
+</tiles-definitions>

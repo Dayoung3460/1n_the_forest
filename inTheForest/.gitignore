@@ -1,0 +1,8 @@
+/build/
+/target/
+/workspace/
+/.settings/
+/.classpath
+/.project
+/bin/
+/src/main/resources/config/db.properties
