@@ -1,16 +1,16 @@
 package com.intheforest.web;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import com.intheforest.common.Control;
+import com.intheforest.control.ExampleControl;
+import com.intheforest.control.board.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.intheforest.common.Control;
-import com.intheforest.control.ExampleControl;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FrontController extends HttpServlet{
 	Map<String, Control> map;
@@ -22,7 +22,12 @@ public class FrontController extends HttpServlet{
 	@Override
 	public void init() throws ServletException {
 		map.put("/example.do", new ExampleControl());
-		
+		map.put("/boardList.do", new BoardListControl());
+		map.put("/board.do", new BoardControl());
+		map.put("/addBoardForm.do", new AddBoardFormControl());
+		map.put("/addBoard.do", new AddBoardControl());
+		map.put("/modifyBoard.do", new ModifyBoardControl());
+		map.put("/deleteBoard.do", new DeleteBoardControl());
 	};
 
 	
