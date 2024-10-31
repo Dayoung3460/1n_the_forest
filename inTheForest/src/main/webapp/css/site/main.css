@@ -30,3 +30,23 @@
   top: 8px;
   color: #bbb;
 }
+#googleMap {
+  height: 203.2px;
+}
+img[alt="forest"] {
+	height: 500px;
+	width: 100%;
+	object-fit: cover;
+}
+p {
+  word-break: keep-all;
+}
+#introBox {
+  background-color: rgba(150, 150, 150, 0.1);
+}
+#introBox img {
+  width: 180px;
+}
+.text-mint {
+  color: #39b89a;
+}

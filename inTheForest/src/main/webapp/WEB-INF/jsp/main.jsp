@@ -4,16 +4,16 @@
 <link href="css/site/main.css" rel="stylesheet" />
 
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
+    <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
 </div>
-  <div class="carousel-inner">
+    <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="5000">
-      <img src="assets/site/main/camping1.jpg" class="d-block w-100" alt="main_banner1">
+        <img src="assets/site/main/camping1.jpg" class="d-block w-100" alt="main_banner1">
     </div>
     <div class="carousel-item" data-bs-interval="5000">
         <img src="assets/site/main/caravan.jpg" class="d-block w-100" alt="main_banner5">
@@ -22,27 +22,27 @@
         <img src="assets/site/main/camping2.jpg" class="d-block w-100" alt="main_banner4">
     </div>
     <div class="carousel-item" data-bs-interval="5000">
-      <img src="assets/site/main/camfire2.jpg" class="d-block w-100" alt="main_banner3">
+        <img src="assets/site/main/camfire2.jpg" class="d-block w-100" alt="main_banner3">
     </div>
     <div class="carousel-item" data-bs-interval="5000">
-      <img src="assets/site/main/campfire1.jpg" class="d-block w-100" alt="main_banner2">
+        <img src="assets/site/main/campfire1.jpg" class="d-block w-100" alt="main_banner2">
     </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
-  </button>
+    </button>
 </div>
 
-<div class="row m-3">
-    <div class="col">
+<div class="row justify-content-around m-4">
+    <div class="col-sm-12 col-lg-6">
         <div class="row">
-            <div class="col-md-2 titles fs-4 d-flex align-items-center justify-content-center">공지사항</div>
-            <ul class="col-md-9 list-group list-group-flush">
+            <div class="col-sm-12 col-lg-1 titles fs-4 d-flex align-items-center justify-content-center">공지사항</div>
+            <ul class="col-md-12 col-lg-8 col-xl-9 list-group list-group-flush">
                 <li class="list-group-item"><a href="#">11월 캠핑장 예약안내 공지 - 예약하실 때 읽어보세요.</a><span>2024/10/19</span></li>
                 <li class="list-group-item"><a href="#">11월 캠핑장 예약안내</a><span>2024/10/19</span></li>
                 <li class="list-group-item"><a href="#">11월 캠핑장 예약하실 때 확인부탁드립니다.</a><span>2024/10/19</span></li>
@@ -51,39 +51,71 @@
             </ul>
         </div>
     </div>
-    <div class="col">
+    <div class="col-sm-12 col-lg-5">
         <div class="row">
-            <div class="col-md-2 titles fs-4 d-flex align-items-center justify-content-center">공지사항</div>
-            <ul class="col-md-9 list-group list-group-flush">
-                <li class="list-group-item"><a href="#">11월 캠핑장 예약안내 공지 - 예약하실 때 읽어보세요.</a><span>2024/10/19</span></li>
-                <li class="list-group-item"><a href="#">11월 캠핑장 예약안내</a><span>2024/10/19</span></li>
-                <li class="list-group-item"><a href="#">11월 캠핑장 예약하실 때 확인부탁드립니다.</a><span>2024/10/19</span></li>
-                <li class="list-group-item"><a href="#">11월 캠핑장 예약안내 수정사항입니다.</a><span>2024/10/19</span></li>
-                <li class="list-group-item"><a href="#">11월 캠핑장 예약자에게 안내사항 필독!!!!!</a><span>2024/10/19</span></li>
-            </ul>
+            <div class="col-sm-12 col-lg-1 titles fs-4 d-flex align-items-center justify-content-center">오시는길</div>
+            <div class="col" id="googleMap" class="col-md-9"></div>
         </div>
     </div>
 </div>
 
-<div class="row m-4 justify-content-center">
-    <div class="col-xl-2 col-md-5 text-center my-5">
-        <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />
-        <h1 class="text-black fs-3 fw-bolder">Full Width Pics</h1>
-        <p class="text-muted mb-0">Landing Page Template</p>
+<img src="assets/site/index/forest.jpg" alt="forest">
+<p class="text-center fs-3 mt-5 fw-bolder">1n the 숲 캠핑장은…</p>
+<p class="text-muted text-center fs-5 mb-5">
+숲속에서 일상을 잠시 내려두고 자연을 즐겨보세요.<br>
+1n the 숲 캠핑장은 앞산 전망이 훤히 내다보이는 곳에 위치해 있어<br>
+낮에는 도시 전경, 밤에는 멋진 야경을 감상할 수 있는 곳입니다.<br><br>
+1n the 숲 캠핑장의 다채로운 시설들을 한눈에 살펴보세요.
+</p>
+
+<!-- icon-icons.com 이미지 사용 -->
+<div id="introBox" class="row mb-4 justify-content-center">
+    <div class="col-md-3 text-center my-4">
+        <a href="#"><img class="img-fluid rounded-circle mb-4" src="assets/site/main/roadcaravan_icon.png" alt="caravan" /></a>
+        <h1 class="text-mint fs-3 fw-bolder">카라반</h1>
+        <p class="text-muted mb-0">숲 속에서 자연을 느끼며 아늑한 휴식</p>
     </div>
-    <div class="col-xl-2 col-md-5 text-center my-5">
-        <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />
-        <h1 class="text-black fs-3 fw-bolder">Full Width Pics</h1>
-        <p class="text-muted mb-0">Landing Page Template</p>
+    <div class="col-md-3 text-center my-4">
+        <a href="#"><img class="img-fluid rounded-circle mb-4" src="assets/site/main/camping_tent_icon.png" alt="autoCamp" /></a>
+        <h1 class="text-mint fs-3 fw-bolder">오토캠핑</h1>
+        <p class="text-muted mb-0">가까운 주차공간 완비, 편리한 오토캠핑</p>
     </div>
-    <div class="col-xl-2 col-md-5 text-center my-5">
-        <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />
-        <h1 class="text-black fs-3 fw-bolder">Full Width Pics</h1>
-        <p class="text-muted mb-0">Landing Page Template</p>
-    </div>
-    <div class="col-xl-2 col-md-5 text-center my-5">
-        <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />
-        <h1 class="text-black fs-3 fw-bolder">Full Width Pics</h1>
-        <p class="text-muted mb-0">Landing Page Template</p>
+    <div class="col-md-3 text-center my-4">
+        <a href="#"><img class="img-fluid rounded-circle mb-4" src="assets/site/main/eco-field_icon.png" alt="deckCamp" /></a>
+        <h1 class="text-mint fs-3 fw-bolder">데크</h1>
+        <p class="text-muted mb-0">한적한 들판에서 즐기는 캠핑의 묘미</p>
     </div>
 </div>
+
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyAXTokRl7G2h8eiQH3BbA9KbcHGCZ-27EI&region=kr"></script>
+
+<!-- 구글 지도 생성용 google api 코드 -->
+<script>
+
+
+    let map;
+
+    async function initMap() {
+        const { Map } = await google.maps.importLibrary("maps");
+        
+        let position = { lat: 35.824795, lng: 128.557321 };
+        map = new Map(document.getElementById("googleMap"), {
+            center: position,
+            zoom: 15
+        });
+
+        let marker = new google.maps.Marker({
+            position: position,
+            icon: {
+                url: "assets/site/main/camping_icon.png",
+                scaledSize: new google.maps.Size(80, 80),
+                anchor: new google.maps.Point(35, 50)
+            },
+            title: "1n the 숲 캠핑장",
+            map
+        });
+    }
+
+    initMap();
+
+</script> 
