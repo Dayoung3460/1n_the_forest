@@ -22,6 +22,7 @@ public class FrontController extends HttpServlet{
 	@Override
 	public void init() throws ServletException {
 		map.put("/example.do", new ExampleControl());
+		map.put("/myPageBookList.do", new ExampleControl());
 		
 	};
 

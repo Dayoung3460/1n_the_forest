@@ -17,5 +17,5 @@ public class ExampleControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("example.tiles").forward(req, resp);
 	}
-
+	
 }
