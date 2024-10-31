@@ -14,7 +14,6 @@ public class BookServiceImpl implements BookService {
 	
 	@Override
 	public List<BookVO> myPageBookList(String memberId) {
-		System.out.println("myPageBookList");
 		return mapper.selectMyPageBookList(memberId);
 	}
 
