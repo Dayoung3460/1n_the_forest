@@ -31,7 +31,7 @@ public class AddBoardControl implements Control {
     board.setTitle(title);
     board.setContent(content);
     board.setWriter(writer);
-    board.setImage(image);
+    //board.setImage(image);
     
     BoardServiceImpl boardServiceImpl = new BoardServiceImpl();
     boolean isSuccess = boardServiceImpl.RegisterBoard(board);

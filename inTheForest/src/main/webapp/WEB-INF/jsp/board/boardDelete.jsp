@@ -8,7 +8,7 @@
 </h3>
 
 <button class="btn btn-warning deleteBtn">예</button>
-<button class="btn btn-primary backBtn">아니요</button>
+<button class="btn btn-success backBtn">아니요</button>
 
 <script>
   document.querySelector('.deleteBtn').addEventListener('click', (e) => {

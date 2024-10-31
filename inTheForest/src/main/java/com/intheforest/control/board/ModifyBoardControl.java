@@ -43,7 +43,7 @@ public class ModifyBoardControl implements Control {
       String title = req.getParameter("title");
       String content = req.getParameter("content");
       
-      board.setBoardNo(bno);
+      // board.setBoardNo(bno);
       board.setTitle(title);
       board.setContent(content);
       

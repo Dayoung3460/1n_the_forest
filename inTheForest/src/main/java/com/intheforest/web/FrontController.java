@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
 import com.intheforest.control.ExampleControl;
+import com.intheforest.control.board.*;
 import com.intheforest.control.site.MainPageControl;
 
 public class FrontController extends HttpServlet{
@@ -24,8 +25,13 @@ public class FrontController extends HttpServlet{
 	public void init() throws ServletException {
 		map.put("/example.do", new ExampleControl());
 		
+		map.put("/boardList.do", new BoardListControl());
+		map.put("/board.do", new BoardControl());
+		map.put("/addBoardForm.do", new AddBoardFormControl());
+		map.put("/addBoard.do", new AddBoardControl());
+		map.put("/modifyBoard.do", new ModifyBoardControl());
+		map.put("/deleteBoard.do", new DeleteBoardControl());
 		map.put("/main.do", new MainPageControl());
-		
 	};
 
 	

@@ -39,7 +39,7 @@
     </tr>
     <tr>
       <td colspan="2" align="center">
-        <input class="btn btn-primary"
+        <input class="btn btn-success"
                type="submit" value="저장" />
         <input name="currentPage" value="<%=search.getCurrentPage() %>" hidden="true"/>
         <input name="searchCondition" value="<%=search.getSearchCondition() %>" hidden="true"/>

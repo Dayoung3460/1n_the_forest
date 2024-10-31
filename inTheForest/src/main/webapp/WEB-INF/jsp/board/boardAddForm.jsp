@@ -30,7 +30,7 @@
     </tr>
     <tr>
       <td colspan="2" align="center">
-        <input class="btn btn-primary" type="submit" value="저장" />
+        <input class="btn btn-success" type="submit" value="저장" />
         <input class="btn btn-warning" type="submit" value="취소" />
       </td>
     </tr>
