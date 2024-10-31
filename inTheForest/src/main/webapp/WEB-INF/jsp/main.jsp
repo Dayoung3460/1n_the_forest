@@ -61,7 +61,7 @@
 
 <img src="assets/site/index/forest.jpg" alt="forest">
 <p class="text-center fs-3 mt-5 fw-bolder">1n the 숲 캠핑장은…</p>
-<p class="text-muted text-center fs-5 mb-5">
+<p class="text-muted text-center fs-6 mb-5">
 숲속에서 일상을 잠시 내려두고 자연을 즐겨보세요.<br>
 1n the 숲 캠핑장은 앞산 전망이 훤히 내다보이는 곳에 위치해 있어<br>
 낮에는 도시 전경, 밤에는 멋진 야경을 감상할 수 있는 곳입니다.<br><br>
