@@ -20,7 +20,8 @@ public class BookControl implements Control {
 		String memberId = req.getParameter("memberId");
 		BookService svc = new BookServiceImpl();
 		List<BookVO> list = svc.myPageBookList(memberId);
-		req.setAttribute("com.intheforest.vo.BookVO", list);
+		System.out.println("list: " + list);
+		req.setAttribute("myPageBookList", list);
 		req.getRequestDispatcher("book/myPageBookList.tiles").forward(req, resp);
 		
 	}

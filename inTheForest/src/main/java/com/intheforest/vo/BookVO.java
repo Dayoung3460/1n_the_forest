@@ -1,18 +1,21 @@
 package com.intheforest.vo;
 
+import lombok.Data;
+
+@Data
 public class BookVO {
-	int bookNo;
-	String memberId;
-	int siteNo;
-	int memCnt;
-	String startDate;
-	String endDate;
-	String carNum;
-	int totalPrice;
-	int reviewFlag;
-	int cancelFlag;
-	String createDate;
-	String siteName;
+	private int bookNo;
+	private String memberId;
+	private int siteNo;
+	private int memCnt;
+	private String startDate;
+	private String endDate;
+	private String carNum;
+	private int totalPrice;
+	private int reviewFlag;
+	private int cancelFlag;
+	private String createDate;
+	private String siteName;
 	
 
 }

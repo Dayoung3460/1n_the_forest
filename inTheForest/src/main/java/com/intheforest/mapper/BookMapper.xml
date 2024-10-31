@@ -2,21 +2,25 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.intheforest.mapper.ExampleMapper">
+<mapper namespace="com.intheforest.mapper.BookMapper">
 
-<select id="selectMyPageBookList" parameterType="String" resultType="com.intheforest.vo.BookVO">
+<select id="selectMyPageBookList" parameterType="String" resultType="book">
 select book_no
-       , (select site_name
-          from site
-          where site_no = ${siteNo} ) site_name
-       , mem_cnt
-       , start_date
-       , end_date
-       , total_price
-       , create_date
-       , cancel_flag
+       ,site_no s
+       ,(select site_name
+         from site
+         where site_no = ( select site_no
+                           from site_book
+                           where member_id = '${memberId}')
+       ) site_name
+       ,mem_cnt
+       ,start_date
+       ,end_date
+       ,total_price
+       ,create_date
+       ,cancel_flag
 from site_book
-where member_id = ${memberId}
+where member_id = '${memberId}'
 </select>
 
 </mapper>
