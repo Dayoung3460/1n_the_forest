@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<link href="css/site/main.css" rel="stylesheet" />
 
 <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="5000">
-        <img src="assets/layout/camping1.jpg" class="d-block w-100" alt="...">
+        <img src="assets/site/main/camping1.jpg" class="d-block w-100" alt="image1">
       </div>
       <div class="carousel-item" data-bs-interval="5000">
-        <img src="assets/layout/camping2.jpg" class="d-block w-100" alt="...">
+        <img src="assets/site/main/camping2.jpg" class="d-block w-100" alt="image2">
       </div>
       <div class="carousel-item" data-bs-interval="5000">
-        <img src="assets/layout/camping3.jpg" class="d-block w-100" alt="...">
+        <img src="assets/site/main/camping3.jpg" class="d-block w-100" alt="image3">
       </div>
       <div class="carousel-item" data-bs-interval="5000">
-        <img src="assets/layout/camping4.jpg" class="d-block w-100" alt="...">
+        <img src="assets/site/main/camping4.jpg" class="d-block w-100" alt="image4">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
