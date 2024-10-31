@@ -1,27 +1,3 @@
-#noticeBox {
-  display: flex;
-  align-items: center;
-  border: 3px #ccc;
-  margin: 40px;
-  gap: 30px;
-}
-#noticeBox div {
-  width: 100px;
-  height: 120px;
-  background-color: #009367;
-  color: white;
-  text-align: center;
-  padding-top: 45px;
-  box-shadow: 5px 10px 5px #ddd;
-  font-weight: bold;
-}
-#noticeBox li a {
-  text-decoration: none;
-}
-#noticeBox li span {
-  margin-left: 80px;
-  color: #bbb;
-}
 .loginTop {
   display: flex;
   justify-content: end;
@@ -36,7 +12,7 @@
 }
 .bg-custom {
   --bs-bg-opacity: 1;
-  background: url(../../assets/layout/starry_green_background.jpg) no-repeat scroll center;
+  background: url(../../assets/site/starry_green_background.jpg) no-repeat scroll center;
   background-size: cover;
 }
 .navbar-brand img {
@@ -53,7 +29,7 @@
   color: white;
 }
 footer {
-  background: url(../../assets/layout/starry_background.jpg) no-repeat scroll center;
+  background: url(../../assets/site/starry_background.jpg) no-repeat scroll center;
   background-size: cover;
 }
 footer div {

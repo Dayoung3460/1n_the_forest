@@ -13,10 +13,10 @@
         <meta name="author" content="1n the 숲" />
         <title>1n the 숲 캠핑장</title>
         <!-- Favicon.io 사이트에서 생성한 favicon.ico -->
-        <link rel="icon" type="image/x-icon" href="assets/layout/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/site/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/layout/template.css" rel="stylesheet" />
-        <link href="css/layout/template_custom.css" rel="stylesheet" /> <!-- Bootstrap 외 직접 추가한 css -->
+        <link href="css/site/template.css" rel="stylesheet" />
+        <link href="css/site/template_custom.css" rel="stylesheet" /> <!-- Bootstrap 외 직접 추가한 css -->
     </head>
     <body>
         <header>
@@ -28,7 +28,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
                 <div class="container">
                     <a class="navbar-brand" href="#!">
-                        <img src="assets/layout/logo_white_long.png" alt="logo">
+                        <img src="assets/site/logo_white_long.png" alt="logo">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -47,13 +47,13 @@
 
         <!-- Page content-->
         <div id="pageContent">
-			<tiles:insertAttribute name="body" />
+					<tiles:insertAttribute name="body" />
         </div>
         
         <!-- Footer-->
         <footer>
             <div class="py-4">
-	            <img src="assets/layout/logo_white_vertical.png" alt="logo">
+	            <img src="assets/site/logo_white_vertical.png" alt="logo">
 	            <span class="text-left text-white">
 	                TEL : 053-133-1333<br>주소 : 대구광역시 달서구 앞산순환로 248, 1n the 숲 캠핑장<br>
 	                <span class="text-muted">
