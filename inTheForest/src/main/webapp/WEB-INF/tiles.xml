@@ -6,7 +6,6 @@
 	<definition name="home"
 		template="/WEB-INF/layout/template.jsp">
 		<put-attribute name="title" value="1n the 숲" />
-		
 	</definition>
 	
 	<definition name="WILDCARD:*" extends="home">
