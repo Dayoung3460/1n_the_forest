@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
 import com.intheforest.control.ExampleControl;
+import com.intheforest.control.board.NoticeJsonControl;
 import com.intheforest.control.site.MainPageControl;
 
 public class FrontController extends HttpServlet{
@@ -25,6 +26,10 @@ public class FrontController extends HttpServlet{
 		map.put("/example.do", new ExampleControl());
 		
 		map.put("/main.do", new MainPageControl());
+		
+		// 공지사항 main 출력
+		// notice_flag DESC, write_date DESC, board_no DESC 기준 상위 5개 가져옴.
+		map.put("/noticeJson.do", new NoticeJsonControl());
 		
 	};
 
