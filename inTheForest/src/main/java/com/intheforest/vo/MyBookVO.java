@@ -3,7 +3,7 @@ package com.intheforest.vo;
 import lombok.Data;
 
 @Data
-public class BookVO {
+public class MyBookVO {
 	private int bookNo;
 	private String memberId;
 	private int siteNo;

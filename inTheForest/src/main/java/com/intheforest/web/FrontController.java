@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
 import com.intheforest.control.ExampleControl;
-import com.intheforest.control.book.BookControl;
+import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.site.MainPageControl;
 
 public class FrontController extends HttpServlet{
@@ -24,7 +24,7 @@ public class FrontController extends HttpServlet{
 	@Override
 	public void init() throws ServletException {
 		map.put("/example.do", new ExampleControl());
-		map.put("/myPageBookList.do", new BookControl());
+		map.put("/myPageBookList.do", new MyBookControl());
 		
 		map.put("/main.do", new MainPageControl());
 		

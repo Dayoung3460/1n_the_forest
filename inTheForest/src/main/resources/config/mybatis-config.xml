@@ -11,7 +11,7 @@
 		<setting name="localCacheScope" value="STATEMENT" />
 	</settings>
 	<typeAliases>
-		<typeAlias alias="book" type="com.intheforest.vo.BookVO" />
+		<typeAlias alias="mybook" type="com.intheforest.vo.MyBookVO" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -25,6 +25,6 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/intheforest/mapper/BookMapper.xml" />
+		<mapper resource="com/intheforest/mapper/MyBookMapper.xml" />
 	</mappers>
 </configuration>

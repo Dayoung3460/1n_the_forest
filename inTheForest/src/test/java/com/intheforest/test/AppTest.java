@@ -7,15 +7,15 @@ import org.apache.ibatis.session.SqlSession;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;	
 import com.intheforest.common.DataSource;
-import com.intheforest.mapper.BookMapper;
-import com.intheforest.vo.BookVO;
+import com.intheforest.mapper.MyBookMapper;
+import com.intheforest.vo.MyBookVO;
 
 public class AppTest {
 	public static void main(String[] args) {
 		SqlSession sqlSession = DataSource.getInstance().openSession();
-		BookMapper mapper = sqlSession.getMapper(BookMapper.class);
+		MyBookMapper mapper = sqlSession.getMapper(MyBookMapper.class);
 		
-		List<BookVO> list = mapper.selectMyPageBookList("mid901");
+		List<MyBookVO> list = mapper.selectMyPageBookList("mid901");
 		System.out.println(list);
 	}
 }

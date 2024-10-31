@@ -1,4 +1,4 @@
-package com.intheforest.control.book;
+package com.intheforest.control.mypage;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,18 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
-import com.intheforest.service.BookService;
-import com.intheforest.service.BookServiceImpl;
-import com.intheforest.vo.BookVO;
+import com.intheforest.service.MyBookService;
+import com.intheforest.service.MyBookServiceImpl;
+import com.intheforest.vo.MyBookVO;
 
-public class BookControl implements Control {
+public class MyBookControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
 		String memberId = req.getParameter("memberId");
-		BookService svc = new BookServiceImpl();
-		List<BookVO> list = svc.myPageBookList(memberId);
+		MyBookService svc = new MyBookServiceImpl();
+		List<MyBookVO> list = svc.myPageBookList(memberId);
 		System.out.println("list: " + list);
 		req.setAttribute("myPageBookList", list);
 		req.getRequestDispatcher("book/myPageBookList.tiles").forward(req, resp);

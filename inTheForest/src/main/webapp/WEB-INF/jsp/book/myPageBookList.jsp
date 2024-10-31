@@ -1,4 +1,4 @@
-<%@page import="com.intheforest.vo.BookVO"%>
+<%@page import="com.intheforest.vo.MyBookVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 
 <%
-List<BookVO> list = (List<BookVO>) request.getAttribute("myPageBookList");
+List<MyBookVO> list = (List<MyBookVO>) request.getAttribute("myPageBookList");
 %>
 
 <title>마이페이지</title>
 <span style="font-size:20px">예약목록 조회</span>
 
-<button type="button" class="btn btn-primary" value="Submit" style="float:right">회원정보 수정</button>
+<button type="button" class="btn btn-outline-secondary" value="Submit" style="float:right">회원정보 수정</button>
 
 <table class="table table-hover">
   <thead>
@@ -28,7 +28,7 @@ List<BookVO> list = (List<BookVO>) request.getAttribute("myPageBookList");
   </thead>
   <tbody>
   <%
-  for (BookVO bvo : list){
+  for (MyBookVO bvo : list){
   %>
     <tr>
       <th scope="row"><%=bvo.getBookNo() %></th>
