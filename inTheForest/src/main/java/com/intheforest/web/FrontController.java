@@ -26,22 +26,48 @@ public class FrontController extends HttpServlet{
 	
 	@Override
 	public void init() throws ServletException {
-		map.put("/example.do", new ExampleControl());
-		
+		// 로그인, 회원가입
 		map.put("/login.do", new LoginControl());
 		
+		
+		
+		
+		
+		// 게시판
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/board.do", new BoardControl());
 		map.put("/addBoardForm.do", new AddBoardFormControl());
 		map.put("/addBoard.do", new AddBoardControl());
 		map.put("/modifyBoard.do", new ModifyBoardControl());
 		map.put("/deleteBoard.do", new DeleteBoardControl());
-		map.put("/main.do", new MainPageControl());
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		//캠핑예약
 		map.put("/book_calendar.do", new BookCalCont());
 		map.put("/book_app.do", new BookAppCont());
 		
+		
+		
+		
+		
+		
+		// 마이페이지
+		
+		
+		
+		
+		
+		
+		
+		// 사이트
+		map.put("/main.do", new MainPageControl());
 	};
 
 	
