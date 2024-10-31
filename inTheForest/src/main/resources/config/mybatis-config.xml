@@ -13,6 +13,7 @@
 	<typeAliases>
 		<!-- 예시 -->
 		<!-- <typeAlias alias="member" type="com.intheforest.vo.MemberVO" /> -->
+		<typeAlias alias="member" type="com.intheforest.vo.MemberVO" /> 
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -27,5 +28,6 @@
 	</environments>
 	<mappers>
 		<!-- 예시 <mapper resource="com/intheforest/mapper/MemberMapper.xml" /> -->
+		<mapper resource="com/intheforest/mapper/MemberMapper.xml" />
 	</mappers>
 </configuration>

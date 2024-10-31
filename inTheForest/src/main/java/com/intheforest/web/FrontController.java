@@ -13,6 +13,7 @@ import com.intheforest.common.Control;
 import com.intheforest.control.ExampleControl;
 import com.intheforest.control.board.*;
 import com.intheforest.control.site.MainPageControl;
+import com.intheforest.control.member.LoginControl;
 
 public class FrontController extends HttpServlet{
 	Map<String, Control> map;
@@ -25,6 +26,8 @@ public class FrontController extends HttpServlet{
 	public void init() throws ServletException {
 		map.put("/example.do", new ExampleControl());
 		
+		map.put("/login.do", new LoginControl());
+		
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/board.do", new BoardControl());
 		map.put("/addBoardForm.do", new AddBoardFormControl());
@@ -32,6 +35,7 @@ public class FrontController extends HttpServlet{
 		map.put("/modifyBoard.do", new ModifyBoardControl());
 		map.put("/deleteBoard.do", new DeleteBoardControl());
 		map.put("/main.do", new MainPageControl());
+		
 	};
 
 	
