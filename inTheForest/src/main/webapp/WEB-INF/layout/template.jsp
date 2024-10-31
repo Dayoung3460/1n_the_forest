@@ -47,7 +47,7 @@
 
         <!-- Page content-->
         <div id="pageContent">
-			<tiles:insertAttribute name="body" />
+					<tiles:insertAttribute name="body" />
         </div>
         
         <!-- Footer-->
