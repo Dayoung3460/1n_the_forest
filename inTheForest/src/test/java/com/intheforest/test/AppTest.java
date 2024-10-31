@@ -13,5 +13,7 @@ public class AppTest {
 		SqlSession sqlSession = DataSource.getInstance().openSession();
 		// test
 		
+		//tttt
+		
 	}
 }
