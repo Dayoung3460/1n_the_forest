@@ -22,9 +22,8 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO findMemberId(String memberName, String email) {
 		return mapper.findMemberId(memberName, email);
 	}
-	
-	
-			
-	
-
+	@Override
+	public MemberVO searchMember(String memberId) {
+		return mapper.searchMember(memberId);
+	}
 }

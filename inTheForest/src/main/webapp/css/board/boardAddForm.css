@@ -1,0 +1,81 @@
+.boardAddForm {
+    min-height: 700px;
+    width: 1320px;
+    margin: 40px auto;
+    > h3 {
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    > p {
+        text-align: center;
+        font-size: 18px;
+        color: var(--bs-gray-700);
+        margin-bottom: 60px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    tr.content {
+        th,
+        td {
+            height: 300px;
+        }
+
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+
+    }
+
+    th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+        width: 15%;
+    }
+
+    .form-control {
+        border: none;
+    }
+
+    textarea {
+        height: 375px;
+        resize: none;
+    }
+
+    /* 내용 셀 정렬 */
+    .content-col {
+        text-align: left;
+        padding: 10px;
+        vertical-align: top;
+    }
+
+    /* 파일 첨부 섹션 */
+    .file-input {
+        width: calc(100% + 553px);
+        display: flex;
+        align-items: center;
+    }
+
+    .file-input input[type="file"] {
+
+        margin-right: 10px;
+    }
+
+    .form-control::file-selector-button {
+        border: none;
+    }
+
+    .btns {
+        height: 100px;
+        outline: none;
+        border: none;
+        margin-top: 40px;
+        input {
+            width: 60px;
+        }
+    }
+}

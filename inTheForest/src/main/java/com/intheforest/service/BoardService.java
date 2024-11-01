@@ -17,4 +17,5 @@ public interface BoardService {
   
   List<Map<String, Object>> countByWriter();
   
+  
 }

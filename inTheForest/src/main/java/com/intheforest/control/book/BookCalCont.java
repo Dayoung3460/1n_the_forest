@@ -35,6 +35,6 @@ public class BookCalCont implements Control {
 		req.setAttribute("sitePrice", sitePrice);
 		
 		
-		req.getRequestDispatcher("/WEB-INF/jsp/book/book_calendar.jsp").forward(req, resp);
+		req.getRequestDispatcher("book/book_calendar.tiles").forward(req, resp);
 	}
 }

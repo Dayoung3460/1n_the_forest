@@ -9,9 +9,8 @@
     String wdate = sdf.format(board.getWriteDate());
 %>
 <div class="board">
-    <h3>문의하기<br/>
-        궁금하신 사항을 자유롭게 질문해주세요.
-    </h3>
+    <h3>문의하기</h3>
+    <p>궁금하신 사항을 자유롭게 질문해주세요</p>
     <hr/>
     <div>
         <div class="top">
@@ -78,7 +77,7 @@
     <%--<div align="center">--%>
 
     <%--    <%--%>
-    <%--        String logIn = (String) session.getAttribute("logId");--%>
+    <%--        String logIn = (String) session.getAttribute("memberId");--%>
     <%--    %>--%>
     <%--    <%--%>
     <%--        if (board.getWriter().equals(logIn)) {--%>
@@ -96,7 +95,7 @@
 
 <script>
     <%--let bno = "${board.boardNo}"--%>
-    <%--let logId = "${logId}"--%>
+    <%--let memberId = "${memberId}"--%>
 
 
     <%--document.querySelector('.modifyBtn')?.addEventListener('click', (e) => {--%>

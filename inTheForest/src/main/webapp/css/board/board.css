@@ -1,7 +1,17 @@
 .board {
     width: 1320px;
     margin: 40px auto;
+    > h3 {
+        text-align: center;
+        margin-bottom: 8px;
+    }
 
+    > p {
+        text-align: center;
+        font-size: 18px;
+        color: var(--bs-gray-700);
+        margin-bottom: 60px;
+    }
     .top {
         display: flex;
         justify-content: center;
