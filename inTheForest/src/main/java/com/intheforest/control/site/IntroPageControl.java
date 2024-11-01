@@ -13,20 +13,11 @@ import com.intheforest.service.BoardService;
 import com.intheforest.service.BoardServiceImpl;
 import com.intheforest.vo.BoardVO;
 
-public class MainPageControl implements Control {
+public class IntroPageControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    BoardService svc = new BoardServiceImpl();
-	    
-	    SearchDTO search = new SearchDTO();
-	    search.setCurrentPage("1");
-	    search.setCategory("notice");
-	    
-	    List<BoardVO> list = svc.boardListByPage(search);
-	    
-	    req.setAttribute("boardList", list);
-		req.getRequestDispatcher("site/main.tiles").forward(req, resp);
+		req.getRequestDispatcher("site/intro.tiles").forward(req, resp);
 	}
 
 }

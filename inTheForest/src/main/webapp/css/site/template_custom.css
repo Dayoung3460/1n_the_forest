@@ -44,3 +44,10 @@ footer span {
   margin: auto 0;
   word-break: keep-all;
 }
+.text-mint {
+  color: #39b89a;
+}
+a {
+  text-decoration:none; 
+  color:black;
+}

@@ -38,7 +38,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item"><a class="nav-link active" aria-current="page" href="main.do">홈</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#!">시설안내</a></li>
+                            <li class="nav-item"><a class="nav-link" href="intro.do">시설안내</a></li>
                             <li class="nav-item"><a class="nav-link" href="book_calendar.do">실시간예약</a></li>
                             <li class="nav-item"><a class="nav-link" href="boardList.do?category=notice">공지사항</a></li>
                             <li class="nav-item"><a class="nav-link" href="boardList.do?category=review">이용후기</a></li>

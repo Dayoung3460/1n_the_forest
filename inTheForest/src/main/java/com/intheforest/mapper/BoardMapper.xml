@@ -53,12 +53,11 @@
         ) a
         ) b
         where b.rn > (#{currentPage} - 1) * 10
-        <!-- 꺽새를 연산자로 쓰기 위해 태그가 아니고 -->
+        <!-- 꺽쇠를 연산자로 쓰기 위해 태그가 아니고 -->
         <![CDATA[
-		and b.rn <= (#{currentPage} * 10)
-		]]>
+				and b.rn <= (#{currentPage} * 10)
+				]]>
     </select>
-
 
     <select id="boardTotalCount" resultType="int"
             parameterType="search">
@@ -137,5 +136,6 @@
 <!--        on b.writer = m.member_id-->
 <!--        group by writer, member_name-->
 <!--    </select>-->
+
 
 </mapper>

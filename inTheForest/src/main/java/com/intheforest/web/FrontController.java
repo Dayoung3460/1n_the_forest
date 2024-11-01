@@ -10,16 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
-import com.intheforest.control.mypage.MyBookControl;
-import com.intheforest.control.board.*;
-import com.intheforest.control.mypage.MyBookControl;
-import com.intheforest.control.site.MainPageControl;
+import com.intheforest.control.board.AddBoardControl;
+import com.intheforest.control.board.AddBoardFormControl;
+import com.intheforest.control.board.BoardControl;
+import com.intheforest.control.board.BoardListControl;
+import com.intheforest.control.board.DeleteBoardControl;
+import com.intheforest.control.board.ModifyBoardControl;
+import com.intheforest.control.book.BookAppCont;
+import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.member.FindIdControl;
 import com.intheforest.control.member.FindPwControl;
 import com.intheforest.control.member.JoinFormControl;
 import com.intheforest.control.member.LoginControl;
-import com.intheforest.control.book.BookAppCont;
-import com.intheforest.control.book.BookCalCont;
+import com.intheforest.control.mypage.MyBookControl;
+import com.intheforest.control.site.IntroPageControl;
+import com.intheforest.control.site.MainPageControl;
 
 public class FrontController extends HttpServlet{
 	Map<String, Control> map;
@@ -50,8 +55,7 @@ public class FrontController extends HttpServlet{
 		map.put("/deleteBoard.do", new DeleteBoardControl());
 		
 		
-		
-  
+	
 		
 		
 		//캠핑예약
@@ -80,6 +84,9 @@ public class FrontController extends HttpServlet{
     
     // 사이트
 		map.put("/main.do", new MainPageControl());
+		map.put("/intro.do", new IntroPageControl());
+		
+		
 	};
 	
 	@Override

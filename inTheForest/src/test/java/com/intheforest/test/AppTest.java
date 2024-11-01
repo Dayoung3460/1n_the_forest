@@ -5,8 +5,12 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.intheforest.common.DataSource;
+import com.intheforest.common.SearchDTO;
 import com.intheforest.mapper.MemberMapper;
 import com.intheforest.mapper.MyBookMapper;
+import com.intheforest.service.BoardService;
+import com.intheforest.service.BoardServiceImpl;
+import com.intheforest.vo.BoardVO;
 import com.intheforest.vo.MemberVO;
 import com.intheforest.vo.MyBookVO;
 
