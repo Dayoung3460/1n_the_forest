@@ -25,7 +25,7 @@
         <header>
             <div class="loginTop container">
                 <a href="#">마이페이지</a>
-                <a href="#">로그인</a>
+                <a href="login.do">로그인</a>
             </div>
             <!-- Responsive navbar-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
@@ -36,10 +36,10 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">홈</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="main.do">홈</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!">시설안내</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#!">실시간예약</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#!">공지사항</a></li>
+                            <li class="nav-item"><a class="nav-link" href="book_calendar.do">실시간예약</a></li>
+                            <li class="nav-item"><a class="nav-link" href="boardList.do">공지사항</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!">이용후기</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!">문의하기</a></li>
                         </ul>
