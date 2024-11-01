@@ -15,5 +15,12 @@ public interface MemberService {
 	
 	// 아이디로 회원 정보 조회
 	MemberVO searchMember(String memberId);
+	
+	//비밀번호체크 
+	int pwCheck(MemberVO member);
+	
+	//임시비밀번호로 비번 변경
+
+	
 
 }
