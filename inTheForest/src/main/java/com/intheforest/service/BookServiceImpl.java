@@ -28,8 +28,8 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
-	public BookVO selectBookDate(String siteNo, String startDate, String endDate){
-		return mapper.selectSite(siteNo, startDate, endDate);
+	public BookVO selectBookDate(String siteNo, String startDate){
+		return mapper.selectSiteDate(siteNo, startDate);
 	}
 	
 	//등록

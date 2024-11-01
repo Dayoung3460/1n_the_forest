@@ -39,7 +39,7 @@
                         	end_date,
                         	car_num,
                         	total_price)
-	values  (#{bookNo},
+	values  (2222,
         	#{memberId},
         	#{siteNo},
         	#{memCnt},
