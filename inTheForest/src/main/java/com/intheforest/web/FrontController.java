@@ -10,8 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
-import com.intheforest.control.ExampleControl;
+import com.intheforest.control.board.AddBoardControl;
+import com.intheforest.control.board.AddBoardFormControl;
+import com.intheforest.control.board.BoardControl;
+import com.intheforest.control.board.BoardListControl;
+import com.intheforest.control.board.DeleteBoardControl;
+import com.intheforest.control.board.ModifyBoardControl;
 import com.intheforest.control.board.NoticeJsonControl;
+import com.intheforest.control.book.BookAppCont;
+import com.intheforest.control.book.BookCalCont;
+import com.intheforest.control.member.LoginControl;
 import com.intheforest.control.site.MainPageControl;
 
 public class FrontController extends HttpServlet{
@@ -23,14 +31,50 @@ public class FrontController extends HttpServlet{
 	
 	@Override
 	public void init() throws ServletException {
-		map.put("/example.do", new ExampleControl());
+		// 로그인, 회원가입
+		map.put("/login.do", new LoginControl());
 		
-		map.put("/main.do", new MainPageControl());
+		
+		
+		
+		
+		// 게시판
+		map.put("/boardList.do", new BoardListControl());
+		map.put("/board.do", new BoardControl());
+		map.put("/addBoardForm.do", new AddBoardFormControl());
+		map.put("/addBoard.do", new AddBoardControl());
+		map.put("/modifyBoard.do", new ModifyBoardControl());
+		map.put("/deleteBoard.do", new DeleteBoardControl());
+		
 		
 		// 공지사항 main 출력
 		// notice_flag DESC, write_date DESC, board_no DESC 기준 상위 5개 가져옴.
 		map.put("/noticeJson.do", new NoticeJsonControl());
 		
+		
+		
+		
+		
+		
+		//캠핑예약
+		map.put("/book_calendar.do", new BookCalCont());
+		map.put("/book_app.do", new BookAppCont());
+		
+		
+		
+		
+		
+		
+		// 마이페이지
+		
+		
+		
+		
+		
+		
+		
+		// 사이트
+		map.put("/main.do", new MainPageControl());
 	};
 
 	

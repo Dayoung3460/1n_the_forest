@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+body {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+
+}
+
+form {
+	padding: 20px;
+	margin: 30px;
+}

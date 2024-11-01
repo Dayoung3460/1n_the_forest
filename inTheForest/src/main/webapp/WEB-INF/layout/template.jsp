@@ -17,6 +17,9 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/site/template.css" rel="stylesheet" />
         <link href="css/site/template_custom.css" rel="stylesheet" /> <!-- Bootstrap 외 직접 추가한 css -->
+
+        <link href="css/board/boardList.css" rel="stylesheet" />
+        <link href="css/board/board.css" rel="stylesheet" />
     </head>
     <body>
         <header>
