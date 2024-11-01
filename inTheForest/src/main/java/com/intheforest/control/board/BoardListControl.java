@@ -18,13 +18,17 @@ public class BoardListControl implements Control {
   @Override
   public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String searchCondition = req.getParameter("searchCondition") == null ? "" : req.getParameter("searchCondition");
+    String category = req.getParameter("category") == null ? "notice" : req.getParameter("category");
     String keyword = req.getParameter("keyword") == null ? "" : req.getParameter("keyword");
     String currentPage = req.getParameter("currentPage") == null ? "1" : req.getParameter("currentPage");
+    
+    
     
     SearchDTO search = new SearchDTO();
     search.setCurrentPage(currentPage);
     search.setSearchCondition(searchCondition);
     search.setKeyword(keyword);
+    search.setCategory(category);
     
     BoardService svc = new BoardServiceImpl();
     
@@ -32,6 +36,8 @@ public class BoardListControl implements Control {
     List<BoardVO> list = svc.boardListByPage(search);
     
     int totalCount = svc.boardTotalCount(search);
+    
+    System.out.println("search = " + search);
     
     req.setAttribute("search", search);
     req.setAttribute("boardList", list);

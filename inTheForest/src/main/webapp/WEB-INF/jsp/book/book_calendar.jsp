@@ -7,7 +7,7 @@
 <%@page import="java.util.*"%>
 <%
 List<BookVO> list = (List<BookVO>) request.getAttribute("siteList");
-String logId = (String)session.getAttribute("logId");
+String memberId = (String)session.getAttribute("memberId");
 
 /*달력출력[S]*/
 int year = 0;
@@ -128,7 +128,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 								for (BookVO bvo : list) {
 								%>
 								<li>
-									<%if(logId != null){ %>
+									<%if(memberId != null){ %>
 										<button type="button" data-bs-toggle="modal"
 										data-bs-target="#exampleModal"
 										onclick="calValue('<%=thisDate%>', '<%=bvo.getSiteNo()%>', '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%></button>

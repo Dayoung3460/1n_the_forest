@@ -19,6 +19,7 @@ public class BoardControl implements Control {
     String currentPage = req.getParameter("currentPage");
     String searchCondition = req.getParameter("searchCondition");
     String keyword = req.getParameter("keyword");
+    String category = req.getParameter("category");
     
     BoardService svc = new BoardServiceImpl();
     BoardVO board = svc.searchBoard(Integer.parseInt(bno));
@@ -29,6 +30,7 @@ public class BoardControl implements Control {
     search.setCurrentPage(currentPage);
     search.setSearchCondition(searchCondition);
     search.setKeyword(keyword);
+    search.setCategory(category);
     
     req.setAttribute("search", search);
     

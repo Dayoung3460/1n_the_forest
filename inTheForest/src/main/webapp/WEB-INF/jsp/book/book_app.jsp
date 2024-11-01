@@ -10,7 +10,7 @@ String siteDate = (String) request.getParameter("siteDate");
 String category = (String) request.getParameter("category");
 String siteNo = (String) request.getParameter("siteNo");
 int addDate = Integer.parseInt(request.getParameter("addDate"));
-String logId = (String) session.getAttribute("logId");
+String memberId = (String) session.getAttribute("memberId");
 
 List<BookVO> optionList = (List<BookVO>)request.getAttribute("optionList");
 BookVO bvo = (BookVO)request.getAttribute("bookvo");
@@ -95,7 +95,7 @@ for(String item : rlist) {
 				<input type="hidden" name="category" value="<%=category%>">
 				<input type="hidden" name="siteNo" value="<%=siteNo%>">
 				<input type="hidden" name="endDate" value="<%=endDate%>">
-				<input type="hidden" name="logId" value="<%=logId%>">
+				<input type="hidden" name="memberId" value="<%=memberId%>">
 				<input type="hidden" name="bookNo" value="<%=bookNo%>">
 				
 				<table class="table table-bordered">
