@@ -20,4 +20,32 @@
     from site 
     where site_No=#{siteNo}  	
   </select>
+  
+  <select id="selectSiteDate" parameterType="int">
+    select count(*) as cnt
+    from site_book 
+    where site_No=#{siteNo} 
+    and start_date>=${startDate} 
+    and end_date>=${endDate}  	
+    and cancel_flag = 0
+  </select>
+  
+  <insert id="insertBook" parameterType = "book">
+    insert into site_book (book_no,
+                        	member_id,
+                        	site_no,
+                        	mem_cnt,
+                        	start_date,
+                        	end_date,
+                        	car_num,
+                        	total_price)
+	values  (#{bookNo},
+        	#{memberId},
+        	#{siteNo},
+        	#{memCnt},
+        	#{startDate},
+        	#{endDate},
+        	#{carNum},
+        	#{totalPrice})
+    </insert>
 </mapper>

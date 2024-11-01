@@ -38,7 +38,7 @@
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">홈</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!">시설안내</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#!">실시간예약</a></li>
+                            <li class="nav-item"><a class="nav-link" href="book_calendar.do">실시간예약</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!">공지사항</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!">이용후기</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!">문의하기</a></li>
@@ -50,7 +50,7 @@
 
         <!-- Page content-->
         <div id="pageContent">
-					<tiles:insertAttribute name="body" />
+			<tiles:insertAttribute name="body" />
         </div>
         
         <!-- Footer-->

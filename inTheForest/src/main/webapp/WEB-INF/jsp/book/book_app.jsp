@@ -5,6 +5,7 @@
 <%@ page import="com.intheforest.vo.BookVO"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.*"%>
+
 <%
 String siteDate = (String) request.getParameter("siteDate");
 String category = (String) request.getParameter("category");
@@ -23,7 +24,7 @@ Date dt = sdf.parse(siteDate);
 calendar.setTime(dt);
 calendar.add(Calendar.DATE, addDate); 
 String endDate = sdf.format(calendar.getTime());
-/*n박 계산[E]*/
+/*n박 계산[E]*/      
 
 /*예약번호 랜덤[S]*/
 Random random = new Random();
@@ -68,9 +69,13 @@ for(String item : rlist) {
 		}
 		
 		$(document).ready(function(){
-			var totalPrice = ${bookvo.sitePrice};
-			var selected = [];
+			var sitePrice = $("#sitePrice").val();
+			sitePrice = sitePrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			$("#totalPrice").html(sitePrice+"원");
 			
+			var totalPrice = ${bookvo.sitePrice};
+			var viewPrice = "";
+			var selected = [];			
 			
 			 $('input[name="option"]').change(function(){
 				 
@@ -80,91 +85,115 @@ for(String item : rlist) {
 					totalPrice += parseInt(optionVal);	
 				}else{
 					totalPrice -= parseInt(optionVal);
-				}
-				
-				$("#totalPrice").html(totalPrice+"원");
+				}						
+				viewPrice = String(totalPrice);
+				$("#totalPrice").html(viewPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원");
 			})
 		})
 	</script>
 	<body>
 		<div class="container reservation">
-		
-			<h3>캠핑 예약 상세</h3>
-			<form action="site_app.do" method="post" enctype="multipart/form-data">
+		<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+		  <ol class="breadcrumb" style="margin-top:20px">
+		    <li class="breadcrumb-item"><a href="/inTheForest/main.do">Home</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">실시간예약 상세</li>
+		  </ol>
+		</nav>
+	
+			<h1>실시간예약 상세</h1>
+			<form action="book_app.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="siteDate" value="<%=siteDate%>"> 
 				<input type="hidden" name="category" value="<%=category%>">
 				<input type="hidden" name="siteNo" value="<%=siteNo%>">
 				<input type="hidden" name="endDate" value="<%=endDate%>">
 				<input type="hidden" name="logId" value="<%=logId%>">
 				<input type="hidden" name="bookNo" value="<%=bookNo%>">
-				
-				<table class="table table-bordered">
-					<tr>
-						<th class="table-secondary">예약구역</th>
-						<th class="table-secondary">이용기간</th>
-						<th class="table-secondary">금액</th>
-					</tr>
-					<tr>
-						<td>${bookvo.siteName}</td>
-						<td><%=siteDate%> ~ <%=endDate%></td>
-						<td id="totalPrice">${bookvo.sitePrice}원</td>
-					</tr>
-				</table>
-				
-				<table class="table table-bordered" style="margin-top:10px">
-					<tr>
-						<th class="table-secondary">예약인원</th>
-						<th>
-							<select name="mem_cnt" class="form-select">
-								<option value="2" selected>2인</option>
-								<option value="3">3인</option>
-								<option value="4">4인</option>
-								<option value="5">5인</option>
-							</select>
-						</th>
-						<th class="table-secondary">예약자명</th>
-						<td><input type="text" name="name" class="form-control"></td>
-					</tr>
-			
-					<tr>
-						<th class="table-secondary">차량번호</th>
-						<th><input type="text" name="car_num" class="form-control"></th>
-						<th class="table-secondary">연락처</th>
-						<td><input type="text" name="tel" maxlength="13" class="form-control" oninput="autoHyphen(this)"></td>
-					</tr>
-			
-					<tr>
-						<th class="table-secondary">주소</th>
-						<th><input type="text" name="address" class="form-control"></th>
-						<th class="table-secondary">이메일</th>
-						<td><input type="text" name="email" class="form-control"></td>
-					</tr>
-			
-					<tr>
-						<th colspan="4" style="text-align: center" class="table-secondary">옵션 선택</th>
-					</tr>
+				<input type="hidden" name="sitePrice" id="sitePrice" value="${bookvo.sitePrice}">
 					
-					<tr>
-						<td colspan="4">
-							<div class="row g-3">
-								<div class="col-md-6">
-									<%for(BookVO ovo : optionList){%>
-										<div class="form-check">
-											<input class="form-check-input optionChk" type="checkbox" value="<%=ovo.getOptionNo() %>" name="option"
-					 id="<%=ovo.getOptionNo() %>"> 
-					 						<input id="optionPrice_<%=ovo.getOptionNo() %>" value="<%=ovo.getOptionPrice() %>" type="hidden">
-											<label class="form-check-label" for="<%=ovo.getOptionNo() %>"><%=ovo.getOptionName() %> (<%=ovo.getOptionPrice().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",") %>원)</label>
-										</div>
-									<%} %>
-								</div>
-							</div>
-						</td>
-					</tr>
-				</table>
+				<div class="card text-center">
+				  <div class="card-header">
+				    <%=siteDate%> ~ <%=endDate%>
+				  </div>
+				  <div class="card-body">
+				    <h5 class="card-title">${bookvo.siteName}</h5>
+				    <p class="card-text" id="totalPrice"></p>
+				  </div>
+				</div>
+					
+				<div class="addform">
+					
+					<p class="h4">1. 예약자 정보</p>		
+					
+					<div class="mb-3 row">
+					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약인원</label>
+					  <div class="col-sm-10">
+						  <select name="mem_cnt" class="form-select w-25">
+							<option value="2" selected>2인</option>
+							<option value="3">3인</option>
+							<option value="4">4인</option>
+							<option value="5">5인</option>
+						</select>
+						</div>
+					</div>
+					
+					<div class="mb-3 row">
+					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약자명</label>
+					  <div class="col-sm-10">
+					  	<input type="text" name="name" class="form-control w-50">
+					  </div>
+					</div>
+					
+					<div class="mb-3 row">
+					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">차량번호</label>
+					  <div class="col-sm-10">
+					  	<input type="text" name="car_num" class="form-control w-50">
+					  </div>
+					</div>
+					
+					<div class="mb-3 row">
+					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">연락처</label>
+					  <div class="col-sm-10">
+					  	<input type="text" name="tel" maxlength="13" class="form-control w-50" oninput="autoHyphen(this)">
+					  </div>
+					</div>
+					
+					<div class="mb-3 row">
+					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">주소</label>
+					  <div class="col-sm-10">
+					  <input type="text" name="address" class="form-control w-50">
+					  </div>
+					</div>
+					
+					<div class="mb-3 row">
+					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">이메일</label>
+					  <div class="col-sm-10">
+					  	<input type="text" name="email" class="form-control w-50">
+					  </div>
+					</div>
+				</div>
 				
+				<div class="addform">		
+				
+					<p class="h4">2. 옵션 선택</p>				
+					<div class="row g-3">
+						<div class="col-md-6">
+							<%for(BookVO ovo : optionList){%>
+							<div class="input-group mb-3">
+							  <div class="input-group-text">
+							    <input class="form-check-input mt-0" type="checkbox" value="<%=ovo.getOptionNo() %>" aria-label="Chec
+							    kbox for following text input" name="option">
+							  </div>
+							  <input type="hidden" id="optionPrice_<%=ovo.getOptionNo() %>" value="<%=ovo.getOptionPrice() %>">
+							  <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%=ovo.getOptionName() %> (<%=ovo.getOptionPrice().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",") %>원)" readonly onclick="">
+							</div>
+							<%} %>
+						</div>
+					</div>
+				</div>
+					
 				<div align="center">
-					<a class="btn btn-secondary" href="<%=request.getContextPath()%>/book_calendar.do">이전</a> 
-					<a class="btn btn-primary">예약확정</a>
+					<button class="btn btn-secondary btn-lg" href="<%=request.getContextPath()%>/book_calendar.do">이전</button> 
+					<button type="submit" class="btn btn-primary btn-lg">예약확정</button>
 				</div>
 			</form>
 		</div>

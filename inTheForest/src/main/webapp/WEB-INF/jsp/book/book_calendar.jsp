@@ -6,6 +6,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.*"%>
 <%
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 List<BookVO> list = (List<BookVO>) request.getAttribute("siteList");
 String logId = (String)session.getAttribute("logId");
 
@@ -17,7 +18,7 @@ int month = 0; // 0 ~ 11
 if (request.getParameter("year") == null || request.getParameter("month") == null) {
 	Calendar today = Calendar.getInstance();
 	year = today.get(Calendar.YEAR);
-	month = today.get(Calendar.MONTH);
+	month = today.get(Calendar.MONTH)+1;
 } else {
 	// 출력하고자 하는 달력의 년도와 월
 	year = Integer.parseInt(request.getParameter("year")); // 2022,..
@@ -52,6 +53,7 @@ if ((startBlankCnt + lastDate) % 7 != 0) {
 int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 /*달력출력[E]*/
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,22 +71,47 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 
 <body>
 	<div class="container reservation">
-
+	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+	  <ol class="breadcrumb" style="margin-top:20px">
+	    <li class="breadcrumb-item"><a href="/inTheForest/main.do">Home</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">실시간예약</li>
+	  </ol>
+	</nav>
+	
+	<h1>실시간예약</h1>
+		
+		<%
+		String thismonth = Integer.toString(month);
+		String prevMonth= year + "-" + (month - 1);
+		String nextMonth = year + "-" + (month + 1);
+		
+		if(month <10){
+			thismonth = "0"+month;
+		}
+		
+		if((month-1) <10){ //이전달의 값이 10월 이하라면
+			prevMonth = year + "-" + "0"+(month - 1);
+		}
+		
+		if((month+1) <10){ //다음달의 값이 10월 이하라면
+			nextMonth = year + "-" + "0"+(month + 1);
+		}
+		
+		%>
 		<!-- 이전/다음달 버튼 -->
 		<div class="bx">
 			<div class="res-month">
 				<a
 					href="<%=request.getContextPath()%>/book_calendar.do?year=<%=year%>&month=<%=month - 1%>"
-					title="이전달" class="prev"><i class="bi bi-chevron-left"></i><span><%=year + "-" + (month - 1)%></span></a>
-				<span><%=year + "-" + month%></span> <a
+					title="이전달" class="prev"><i class="bi bi-chevron-left"></i><span><%=prevMonth%></span></a>
+				<span><%=year + "-" + thismonth%></span> <a
 					href="<%=request.getContextPath()%>/book_calendar.do?year=<%=year%>&month=<%=month + 1%>"
-					title="다음달" class="next"><span><%=year + "-" + (month + 1)%></span><i
+					title="다음달" class="next"><span><%=nextMonth%></span><i
 					class="bi bi-chevron-right"></i></a>
 			</div>
 		</div>
 
 		<!-- 달력 -->
-		<div class="callout">예약가능한 숙소를 선택해주세요</div>
 		<div class="res-calendar">
 			<table>
 				<thead>
@@ -102,19 +129,26 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 					<tr>
 						<%
 						for (int i = 1; i <= tdCnt; i++) {
-							int days = i - startBlankCnt;
-							String thismonth = Integer.toString(month);
-							String thisDays = Integer.toString(days);
 							
-							if(month <10){
-								thismonth = "0"+month;
-							}
+							int days = i - startBlankCnt;
+							
+							String thisDays = Integer.toString(days);
 							
 							if(days <10){
 								thisDays = "0"+days;
 							}
+							
+							String thisDate = year + "-" + thismonth + "-" + thisDays;
+							
+							//지난날 계산
+							String today = sdf.format(new Date(System.currentTimeMillis()));
+							Date date = new Date(sdf.parse(thisDate).getTime()); 
+							Date todayDate = new Date(sdf.parse(today).getTime());
+							
+							int result = todayDate.compareTo(date);
+									
 						%>
-						<td>
+						<td <%if(result > 0){ %>class="last"<%} %> <%=result %>>
 							<%
 							if (i > startBlankCnt && i <= startBlankCnt + lastDate) {
 								if (i % 7 == 0) { //토요일
@@ -130,34 +164,40 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 
 							<ul>
 								<%
-								String thisDate = year + "-" + thismonth + "-" + thisDays;
+								
 								for (BookVO bvo : list) {
 								%>
 								<li>
 									<%if(logId != null){ %>
-										<button type="button" data-bs-toggle="modal"
+										<%if(result > 0){ %>
+											<button type="button" data-bs-toggle="modal"
+										data-bs-target="#exampleModal"><%=bvo.getSiteName()%> <span>(예약불가)</span></button>
+										<%}else{ %>
+											<button type="button" data-bs-toggle="modal"
 										data-bs-target="#exampleModal"
 										onclick="calValue('<%=thisDate%>', '<%=bvo.getSiteNo()%>', '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
+										<%} %>
+										
 									<%}else{ %>
-										<button type="button" data-bs-toggle="modal"
+										<%if(result > 0){ %>
+											<button type="button" data-bs-toggle="modal"
+										data-bs-target="#exampleModal"><%=bvo.getSiteName()%> <span>(예약불가)</span></button>
+										<%}else{ %>
+											<button type="button" data-bs-toggle="modal"
 										data-bs-target="#exampleModal"
 										onclick="calValue('<%=thisDate%>', '<%=bvo.getSiteNo()%>', '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
-										<!--  <button type="button" data-bs-toggle="modal"
-										data-bs-target="#loginModal"><%=bvo.getSiteName()%></button>-->
+										<%} %>
 									<%} %>
 								</li>
 								<%
 								}
 								%>
-							</ul> <%
-								 } else {
-								 %> &nbsp; <%
-								 }
-								 %>
+							</ul> 
+							<%} else {%> 
+								&nbsp; 
+							<% } %>
 						</td>
-						<%
-						if (i != tdCnt && i % 7 == 0) {
-						%>
+						<%if (i != tdCnt && i % 7 == 0) {%>
 					</tr>
 					<tr>
 						<%}}%>
@@ -169,11 +209,12 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script>
-		function calValue(date, no, cate) {						
+		
+		function calValue(date, no, cate) {	
 			document.querySelector('#modalSave').addEventListener('click', function(e){
 			 	location.href = '/inTheForest/book_app.do?siteDate='+date+'&category='+cate+'&siteNo='+no+'&addDate='+$("#dateSelect").val();
 		 	});
-		}		
+		}	
 	</script>
 
 	<!-- 모달(modal)창 열기 -->
@@ -189,7 +230,6 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-
 				<div class="modal-body">
 					<div class="mb-3"> 
 					<p>숙박일수를 선택해주세요</p>
@@ -197,6 +237,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 							<option selected value="1">1박 2일</option>
 							<option value="2">2박 3일</option>
 							<option value="3">3박 4일</option>
+							<option value="4">4박 5일</option>
 						</select>
 					</div>
 				</div>
