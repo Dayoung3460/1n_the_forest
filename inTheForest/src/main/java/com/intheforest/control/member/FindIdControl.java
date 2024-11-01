@@ -18,17 +18,18 @@ public class FindIdControl implements Control {
 		req.setCharacterEncoding("utf-8"); // 값을 받을 때 (클라이언트가 보낸 값) 문자 안깨지게 해주는 것
 		resp.setContentType("text/json;charset=utf-8"); // 값을 보낼 때 문자 안깨지게 해주는것
 
-		String id = req.getParameter("memberId");
 		String name = req.getParameter("memberName");
+		String email = req.getParameter("email");
 
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			// findIdForm.jsp페이지로 이동
 			req.getRequestDispatcher("member/findIdForm.tiles").forward(req, resp);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
 			MemberService svc = new MemberServiceImpl();
-			MemberVO member = svc.findMemberId(id, name);
-			req.setAttribute("member", member); // 요청 받은 결과
+			MemberVO memberId = svc.findMemberId(name,email);
+			req.setAttribute("findId", memberId); // 요청 받은 결과
 			try {
+				System.out.println(memberId);
 				req.getRequestDispatcher("member/findId.tiles").forward(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();

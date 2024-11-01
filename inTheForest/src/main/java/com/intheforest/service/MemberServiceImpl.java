@@ -19,14 +19,11 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.insertMember(member)==1;
 	}
 	@Override
-	public MemberVO findMemberId(String memberId, String memberName) {
-		return mapper.findMemberId(memberId, memberName);
+	public MemberVO findMemberId(String memberName, String email) {
+		return mapper.findMemberId(memberName, email);
 	}
-	
 	@Override
 	public MemberVO searchMember(String memberId) {
 		return mapper.searchMember(memberId);
 	}
-	
-	
 }
