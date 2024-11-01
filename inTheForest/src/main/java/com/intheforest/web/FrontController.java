@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
-import com.intheforest.control.ExampleControl;
 import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.board.*;
+import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.site.MainPageControl;
 import com.intheforest.control.member.LoginControl;
 import com.intheforest.control.book.BookAppCont;
@@ -65,12 +65,14 @@ public class FrontController extends HttpServlet{
   
   
   
-		
-		
-		
-		
-		
-		// 사이트
+    
+    
+    
+    
+    
+    
+    
+    // 사이트
 		map.put("/main.do", new MainPageControl());
 	};
 	
