@@ -11,8 +11,6 @@ import com.intheforest.common.Control;
 import com.intheforest.service.BookService;
 import com.intheforest.service.BookServiceImpl;
 import com.intheforest.vo.BookVO;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class BookAppCont implements Control {
 

@@ -153,7 +153,7 @@ for(String item : rlist) {
 											<input class="form-check-input optionChk" type="checkbox" value="<%=ovo.getOptionNo() %>" name="option"
 					 id="<%=ovo.getOptionNo() %>"> 
 					 						<input id="optionPrice_<%=ovo.getOptionNo() %>" value="<%=ovo.getOptionPrice() %>" type="hidden">
-											<label class="form-check-label" for="<%=ovo.getOptionNo() %>"><%=ovo.getOptionName() %> (<%=ovo.getOptionPrice() %>)</label>
+											<label class="form-check-label" for="<%=ovo.getOptionNo() %>"><%=ovo.getOptionName() %> (<%=ovo.getOptionPrice().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",") %>원)</label>
 										</div>
 									<%} %>
 								</div>

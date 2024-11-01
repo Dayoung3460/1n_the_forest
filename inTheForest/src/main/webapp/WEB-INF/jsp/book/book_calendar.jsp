@@ -84,6 +84,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 		</div>
 
 		<!-- 달력 -->
+		<div class="callout">예약가능한 숙소를 선택해주세요</div>
 		<div class="res-calendar">
 			<table>
 				<thead>
@@ -102,7 +103,12 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 						<%
 						for (int i = 1; i <= tdCnt; i++) {
 							int days = i - startBlankCnt;
+							String thismonth = Integer.toString(month);
 							String thisDays = Integer.toString(days);
+							
+							if(month <10){
+								thismonth = "0"+month;
+							}
 							
 							if(days <10){
 								thisDays = "0"+days;
@@ -124,18 +130,18 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 
 							<ul>
 								<%
-								String thisDate = year + "-" + month + "-" + thisDays;
+								String thisDate = year + "-" + thismonth + "-" + thisDays;
 								for (BookVO bvo : list) {
 								%>
 								<li>
 									<%if(logId != null){ %>
 										<button type="button" data-bs-toggle="modal"
 										data-bs-target="#exampleModal"
-										onclick="calValue('<%=thisDate%>', '<%=bvo.getSiteNo()%>', '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%></button>
+										onclick="calValue('<%=thisDate%>', '<%=bvo.getSiteNo()%>', '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
 									<%}else{ %>
 										<button type="button" data-bs-toggle="modal"
 										data-bs-target="#exampleModal"
-										onclick="calValue('<%=thisDate%>', '<%=bvo.getSiteNo()%>', '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%></button>
+										onclick="calValue('<%=thisDate%>', '<%=bvo.getSiteNo()%>', '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
 										<!--  <button type="button" data-bs-toggle="modal"
 										data-bs-target="#loginModal"><%=bvo.getSiteName()%></button>-->
 									<%} %>
@@ -179,7 +185,6 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 			<div class="modal-content">
 				
 				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">숙박일수</h1>
 					<!-- 모달창 타이틀 -->
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
@@ -187,6 +192,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 
 				<div class="modal-body">
 					<div class="mb-3"> 
+					<p>숙박일수를 선택해주세요</p>
 						<select class="form-select" aria-label="Default select example" id="dateSelect">
 							<option selected value="1">1박 2일</option>
 							<option value="2">2박 3일</option>
