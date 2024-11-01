@@ -38,4 +38,12 @@ and   email= #{email}
 </select>
 
 
+<!--    아이디로 회원 정보 가져오기-->
+    <select id="searchMember" resultType="member" parameterType ="string">
+        select *
+        from member
+        where member_id =#{memberId}
+    </select>
+
+
 </mapper>

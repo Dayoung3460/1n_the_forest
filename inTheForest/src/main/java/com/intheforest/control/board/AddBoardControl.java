@@ -36,6 +36,10 @@ public class AddBoardControl implements Control {
     String writer = mr.getParameter("writer");
     String image = mr.getFilesystemName("image");
     String bookNo = req.getParameter("bookNo"); // category가 review일 때만
+    
+//    공지사항: 관리자 계정이여야함
+//    문의하기: 로그인필요없 / 글 비밀번호 필요 / 비밀글 체크박스 필요
+//    후기: 로그인해야함 / 글 비밀번호 필요 / 비밀글 체크박스 필요
     int secretFlag = Integer.parseInt(mr.getParameter("secretFlag")); // category가 qna일 때만 0 or 1
     int boardPw = Integer.parseInt(mr.getParameter("boardPw"));
     int noticeFlag = Integer.parseInt(mr.getParameter("noticeFlag"));// category가 notice일 때만 1, 나머지 0
