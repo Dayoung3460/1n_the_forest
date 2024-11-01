@@ -38,13 +38,15 @@ pageEncoding="UTF-8"%>
 			 
 			<!-- Submit 로그인버튼-->
 			<button  type="submit" class="btn btn-outline-success btn-lg" >Sign in</button>
+			<pre></pre>
 		  
 			
 			<div class="text-center">
 			<!-- Register 회원가입 링크 -->
-			  	<a href="#!">회원가입</a>
+			  	<a href="joinForm.do">| 회원가입</a>
 			  	<!-- id.password찾기 링크-->
-				<a href="#!">아이디/비밀번호 찾기</a>
+				<a href="#!">| 아이디 찾기</a>
+				<a href="#!">| 비밀번호 찾기</a>
 			</div>
 			
 

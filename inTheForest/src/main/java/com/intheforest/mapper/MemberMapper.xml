@@ -12,5 +12,30 @@
 	and   password =#{password}
 </select>
 
+<!-- 회원 추가  -->
+<insert id="insertMember" parameterType ="member">
+insert into member (member_id
+                    ,password
+                    ,member_name
+                    ,tel
+                    ,email
+                    ,address)
+values (#{memberId}
+      ,#{password}
+      ,#{memberName}
+      ,#{tel}
+      ,#{email}
+      ,#{address})
+                    
+</insert>
+
+<!-- 아이디체크 (이름.이메일 받음)-->
+<select id="findMemberId" resultType="member">
+select member_id
+from member
+where member_name=#{memberName}
+and   email= #{email} 
+</select>
+
 
 </mapper>
