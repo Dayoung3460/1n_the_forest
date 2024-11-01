@@ -46,7 +46,7 @@
                             <input class="btn btn-secondary" value="저장"/>
                         </c:when>
                         <c:otherwise>
-                            <input class="btn btn-success" type="submit" value="저장"/>
+                            <input class="btn btn-success" type="submit" value="등록하기"/>
                         </c:otherwise>
                     </c:choose>
                     <a href="#" onclick="history.back(); return false;">
