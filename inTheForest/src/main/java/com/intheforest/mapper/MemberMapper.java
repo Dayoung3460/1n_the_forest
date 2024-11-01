@@ -12,6 +12,6 @@ public interface MemberMapper{
 	public int insertMember(MemberVO member);
 	
 	//아이디체크 
-	public MemberVO findMemberId(@Param("memberId")String memberId, @Param("memberName")String memberName);
+	public MemberVO findMemberId(@Param("memberName")String memberName,@Param("email")String email);
 	
 }

@@ -11,7 +11,7 @@ public interface MemberService {
 	boolean addMember(MemberVO member);
 	
 	//아이디체크 
-	MemberVO findMemberId(String memberId , String memberName);
+	MemberVO findMemberId(String memberName ,String email);
 	
 	
 
