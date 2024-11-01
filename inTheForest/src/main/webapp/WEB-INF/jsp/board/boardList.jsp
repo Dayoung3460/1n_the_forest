@@ -36,12 +36,12 @@
                     <c:choose>
 
                         <c:when test="${board.boardCategory != 'reply'}">
-                            <a href="board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}">
+                            <a href="board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}">
                                 ${board.title}
                             </a>
                         </c:when>
                         <c:otherwise>
-                            <a class="reply" href="board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}">
+                            <a class="reply" href="board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}">
                                 └ [RE] : ${board.title}
                             </a>
                         </c:otherwise>
@@ -66,11 +66,15 @@
 
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
+            <%
+
+
+            %>
 
             <c:choose>
                 <c:when test="${ paging.prev }">
                     <li class="page-item"><a class="page-link"
-                                             href="boardList.do?currentPage=${ paging.startPage - 1 }&searchCondition=${ search.searchCondition }&keyword=${ search.keyword }">Previous</a>
+                                             href="boardList.do?currentPage=${ paging.startPage - 1 }&searchCondition=${ search.searchCondition }&keyword=${ search.keyword }&category=${ search.category }">Previous</a>
                     </li>
                 </c:when>
                 <c:otherwise>
@@ -85,12 +89,12 @@
                     <c:when test="${ paging.currentPage == p }">
                         <li class="page-item active" aria-current="page"><a
                                 class="page-link"
-                                href="boardList.do?currentPage=${ p }&searchCondition=${ search.searchCondition }&keyword=${ search.keyword }">${ p }</a>
+                                href="boardList.do?currentPage=${ p }&searchCondition=${ search.searchCondition }&keyword=${ search.keyword }&category=${ search.category }">${ p }</a>
                         </li>
                     </c:when>
                     <c:otherwise>
                         <li class="page-item"><a class="page-link"
-                                                 href="boardList.do?currentPage=${ p }&searchCondition=${ search.searchCondition }&keyword=${ search.keyword }">${ p }</a>
+                                                 href="boardList.do?currentPage=${ p }&searchCondition=${ search.searchCondition }&keyword=${ search.keyword }&category=${ search.category }">${ p }</a>
                         </li>
 
                     </c:otherwise>
@@ -102,7 +106,7 @@
             <c:choose>
                 <c:when test="${ paging.next }">
                     <li class="page-item"><a class="page-link"
-                                             href="boardList.do?currentPage=${ paging.endPage + 1 }&searchCondition=${ search.searchCondition }&keyword=${ search.keyword }">Next</a>
+                                             href="boardList.do?currentPage=${ paging.endPage + 1 }&searchCondition=${ search.searchCondition }&keyword=${ search.keyword }&category=${ search.category }">Next</a>
                     </li>
                 </c:when>
                 <c:otherwise>
@@ -141,7 +145,7 @@
             </div>
         </form>
         <button type="submit" class="btn btn-success mx-lg-4 write">
-            <a href="addBoardForm.do">글쓰기</a>
+            <a href="addBoardForm.do?category=${ search.category }">글쓰기</a>
         </button>
     </div>
 

@@ -1,4 +1,5 @@
 .boardList {
+    min-height: 700px;
     width: 1320px;
     margin: 40px auto;
 

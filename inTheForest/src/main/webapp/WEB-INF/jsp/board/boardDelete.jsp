@@ -12,7 +12,7 @@
 
 <script>
   document.querySelector('.deleteBtn').addEventListener('click', (e) => {
-    location.href = 'deleteBoard.do?bno=<%=bno%>&confirm=yes&currentPage=<%=search.getCurrentPage()%>&searchCondition=<%=search.getSearchCondition()%>&keyword=<%=search.getKeyword()%>';
+    location.href = 'deleteBoard.do?bno=<%=bno%>&confirm=yes&currentPage=<%=search.getCurrentPage()%>&searchCondition=<%=search.getSearchCondition()%>&keyword=<%=search.getKeyword()%>&category=<%=search.getCategory()%>';
   })
 
   document.querySelector('.backBtn').addEventListener('click', (e) => {

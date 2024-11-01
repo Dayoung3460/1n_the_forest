@@ -23,7 +23,7 @@ public class BookAppCont implements Control {
 		String bookNo = req.getParameter("bookNo");
 		String siteNo = req.getParameter("siteNo");
 		String category = req.getParameter("category");
-		String logId = req.getParameter("logId");
+		String memberId = req.getParameter("memberId");
 		String memCnt = req.getParameter("memCnt");
 		String siteDate = req.getParameter("siteDate");
 		String endDate = req.getParameter("endDate");
@@ -49,7 +49,7 @@ public class BookAppCont implements Control {
 		}else {
 			
 			book.setBookNo(bookNo);
-			book.setMemberId(logId);
+			book.setMemberId(memberId);
 			book.setSiteNo(siteNo);
 			book.setMemCnt(memCnt);
 			book.setStartDate(siteDate);
@@ -59,7 +59,9 @@ public class BookAppCont implements Control {
 			
 			try {
 				//svc.registerBoard(book);
-				resp.sendRedirect("boardList.do");
+				
+				
+				resp.sendRedirect("boardList.do?category=" + req.getParameter("category"));
 			}catch(Exception e){
 				req.setAttribute("msg","등록하는중 오류가 발생했습니다.");
 				req.getRequestDispatcher("WEB-INF/jsp/boardForm.jsp")//
