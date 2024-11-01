@@ -10,6 +10,7 @@ public interface MemberMapper{
 	
 	//회원추가
 	public int insertMember(MemberVO member);
+
 	
 	//아이디체크 
 	public MemberVO findMemberId(@Param("memberName")String memberName,@Param("email")String email);
