@@ -51,6 +51,7 @@ public class BoardListControl implements Control {
     req.setAttribute("member", member);
     req.setAttribute("search", search);
     req.setAttribute("boardList", list);
+    req.setAttribute("category", req.getParameter("category"));
     req.setAttribute("paging", new PageDTO(Integer.parseInt(currentPage), totalCount));
     req.getRequestDispatcher("board/boardList.tiles").forward(req, resp);
   }

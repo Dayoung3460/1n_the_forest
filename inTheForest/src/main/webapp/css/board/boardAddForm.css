@@ -2,6 +2,7 @@
     min-height: 700px;
     width: 1320px;
     margin: 40px auto;
+    padding: 16px;
     > h3 {
         text-align: center;
         margin-bottom: 8px;
@@ -32,7 +33,6 @@
     }
 
     th {
-        background-color: #f4f4f4;
         font-weight: bold;
         width: 15%;
     }
@@ -68,14 +68,53 @@
     .form-control::file-selector-button {
         border: none;
     }
-
-    .btns {
-        height: 100px;
-        outline: none;
-        border: none;
+    .bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-top: 40px;
-        input {
-            width: 100px;
+        margin-bottom: 60px;
+        .form-check {
+            margin-right: 16px;
+        }
+        .table {
+            width: 210px;
+            border-collapse: collapse;
+            margin-bottom: 0;
+            margin-right: 40px;
+        }
+
+        .table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .label-cell {
+            width: 50%;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .password-cell {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .password-input {
+            border: none;
+            background-color: transparent;
+            font-size: 1em;
+            width: 100%;
+            outline: none;
+        }
+        .btns {
+            outline: none;
+            border: none;
+            input {
+                width: 100px;
+            }
         }
     }
+
 }

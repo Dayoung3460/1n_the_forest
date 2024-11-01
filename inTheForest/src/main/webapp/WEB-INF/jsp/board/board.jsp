@@ -7,10 +7,27 @@
     BoardVO board = (BoardVO) request.getAttribute("board");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String wdate = sdf.format(board.getWriteDate());
+    String category = (String) request.getAttribute("category");
 %>
 <div class="board">
-    <h3>문의하기</h3>
-    <p>궁금하신 사항을 자유롭게 질문해주세요</p>
+    <c:choose>
+        <c:when test="${category == 'qna'}">
+            <h3>문의하기</h3>
+            <p>궁금하신 사항을 자유롭게 질문해주세요</p>
+        </c:when>
+        <c:when test="${category == 'review'}">
+            <h3>후기 작성</h3>
+            <p>캠핑장 사용 후기를 남겨주세요</p>
+        </c:when>
+        <c:when test="${category == 'notice'}">
+            <h3>공지사항</h3>
+            <p>중요한 소식이나 안내를 작성해 주세요</p>
+        </c:when>
+        <c:when test="${category == 'reply'}">
+            <h3>문의 답글</h3>
+            <p>문의에 답글을 남겨 주세요</p>
+        </c:when>
+    </c:choose>
     <hr/>
     <div>
         <div class="top">
