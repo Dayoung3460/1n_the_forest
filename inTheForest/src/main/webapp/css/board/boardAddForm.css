@@ -74,5 +74,8 @@
         outline: none;
         border: none;
         margin-top: 40px;
+        input {
+            width: 100px;
+        }
     }
 }

@@ -144,9 +144,12 @@
                 <button type="submit" class="btn btn-success">조회</button>
             </div>
         </form>
-        <button type="submit" class="btn btn-success mx-lg-4 write">
-            <a href="addBoardForm.do?category=${ search.category }">글쓰기</a>
-        </button>
+        <c:if test="${member.permission == 'admin'}">
+            <button type="submit" class="btn btn-success mx-lg-4 write">
+                <a href="addBoardForm.do?category=${ search.category }">글쓰기</a>
+            </button>
+        </c:if>
+
     </div>
 
 </div>
