@@ -6,11 +6,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<div class="p-3 boardList">
-	<h3>문의하기</h3>
-	<p>궁금하신 사항을 자유롭게 질문해주세요</p>
+<%
+List<MyBookVO> list = (List<MyBookVO>) request.getAttribute("myPageBookList");
+String mid = (String) request.getAttribute("memberId");
 
-	<table class="table">
+%>
+
+
+<div class="p-3 boardList">
+	<h3>마이페이지</h3>
+	<button type="button" class="btn btn-outline-secondary" value="Submit"
+		style="float: right">
+		<a href="login.do?memberId=<%=mid%>">회원정보 수정</a>
+	</button>
+	<p style="text-align:left">예약목록조회</p>
+
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>예약번호</th>
@@ -23,28 +34,25 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="mybook" items="${ myPageBookList }">
-				<!-- 컨트롤러 set 변수이름, var는 추가적으로 만드는거 - 리스트안에 객체안의 하나하나 변수 -->
-				<tr>
-					<td><span>${mybook.bookNo }</span></td>
-					<!--<td><span>${mybook.siteName }</span></td>
-					<td><span>${mybook.memNum }인</span></td>
-					<td><span>${mybook.startDate } ~ ${mybook.endDate }</span></td>
-					<td><span>${mybook.totalPrice }원</span></td>
-					<td><span>${mybook.createDate }</span></td>
- 
-					<c:choose>
-						<c:when test="${mybook.cancelFlag eq '0'}">
-							<td>확정</td>
-						</c:when>
-						<c:otherwise>
-							<td><span>예약취소</span></td>
-						</c:otherwise>
+			<%
+			for (MyBookVO bvo : list) {
+			%>
+			<tr onClick="location.href='book_app.do?siteDate=2024-11-01&category=deck&siteNo=1005&addDate=4'">
+				<th scope="row"><%=bvo.getBookNo()%></th>
+				<td><%=bvo.getSiteName()%></td>
+				<td><%=bvo.getMemCnt()%>명</td>
+				<td><%=bvo.getStartDate()%> ~ <%=bvo.getEndDate()%></td>
+				<td><%=bvo.getTotalPrice()%>원</td>
+				<td><%=bvo.getCreateDate()%></td>
+				<%if(bvo.getCancelFlag()==0) { %>
+				<td>확정</td>
+				<%} else { %>
+				<td><span style="color:red">예약취소</span></td>
+				<%}}%>
 
-					</c:choose>
-					 -->
-					 </tr>
-			</c:forEach>
+
+
+			</tr>
 		</tbody>
 
 	</table>
@@ -62,7 +70,7 @@
                     </li>
                 </c:otherwise>
             </c:choose> -->
-<!-- 
+	<!-- 
 	<div class="bottom m-4 ">
 		<form class="row g-3" action="boardList.do" method="get">
 			<div class="col-md-4">
