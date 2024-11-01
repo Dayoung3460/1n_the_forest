@@ -13,6 +13,7 @@ import com.intheforest.common.Control;
 import com.intheforest.control.ExampleControl;
 import com.intheforest.control.board.*;
 import com.intheforest.control.site.MainPageControl;
+import com.intheforest.control.member.JoinFormControl;
 import com.intheforest.control.member.LoginControl;
 import com.intheforest.control.book.BookAppCont;
 import com.intheforest.control.book.BookCalCont;
@@ -28,6 +29,7 @@ public class FrontController extends HttpServlet{
 	public void init() throws ServletException {
 		// 로그인, 회원가입
 		map.put("/login.do", new LoginControl());
+		map.put("/joinForm.do", new JoinFormControl());
 		
 		
 		

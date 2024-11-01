@@ -35,6 +35,8 @@ public class LoginControl implements Control {
 			//정상 로그인 시
 			HttpSession session = req.getSession();
 			session.setAttribute("memberId", id);
+			req.getRequestDispatcher("main.tiles").forward(req, resp);
+		
 		}
 
 	}
