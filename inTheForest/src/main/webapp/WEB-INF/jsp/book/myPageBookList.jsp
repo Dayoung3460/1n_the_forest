@@ -47,5 +47,4 @@ List<MyBookVO> list = (List<MyBookVO>) request.getAttribute("myPageBookList");
 
 <script>
 let btn = document.querySelector('button');
-btn.
 </script>
