@@ -1,0 +1,42 @@
+package com.intheforest.control.member;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.intheforest.common.Control;
+import com.intheforest.service.MemberService;
+import com.intheforest.service.MemberServiceImpl;
+import com.intheforest.vo.MemberVO;
+
+public class LoginControl implements Control {
+
+	@Override
+	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id = req.getParameter("memberId");
+		String pw = req.getParameter("password");
+		
+		if(req.getMethod().equalsIgnoreCase("GET")) {
+			// login.jsp페이지로 이동 
+			req.getRequestDispatcher("member/login.tiles").forward(req, resp);
+		}else if (req.getMethod().equalsIgnoreCase("POST")) {
+			MemberService svc = new MemberServiceImpl();
+			MemberVO member = svc.MemberLogin(id, pw);
+			System.out.println(member);
+			if (member == null) {
+				//로그인 실패 (login.jsp로 이동)
+				req.setAttribute("msg", "아이디와 비밀번호를 입력하세요");
+				req.getRequestDispatcher("member/login.tiles").forward(req, resp);
+				return;
+			}
+			//정상 로그인 시
+			HttpSession session = req.getSession();
+			session.setAttribute("memberId", id);
+		}
+
+	}
+
+}

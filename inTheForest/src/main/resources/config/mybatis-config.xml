@@ -6,11 +6,13 @@
 	<properties resource="config/db.properties"></properties>
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="jdbcTypeForNull" value="VARCHAR" />
+		<setting name="cacheEnabled" value="false" />
+		<setting name="localCacheScope" value="STATEMENT" />
 	</settings>
 	<typeAliases>
-		<typeAlias alias="book" type="com.intheforest.vo.BookVO"/>	
-		<!-- 예시 -->
-		<!-- <typeAlias alias="member" type="com.intheforest.vo.MemberVO" /> -->
+		<typeAlias alias="book" type="com.intheforest.vo.BookVO"/>
+		<typeAlias alias="member" type="com.intheforest.vo.MemberVO" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -25,5 +27,6 @@
 	</environments>
 	<mappers>
 	    <mapper resource="com/intheforest/mapper/BookMapper.xml"/>
-	  </mappers>
+        <mapper resource="com/intheforest/mapper/MemberMapper.xml" />
+	</mappers>
 </configuration>
