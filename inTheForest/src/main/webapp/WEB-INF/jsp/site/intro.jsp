@@ -42,10 +42,10 @@
   <img src="assets/site/intro/guidemap.png" alt="guidemap">
   
   <div class="row">
-    <div class="col text-center">
-      <button type="button" class="btn btn-success btn-lg fw-bolder m-4" onclick="location.href = '#'">카라반</button>
-      <button type="button" class="btn btn-success btn-lg fw-bolder m-4" onclick="location.href = '#'">오토캠핑</button>
-      <button type="button" class="btn btn-success btn-lg fw-bolder m-4" onclick="location.href = '#'">데크캠핑</button>
+    <div class="col text-center" id="btnBox">
+      <button type="button" class="btn btn-success btn-lg fw-bolder m-4">카라반</button>
+      <button type="button" class="btn btn-success btn-lg fw-bolder m-4">오토캠핑</button>
+      <button type="button" class="btn btn-success btn-lg fw-bolder m-4">데크캠핑</button>
     </div>
   </div>
   
@@ -55,8 +55,8 @@
     <thead>
     <tr class="table-light">
       <th class="text-center">구분</th>
-      <th>시설명</th>
-      <th>사이트 수</th>
+      <th>항목</th>
+      <th>수량</th>
       <th>비고</th>
     </tr>
     </thead>
