@@ -14,7 +14,7 @@
 		<style>
 			#carouselExampleSlidesOnly img {
 				height: 100vh;
-          object-fit: cover;
+        object-fit: cover;
 			}
       #messageBox {
 				position: absolute;
