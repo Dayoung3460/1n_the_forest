@@ -18,10 +18,13 @@ public class MainPageControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    BoardService svc = new BoardServiceImpl();
-	    List<BoardVO> list = svc.boardListByPage(new SearchDTO());
+	    
+	    SearchDTO search = new SearchDTO();
+	    search.setCurrentPage("1");
+	    
+	    List<BoardVO> list = svc.boardListByPage(search);
 	    
 	    req.setAttribute("boardList", list);
-		
 		req.getRequestDispatcher("main.tiles").forward(req, resp);
 	}
 
