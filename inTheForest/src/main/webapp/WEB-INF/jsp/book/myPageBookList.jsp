@@ -7,12 +7,14 @@
 
 <%
 List<MyBookVO> list = (List<MyBookVO>) request.getAttribute("myPageBookList");
+
 %>
 
 <title>마이페이지</title>
 <span style="font-size:20px">예약목록 조회</span>
 
-<button type="button" class="btn btn-outline-secondary" value="Submit" style="float:right">회원정보 수정</button>
+<button type="button" class="btn btn-outline-secondary" value="Submit" style="float:right">
+<a href="book/상세페이지.do?bookNo=">회원정보 수정</a></button>
 
 <table class="table table-hover">
   <thead>
