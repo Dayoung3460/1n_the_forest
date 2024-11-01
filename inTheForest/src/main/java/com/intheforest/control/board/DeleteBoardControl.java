@@ -18,12 +18,14 @@ public class DeleteBoardControl implements Control {
     String currentPage = req.getParameter("currentPage");
     String searchCondition = req.getParameter("searchCondition");
     String keyword = req.getParameter("keyword");
+    String category = req.getParameter("category");
     String isConfirmed = (String) req.getParameter("confirm");
     
     SearchDTO search = new SearchDTO();
     search.setCurrentPage(currentPage);
     search.setSearchCondition(searchCondition);
     search.setKeyword(keyword);
+    search.setCategory(category);
     
     if(isConfirmed == null) {
       req.setAttribute("bno", bno);
@@ -34,7 +36,7 @@ public class DeleteBoardControl implements Control {
       BoardServiceImpl boardServiceImpl = new BoardServiceImpl();
       boolean isSuccess = boardServiceImpl.removeBoard(bno);
       if (isSuccess) {
-        String redirectPage = "boardList.do?currentPage=" + currentPage + "&searchCondition=" + searchCondition + "&keyword=" + keyword;
+        String redirectPage = "boardList.do?currentPage=" + currentPage + "&searchCondition=" + searchCondition + "&keyword=" + keyword + "&category=" + category;
         resp.sendRedirect(redirectPage);
       } else {
         req.setAttribute("msg", "삭제하는 중 오류가 발생했습니다.");

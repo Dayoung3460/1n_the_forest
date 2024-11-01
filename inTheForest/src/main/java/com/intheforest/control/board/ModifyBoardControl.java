@@ -22,11 +22,13 @@ public class ModifyBoardControl implements Control {
     String currentPage = req.getParameter("currentPage");
     String searchCondition = req.getParameter("searchCondition");
     String keyword = req.getParameter("keyword");
+    String category = req.getParameter("category");
     
     SearchDTO search = new SearchDTO();
     search.setCurrentPage(currentPage);
     search.setSearchCondition(searchCondition);
     search.setKeyword(keyword);
+    search.setCategory(category);
     
     BoardService svc = new BoardServiceImpl();
     
@@ -49,7 +51,7 @@ public class ModifyBoardControl implements Control {
       
       boolean isSuccess = svc.modifyBoard(board);
       if(isSuccess) {
-        String redirectPage = "boardList.do?currentPage=" + currentPage + "&searchCondition=" + searchCondition + "&keyword=" + keyword;
+        String redirectPage = "boardList.do?currentPage=" + currentPage + "&searchCondition=" + searchCondition + "&keyword=" + keyword + "&category=" + category;
         resp.sendRedirect(redirectPage);
       } else {
         req.setAttribute("msg", "수정하는 중 오류가 발생했습니다.");

@@ -11,6 +11,8 @@ public class AddBoardFormControl implements Control {
   
   @Override
   public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    req.setAttribute("category", req.getParameter("category"));
+    
     req.getRequestDispatcher("board/boardAddForm.tiles").forward(req, resp);
     
   }

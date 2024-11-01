@@ -11,8 +11,6 @@ import com.intheforest.common.Control;
 import com.intheforest.service.BookService;
 import com.intheforest.service.BookServiceImpl;
 import com.intheforest.vo.BookVO;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class BookAppCont implements Control {
 
@@ -35,7 +33,7 @@ public class BookAppCont implements Control {
 		List<BookVO> list = svc.siteList();
 		List<BookVO> optionList = svc.optionList();
 		
-		if(req.getMethod().equals("GET")) {	
+		if(req.getMethod().equals("GET")) {	//입력
 			
 			req.setAttribute("bookvo", book);
 			
@@ -44,9 +42,9 @@ public class BookAppCont implements Control {
 			req.setAttribute("siteNo", siteNo);
 			req.setAttribute("category",category);
 			
-			req.getRequestDispatcher("/WEB-INF/jsp/book/book_app.jsp").forward(req, resp);	
+			req.getRequestDispatcher("book/book_app.tiles").forward(req, resp);	
 			
-		}else {
+		}else { //등록
 			
 			book.setBookNo(bookNo);
 			book.setMemberId(logId);
@@ -58,11 +56,11 @@ public class BookAppCont implements Control {
 			book.setTotalPrice(totalPrice);
 			
 			try {
-				//svc.registerBoard(book);
-				resp.sendRedirect("boardList.do");
+				svc.registerBook(book);
+				resp.sendRedirect("main.do");
 			}catch(Exception e){
 				req.setAttribute("msg","등록하는중 오류가 발생했습니다.");
-				req.getRequestDispatcher("WEB-INF/jsp/boardForm.jsp")//
+				req.getRequestDispatcher("WEB-INF/jsp/main.jsp")//
 					.forward(req, resp);
 			}
 		}

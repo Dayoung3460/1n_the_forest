@@ -26,4 +26,15 @@ public class BookServiceImpl implements BookService {
 	public BookVO selectSite(String siteNo){
 		return mapper.selectSite(siteNo);
 	}
+	
+	@Override
+	public BookVO selectBookDate(String siteNo, String startDate, String endDate){
+		return mapper.selectSite(siteNo, startDate, endDate);
+	}
+	
+	//등록
+	@Override
+	public boolean registerBook(BookVO book) {
+		return mapper.insertBook(book) == 1;
+	}
 }

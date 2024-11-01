@@ -44,6 +44,7 @@
         <input name="currentPage" value="<%=search.getCurrentPage() %>" hidden="true"/>
         <input name="searchCondition" value="<%=search.getSearchCondition() %>" hidden="true"/>
         <input name="keyword" value="<%=search.getKeyword() %>" hidden="true"/>
+        <input name="category" value="<%=search.getCategory() %>" hidden="true"/>
         <input class="btn btn-danger"
                type="submit" value="취소" />
       </td>
