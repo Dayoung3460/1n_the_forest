@@ -21,6 +21,7 @@ public class MainPageControl implements Control {
 	    
 	    SearchDTO search = new SearchDTO();
 	    search.setCurrentPage("1");
+	    search.setCategory("notice");
 	    
 	    List<BoardVO> list = svc.boardListByPage(search);
 	    

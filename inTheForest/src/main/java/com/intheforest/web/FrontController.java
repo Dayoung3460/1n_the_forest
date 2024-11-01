@@ -16,6 +16,13 @@ import com.intheforest.control.board.BoardControl;
 import com.intheforest.control.board.BoardListControl;
 import com.intheforest.control.board.DeleteBoardControl;
 import com.intheforest.control.board.ModifyBoardControl;
+import com.intheforest.control.mypage.MyBookControl;
+import com.intheforest.control.board.*;
+import com.intheforest.control.mypage.MyBookControl;
+import com.intheforest.control.site.MainPageControl;
+import com.intheforest.control.member.FindIdControl;
+import com.intheforest.control.member.JoinFormControl;
+import com.intheforest.control.member.LoginControl;
 import com.intheforest.control.book.BookAppCont;
 import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.member.LoginControl;
@@ -33,6 +40,8 @@ public class FrontController extends HttpServlet{
 	public void init() throws ServletException {
 		// 로그인, 회원가입
 		map.put("/login.do", new LoginControl());
+		map.put("/joinForm.do",new JoinFormControl());
+		map.put("/findId.do", new FindIdControl());
 		
 		
 		

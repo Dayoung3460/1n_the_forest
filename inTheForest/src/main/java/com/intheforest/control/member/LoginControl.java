@@ -16,6 +16,9 @@ public class LoginControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8"); // 값을 받을 때 (클라이언트가 보낸 값) 문자 안깨지게 해주는 것 
+		resp.setContentType("text/json;charset=utf-8"); // 값을 보낼 때 문자 안깨지게 해주는것
+		
 		String id = req.getParameter("memberId");
 		String pw = req.getParameter("password");
 		
@@ -24,7 +27,7 @@ public class LoginControl implements Control {
 			req.getRequestDispatcher("member/login.tiles").forward(req, resp);
 		}else if (req.getMethod().equalsIgnoreCase("POST")) {
 			MemberService svc = new MemberServiceImpl();
-			MemberVO member = svc.MemberLogin(id, pw);
+			MemberVO member = svc.memberLogin(id, pw);
 			System.out.println(member);
 			if (member == null) {
 				//로그인 실패 (login.jsp로 이동)
@@ -35,6 +38,8 @@ public class LoginControl implements Control {
 			//정상 로그인 시
 			HttpSession session = req.getSession();
 			session.setAttribute("memberId", id);
+			req.getRequestDispatcher("main.tiles").forward(req, resp);
+		
 		}
 
 	}

@@ -20,6 +20,7 @@
 
         <link href="css/board/boardList.css" rel="stylesheet" />
         <link href="css/board/board.css" rel="stylesheet" />
+        <link href="css/board/boardAddForm.css" rel="stylesheet" />
     </head>
     <body>
         <header>
@@ -39,9 +40,9 @@
                             <li class="nav-item"><a class="nav-link active" aria-current="page" href="main.do">홈</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!">시설안내</a></li>
                             <li class="nav-item"><a class="nav-link" href="book_calendar.do">실시간예약</a></li>
-                            <li class="nav-item"><a class="nav-link" href="boardList.do">공지사항</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#!">이용후기</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#!">문의하기</a></li>
+                            <li class="nav-item"><a class="nav-link" href="boardList.do?category=notice">공지사항</a></li>
+                            <li class="nav-item"><a class="nav-link" href="boardList.do?category=review">이용후기</a></li>
+                            <li class="nav-item"><a class="nav-link" href="boardList.do?category=qna">문의하기</a></li>
                         </ul>
                     </div>
                 </div>
@@ -50,7 +51,7 @@
 
         <!-- Page content-->
         <div id="pageContent">
-					<tiles:insertAttribute name="body" />
+			<tiles:insertAttribute name="body" />
         </div>
         
         <!-- Footer-->

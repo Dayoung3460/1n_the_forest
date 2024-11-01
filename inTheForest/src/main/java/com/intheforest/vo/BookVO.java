@@ -9,6 +9,7 @@ public class BookVO {
 	private String siteMAx;
 	private String sitePrice;
 	
+	private int bookCnt;
 	private String bookNo;
 	private String memberId;
 	private String memCnt;
