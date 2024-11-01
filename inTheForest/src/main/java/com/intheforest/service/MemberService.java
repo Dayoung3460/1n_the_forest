@@ -13,6 +13,7 @@ public interface MemberService {
 	//아이디체크 
 	MemberVO findMemberId(String memberId , String memberName);
 	
-	
+	// 아이디로 회원 정보 조회
+	MemberVO searchMember(String memberId);
 
 }
