@@ -26,7 +26,7 @@ public class MainPageControl implements Control {
 	    List<BoardVO> list = svc.boardListByPage(search);
 	    
 	    req.setAttribute("boardList", list);
-		req.getRequestDispatcher("main.tiles").forward(req, resp);
+		req.getRequestDispatcher("site/main.tiles").forward(req, resp);
 	}
 
 }

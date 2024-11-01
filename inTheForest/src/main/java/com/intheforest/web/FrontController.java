@@ -16,18 +16,14 @@ import com.intheforest.control.board.BoardControl;
 import com.intheforest.control.board.BoardListControl;
 import com.intheforest.control.board.DeleteBoardControl;
 import com.intheforest.control.board.ModifyBoardControl;
-import com.intheforest.control.mypage.MyBookControl;
-import com.intheforest.control.board.*;
-import com.intheforest.control.mypage.MyBookControl;
-import com.intheforest.control.site.MainPageControl;
+import com.intheforest.control.book.BookAppCont;
+import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.member.FindIdControl;
 import com.intheforest.control.member.FindPwControl;
 import com.intheforest.control.member.JoinFormControl;
 import com.intheforest.control.member.LoginControl;
-import com.intheforest.control.book.BookAppCont;
-import com.intheforest.control.book.BookCalCont;
-import com.intheforest.control.member.LoginControl;
 import com.intheforest.control.mypage.MyBookControl;
+import com.intheforest.control.site.IntroPageControl;
 import com.intheforest.control.site.MainPageControl;
 
 public class FrontController extends HttpServlet{
@@ -88,6 +84,7 @@ public class FrontController extends HttpServlet{
     
     // 사이트
 		map.put("/main.do", new MainPageControl());
+		map.put("/intro.do", new IntroPageControl());
 		
 		
 	};

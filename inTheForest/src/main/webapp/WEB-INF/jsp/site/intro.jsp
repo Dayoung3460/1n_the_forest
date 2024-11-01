@@ -1,11 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <style>
   h1+img {
     display: block;
     margin: 0 auto;
     height: 500px;
+  }
+  .carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    object-position: 0% 70%;
+  }
+  .carousel-item h1, .carousel-item p {
+    text-shadow: 1px  1px 2px #555,
+                -1px  1px 2px #555,
+                1px -1px 2px #555,
+                -1px -1px 2px #555;
   }
   table {
     word-break: keep-all;
@@ -15,8 +27,9 @@
   }
 </style>
 
+
 <div class="container">
-  
+
   <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb" style="margin-top:20px">
       <li class="breadcrumb-item"><a href="/inTheForest/main.do">Home</a></li>
@@ -103,3 +116,5 @@
   </table>
   
 </div>
+
+<script src="js/site/intro.js"></script>
