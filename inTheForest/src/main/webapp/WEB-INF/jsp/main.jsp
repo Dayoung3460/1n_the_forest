@@ -43,7 +43,14 @@
         <div class="row">
             <div class="col-sm-12 col-lg-1 titles fs-4 d-flex align-items-center justify-content-center">공지사항</div>
             <ul class="col-md-12 col-lg-8 col-xl-9 list-group list-group-flush">
-                <li class="list-group-item"><a href="#">11월 캠핑장 예약안내 공지 - 예약하실 때 읽어보세요.</a><span>2024/10/19</span></li>
+                
+                <c:forEach var="i" begin="0" end="4" step="1">
+	                <li class="list-group-item">
+		                <a href="#">${boardList.title }</a>
+		                <span>${boardList.writeDate }</span>
+	                </li>                
+                </c:forEach>
+                
                 <li class="list-group-item"><a href="#">11월 캠핑장 예약안내</a><span>2024/10/19</span></li>
                 <li class="list-group-item"><a href="#">11월 캠핑장 예약하실 때 확인부탁드립니다.</a><span>2024/10/19</span></li>
                 <li class="list-group-item"><a href="#">11월 캠핑장 예약안내 수정사항입니다.</a><span>2024/10/19</span></li>

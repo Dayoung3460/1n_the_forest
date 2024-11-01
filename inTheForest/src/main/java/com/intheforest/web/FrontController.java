@@ -16,7 +16,6 @@ import com.intheforest.control.board.BoardControl;
 import com.intheforest.control.board.BoardListControl;
 import com.intheforest.control.board.DeleteBoardControl;
 import com.intheforest.control.board.ModifyBoardControl;
-import com.intheforest.control.board.NoticeJsonControl;
 import com.intheforest.control.book.BookAppCont;
 import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.member.LoginControl;
@@ -47,11 +46,6 @@ public class FrontController extends HttpServlet{
 		map.put("/deleteBoard.do", new DeleteBoardControl());
 		
 		
-		// 공지사항 main 출력
-		// notice_flag DESC, write_date DESC, board_no DESC 기준 상위 5개 가져옴.
-		map.put("/noticeJson.do", new NoticeJsonControl());
-		
-		
 		
 		
 		
@@ -75,6 +69,8 @@ public class FrontController extends HttpServlet{
 		
 		// 사이트
 		map.put("/main.do", new MainPageControl());
+		
+		
 	};
 
 	
