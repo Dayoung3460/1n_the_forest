@@ -24,7 +24,7 @@
     <body>
         <header>
             <div class="loginTop container">
-                <a href="#">마이페이지</a>
+                <a href="myPageBookList.do">마이페이지</a>
                 <a href="login.do">로그인</a>
             </div>
             <!-- Responsive navbar-->
