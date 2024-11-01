@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.intheforest.mapper.MyBookMapper">
+
+<select id="selectMyPageBookList" parameterType="String" resultType="mybook">
+select book_no
+       ,site_no s
+       ,(select site_name
+         from site
+         where site_no = ( select site_no
+                           from site_book
+                           where member_id = '${memberId}')
+       ) site_name
+       ,mem_cnt
+       ,start_date
+       ,end_date
+       ,total_price
+       ,create_date
+       ,cancel_flag
+from site_book
+where member_id = '${memberId}'
+</select>
+
+</mapper>

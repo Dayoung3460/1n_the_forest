@@ -13,6 +13,9 @@
 	<typeAliases>
 		<typeAlias alias="book" type="com.intheforest.vo.BookVO"/>
 		<typeAlias alias="member" type="com.intheforest.vo.MemberVO" />
+		<typeAlias alias="board" type="com.intheforest.vo.BoardVO" />
+		<typeAlias alias="search" type="com.intheforest.common.SearchDTO" />
+		<typeAlias alias="mybook" type="com.intheforest.vo.MyBookVO" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -28,5 +31,7 @@
 	<mappers>
 	    <mapper resource="com/intheforest/mapper/BookMapper.xml"/>
         <mapper resource="com/intheforest/mapper/MemberMapper.xml" />
+		<mapper resource="com/intheforest/mapper/BoardMapper.xml" />
+		<mapper resource="com/intheforest/mapper/MyBookMapper.xml" />
 	</mappers>
 </configuration>
