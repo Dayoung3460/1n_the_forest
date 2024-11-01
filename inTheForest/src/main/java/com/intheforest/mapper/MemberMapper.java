@@ -16,4 +16,11 @@ public interface MemberMapper{
 	
 	// 아이디로 회원 정보 조회
 	MemberVO searchMember(String memberId);
+	
+	//비밀번호체크
+	public int pwCheck(MemberVO member);
+	
+	//임시비밀번호로비번저장
+	public int pwUpdate(MemberVO member);
+	
 }
