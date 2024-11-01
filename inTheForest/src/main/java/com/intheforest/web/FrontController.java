@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
 import com.intheforest.control.ExampleControl;
+import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.board.*;
 import com.intheforest.control.site.MainPageControl;
 import com.intheforest.control.member.LoginControl;
@@ -32,6 +33,7 @@ public class FrontController extends HttpServlet{
 		
 		
 		
+  
 		
 		// 게시판
 		map.put("/boardList.do", new BoardListControl());
@@ -43,24 +45,26 @@ public class FrontController extends HttpServlet{
 		
 		
 		
-		
-		
-		
-		
+  
 		
 		
 		//캠핑예약
 		map.put("/book_calendar.do", new BookCalCont());
 		map.put("/book_app.do", new BookAppCont());
 		
-		
-		
-		
-		
+  
+  
+  
+  
 		
 		// 마이페이지
+		map.put("/myPageBookList.do", new MyBookControl());
 		
-		
+  
+  
+  
+  
+  
 		
 		
 		
@@ -69,7 +73,6 @@ public class FrontController extends HttpServlet{
 		// 사이트
 		map.put("/main.do", new MainPageControl());
 	};
-
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
