@@ -15,15 +15,15 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class BookAppCont implements Control {
-
+	
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
-
+		
 		String bookNo = req.getParameter("bookNo");
 		String siteNo = req.getParameter("siteNo");
 		String category = req.getParameter("category");
-		String memberId = req.getParameter("memberId");
+		String logId = req.getParameter("logId");
 		String memCnt = req.getParameter("memCnt");
 		String siteDate = req.getParameter("siteDate");
 		String endDate = req.getParameter("endDate");
@@ -35,21 +35,21 @@ public class BookAppCont implements Control {
 		List<BookVO> list = svc.siteList();
 		List<BookVO> optionList = svc.optionList();
 		
-		if(req.getMethod().equals("GET")) {	
+		if(req.getMethod().equals("GET")) {
 			
 			req.setAttribute("bookvo", book);
 			
 			req.setAttribute("siteList", list);
-			req.setAttribute("optionList", optionList);			
+			req.setAttribute("optionList", optionList);
 			req.setAttribute("siteNo", siteNo);
 			req.setAttribute("category",category);
 			
-			req.getRequestDispatcher("/WEB-INF/jsp/book/book_app.jsp").forward(req, resp);	
+			req.getRequestDispatcher("/WEB-INF/jsp/book/book_app.jsp").forward(req, resp);
 			
 		}else {
 			
 			book.setBookNo(bookNo);
-			book.setMemberId(memberId);
+			book.setMemberId(logId);
 			book.setSiteNo(siteNo);
 			book.setMemCnt(memCnt);
 			book.setStartDate(siteDate);
@@ -59,9 +59,7 @@ public class BookAppCont implements Control {
 			
 			try {
 				//svc.registerBoard(book);
-				
-				
-				resp.sendRedirect("boardList.do?category=" + req.getParameter("category"));
+				resp.sendRedirect("boardList.do");
 			}catch(Exception e){
 				req.setAttribute("msg","등록하는중 오류가 발생했습니다.");
 				req.getRequestDispatcher("WEB-INF/jsp/boardForm.jsp")//
@@ -69,5 +67,5 @@ public class BookAppCont implements Control {
 			}
 		}
 	}
-
+	
 }
