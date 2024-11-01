@@ -10,7 +10,6 @@ public class BookVO {
 	private String sitePrice;
 	
 	private int bookCnt;
-	private String bookNo;
 	private String memberId;
 	private String memCnt;
 	private String startDate;
