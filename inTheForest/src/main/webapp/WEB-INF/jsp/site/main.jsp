@@ -71,17 +71,17 @@
 <!-- icon-icons.com 이미지 사용 -->
 <div id="introBox" class="row mb-4 justify-content-center">
     <div class="col-md-3 text-center my-4">
-        <a href="#"><img class="img-fluid rounded-circle mb-4" src="assets/site/main/roadcaravan_icon.png" alt="caravan" /></a>
+        <a href="/inTheForest/intro.do?site=caravan"><img class="img-fluid rounded-circle mb-4" src="assets/site/main/roadcaravan_icon.png" alt="caravan" /></a>
         <h1 class="text-mint fs-4 fw-bolder">카라반</h1>
         <p class="text-muted mb-0">숲 속에서 자연을 느끼며 아늑한 휴식</p>
     </div>
     <div class="col-md-3 text-center my-4">
-        <a href="#"><img class="img-fluid rounded-circle mb-4" src="assets/site/main/camping_tent_icon.png" alt="autoCamp" /></a>
+        <a href="/inTheForest/intro.do?site=auto"><img class="img-fluid rounded-circle mb-4" src="assets/site/main/camping_tent_icon.png" alt="autoCamp" /></a>
         <h1 class="text-mint fs-4 fw-bolder">오토캠핑</h1>
         <p class="text-muted mb-0">가까운 주차공간 완비, 편리한 오토캠핑</p>
     </div>
     <div class="col-md-3 text-center my-4">
-        <a href="#"><img class="img-fluid rounded-circle mb-4" src="assets/site/main/eco-field_icon.png" alt="deckCamp" /></a>
+        <a href="/inTheForest/intro.do?site=deck"><img class="img-fluid rounded-circle mb-4" src="assets/site/main/eco-field_icon.png" alt="deckCamp" /></a>
         <h1 class="text-mint fs-4 fw-bolder">데크캠핑</h1>
         <p class="text-muted mb-0">한적한 들판에서 즐기는 캠핑의 묘미</p>
     </div>
@@ -89,9 +89,9 @@
 
 <p class="text-center fs-2 fw-bolder mt-5 ">1n the 숲 캠핑장은…</p>
 <p class="text-muted text-center fs-6 mb-4">
-	1n the 숲 캠핑장은 앞산 전망이 훤히 내다보이는 곳에 위치해 있어<br>
+	인더숲 캠핑장은 앞산 전망이 훤히 내다보이는 곳에 위치해 있어<br>
 	낮에는 도시 전경, 밤에는 멋진 야경을 감상할 수 있는 곳입니다.<br><br>
-	1n the 숲에서 일상을 잠시 내려두고 자연을 즐겨보세요.
+	인더숲에서 일상을 잠시 내려두고 자연을 즐겨보세요.
 </p>
 
 <div class="row">
