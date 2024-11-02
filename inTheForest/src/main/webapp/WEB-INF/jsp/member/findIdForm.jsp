@@ -7,9 +7,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- 데이터 포맷에 사용 -->
 
-<div
-	class="container min-vh-100 d-flex justify-content-center align-items-center">
-	<div class="card">
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+	<div class="card"  style="width: 70rem">
 		<div class="card-header">아이디찾기</div>
 		<div class="card-body">
 			<form action="findId.do" method="POST">
@@ -18,13 +17,14 @@
 					<div class="form-group row">
 						<label class="form-control-label">성명</label>
 						<div class="form-control-body form-inline">
-							<input class="form-control" type="text" id="memberName" name="memberName">
+							<input class="form-control w-50" type="text" id="memberName"
+								name="memberName">
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">이메일</label>
-							<div class="form-control-body form-inline">
-								<input class="form-control" type="text" name="email" id="email">
-							</div>
+					</div>
+					<div class="form-group row">
+						<label class="form-control-label">이메일</label>
+						<div class="form-control-body form-inline">
+							<input class="form-control" type="text" name="email" id="email">
 						</div>
 					</div>
 				</div>
@@ -34,8 +34,7 @@
 				</div>
 				<div class="text-center">
 					<!-- Register 회원가입 링크 -->
-					<a href="joinForm.do">| 회원가입</a>
-					<a href="login.do">| 로그인</a>
+					<a href="joinForm.do">| 회원가입</a> <a href="login.do">| 로그인</a>
 				</div>
 			</form>
 		</div>

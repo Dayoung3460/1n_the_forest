@@ -44,6 +44,23 @@ and   email= #{email}
         from member
         where member_id =#{memberId}
     </select>
+ 
+ <!-- 비밀번호체크하기 -->
+	 <select id="pwCheck" parameterType ="member">
+	 select count(*)
+	 from member 
+	 where member_id=#{memberId}
+	 and   member_name=#{memberName}
+	 and   email=#{email}
+	 </select>
+<!-- 임시비밀번호 저장하기 -->
+	<update id="pwUpdate">
+	update member
+	set password = #{password}
+	where member_id=#{memberId}
+	and   member_name=#{memberName}
+	and   email=#{email}
+	</update>
 
 
 </mapper>

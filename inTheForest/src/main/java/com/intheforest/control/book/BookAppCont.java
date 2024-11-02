@@ -1,6 +1,7 @@
 package com.intheforest.control.book;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,11 +18,10 @@ public class BookAppCont implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
-
-		String bookNo = req.getParameter("bookNo");
+		
 		String siteNo = req.getParameter("siteNo");
 		String category = req.getParameter("category");
-		String logId = req.getParameter("logId");
+		String memberId = req.getParameter("memberId");
 		String memCnt = req.getParameter("memCnt");
 		String siteDate = req.getParameter("siteDate");
 		String endDate = req.getParameter("endDate");
@@ -46,8 +46,7 @@ public class BookAppCont implements Control {
 			
 		}else { //등록
 			
-			book.setBookNo(bookNo);
-			book.setMemberId(logId);
+			book.setMemberId(memberId);
 			book.setSiteNo(siteNo);
 			book.setMemCnt(memCnt);
 			book.setStartDate(siteDate);
@@ -57,10 +56,10 @@ public class BookAppCont implements Control {
 			
 			try {
 				svc.registerBook(book);
-				resp.sendRedirect("main.do");
+				resp.sendRedirect("/inTheForest/main.do");
 			}catch(Exception e){
 				req.setAttribute("msg","등록하는중 오류가 발생했습니다.");
-				req.getRequestDispatcher("WEB-INF/jsp/main.jsp")//
+				req.getRequestDispatcher("/inTheForest/main.do")//
 					.forward(req, resp);
 			}
 		}

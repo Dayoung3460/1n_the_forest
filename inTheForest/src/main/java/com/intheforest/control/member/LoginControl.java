@@ -23,7 +23,7 @@ public class LoginControl implements Control {
 		String pw = req.getParameter("password");
 		
 		if(req.getMethod().equalsIgnoreCase("GET")) {
-			// login.jsp페이지로 이동 
+			// login.jsp페이지로 이동
 			req.getRequestDispatcher("member/login.tiles").forward(req, resp);
 		}else if (req.getMethod().equalsIgnoreCase("POST")) {
 			MemberService svc = new MemberServiceImpl();
@@ -38,7 +38,8 @@ public class LoginControl implements Control {
 			//정상 로그인 시
 			HttpSession session = req.getSession();
 			session.setAttribute("memberId", id);
-			req.getRequestDispatcher("main.tiles").forward(req, resp);
+			
+			req.getRequestDispatcher("site/main.tiles").forward(req, resp);
 		
 		}
 

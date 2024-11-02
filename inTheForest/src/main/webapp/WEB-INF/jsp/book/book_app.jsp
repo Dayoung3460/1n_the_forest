@@ -11,7 +11,7 @@ String siteDate = (String) request.getParameter("siteDate");
 String category = (String) request.getParameter("category");
 String siteNo = (String) request.getParameter("siteNo");
 int addDate = Integer.parseInt(request.getParameter("addDate"));
-String logId = (String) session.getAttribute("logId");
+String memberId = (String) session.getAttribute("memberId");
 
 List<BookVO> optionList = (List<BookVO>)request.getAttribute("optionList");
 BookVO bvo = (BookVO)request.getAttribute("bookvo");
@@ -25,25 +25,6 @@ calendar.setTime(dt);
 calendar.add(Calendar.DATE, addDate); 
 String endDate = sdf.format(calendar.getTime());
 /*n박 계산[E]*/      
-
-/*예약번호 랜덤[S]*/
-Random random = new Random();
-
-List<String> rlist = new ArrayList<>();
-for(int i=0; i<3; i++) {
-	rlist.add(String.valueOf(random.nextInt(10)));
-}
-for(int i=0; i<3; i++) {
-	rlist.add(String.valueOf((char)(random.nextInt(26)+65)));
-}
-
-Collections.shuffle(rlist);
-String bookNo = "";
-for(String item : rlist) {
-	bookNo += item;
-}
-
-/*예약번호 랜덤[E]*/
 %>
 
 <!DOCTYPE html>
@@ -101,13 +82,12 @@ for(String item : rlist) {
 		</nav>
 	
 			<h1>실시간예약 상세</h1>
-			<form action="book_app.do" method="post" enctype="multipart/form-data">
+			<form action="book_app.do" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="siteDate" value="<%=siteDate%>"> 
 				<input type="hidden" name="category" value="<%=category%>">
 				<input type="hidden" name="siteNo" value="<%=siteNo%>">
 				<input type="hidden" name="endDate" value="<%=endDate%>">
-				<input type="hidden" name="logId" value="<%=logId%>">
-				<input type="hidden" name="bookNo" value="<%=bookNo%>">
+				<input type="hidden" name="memberId" value="<%=memberId%>">
 				<input type="hidden" name="sitePrice" id="sitePrice" value="${bookvo.sitePrice}">
 					
 				<div class="card text-center">
@@ -192,7 +172,7 @@ for(String item : rlist) {
 				</div>
 					
 				<div align="center">
-					<button class="btn btn-secondary btn-lg" href="<%=request.getContextPath()%>/book_calendar.do">이전</button> 
+					<a class="btn btn-secondary btn-lg" href="<%=request.getContextPath()%>/book_calendar.do">이전</a> 
 					<button type="submit" class="btn btn-primary btn-lg">예약확정</button>
 				</div>
 			</form>

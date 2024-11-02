@@ -1,14 +1,16 @@
+<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@ page import="com.intheforest.vo.BookVO"%>
+<%@ page import="com.intheforest.service.BookServiceImpl"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.*"%>
 <%
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 List<BookVO> list = (List<BookVO>) request.getAttribute("siteList");
-String logId = (String)session.getAttribute("logId");
+String memberId = (String)session.getAttribute("memberId");
 
 /*달력출력[S]*/
 int year = 0;
@@ -26,12 +28,12 @@ if (request.getParameter("year") == null || request.getParameter("month") == nul
 
 	// 이전달 클릭 year, month-1 / 다음달 클릭 year, month+1
 	// -1 -> 11,year--  12 -> 0,year++
-	if (month == -1) {
-		month = 11;
+	if (month == 0) {
+		month = 12;
 		year = year - 1;
 	}
-	if (month == 12) {
-		month = 0;
+	if (month == 13) {
+		month = 1;
 		year = year + 1;
 	}
 }
@@ -53,7 +55,6 @@ if ((startBlankCnt + lastDate) % 7 != 0) {
 int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 /*달력출력[E]*/
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,32 +82,47 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 	<h1>실시간예약</h1>
 		
 		<%
+		int pYear = year;
+		int nYear = year;
+		int pMonth = month - 1;
+		int nMonth = month + 1;
+		
+		if(nMonth == 13){
+			nMonth = 1;
+			nYear = year+1;
+		}
+		if(pMonth == 0){
+			pMonth = 12;
+			pYear = year-1;
+		}
+		
 		String thismonth = Integer.toString(month);
-		String prevMonth= year + "-" + (month - 1);
-		String nextMonth = year + "-" + (month + 1);
+		String prevMonth= Integer.toString(pMonth);
+		String nextMonth = Integer.toString(nMonth);
 		
-		if(month <10){
-			thismonth = "0"+month;
+		if(nMonth < 10){
+			nextMonth = "0"+nextMonth;
 		}
 		
-		if((month-1) <10){ //이전달의 값이 10월 이하라면
-			prevMonth = year + "-" + "0"+(month - 1);
+		if(pMonth < 10){
+			prevMonth = "0"+prevMonth;
 		}
 		
-		if((month+1) <10){ //다음달의 값이 10월 이하라면
-			nextMonth = year + "-" + "0"+(month + 1);
+		if(month < 10){
+			thismonth = "0"+thismonth;
 		}
 		
 		%>
+		
 		<!-- 이전/다음달 버튼 -->
 		<div class="bx">
 			<div class="res-month">
 				<a
 					href="<%=request.getContextPath()%>/book_calendar.do?year=<%=year%>&month=<%=month - 1%>"
-					title="이전달" class="prev"><i class="bi bi-chevron-left"></i><span><%=prevMonth%></span></a>
+					title="이전달" class="prev"><i class="bi bi-chevron-left"></i><span><%=pYear + "-" + prevMonth%></span></a>
 				<span><%=year + "-" + thismonth%></span> <a
 					href="<%=request.getContextPath()%>/book_calendar.do?year=<%=year%>&month=<%=month + 1%>"
-					title="다음달" class="next"><span><%=nextMonth%></span><i
+					title="다음달" class="next"><span><%=nYear + "-" + nextMonth%></span><i
 					class="bi bi-chevron-right"></i></a>
 			</div>
 		</div>
@@ -140,13 +156,14 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 							
 							String thisDate = year + "-" + thismonth + "-" + thisDays;
 							
-							//지난날 계산
+							//지난날 계산[S]
 							String today = sdf.format(new Date(System.currentTimeMillis()));
 							Date date = new Date(sdf.parse(thisDate).getTime()); 
 							Date todayDate = new Date(sdf.parse(today).getTime());
 							
 							int result = todayDate.compareTo(date);
-									
+							//지난날 계산[E]							
+																	
 						%>
 						<td <%if(result > 0){ %>class="last"<%} %> <%=result %>>
 							<%
@@ -166,9 +183,10 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 								<%
 								
 								for (BookVO bvo : list) {
+									//BookVO book = (BookVO) request.getAttribute("selectBookDate");
 								%>
 								<li>
-									<%if(logId != null){ %>
+									<%if(memberId != null){ %>
 										<%if(result > 0){ %>
 											<button type="button" data-bs-toggle="modal"
 										data-bs-target="#exampleModal"><%=bvo.getSiteName()%> <span>(예약불가)</span></button>
@@ -176,22 +194,16 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 											<button type="button" data-bs-toggle="modal"
 										data-bs-target="#exampleModal"
 										onclick="calValue('<%=thisDate%>', '<%=bvo.getSiteNo()%>', '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
-										<%} %>
-										
-									<%}else{ %>
+										<%}}else{ %>
 										<%if(result > 0){ %>
 											<button type="button" data-bs-toggle="modal"
 										data-bs-target="#exampleModal"><%=bvo.getSiteName()%> <span>(예약불가)</span></button>
 										<%}else{ %>
 											<button type="button" data-bs-toggle="modal"
-										data-bs-target="#exampleModal"
-										onclick="calValue('<%=thisDate%>', '<%=bvo.getSiteNo()%>', '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
-										<%} %>
-									<%} %>
+										data-bs-target="#loginModal"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
+										<%}} %>
 								</li>
-								<%
-								}
-								%>
+								<%}%>
 							</ul> 
 							<%} else {%> 
 								&nbsp; 

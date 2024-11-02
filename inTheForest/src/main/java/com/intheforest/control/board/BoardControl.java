@@ -33,6 +33,7 @@ public class BoardControl implements Control {
     search.setCategory(category);
     
     req.setAttribute("search", search);
+    req.setAttribute("category", category);
     
     req.getRequestDispatcher("board/board.tiles").forward(req, resp);
     

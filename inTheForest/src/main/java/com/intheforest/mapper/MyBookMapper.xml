@@ -19,6 +19,8 @@ select book_no
        ,total_price
        ,create_date
        ,cancel_flag
+       ,car_num
+       ,member_id
 from site_book
 where member_id = '${memberId}'
 </select>
