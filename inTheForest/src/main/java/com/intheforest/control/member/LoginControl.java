@@ -28,7 +28,7 @@ public class LoginControl implements Control {
 		}else if (req.getMethod().equalsIgnoreCase("POST")) {
 			MemberService svc = new MemberServiceImpl();
 			MemberVO member = svc.memberLogin(id, pw);
-			System.out.println(member);
+			
 			if (member == null) {
 				//로그인 실패 (login.jsp로 이동)
 				req.setAttribute("msg", "아이디와 비밀번호를 입력하세요");

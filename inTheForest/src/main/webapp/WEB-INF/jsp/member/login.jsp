@@ -19,7 +19,7 @@
 	<form action="login.do" method="POST" class="text-center">
 		<!-- ID  -->
 		<div data-mdb-input-init class="form-outline mb-4">
-			<input type="text" name="memberId" class="form-control"
+			<input type="text" name="memberId" id="memberId" class="form-control"
 				placeholder="ID" />
 		</div>
 
@@ -35,7 +35,7 @@
 				<!-- Checkbox -->
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value=""
-						id="checkId" name="checkId" checked /> <label
+						id="checkId" name="checkId"/> <label
 						class="form-check-label" for="form2Example31"> RememberId</label>
 				</div>
 			</div>
@@ -53,10 +53,11 @@
 			<a href="joinForm.do">| 회원가입</a>
 			<!-- id.password찾기 링크-->
 			<a href="findId.do">| 아이디 찾기</a> 
-			<a href="#!">| 비밀번호 찾기</a>
+			<a href="findPw.do">| 비밀번호 찾기</a>
 		</div>
 
 	</form>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/member/login.js"></script>

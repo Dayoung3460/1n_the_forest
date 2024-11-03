@@ -18,10 +18,12 @@ import com.intheforest.control.board.DeleteBoardControl;
 import com.intheforest.control.board.ModifyBoardControl;
 import com.intheforest.control.book.BookAppCont;
 import com.intheforest.control.book.BookCalCont;
+import com.intheforest.control.member.DetailJoinControl;
 import com.intheforest.control.member.FindIdControl;
 import com.intheforest.control.member.FindPwControl;
 import com.intheforest.control.member.JoinFormControl;
 import com.intheforest.control.member.LoginControl;
+import com.intheforest.control.member.ModifyJoinControl;
 import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.site.IntroPageControl;
 import com.intheforest.control.site.MainPageControl;
@@ -40,6 +42,10 @@ public class FrontController extends HttpServlet{
 		map.put("/joinForm.do",new JoinFormControl());
 		map.put("/findId.do", new FindIdControl());
 		map.put("/findPw.do", new FindPwControl());
+		map.put("/checkId.do",new JoinFormControl());
+		map.put("/DetailJoin.do", new DetailJoinControl());
+		map.put("/modifyJoin.do",new ModifyJoinControl());
+		
 		
 		
 		
