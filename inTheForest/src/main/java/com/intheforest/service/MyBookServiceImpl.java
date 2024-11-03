@@ -13,8 +13,8 @@ public class MyBookServiceImpl implements MyBookService {
 	MyBookMapper mapper = sqlSession.getMapper(MyBookMapper.class);
 	
 	@Override
-	public List<MyBookVO> myPageBookList(String memberId) {
-		return mapper.selectMyPageBookList(memberId);
+	public List<MyBookVO> myPageBookList(String bookNo) {
+		return mapper.selectMyPageBookList(bookNo);
 	}
 
 }

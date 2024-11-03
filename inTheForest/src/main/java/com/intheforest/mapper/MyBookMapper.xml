@@ -6,12 +6,12 @@
 
 <select id="selectMyPageBookList" parameterType="String" resultType="mybook">
 select book_no
-       ,site_no s
+       ,site_no
        ,(select site_name
          from site
          where site_no = ( select site_no
                            from site_book
-                           where member_id = '${memberId}')
+                           where book_no = #{bookNo})
        ) site_name
        ,mem_cnt
        ,start_date
@@ -21,8 +21,11 @@ select book_no
        ,cancel_flag
        ,car_num
        ,member_id
+       ,to_char(to_date(substr(start_date,1,10),'YYYY/MM/DD'), 'YYYY-MM-DD') site_date
 from site_book
-where member_id = '${memberId}'
+where member_id = ( select member_id
+                    from site_book
+                    where book_no = #{bookNo})
 </select>
 
 </mapper>

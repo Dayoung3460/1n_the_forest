@@ -17,10 +17,9 @@ public class MyBookControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
-		String memberId = req.getParameter("memberId");
+		String bookNo = req.getParameter("bookNo");
 		MyBookService svc = new MyBookServiceImpl();
-		List<MyBookVO> list = svc.myPageBookList(memberId);
-		System.out.println("list: " + list);
+		List<MyBookVO> list = svc.myPageBookList(bookNo);
 		req.setAttribute("myPageBookList", list);
 		req.getRequestDispatcher("book/myPageBookList.tiles").forward(req, resp);
 		
