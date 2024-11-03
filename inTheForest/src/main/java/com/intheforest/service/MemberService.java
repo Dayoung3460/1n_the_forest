@@ -20,6 +20,16 @@ public interface MemberService {
 	int pwCheck(MemberVO member);
 	
 	//임시비밀번호로 비번 변경
+	void pwUpdate(MemberVO member);
+	
+	//임시비밀번호 생성 
+	String generateRdPw();
+	
+	//아이디중복체크 
+	int checkId(String memberId);
+	
+	//회원정보 수정
+	boolean modifyJoin(MemberVO member);
 
 	
 

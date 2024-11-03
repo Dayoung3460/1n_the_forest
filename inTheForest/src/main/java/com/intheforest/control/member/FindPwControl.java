@@ -36,6 +36,19 @@ public class FindPwControl implements Control {
 			MemberService svc = new MemberServiceImpl();
 			int search = svc.pwCheck(mvo);
 			
+			if(search > 0) { //일치정보있는경우 
+				String tempPw = svc.generateRdPw(); //임시비밀번호생성
+				mvo.setPassword(tempPw); //생성된 비밀번호를 비밀번호에 설정
+				svc.pwUpdate(mvo); // db 비밀번호 업데이트
+				
+				req.setAttribute("tempPw", tempPw);
+				req.setAttribute("resultMsg", "임시비밀번호가 발급 되었습니다.");
+			}else {//일치 정보 없는 경우 
+				 req.setAttribute("resultMsg", "입력하신 정보와 일치하는 계정이 없습니다.");
+				
+			}
+			req.getRequestDispatcher("member/findPw.tiles").forward(req, resp);
+			
 		}
 		
 

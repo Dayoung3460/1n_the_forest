@@ -23,17 +23,9 @@ public class AppTest {
 		System.out.println(list);
 
 		MemberMapper mapper2 = sqlSession.getMapper(MemberMapper.class);
-		MemberVO mvo = new MemberVO();
-		mvo.setMemberId("test");
-		mvo.setPassword("0000");
-		mvo.setMemberName("유저1");
-		mvo.setEmail("abcdef@gmail.com");
-		mvo.setTel("010-1245-7854");
-		mvo.setAddress("36954 서울광역시 테스트용");
-
-		if (mapper2.insertMember(mvo) == 1) {
-			System.out.println(mvo);
-		}
+		int count = mapper2.checkId("test");
+		System.out.println(count);
+		
 
 	}
 }

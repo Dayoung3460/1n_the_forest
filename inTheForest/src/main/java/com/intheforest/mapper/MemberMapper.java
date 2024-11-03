@@ -24,4 +24,10 @@ public interface MemberMapper{
 	//임시비밀번호로비번저장
 	public int pwUpdate(MemberVO member);
 	
+	//아이디중복체크
+	int checkId(String memberId);
+	
+	//회원정보 수정 
+	int updateJoin(MemberVO member);
+	
 }
