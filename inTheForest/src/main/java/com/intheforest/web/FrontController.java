@@ -23,6 +23,7 @@ import com.intheforest.control.member.FindPwControl;
 import com.intheforest.control.member.JoinFormControl;
 import com.intheforest.control.member.LogOutControl;
 import com.intheforest.control.member.LoginControl;
+import com.intheforest.control.member.MemberListControl;
 import com.intheforest.control.member.ModifyJoinControl;
 import com.intheforest.control.member.removeJoinControl;
 import com.intheforest.control.mypage.MyBookControl;
@@ -93,7 +94,8 @@ public class FrontController extends HttpServlet{
     
     
     
-    
+    //관리자용 메뉴
+		map.put("/memberList.do", new MemberListControl());
     
     
     // 사이트

@@ -14,9 +14,6 @@
                 1px -1px 2px #555,
                 -1px -1px 2px #555;
   }
-  table {
-    word-break: keep-all;
-  }
   table tr td:last-of-type {
     text-align: left;
   }
@@ -63,7 +60,7 @@
 	
 	  <thead>
 	    <tr class="table-light">
-	      <th class="text-center">구분</th>
+	      <th>구분</th>
 	      <th>항목</th>
 	      <th>보유량</th>
 	      <th>비고</th>

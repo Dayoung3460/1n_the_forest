@@ -1,10 +1,12 @@
 package com.intheforest.service;
 
 import java.security.SecureRandom;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.intheforest.common.DataSource;
+import com.intheforest.common.SearchDTO;
 import com.intheforest.mapper.MemberMapper;
 import com.intheforest.vo.MemberVO;
 
@@ -12,6 +14,15 @@ public class MemberServiceImpl implements MemberService {
 	
 	SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+	
+	@Override
+	public List<MemberVO> memberList(SearchDTO search) {
+		return mapper.listMember(search);
+	}
+	@Override
+	public int totalCnt() {
+		return mapper.totalCount();
+	}
 	@Override
 	public MemberVO memberLogin(String memberId, String password) {
 		return mapper.loginMember(memberId, password);

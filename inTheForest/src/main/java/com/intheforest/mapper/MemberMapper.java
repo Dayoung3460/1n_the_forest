@@ -1,10 +1,20 @@
 package com.intheforest.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+import com.intheforest.common.SearchDTO;
 import com.intheforest.vo.MemberVO;
 
 public interface MemberMapper{
+	//회원목록 조회
+	public List<MemberVO> listMember(SearchDTO search);
+	
+	//전체 회원 수
+	public int totalCount();
+	
+	
 	//id.password조회 (로그인)
 	public MemberVO loginMember(@Param("memberId")String memberId,@Param("password")String password);
 	
