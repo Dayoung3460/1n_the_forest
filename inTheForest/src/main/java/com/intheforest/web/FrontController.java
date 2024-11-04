@@ -1,16 +1,38 @@
 package com.intheforest.web;
 
-import com.intheforest.common.Control;
-import com.intheforest.control.ExampleControl;
-import com.intheforest.control.board.*;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+
+import com.intheforest.common.Control;
+import com.intheforest.control.board.AddBoardControl;
+import com.intheforest.control.board.AddBoardFormControl;
+import com.intheforest.control.board.BoardControl;
+import com.intheforest.control.board.BoardListControl;
+import com.intheforest.control.board.DeleteBoardControl;
+import com.intheforest.control.board.ModifyBoardControl;
+
+import com.intheforest.control.member.DetailJoinControl;
+import com.intheforest.control.member.FindIdControl;
+import com.intheforest.control.member.FindPwControl;
+import com.intheforest.control.member.JoinFormControl;
+import com.intheforest.control.member.LogOutControl;
+import com.intheforest.control.member.LoginControl;
+import com.intheforest.control.member.MemberListControl;
+import com.intheforest.control.member.ModifyJoinControl;
+import com.intheforest.control.member.removeJoinControl;
+import com.intheforest.control.mypage.MyBookControl;
+import com.intheforest.control.site.IntroPageControl;
+import com.intheforest.control.site.MainPageControl;
+import com.intheforest.control.book.BookAppCont;
+import com.intheforest.control.book.BookAppFormCont;
+import com.intheforest.control.book.BookCalCont;
+
 
 public class FrontController extends HttpServlet{
 	Map<String, Control> map;
@@ -21,15 +43,67 @@ public class FrontController extends HttpServlet{
 	
 	@Override
 	public void init() throws ServletException {
-		map.put("/example.do", new ExampleControl());
+		// 로그인, 회원가입
+		map.put("/login.do", new LoginControl());
+		map.put("/joinForm.do",new JoinFormControl());
+		map.put("/findId.do", new FindIdControl());
+		map.put("/findPw.do", new FindPwControl());
+		map.put("/checkId.do",new JoinFormControl());
+		map.put("/DetailJoin.do", new DetailJoinControl());
+		map.put("/modifyJoin.do",new ModifyJoinControl());
+		map.put("/removejoin.do", new removeJoinControl());
+		map.put("/logOut.do", new LogOutControl());
+		
+		
+		
+		
+		
+  
+		
+		// 게시판
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/board.do", new BoardControl());
 		map.put("/addBoardForm.do", new AddBoardFormControl());
 		map.put("/addBoard.do", new AddBoardControl());
 		map.put("/modifyBoard.do", new ModifyBoardControl());
 		map.put("/deleteBoard.do", new DeleteBoardControl());
+		
+		
+	
+		
+		
+		//캠핑예약
+		map.put("/bookCalendar.do", new BookCalCont());
+		map.put("/bookApp.do", new BookAppCont());
+		map.put("/bookAppForm.do", new BookAppFormCont());
+		
+  
+  
+  
+  
+		
+		// 마이페이지
+		map.put("/myPageBookList.do", new MyBookControl());
+		
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    //관리자용 메뉴
+		map.put("/memberList.do", new MemberListControl());
+    
+    
+    // 사이트
+		map.put("/main.do", new MainPageControl());
+		map.put("/intro.do", new IntroPageControl());
+		
+		
 	};
-
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

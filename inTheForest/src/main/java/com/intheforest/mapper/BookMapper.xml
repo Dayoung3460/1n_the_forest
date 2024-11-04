@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.intheforest.mapper.BookMapper">
+
+	<select id="siteList" resultType="book">
+	  select *
+	    from site 
+	    order by site_name
+	</select>
+	
+	<select id="optionList" resultType="book">
+	  select *
+	    from site_option 
+	</select>
+	
+	<select id="selectSite" parameterType="string">
+    select *
+    from site 
+    where site_no=#{siteNo}  	
+  </select>
+  
+  <select id="selectSiteDate" resultType="int">
+    select count(*) as cnt
+    from site_book 
+    where site_no=#{siteNo}
+    <![CDATA[ 
+    and start_date<=#{startDate} 
+    and end_date>=#{startDate}
+    ]]>  	
+    and cancel_flag = 0
+  </select>
+  
+  <insert id="insertBook" parameterType = "book">
+    insert into site_book (book_no,
+                        	member_id,
+                        	site_no,
+                        	mem_cnt,
+                        	start_date,
+                        	end_date,
+                        	car_num,
+                        	total_price)
+	values  (2222,
+        	#{memberId},
+        	#{siteNo},
+        	#{memCnt},
+        	#{startDate},
+        	#{endDate},
+        	#{carNum},
+        	#{totalPrice})
+    </insert>
+</mapper>

@@ -1,0 +1,55 @@
+@charset "UTF-8";
+a{text-decoration:none; color:black;}
+.res-month		{position:relative;padding:30px 0 30px;text-align:center;}
+.res-month>span	{font-size:35px;color:#74bfa9;font-weight:600;line-height:1;}
+.res-month a	{position:absolute;top:0px;font-size:1.1rem;color:#5b6678;}
+.res-month .prev	{left:0; top:35px;}
+.res-month .next	{right:0; top:35px;}
+.res-month a i	{color:#ccc;}
+.res-month .prev i	{margin-right:20px;}
+.res-month .next i	{margin-left:20px;}
+
+.day.sun	{color:#FF3333 !important;}
+.day.sat	{color:#5771bf !important;}
+.reservation {margin-bottom: 50px;}
+.reservation h1{font-weight:700; margin-top:25px;}
+.reservation .h4 {margin-bottom: 20px;}
+
+.reservation .addform{background-color: #e3e3e3;padding: 30px; margin:30px; border-radius: 20px;}
+.res-calendar ul{margin-top: 0; margin-bottom: 1rem; list-style:none; padding:0;}
+.res-calendar table{width:100%;}
+.res-calendar td, .res-calendar th	{min-width:90px;width:14.285714%;transition:all 0.2s ease-out;}
+.res-calendar td{border:1px solid #E5E9EE;}
+.res-calendar thead th	{background:#74bfa9;border-top:none;border-bottom:none;padding:20px;text-align:center;font-size:15px;font-weight:500;color:#fff;}
+.res-calendar tbody td	{vertical-align:top;height:150px;position:relative;}
+.res-calendar tbody td li input, .res-calendar tbody td li label{cursor:pointer;}
+.res-calendar thead th:first-child	{border-left:none;}
+.res-calendar thead th:last-child	{border-right:none;}
+.res-calendar tbody tr:first-child td:not(.on){border-top:none;}
+.res-calendar table td>span,
+.res-calendar .day		{display:inline-block;font-size:16px;color:#000;width:30px;height:30px;line-height:30px;margin:5px;text-align:center;border-radius:50%;font-weight:500;transition:all 0.2s ease-out;}
+.res-calendar td p		{position:relative;padding:5px;padding-left:30px;font-size:12px;line-height:1.3;}
+.res-calendar .va-pc	{display:table-cell;}
+.res-calendar .res-stand	{color:#999;}
+.res-calendar .res-fix		{color:#000;}
+.res-calendar .res-stand, .res-calendar .res-fix	{margin:-1px 0 0 0;border-right:none;border-left:none;}
+.res-calendar .res-stand:before,
+.res-calendar .res-fix:before	{position:absolute;left:5px;top:2px;}
+.res-calendar td:hover	{}
+.res-calendar td:hover .day:not(.last){background:#708ac1;color:#fff !important;}
+.res-calendar td.in {border-top:2px solid #B9C8DF;}
+.res-calendar td.on	{border:2px solid var(--main-color);}
+.res-calendar td li button{font-size:14px;color:#333;word-break:break-all;padding:0 15px;margin-bottom:8px;line-height:1.3;border: none;background-color: #fff;}
+.res-calendar td li button span{color:#a5a5a5;font-size:12px;} 
+.res-calendar td li.out {color:#ccc;}
+.res-calendar td li.out button {color:#ccc;}
+.res-calendar td li.out span {color:#ccc;}
+.res-calendar td li>a{display:block;}
+.res-calendar td li div{display:flex;justify-content:space-between;margin-top:5px;}
+.res-calendar td li span span:last-child{font-weight:500;}
+.res-calendar td li em{color:#ff5722;}
+.res-calendar td li .more{display:block;width:16px;height:16px;line-height:12px;border-radius:50%;text-align:center;background:#ccc;color:#fff;font-weight:400;}
+.res-calendar .last:before,
+.res-calendar .holiday:before,
+.res-calendar .off:before{content:"";width:100%;height:100%;position:absolute;top:0;left:0;background:#cfcfcf99;}
+.edu-calendar .res-calendar tbody td{cursor:default;}

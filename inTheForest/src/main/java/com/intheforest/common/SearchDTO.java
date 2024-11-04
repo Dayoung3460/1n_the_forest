@@ -7,4 +7,5 @@ public class SearchDTO {
 	private String currentPage;
 	private String searchCondition;
 	private String keyword;
+	private String category; // notice, reply, review, qna
 }

@@ -1,0 +1,68 @@
+.boardList {
+    min-height: 700px;
+    width: 1320px;
+    margin: 40px auto;
+
+    > h3 {
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    > p {
+        text-align: center;
+        font-size: 18px;
+        color: var(--bs-gray-700);
+        margin-bottom: 60px;
+    }
+
+    .table {
+        th,
+        td {
+            text-align: center;
+        }
+
+        .title {
+            text-align: left;
+        }
+
+        .redLabel {
+            background-color: var(--bs-green);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+
+        .reply {
+            font-size: 14px;
+            padding-left: 12px;
+        }
+    }
+
+    .page-link.active, .active > .page-link {
+        background-color: var(--bs-teal);
+        border-color: var(--bs-teal);
+    }
+
+    .bottom {
+        position: relative;
+        margin-right: 0 !important;
+
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .write {
+        position: absolute;
+        right: 0;
+        margin: 0 !important;
+        > a {
+
+            color: #ffffff;
+            text-decoration: none;
+        }
+    }
+
+
+}
+

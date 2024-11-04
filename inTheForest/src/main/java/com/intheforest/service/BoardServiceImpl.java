@@ -6,28 +6,33 @@ import com.intheforest.mapper.BoardMapper;
 import com.intheforest.vo.BoardVO;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class BoardServiceImpl implements BoardService {
   SqlSession sqlSession = DataSource.getInstance().openSession(true);
+  
   BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+  
 
+  
   @Override
   public List<BoardVO> boardList() {
+   
     return mapper.boardList();
   }
-
+  
   @Override
   public List<BoardVO> boardListByPage(SearchDTO search) {
     return mapper.boardListByPage(search);
   }
-
+  
   @Override
   public int boardTotalCount(SearchDTO search) {
     return mapper.boardTotalCount(search);
   }
-
+  
   @Override
   public boolean RegisterBoard(BoardVO board) {
     return mapper.insertBoard(board) == 1;
@@ -46,15 +51,26 @@ public class BoardServiceImpl implements BoardService {
     mapper.updateCount(boardNo);
     return mapper.selectBoard(boardNo);
   }
-
+  
+  @Override
+  public BoardVO selectPrevBoard(BoardVO board) {
+    return mapper.selectPrevBoard(board);
+  }
+  
+  @Override
+  public BoardVO selectNextBoard(BoardVO board) {
+    return mapper.selectNextBoard(board);
+  }
+  
   @Override
   public List<Map<String, Object>> countByWriter() {
     return mapper.countByWriter();
   }
-
-
-
-
-
-
+  
+  @Override
+  public ArrayList<Integer> getBookNoByMemberId(String memberId) {
+    return mapper.getBookNoByMemberId(memberId);
+  }
+  
+  
 }
