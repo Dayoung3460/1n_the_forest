@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.text.SimpleDateFormat"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.intheforest.vo.BookVO"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <div class="container">
 
@@ -21,11 +18,12 @@
     <form action="bookApp.do" method="POST" autocomplete="off">
         <div class="card text-center mb-4">
             <div class="card-header">
-              aa ~ aa
+              <fmt:formatDate value="${book.startDate}" pattern="yyyy-MM-dd"></fmt:formatDate>~
+              <fmt:formatDate value="${book.endDate}" pattern="yyyy-MM-dd"></fmt:formatDate>
             </div>
             <div class="card-body">
-              <h5 class="card-title">${bookvo.siteName}</h5>
-              <p class="card-text" id="totalPrice"></p>
+              <h5 class="card-title">${book.siteName}</h5>
+              <p class="card-text fw-bolder text-success">${book.totalPrice}</p>
             </div>
         </div>
             
@@ -33,9 +31,7 @@
             <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약인원</label>
             <div class="col-sm-10">
                 <select name="memCnt" class="form-select w-25" disabled>
-                    <c:forEach var="i" begin="1" end="${bookvo.siteMax}">
-                        <option value="${i}" selected>${i}인</option>
-                    </c:forEach>
+                    <option value="${book.memCnt}" selected>${book.memCnt}인</option>
                 </select>
             </div>
         </div>
@@ -43,14 +39,14 @@
         <div class="mb-3 row">
             <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약자명</label>
             <div class="col-sm-10 col-md-5">
-                <input type="text" name="name" class="form-control w-100">
+                <input type="text" name="name" class="form-control w-100" value="???" disabled>
             </div>
         </div>
         
         <div class="mb-3 row">
             <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">차량번호</label>
             <div class="col-sm-10 col-md-5">
-                <input type="text" name="carNum" class="form-control">
+                <input type="text" name="carNum" class="form-control" value="book.carNum" disabled>
             </div>
         </div>
         
@@ -74,15 +70,10 @@
                 <input type="text" name="email" class="form-control w-100">
             </div>
         </div>
-
-        <div class="mb-3 row">
-            <div class="col-sm-2 col-form-label">금액</div>
-            <div class="col-sm-10 col-md-5 col-form-label fw-bolder text-success">100,000원</div>
-        </div>
             
         <div class="text-center m-4">
             <button type="button" class="btn btn-outline-success">이전</button>
-            <button type="button" class="btn btn-success" id="editBtn">수정</button>
+            <button type="button" class="btn btn-success" id="editBtn" onclick="location.href = 'modifyBook.do?bookNo=${bookNo}'">수정</button>
             <button type="button" class="btn btn-secondary" id="deleteBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">삭제</button>
         </div>
     </form>

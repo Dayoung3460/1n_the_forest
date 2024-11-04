@@ -20,6 +20,7 @@ import com.intheforest.control.book.BookAppCont;
 import com.intheforest.control.book.BookAppFormCont;
 import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.book.DetailBookControl;
+import com.intheforest.control.book.ModifyBookControl;
 import com.intheforest.control.member.DetailJoinControl;
 import com.intheforest.control.member.FindIdControl;
 import com.intheforest.control.member.FindPwControl;
@@ -78,7 +79,8 @@ public class FrontController extends HttpServlet{
 		map.put("/bookCalendar.do", new BookCalCont());
 		map.put("/bookApp.do", new BookAppCont());
 		map.put("/bookAppForm.do", new BookAppFormCont());
-		//map.put("/modifyBook.do", new ModifyBookControl());
+		
+		map.put("/modifyBook.do", new ModifyBookControl());
 		map.put("/detailBook.do", new DetailBookControl());
   
   

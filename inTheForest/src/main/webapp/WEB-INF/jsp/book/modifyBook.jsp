@@ -21,11 +21,13 @@
     <form action="bookApp.do" method="POST" autocomplete="off">
         <div class="card text-center mb-4">
             <div class="card-header">
-              aa ~ aa
+                <span class="card-title">날짜 ~ 날짜</span>
+                <button type="button" class="btn btn-sm btn-outline-success ms-2"
+                	onclick="location.href = 'bookCalendar.do?siteNo=siteName=category=siteMax=sitePrice=startDate'">재선택</button>
             </div>
             <div class="card-body">
-              <h5 class="card-title">${bookvo.siteName}</h5>
-              <p class="card-text" id="totalPrice"></p>
+                <h5 class="card-title">${bookvo.siteName}</h5>
+                <p class="card-text fw-bolder text-success" id="totalPrice">100,000원</p>
             </div>
         </div>
             
