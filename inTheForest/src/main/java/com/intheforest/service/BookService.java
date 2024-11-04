@@ -10,7 +10,7 @@ public interface BookService {
 	
 	//상세조회
 	BookVO selectSite(String siteNo);
-	BookVO selectBookDate(String siteNo, String startDate);
+	int selectBookDate(int siteNo, String startDate);
 	
 	// 등록(삽입)
 	boolean registerBook(BookVO book);

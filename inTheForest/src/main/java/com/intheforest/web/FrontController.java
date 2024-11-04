@@ -16,8 +16,7 @@ import com.intheforest.control.board.BoardControl;
 import com.intheforest.control.board.BoardListControl;
 import com.intheforest.control.board.DeleteBoardControl;
 import com.intheforest.control.board.ModifyBoardControl;
-import com.intheforest.control.book.BookAppCont;
-import com.intheforest.control.book.BookCalCont;
+
 import com.intheforest.control.member.DetailJoinControl;
 import com.intheforest.control.member.FindIdControl;
 import com.intheforest.control.member.FindPwControl;
@@ -29,6 +28,9 @@ import com.intheforest.control.member.removeJoinControl;
 import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.site.IntroPageControl;
 import com.intheforest.control.site.MainPageControl;
+import com.intheforest.control.book.BookAppCont;
+import com.intheforest.control.book.BookAppFormCont;
+import com.intheforest.control.book.BookCalCont;
 
 
 public class FrontController extends HttpServlet{
@@ -70,8 +72,9 @@ public class FrontController extends HttpServlet{
 		
 		
 		//캠핑예약
-		map.put("/book_calendar.do", new BookCalCont());
-		map.put("/book_app.do", new BookAppCont());
+		map.put("/bookCalendar.do", new BookCalCont());
+		map.put("/bookApp.do", new BookAppCont());
+		map.put("/bookAppForm.do", new BookAppFormCont());
 		
   
   

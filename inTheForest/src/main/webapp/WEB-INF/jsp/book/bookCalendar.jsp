@@ -4,23 +4,28 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@ page import="com.intheforest.vo.BookVO"%>
+<%@ page import="com.intheforest.service.BookService"%>
 <%@ page import="com.intheforest.service.BookServiceImpl"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.*"%>
 <%
+BookService svc = new BookServiceImpl();
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd");
 List<BookVO> list = (List<BookVO>) request.getAttribute("siteList");
 String memberId = (String)session.getAttribute("memberId");
 
 /*달력출력[S]*/
 int year = 0;
 int month = 0; // 0 ~ 11
+int result2 =0;
 
 // 년도, 월 중 하나라도 지정(넘겨져 오지)되지 않으면 오늘날짜 기준으로 월달력 출력
 if (request.getParameter("year") == null || request.getParameter("month") == null) {
 	Calendar today = Calendar.getInstance();
 	year = today.get(Calendar.YEAR);
-	month = today.get(Calendar.MONTH)+1;
+	month = today.get(Calendar.MONTH);
+	
 } else {
 	// 출력하고자 하는 달력의 년도와 월
 	year = Integer.parseInt(request.getParameter("year")); // 2022,..
@@ -55,6 +60,7 @@ if ((startBlankCnt + lastDate) % 7 != 0) {
 int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 /*달력출력[E]*/
 %>
+<%=Calendar.MONTH %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,11 +87,12 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 	
 	<h1>실시간예약</h1>
 		
-		<%
+		<%		
+		int calMonth = month;
 		int pYear = year;
 		int nYear = year;
-		int pMonth = month - 1;
-		int nMonth = month + 1;
+		int pMonth = calMonth - 1;
+		int nMonth = calMonth + 1;
 		
 		if(nMonth == 13){
 			nMonth = 1;
@@ -96,7 +103,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 			pYear = year-1;
 		}
 		
-		String thismonth = Integer.toString(month);
+		String thismonth = Integer.toString(calMonth);
 		String prevMonth= Integer.toString(pMonth);
 		String nextMonth = Integer.toString(nMonth);
 		
@@ -108,7 +115,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 			prevMonth = "0"+prevMonth;
 		}
 		
-		if(month < 10){
+		if(calMonth < 10){
 			thismonth = "0"+thismonth;
 		}
 		
@@ -118,10 +125,10 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 		<div class="bx">
 			<div class="res-month">
 				<a
-					href="<%=request.getContextPath()%>/book_calendar.do?year=<%=year%>&month=<%=month - 1%>"
+					href="<%=request.getContextPath()%>/bookCalendar.do?year=<%=pYear%>&month=<%=prevMonth%>"
 					title="이전달" class="prev"><i class="bi bi-chevron-left"></i><span><%=pYear + "-" + prevMonth%></span></a>
 				<span><%=year + "-" + thismonth%></span> <a
-					href="<%=request.getContextPath()%>/book_calendar.do?year=<%=year%>&month=<%=month + 1%>"
+					href="<%=request.getContextPath()%>/bookCalendar.do?year=<%=nYear%>&month=<%=nextMonth%>"
 					title="다음달" class="next"><span><%=nYear + "-" + nextMonth%></span><i
 					class="bi bi-chevron-right"></i></a>
 			</div>
@@ -181,33 +188,29 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 
 							<ul>
 								<%
-								
-								for (BookVO bvo : list) {
-									//BookVO book = (BookVO) request.getAttribute("selectBookDate");
+								for (BookVO bvo : list) {	
+									Date formatDate = sdf.parse(thisDate);
+									String newDate = sdf2.format(formatDate);
+									result2 = svc.selectBookDate(bvo.getSiteNo(), newDate);
 								%>
-								<li>
-									<%if(memberId != null){ %>
-										<%if(result > 0){ %>
-											<button type="button" data-bs-toggle="modal"
-										data-bs-target="#exampleModal"><%=bvo.getSiteName()%> <span>(예약불가)</span></button>
+								<li <%if(result2 > 0){ %>class="out"<%}%>>
+									<!--지난 날 또는 예약완료된 숙소-->
+									<%if(result > 0 || result2 > 0){ %>
+										<button type="button" data-bs-toggle="modal" data-bs-target="#fullModal"><%=bvo.getSiteName()%> <span>(예약불가)</span></button>
+									<%}else{ %>
+										<!--로그인 여부-->
+										<%if(memberId != null){ %>
+											<button type="button" data-bs-toggle="modal" data-bs-target="#loginModal"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
 										<%}else{ %>
-											<button type="button" data-bs-toggle="modal"
-										data-bs-target="#exampleModal"
-										onclick="calValue('<%=thisDate%>', '<%=bvo.getSiteNo()%>', '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
-										<%}}else{ %>
-										<%if(result > 0){ %>
-											<button type="button" data-bs-toggle="modal"
-										data-bs-target="#exampleModal"><%=bvo.getSiteName()%> <span>(예약불가)</span></button>
-										<%}else{ %>
-											<button type="button" data-bs-toggle="modal"
-										data-bs-target="#loginModal"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
-										<%}} %>
+											<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="calValue('<%=thisDate%>', <%=bvo.getSiteNo()%>, '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
+										<%}%>
+									<%} %>
 								</li>
 								<%}%>
 							</ul> 
 							<%} else {%> 
 								&nbsp; 
-							<% } %>
+							<%} %>
 						</td>
 						<%if (i != tdCnt && i % 7 == 0) {%>
 					</tr>
@@ -224,7 +227,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 		
 		function calValue(date, no, cate) {	
 			document.querySelector('#modalSave').addEventListener('click', function(e){
-			 	location.href = '/inTheForest/book_app.do?siteDate='+date+'&category='+cate+'&siteNo='+no+'&addDate='+$("#dateSelect").val();
+			 	location.href = '/inTheForest/bookAppForm.do?siteDate='+date+'&category='+cate+'&siteNo='+no+'&addDate='+$("#dateSelect").val();
 		 	});
 		}	
 	</script>
@@ -281,6 +284,32 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 
 				<div class="modal-body">
 					<span>로그인이 필요합니다.</span>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal" onclick="modalClose()">닫기</button>
+					<!-- 닫는 버튼 -->
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 예약불가 모달 -->
+	<div class="modal fade" id="fullModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+					<!-- 모달창 타이틀 -->
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+
+				<div class="modal-body">
+					<span>예약이 마감된 숙소입니다.</span>
 				</div>
 
 				<div class="modal-footer">
