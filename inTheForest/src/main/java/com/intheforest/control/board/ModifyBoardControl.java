@@ -36,7 +36,7 @@ public class ModifyBoardControl implements Control {
     if(req.getMethod().equals("GET")) {
       board = svc.searchBoard(bno);
       
-      req.setAttribute("boardvo", board);
+      req.setAttribute("board", board);
       req.setAttribute("search", search);
       req.getRequestDispatcher("board/boardModifyForm.tiles").forward(req, resp);
     } else {
@@ -45,7 +45,7 @@ public class ModifyBoardControl implements Control {
       String title = req.getParameter("title");
       String content = req.getParameter("content");
       
-      // board.setBoardNo(bno);
+      board.setBoardNo(bno);
       board.setTitle(title);
       board.setContent(content);
       

@@ -3,6 +3,7 @@ package com.intheforest.service;
 import com.intheforest.common.SearchDTO;
 import com.intheforest.vo.BoardVO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ public interface BoardService {
   BoardVO searchBoard(int boardNo);
   
   List<Map<String, Object>> countByWriter();
+  ArrayList<Integer> getBookNoByMemberId(String memberId);
   
   
 }
