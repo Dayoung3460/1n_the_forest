@@ -16,6 +16,15 @@
 	    order by site_name
 	</select>
 	
+	<select id="bookLast" resultType="int">
+	  select book_no
+	    from site_book
+	    <![CDATA[
+	    where ROWNUM<=1
+	    ]]>
+	    order by book_no desc
+	</select>
+
 	<select id="optionList" resultType="book">
 	  select *
 	    from site_option 
@@ -47,7 +56,7 @@
                         	end_date,
                         	car_num,
                         	total_price)
-	values  (2222,
+	values  (book_seq.nextval,
         	#{memberId},
         	#{siteNo},
         	#{memCnt},
@@ -56,5 +65,16 @@
         	#{carNum},
         	#{totalPrice})
     </insert>
-    
+
+    <insert id="insertOption" parameterType = "book">
+    insert into site_book_option (option_no,
+                        	book_no,
+                        	member_id,
+                        	site_no)
+	values  (#{optionNo},
+        	#{bookNo},
+        	#{member_id},
+        	#{siteNo})
+    </insert>
+
 </mapper>

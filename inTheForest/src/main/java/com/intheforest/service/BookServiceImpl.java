@@ -18,6 +18,11 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
+	public int bookLast(){
+		return mapper.bookLast();
+	}
+	
+	@Override
 	public List<BookVO> optionList(){
 		return mapper.optionList();
 	}
@@ -41,5 +46,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public boolean registerBook(BookVO book) {
 		return mapper.insertBook(book) == 1;
+	}
+	
+	//등록
+	@Override
+	public boolean registerBookOption(BookVO book) {
+		return mapper.insertBookOption(book) == 1;
 	}
 }

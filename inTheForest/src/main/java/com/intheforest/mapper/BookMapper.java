@@ -10,10 +10,11 @@ public interface BookMapper {
 	BookVO selectBook(int bookNo);
 	
 	List<BookVO> siteList();
+	int bookLast();
 	List<BookVO> optionList();
 	BookVO selectSite(String siteNo);
 	int selectSiteDate(@Param("siteNo") int siteNo, @Param("startDate") String startDate);
-	
-	// 게시글 등록 
+	 
 	int insertBook(BookVO book);
+	int insertBookOption(BookVO book);
 }

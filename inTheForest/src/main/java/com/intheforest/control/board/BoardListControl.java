@@ -50,7 +50,7 @@ public class BoardListControl implements Control {
       if(category.equals("review")) {
         ArrayList<Integer> bookNoList = boardService.getBookNoByMemberId(memberId);
         if(!bookNoList.isEmpty()) {
-          req.setAttribute("bookNoList", bookNoList);
+          req.setAttribute("bookNoListSize", bookNoList.size());
         }
       }
       

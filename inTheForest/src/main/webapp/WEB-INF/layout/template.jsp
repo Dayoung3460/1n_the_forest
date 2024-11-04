@@ -21,6 +21,7 @@
         <link href="css/board/boardList.css" rel="stylesheet" />
         <link href="css/board/board.css" rel="stylesheet" />
         <link href="css/board/boardAddForm.css" rel="stylesheet" />
+        <link href="css/board/boardModifyForm.css" rel="stylesheet" />
     </head>
     <body>
     <%

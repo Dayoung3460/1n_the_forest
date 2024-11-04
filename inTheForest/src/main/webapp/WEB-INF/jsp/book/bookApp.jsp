@@ -152,7 +152,6 @@ String endDate = sdf.format(calendar.getTime());
 				</div>
 				
 				<div class="addform">		
-				
 					<p class="h4">2. 옵션 선택</p>				
 					<div class="row g-3">
 						<div class="col-md-6">
@@ -160,7 +159,7 @@ String endDate = sdf.format(calendar.getTime());
 							<div class="input-group mb-3">
 							  <div class="input-group-text">
 							    <input class="form-check-input mt-0" type="checkbox" value="<%=ovo.getOptionNo() %>" aria-label="Chec
-							    kbox for following text input" name="option">
+							    kbox for following text input" name="option[]">
 							  </div>
 							  <input type="hidden" id="optionPrice_<%=ovo.getOptionNo() %>" value="<%=ovo.getOptionPrice() %>">
 							  <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%=ovo.getOptionName() %> (<%=ovo.getOptionPrice().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",") %>원)" readonly onclick="">

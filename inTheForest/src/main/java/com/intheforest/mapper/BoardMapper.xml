@@ -100,11 +100,11 @@
         <if test="content != null">
             ,content = #{content}
         </if>
-        <if test="secret-flag != null">
+        <if test="secretFlag != null">
             ,secret_flag = #{secretFlag}
         </if>
-        <if test="board-file != null">
-            ,board-file = #{boardFile}
+        <if test="boardFile != null">
+            ,board_file = #{boardFile}
         </if>
         where board_no = #{boardNo}
 
