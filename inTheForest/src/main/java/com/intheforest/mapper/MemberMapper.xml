@@ -62,5 +62,30 @@ and   email= #{email}
 	and   email=#{email}
 	</update>
 
+<!-- 아이디 중복 체크 -->
+	<select id="checkId" parameterType ="String" resultType="int">
+	select count(*)
+	 from member 
+	 where member_id=#{memberId}
+	</select>
+
+<!-- 회원정보수정 -->
+	<update id="updateJoin" parameterType ="member">
+	update member
+	set
+	 <if test= "password != null">
+	  password = #{password}
+	 </if>  
+	 <if test= "email != null">
+	 ,email =#{email}
+	 </if>
+     <if test= "tel != null">
+     ,tel = #{tel}
+     </if>
+     <if test= "address != null">
+     ,address = #{address}
+     </if>
+	 where member_id=#{memberId} 
+	</update>
 
 </mapper>

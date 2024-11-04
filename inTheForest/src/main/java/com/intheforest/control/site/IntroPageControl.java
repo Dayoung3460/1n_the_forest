@@ -17,6 +17,7 @@ public class IntroPageControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setAttribute("site", req.getParameter("site"));
 		req.getRequestDispatcher("site/intro.tiles").forward(req, resp);
 	}
 
