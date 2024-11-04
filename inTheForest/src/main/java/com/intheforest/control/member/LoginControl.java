@@ -39,6 +39,8 @@ public class LoginControl implements Control {
 			HttpSession session = req.getSession();
 			session.setAttribute("memberId", id);
 			
+			session.setAttribute("permission", member.getPermission());
+			
 			req.getRequestDispatcher("site/main.tiles").forward(req, resp);
 		
 		}
