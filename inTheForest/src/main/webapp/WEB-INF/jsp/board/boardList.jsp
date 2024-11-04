@@ -163,7 +163,7 @@
                 <button type="submit" class="btn btn-success">조회</button>
             </div>
         </form>
-        <c:if test="${(category eq 'notice' && member.permission eq 'admin') || (category eq 'qna') || (category eq 'review' && bookNoList.size() > 0)}">
+        <c:if test="${(category eq 'notice' && member.permission eq 'admin') || (category eq 'qna') || (category eq 'review') && bookNoList.size() > 0)}">
             <button type="submit" class="btn btn-success mx-lg-4 write">
                 <a href="addBoardForm.do?category=${ search.category }">글쓰기</a>
             </button>
