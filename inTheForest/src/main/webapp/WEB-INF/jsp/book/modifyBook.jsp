@@ -30,9 +30,9 @@
         </div>
             
         <div class="mb-3 row">
-            <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약인원</label>
+            <label for="memCnt" class="col-sm-2 col-form-label">예약인원</label>
             <div class="col-sm-10">
-                <select name="memCnt" class="form-select w-25" disabled>
+                <select name="memCnt" id="memCnt" class="form-select w-25" disabled>
                     <c:forEach var="i" begin="1" end="${bookvo.siteMax}">
                         <option value="${i}" selected>${i}인</option>
                     </c:forEach>
@@ -41,37 +41,37 @@
         </div>
         
         <div class="mb-3 row">
-            <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약자명</label>
+            <label for="name" class="col-sm-2 col-form-label">예약자명</label>
             <div class="col-sm-10 col-md-5">
-                <input type="text" name="name" class="form-control w-100">
+                <input type="text" name="name" id="name" class="form-control w-100">
             </div>
         </div>
         
         <div class="mb-3 row">
-            <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">차량번호</label>
+            <label for="carNum" class="col-sm-2 col-form-label">차량번호</label>
             <div class="col-sm-10 col-md-5">
-                <input type="text" name="carNum" class="form-control">
+                <input type="text" name="carNum" id="carNum" class="form-control">
             </div>
         </div>
         
         <div class="mb-3 row">
-            <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">연락처</label>
+            <label for="tel" class="col-sm-2 col-form-label">연락처</label>
             <div class="col-sm-10 col-md-5">
-                <input type="text" name="tel" maxlength="13" class="form-control w-100" oninput="autoHyphen(this)">
+                <input type="text" name="tel" id="tel" maxlength="13" class="form-control w-100" oninput="autoHyphen(this)">
             </div>
         </div>
         
         <div class="mb-3 row">
-            <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">주소</label>
+            <label for="adress" class="col-sm-2 col-form-label">주소</label>
             <div class="col-sm-10 col-md-5">
-                <input type="text" name="address" class="form-control w-100">
+                <input type="text" name="address" id="adress" class="form-control w-100">
             </div>
         </div>
         
         <div class="mb-3 row">
-            <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">이메일</label>
+            <label for="email" class="col-sm-2 col-form-label">이메일</label>
             <div class="col-sm-10 col-md-5">
-                <input type="text" name="email" class="form-control w-100">
+                <input type="text" name="email" id="email" class="form-control w-100">
             </div>
         </div>
 
