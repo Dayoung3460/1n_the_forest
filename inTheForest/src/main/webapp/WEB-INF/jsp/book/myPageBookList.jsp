@@ -42,7 +42,7 @@
 			<%
 			for (MyBookVO bvo : list) {
 			%>
-            <tr onClick="location.href='book_app.do?siteDate=<%=bvo.getStartDate()%>&category=<%=bvo.getCategory()%>&siteNo=<%=bvo.getSiteNo()%>&addDate=<%=bvo.getAddDate()%>'">
+            <tr onClick="location.href='book_app.do?siteDate=<%=bvo.getStartDate()%>&category=<%=bvo.getCategory()%>&siteNo=<%=bvo.getSiteNo()%>&addDate=<%=bvo.getAddDate()%>&endDate=<%=bvo.getEndDate()%>'">
 				<th scope="row"><%=bvo.getBookNo()%></th>
 				<td><%=bvo.getSiteName()%></td>
 				<td><%=bvo.getMemCnt()%>명</td>
@@ -105,7 +105,9 @@
             <div class="col-md-4">
                 <select name="searchCondition" class="form-select">
                     <option selected value="">선택하세요.</option>
-                    <option value="bno">예약번호</option>
+                    <option value="bno"
+                    <%=(sc != null && sc.equals("bno") ? "selected" : "") %>
+                    >예약번호</option>
                     <option value="start">예약일자</option>
                     <option value="bnoStart">번호&일자</option>
                 </select>

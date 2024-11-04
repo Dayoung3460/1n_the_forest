@@ -45,7 +45,7 @@
 		</where>
 		order by book_no
 		) a ) b
-		where b.rn > (#{currentPage) - 1 ) * 5
+		where b.rn > (#{currentPage} - 1 ) * 5
 <![CDATA[
   and b.rn <= (#{currentPage} * 5)
   ]]>

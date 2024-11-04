@@ -30,15 +30,18 @@ public class MyBookControl implements Control {
 		
 		HttpSession session = req.getSession();
 		String memberId = (String) session.getAttribute("memberId");
-		MyBookService svc = new MyBookServiceImpl();
-		List<MyBookVO> list = svc.myPageBookList(memberId);
 		
 		//검색조건
 		SearchDTO search = new SearchDTO();
-		int totalCount = svc.getTotalCount(search);
 		search.setKeyword(kw);
 		search.setSearchCondition(sc);
 		search.setCurrentPage(page);
+		
+		
+		//글목록 보여주기 조회후 jsp 전달
+		MyBookService svc = new MyBookServiceImpl();
+		List<MyBookVO> list = svc.myPageBookList(memberId);
+		int totalCount = svc.getTotalCount(search);
 		
 		//request에 저장
 		req.setAttribute("myPageBookList", list);
