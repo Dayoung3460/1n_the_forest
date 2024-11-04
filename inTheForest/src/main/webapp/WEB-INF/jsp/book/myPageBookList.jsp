@@ -1,6 +1,8 @@
 <%@ page import="com.intheforest.vo.BoardVO"%>
 <%@ page import="com.intheforest.vo.MyBookVO"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.intheforest.common.PageDTO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -8,12 +10,12 @@
 
 <%
     List<MyBookVO> list = (List<MyBookVO>) request.getAttribute("myPageBookList");
-    String logId = (String) session.getAttribute("memberId");
+    String memberId = (String) session.getAttribute("memberId");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     PageDTO paging = (PageDTO) request.getAttribute("currentPage");
     String sc = (String) request.getAttribute("searchCondition");
     String kw = (String) request.getAttribute("keyword");
-    kw = kw == null ? "" : kw;
+    kw = (kw == null) ? "" : kw;
 %>
 
 <div class="p-3 boardList">
@@ -55,69 +57,70 @@
 			</tr>
 		</tbody>
 	</table>
-	<!-- 페이지 네이션
-	<nav aria-label="Page navigation example">
-	<ul class="pagination justify-content-center">
-	 이전페이지
-	--%if (paging.isPrev()){ %>
-	<li class="page-item" aria-current="page"><a class="page-link"
-	href="myPageBookList.do?page=--%=paging.getStartPage()-1 %>">Previous</a>
-	--%} else { %>
-	<li class="page-item disabled"><a class="page-link">Previous</a>
-	--%} %>
-	</li> -->
 
-	<!-- 페이지 출력
-	--%
-	for(int p = paging.getStartPage(); p<=paging.getEndPage();p++){
-	if(paging.getPage() == p){
+	<!-- 페이지 네이션 -->
+	<nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-center">
+			<!-- 이전페이지 -->
+			<%if (paging.isPrev()){ %>
+			<li class="page-item" aria-current="page"><a class="page-link"
+				href="myPageBookList.do?page=<%=paging.getStartPage()-1 %>">Previous</a>
+				<%} else { %>
+			<li class="page-item disabled"><a class="page-link">Previous</a>
+				<%} %></li>
+
+			<!-- 페이지 출력 -->
+			<%
+	for(int p = paging.getStartPage(); p <= paging.getEndPage(); p++){
+	if(paging.getCurrentPage() == p){
 	%>
-	<li class="page-item active" aria-current="page">
-	<span class="page-link">--%=p %></span>
-	</li>
-	--%} else { %>
-		<li class="page-item"><a class="page-link"
-		href="myPageBookList.do?searchCondition=--%=sc %>&keyword=--%=kw %>&page=--%=p %>">--%=p %></a>
-	</li>
-	--%
-	} }
+			<li class="page-item active" aria-current="page"><span
+				class="page-link"><%=p %></span></li>
+			<%} else { %>
+			<li class="page-item"><a class="page-link"
+				href="myPageBookList.do?searchCondition=<%=sc %>&keyword=<%=kw %>&page=<%=p %>">
+				<%=p %></a></li>
+			<%
+	}}%>
+	
+	<!-- 다음페이지 -->
+	<%
 	if(paging.isNext()){
 	%>
-	<li class="page-item" aria-current="page"><a class="page-link"
-	href="myPageBookList.do?page=--%=paging.gerEndPage() +1 %>">Next</a>
-	--%} else { %>
-	<li class="page-item disabled"><a class="page-link">Next</a>
+			<li class="page-item" aria-current="page"><a class="page-link"
+				href="myPageBookList.do?page=<%=paging.getEndPage() +1 %>">Next</a>
+				<%} else { %>
+			<li class="page-item disabled"><a class="page-link">Next</a> 
+			<%} %>
+			</li>
 
-	</li>
-
-	</ul>
+		</ul>
 
 
 	</nav>
-     페이지 네이션 끝 -->
+	<!-- 페이지 네이션 끝 -->
 
-    <!-- 검색창
-        <div class="bottom m-4 ">
-        <form class="row g-3" action="myPageBookList.do" method="get">
-            <div class="col-md-4">
-                <select name="searchCondition" class="form-select">
-                <option selected value="">
-                선택하세요.
-                </option>
-                <option value="bno"
-                --%=(sc != null && sc.equals("bno") ? "selected" : "")%>>예약번호</option>
-                <option value="start">예약일자</option>
-                <option value="bnoStart">번호&일자</option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <input type="text" class="form-control" name="keyword"
-                       value="--%=kw %>">
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-success">조회</button>
-            </div>
-        </form>
-    </div>
-     검색창 끝-->
+	<!-- 검색창 -->
+	<div class="bottom m-4 ">
+		<form class="row g-3" action="myPageBookList.do" method="get">
+			<div class="col-md-4">
+				<select name="searchCondition" class="form-select">
+					<option selected value="">선택하세요.</option>
+					<option value="bno">예약번호</option>
+					<option value="start">예약일자</option>
+					<option value="bnoStart">번호&일자</option>
+				</select>
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control" name="keyword"
+					value="<%=kw%>">
+			</div>
+			<div class="col-md-2">
+				<button type="submit" class="btn btn-success">조회</button>
+			</div>
+		</form>
+	</div>
+	<!-- 검색창 끝-->
+
+
 </div>

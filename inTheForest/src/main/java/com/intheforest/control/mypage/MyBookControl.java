@@ -19,26 +19,30 @@ public class MyBookControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//리스트 출력
+		
 		resp.setContentType("text/json;charset=utf-8");
+		
+		String page = req.getParameter("currentPage");
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
+		page = page == null ? "1" : page;
+		//리스트 출력
+		
 		HttpSession session = req.getSession();
 		String memberId = (String) session.getAttribute("memberId");
 		MyBookService svc = new MyBookServiceImpl();
 		List<MyBookVO> list = svc.myPageBookList(memberId);
-		req.setAttribute("myPageBookList", list);
 		
 		//검색조건
-		String pg = req.getParameter("currentPage");
-		String sc = req.getParameter("searchCondition");
-		String kw = req.getParameter("keyword");
-		pg = pg == null ? "1" : pg;
 		SearchDTO search = new SearchDTO();
 		int totalCount = svc.getTotalCount(search);
 		search.setKeyword(kw);
 		search.setSearchCondition(sc);
-		search.setCurrentPage(pg);
+		search.setCurrentPage(page);
 		
-		req.setAttribute("page", new PageDTO(Integer.parseInt(pg),totalCount));
+		//request에 저장
+		req.setAttribute("myPageBookList", list);
+		req.setAttribute("currentPage", new PageDTO(Integer.parseInt(page),totalCount));
 		req.setAttribute("searchCondition", sc);
 		req.setAttribute("keyword", kw);
 		
