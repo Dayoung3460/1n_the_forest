@@ -37,7 +37,7 @@
 		                <td class="w-25">${ member.address }</td>
 		                <td>${ member.email }</td>
 		                <td>${ member.tel }</td>
-		                <td><fmt:formatDate value="${ member.joinedDate }" pattern="yyyy/MM/dd"></fmt:formatDate></td>
+		                <td><fmt:formatDate value="${ member.joinedDate }" pattern="yyyy/MM/dd" /></td>
 		                <td>${ member.permission }</td>
 		                <td>
 		                    <button type="button" class="btn btn-outline-success btn-sm fw-bolder m-1" onclick="location.href = 'DetailJoin.do?memberId=${ member.memberId }'">정보수정</button>
