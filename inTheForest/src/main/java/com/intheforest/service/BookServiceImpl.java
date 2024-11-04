@@ -28,6 +28,11 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
+	public BookVO selectBook(int bookNo) {
+		return mapper.selectBook(bookNo);
+	}
+	
+	@Override
 	public BookVO selectSite(String siteNo){
 		return mapper.selectSite(siteNo);
 	}

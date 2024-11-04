@@ -10,6 +10,7 @@ public interface BookService {
 	List<BookVO> optionList();
 	
 	//상세조회
+	BookVO selectBook(int bookNo);
 	BookVO selectSite(String siteNo);
 	int selectBookDate(int siteNo, String startDate);
 	
