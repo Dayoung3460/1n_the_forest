@@ -30,6 +30,9 @@ public interface MemberService {
 	
 	//회원정보 수정
 	boolean modifyJoin(MemberVO member);
+	
+	//회원삭제 (quit 1로 변경)
+	boolean removeJoin (String memberId);
 
 	
 

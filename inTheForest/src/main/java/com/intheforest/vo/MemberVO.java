@@ -14,5 +14,6 @@ public class MemberVO {
 	private String tel;	
 	private Date joinedDate;
 	private String permission;
+	private int quit;
 
 }

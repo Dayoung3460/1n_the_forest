@@ -61,6 +61,10 @@ public class MemberServiceImpl implements MemberService {
 	public boolean modifyJoin(MemberVO member) {
 		return mapper.updateJoin(member)==1;
 	}
+	@Override
+	public boolean removeJoin(String memberId) {
+		return mapper.removeJoin(memberId)==1;
+	}
 	
 	
 }

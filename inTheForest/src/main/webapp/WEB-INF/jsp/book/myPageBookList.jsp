@@ -8,14 +8,14 @@
 
 <%
 List<MyBookVO> list = (List<MyBookVO>) request.getAttribute("myPageBookList");
-String logId = (String) session.getAttribute("logId");
+String memberId = (String) session.getAttribute("memberId");
 %>
 
 <div class="p-3 boardList">
 	<h3>마이페이지</h3>
 	<button type="button" class="btn btn-outline-secondary" value="Submit"
 		style="float: right">
-		<a href="DetailJoin.do?memberId=<%=logId%>" style="text-decoration:none">회원정보 수정</a>
+		<a href="DetailJoin.do?memberId=<%=memberId%>" style="text-decoration:none">회원정보 수정</a>
 	</button>
 	<p style="text-align:left">예약목록조회</p>
 

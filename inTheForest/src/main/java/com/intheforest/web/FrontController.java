@@ -22,11 +22,14 @@ import com.intheforest.control.member.DetailJoinControl;
 import com.intheforest.control.member.FindIdControl;
 import com.intheforest.control.member.FindPwControl;
 import com.intheforest.control.member.JoinFormControl;
+import com.intheforest.control.member.LogOutControl;
 import com.intheforest.control.member.LoginControl;
 import com.intheforest.control.member.ModifyJoinControl;
+import com.intheforest.control.member.removeJoinControl;
 import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.site.IntroPageControl;
 import com.intheforest.control.site.MainPageControl;
+
 
 public class FrontController extends HttpServlet{
 	Map<String, Control> map;
@@ -45,6 +48,8 @@ public class FrontController extends HttpServlet{
 		map.put("/checkId.do",new JoinFormControl());
 		map.put("/DetailJoin.do", new DetailJoinControl());
 		map.put("/modifyJoin.do",new ModifyJoinControl());
+		map.put("/removejoin.do", new removeJoinControl());
+		map.put("/logOut.do", new LogOutControl());
 		
 		
 		
