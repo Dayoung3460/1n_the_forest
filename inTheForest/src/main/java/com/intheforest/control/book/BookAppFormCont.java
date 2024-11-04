@@ -8,36 +8,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
-
 import com.intheforest.service.BookService;
 import com.intheforest.service.BookServiceImpl;
 import com.intheforest.vo.BookVO;
 
-public class BookCalCont implements Control {
+public class BookAppFormCont implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String siteNo = req.getParameter("siteNo");
-		String siteName = req.getParameter("siteName");
 		String category = req.getParameter("category");
-		String siteMax = req.getParameter("siteMax");
-		String sitePrice = req.getParameter("sitePrice");
-		String startDate = req.getParameter("startDate");
 		
 		BookService svc = new BookServiceImpl();
+		BookVO book = svc.selectSite(siteNo);
 		List<BookVO> list = svc.siteList();
+		List<BookVO> optionList = svc.optionList();
 		
-		//BookVO book = svc.selectBookDate(siteNo, startDate);
+		
+		req.setAttribute("bookvo", book);
+		
 		req.setAttribute("siteList", list);
-		//req.setAttribute("selectBookDate", book);
-		
+		req.setAttribute("optionList", optionList);			
 		req.setAttribute("siteNo", siteNo);
-		req.setAttribute("siteName",siteName);
 		req.setAttribute("category",category);
-		req.setAttribute("siteMax",siteMax);
-		req.setAttribute("sitePrice", sitePrice);
 		
-		
-		req.getRequestDispatcher("book/bookCalendar.tiles").forward(req, resp);
+		req.getRequestDispatcher("book/bookApp.tiles").forward(req, resp);	
 	}
 }

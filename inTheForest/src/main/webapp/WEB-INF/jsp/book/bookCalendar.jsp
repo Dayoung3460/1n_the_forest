@@ -20,11 +20,11 @@ int month = 0; // 0 ~ 11
 if (request.getParameter("year") == null || request.getParameter("month") == null) {
 	Calendar today = Calendar.getInstance();
 	year = today.get(Calendar.YEAR);
-	month = today.get(Calendar.MONTH)+1;
+	month = today.get(Calendar.MONTH);
 } else {
 	// 출력하고자 하는 달력의 년도와 월
 	year = Integer.parseInt(request.getParameter("year")); // 2022,..
-	month = Integer.parseInt(request.getParameter("month")); // 0 ~ 11
+	month = Integer.parseInt(request.getParameter("month"))+1; // 0 ~ 11
 
 	// 이전달 클릭 year, month-1 / 다음달 클릭 year, month+1
 	// -1 -> 11,year--  12 -> 0,year++
@@ -118,10 +118,10 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 		<div class="bx">
 			<div class="res-month">
 				<a
-					href="<%=request.getContextPath()%>/book_calendar.do?year=<%=year%>&month=<%=month - 1%>"
+					href="<%=request.getContextPath()%>/bookCalendar.do?year=<%=year%>&month=<%=month - 1%>"
 					title="이전달" class="prev"><i class="bi bi-chevron-left"></i><span><%=pYear + "-" + prevMonth%></span></a>
 				<span><%=year + "-" + thismonth%></span> <a
-					href="<%=request.getContextPath()%>/book_calendar.do?year=<%=year%>&month=<%=month + 1%>"
+					href="<%=request.getContextPath()%>/bookCalendar.do?year=<%=year%>&month=<%=month + 1%>"
 					title="다음달" class="next"><span><%=nYear + "-" + nextMonth%></span><i
 					class="bi bi-chevron-right"></i></a>
 			</div>
@@ -224,7 +224,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 		
 		function calValue(date, no, cate) {	
 			document.querySelector('#modalSave').addEventListener('click', function(e){
-			 	location.href = '/inTheForest/book_app.do?siteDate='+date+'&category='+cate+'&siteNo='+no+'&addDate='+$("#dateSelect").val();
+			 	location.href = '/inTheForest/bookAppForm.do?siteDate='+date+'&category='+cate+'&siteNo='+no+'&addDate='+$("#dateSelect").val();
 		 	});
 		}	
 	</script>

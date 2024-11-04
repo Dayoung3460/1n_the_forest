@@ -82,7 +82,7 @@ String endDate = sdf.format(calendar.getTime());
 		</nav>
 	
 			<h1>실시간예약 상세</h1>
-			<form action="book_app.do" method="POST" enctype="multipart/form-data">
+			<form action="bookApp.do" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="siteDate" value="<%=siteDate%>"> 
 				<input type="hidden" name="category" value="<%=category%>">
 				<input type="hidden" name="siteNo" value="<%=siteNo%>">
@@ -108,10 +108,9 @@ String endDate = sdf.format(calendar.getTime());
 					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약인원</label>
 					  <div class="col-sm-10">
 						  <select name="mem_cnt" class="form-select w-25">
-							<option value="2" selected>2인</option>
-							<option value="3">3인</option>
-							<option value="4">4인</option>
-							<option value="5">5인</option>
+						 	<c:forEach var="i" begin="1" end="${bookvo.siteMax}">
+								<option value="${i}" selected>${i}인</option>
+							</c:forEach>
 						</select>
 						</div>
 					</div>

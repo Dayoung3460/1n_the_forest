@@ -6,7 +6,7 @@ public class BookVO {
 	private String siteNo;
 	private String siteName;
 	private String category;
-	private String siteMAx;
+	private String siteMax;
 	private String sitePrice;
 	
 	private int bookCnt;

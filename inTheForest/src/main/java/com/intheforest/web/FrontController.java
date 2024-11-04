@@ -19,6 +19,7 @@ import com.intheforest.control.member.FindPwControl;
 import com.intheforest.control.member.JoinFormControl;
 import com.intheforest.control.member.LoginControl;
 import com.intheforest.control.book.BookAppCont;
+import com.intheforest.control.book.BookAppFormCont;
 import com.intheforest.control.book.BookCalCont;
 
 public class FrontController extends HttpServlet{
@@ -55,8 +56,9 @@ public class FrontController extends HttpServlet{
 		
 		
 		//캠핑예약
-		map.put("/book_calendar.do", new BookCalCont());
-		map.put("/book_app.do", new BookAppCont());
+		map.put("/bookCalendar.do", new BookCalCont());
+		map.put("/bookApp.do", new BookAppCont());
+		map.put("/bookAppForm.do", new BookAppFormCont());
 		
   
   
