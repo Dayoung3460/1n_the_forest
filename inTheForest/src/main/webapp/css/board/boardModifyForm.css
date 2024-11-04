@@ -55,61 +55,26 @@
 
     /* 파일 첨부 섹션 */
     .file-input {
-        width: calc(100% + 545px);
-        display: flex;
+        display: table-cell;
         align-items: center;
     }
 
     .form-control::file-selector-button {
         border: none;
     }
-    .bottom {
+    .btns {
+        outline: none;
+        border: none;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 40px;
-        margin-bottom: 60px;
-        .form-check {
-            margin-right: 16px;
+        input {
+            margin-right: 20px;
         }
-        .table {
-            width: 210px;
-            border-collapse: collapse;
-            margin-bottom: 0;
-            margin-right: 40px;
-        }
-
-        .table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .label-cell {
-            width: 50%;
-            text-align: center;
-            background-color: #f4f4f4;
-        }
-
-        .password-cell {
-            text-align: left;
-            padding-left: 10px;
-        }
-
-        .password-input {
-            border: none;
-            background-color: transparent;
-            font-size: 1em;
-            width: 100%;
-            outline: none;
-        }
-        .btns {
-            outline: none;
-            border: none;
-            input {
-                width: 100px;
+        > a {
+            > input {
+                width: 60px;
             }
         }
     }
-
 }
