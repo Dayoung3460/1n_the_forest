@@ -34,7 +34,7 @@
 		            <tr>
 		                <td>${ member.memberId }</td>
 		                <td>${ member.memberName }</td>
-		                <td>${ member.address }</td>
+		                <td class="w-25">${ member.address }</td>
 		                <td>${ member.email }</td>
 		                <td>${ member.tel }</td>
 		                <td><fmt:formatDate value="${ member.joinedDate }" pattern="yyyy/MM/dd"></fmt:formatDate></td>
