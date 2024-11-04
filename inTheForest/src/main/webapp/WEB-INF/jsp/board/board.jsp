@@ -85,7 +85,7 @@
         </div>
     </div>
 </div>
-
+<script src="js/board/board.js"></script>
 <script>
     let modalDeleteBtn = document.getElementById('modalDeleteBtn')
     modalDeleteBtn.addEventListener('click', () => {
@@ -108,6 +108,7 @@
     prevBtn.addEventListener('click', (e) => {
         e.preventDefault()
         // 이전 게시글넘버 구해서 bno 넣기
+        getPrevBookNo(${board.writeDate}, ${category})
         location.href = 'board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}'
     })
 
