@@ -17,15 +17,8 @@
     </nav>
   
     <h4 class="mt-4 fw-bolder">예약 상세내역</h4>
-    
+  
     <form action="bookApp.do" method="POST" autocomplete="off">
-        <input type="hidden" name="siteDate" value="<%=siteDate%>"> 
-        <input type="hidden" name="category" value="<%=category%>">
-        <input type="hidden" name="siteNo" value="<%=siteNo%>">
-        <input type="hidden" name="endDate" value="<%=endDate%>">
-        <input type="hidden" name="memberId" value="<%=memberId%>">
-        <input type="hidden" name="sitePrice" id="sitePrice" value="${bookvo.sitePrice}">
-        
         <table class="table table-bordered text-center">
             <thead class="">
                 <th>날짜</th>
