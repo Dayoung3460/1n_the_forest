@@ -55,8 +55,7 @@
 
     /* 파일 첨부 섹션 */
     .file-input {
-        width: calc(100% + 545px);
-        display: flex;
+        display: table-cell;
         align-items: center;
     }
 

@@ -51,6 +51,11 @@ public class ModifyBoardControl implements Control {
       
       boolean isSuccess = svc.modifyBoard(board);
       if(isSuccess) {
+        System.out.println("currentPage = " + currentPage);
+        System.out.println("searchCondition = " + searchCondition);
+        System.out.println("keyword = " + keyword);
+        System.out.println("category = " + category);
+        
         String redirectPage = "boardList.do?currentPage=" + currentPage + "&searchCondition=" + searchCondition + "&keyword=" + keyword + "&category=" + category;
         resp.sendRedirect(redirectPage);
       } else {
