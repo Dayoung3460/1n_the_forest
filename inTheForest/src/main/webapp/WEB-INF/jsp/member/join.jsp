@@ -62,7 +62,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="form-control-label">주소</label>
+						<label class="form-control-label">주소<em>*</em></label>
 						<div class="form-control-body">
 							<div class="col-xs-2">
 								<input type="text" id="postcodeDisplay" placeholder="우편번호" maxlength="6" readonly>

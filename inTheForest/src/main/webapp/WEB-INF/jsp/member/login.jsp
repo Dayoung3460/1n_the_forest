@@ -13,10 +13,15 @@
 	<p style="color: red;">${msg }</p>
 </c:if>
 
+<c:if test="${quitmsg != null }">
+	<p style="color: red;">${quitmsg }</p>
+</c:if>
+
 
 <div
 	class="container min-vh-100 d-flex justify-content-center align-items-center">
 	<form action="login.do" method="POST" class="text-center">
+	
 		<!-- ID  -->
 		<div data-mdb-input-init class="form-outline mb-4">
 			<input type="text" name="memberId" id="memberId" class="form-control"
@@ -36,7 +41,7 @@
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value=""
 						id="checkId" name="checkId"/> <label
-						class="form-check-label" for="form2Example31"> RememberId</label>
+						class="form-check-label" for="form2Example31">아이디기억하기</label>
 				</div>
 			</div>
 		</div>

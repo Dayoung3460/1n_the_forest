@@ -40,7 +40,7 @@ public class JoinFormControl implements Control {
 			if(req.getRequestURI().endsWith("checkId.do")) {
 				MemberService svc = new MemberServiceImpl();
 				int count = svc.checkId(id);
-				resp.getWriter().write("{\"exists\":" + (count > 0) + "}");
+				resp.getWriter().write("{\"exists\":" + count + "}");
 				return;
 			}
 			
@@ -48,14 +48,8 @@ public class JoinFormControl implements Control {
 			MemberService svc = new MemberServiceImpl();
 			MemberVO mvo = new MemberVO();
 			
-			//아이디 중복 체크 
-			int count = svc.checkId(id);
-			if(count > 0) {
-				//아이디 중복
-				req.setAttribute("idCheckError", "이미 사용 중인 아이디 입니다.");
-				req.getRequestDispatcher("member/join.tiles").forward(req, resp);
-				return;
-			}
+
+			
 			
 			mvo.setMemberId(id);
 			mvo.setPassword(pw);

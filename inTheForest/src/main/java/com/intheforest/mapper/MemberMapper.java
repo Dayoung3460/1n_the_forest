@@ -30,4 +30,7 @@ public interface MemberMapper{
 	//회원정보 수정 
 	int updateJoin(MemberVO member);
 	
+	//회원정보 삭제 (quit 1로 변경)
+	int removeJoin(String memberId);
+	
 }

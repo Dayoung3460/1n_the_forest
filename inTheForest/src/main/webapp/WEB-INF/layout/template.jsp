@@ -23,10 +23,17 @@
         <link href="css/board/boardAddForm.css" rel="stylesheet" />
     </head>
     <body>
+    <%
+    	String memberId = (String)session.getAttribute("memberId");
+    %>
         <header>
             <div class="loginTop container">
                 <a href="myPageBookList.do">마이페이지</a>
+                <%if (memberId == null) {%>
                 <a href="login.do">로그인</a>
+                <%} else{ %>
+                <a href="logOut.do">로그아웃[<%=memberId%>]</a>
+                <%} %> 
             </div>
             <!-- Responsive navbar-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
