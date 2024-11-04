@@ -18,6 +18,5 @@ public interface BoardService {
   
   List<Map<String, Object>> countByWriter();
   ArrayList<Integer> getBookNoByMemberId(String memberId);
-  
-  
+ 
 }

@@ -23,6 +23,18 @@ public class BookAppCont implements Control {
 		String endDate = req.getParameter("endDate");
 		String carNum = req.getParameter("carNum");
 		String totalPrice = req.getParameter("sitePrice");
+		String[] option = req.getParameterValues("option");
+	
+		siteDate = siteDate.replace("-","/");
+		endDate = endDate.replace("-","/");
+		
+		System.out.println(siteNo);
+		System.out.println(memberId);
+		System.out.println(memCnt);
+		System.out.println(siteDate);
+		System.out.println(endDate);
+		System.out.println(carNum);
+		System.out.println(option);
 		
 		BookService svc = new BookServiceImpl();
 		BookVO book = new BookVO();
@@ -36,8 +48,18 @@ public class BookAppCont implements Control {
 		book.setTotalPrice(totalPrice);
 		
 		try {
-			svc.registerBook(book);
-			resp.sendRedirect("/inTheForest/main.do");
+			if(svc.registerBook(book)) {
+				for(int i=0; i<option.length; i++) {
+					int lastNo = svc.bookLast();
+					BookVO bookOption = new BookVO();
+					bookOption.setOptionNo(option[i]);
+					bookOption.setBookNo(lastNo);
+					bookOption.setMemberId(memberId);
+					bookOption.setSiteNo(siteNo);
+					svc.registerBookOption(bookOption);
+				}
+				resp.sendRedirect("/inTheForest/main.do");
+			}
 		}catch(Exception e){
 			req.setAttribute("msg","등록하는중 오류가 발생했습니다.");
 			req.getRequestDispatcher("/inTheForest/main.do")//

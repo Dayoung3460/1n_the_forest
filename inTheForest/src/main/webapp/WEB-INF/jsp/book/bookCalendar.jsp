@@ -29,7 +29,7 @@ if (request.getParameter("year") == null || request.getParameter("month") == nul
 } else {
 	// 출력하고자 하는 달력의 년도와 월
 	year = Integer.parseInt(request.getParameter("year")); // 2022,..
-	month = Integer.parseInt(request.getParameter("month")); // 0 ~ 11
+	month = Integer.parseInt(request.getParameter("month"))-1; // 0 ~ 11
 
 	// 이전달 클릭 year, month-1 / 다음달 클릭 year, month+1
 	// -1 -> 11,year--  12 -> 0,year++
@@ -60,7 +60,6 @@ if ((startBlankCnt + lastDate) % 7 != 0) {
 int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 /*달력출력[E]*/
 %>
-<%=Calendar.MONTH %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,6 +88,11 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 		
 		<%		
 		int calMonth = month;
+		if (request.getParameter("month") == null) {
+			calMonth = month+1;
+		}else{
+			calMonth = month;			
+		}
 		int pYear = year;
 		int nYear = year;
 		int pMonth = calMonth - 1;
@@ -127,7 +131,8 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 				<a
 					href="<%=request.getContextPath()%>/bookCalendar.do?year=<%=pYear%>&month=<%=prevMonth%>"
 					title="이전달" class="prev"><i class="bi bi-chevron-left"></i><span><%=pYear + "-" + prevMonth%></span></a>
-				<span><%=year + "-" + thismonth%></span> <a
+				<span><%=year + "-" + thismonth%></span> 
+				<a
 					href="<%=request.getContextPath()%>/bookCalendar.do?year=<%=nYear%>&month=<%=nextMonth%>"
 					title="다음달" class="next"><span><%=nYear + "-" + nextMonth%></span><i
 					class="bi bi-chevron-right"></i></a>
@@ -200,9 +205,9 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 									<%}else{ %>
 										<!--로그인 여부-->
 										<%if(memberId != null){ %>
-											<button type="button" data-bs-toggle="modal" data-bs-target="#loginModal"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
-										<%}else{ %>
 											<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="calValue('<%=thisDate%>', <%=bvo.getSiteNo()%>, '<%=bvo.getCategory()%>')"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
+										<%}else{ %>
+											<button type="button" data-bs-toggle="modal" data-bs-target="#loginModal"><%=bvo.getSiteName()%> <span>(예약가능)</span></button>
 										<%}%>
 									<%} %>
 								</li>
