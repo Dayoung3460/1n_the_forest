@@ -35,7 +35,7 @@ String logId = (String) session.getAttribute("logId");
 			<%
 			for (MyBookVO bvo : list) {
 			%>
-			<tr onClick="location.href='book_app.do?siteDate=2024-11-01&category=deck&siteNo=<%=bvo.getSiteNo()%>&addDate=4'">
+			<tr onClick="location.href='book_app.do?siteDate=<%=bvo.getSiteDate()%>&category=<%=bvo.getCategory()%>&siteNo=<%=bvo.getSiteNo()%>&addDate=<%=bvo.getAddDate()%>'">
 				<th scope="row"><%=bvo.getBookNo()%></th>
 				<td><%=bvo.getSiteName()%></td>
 				<td><%=bvo.getMemCnt()%>명</td>

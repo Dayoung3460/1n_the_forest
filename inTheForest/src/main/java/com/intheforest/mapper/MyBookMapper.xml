@@ -5,27 +5,23 @@
 <mapper namespace="com.intheforest.mapper.MyBookMapper">
 
 <select id="selectMyPageBookList" parameterType="String" resultType="mybook">
-select book_no
-       ,site_no
-       ,(select site_name
-         from site
-         where site_no = ( select site_no
-                           from site_book
-                           where book_no = #{bookNo})
-       ) site_name
-       ,mem_cnt
-       ,start_date
-       ,end_date
-       ,total_price
-       ,create_date
-       ,cancel_flag
-       ,car_num
-       ,member_id
-       ,to_char(to_date(substr(start_date,1,10),'YYYY/MM/DD'), 'YYYY-MM-DD') site_date
-from site_book
-where member_id = ( select member_id
-                    from site_book
-                    where book_no = #{bookNo})
+select b.book_no
+       ,b.site_no
+       ,s.site_name
+       ,s.category
+       ,b.mem_cnt
+       ,b.start_date
+       ,b.end_date
+       ,b.total_price
+       ,b.create_date
+       ,b.cancel_flag
+       ,b.car_num
+       ,b.member_id
+       ,(to_date(substr(b.end_date,1,10),'YYYY/MM/DD') - to_date(substr(b.start_date,1,10),'YYYY/MM/DD')) add_date
+       ,to_char(to_date(substr(b.start_date,1,10),'YYYY/MM/DD'), 'YYYY-MM-DD') site_date
+from site_book b join site s
+                 on b.site_no = s.site_no
+where b.member_id = #{member_id}
 </select>
 
 </mapper>
