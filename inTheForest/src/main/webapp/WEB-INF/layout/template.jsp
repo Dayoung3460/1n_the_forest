@@ -39,7 +39,7 @@
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item"><a class="nav-link active" aria-current="page" href="main.do">홈</a></li>
                             <li class="nav-item"><a class="nav-link" href="intro.do">시설안내</a></li>
-                            <c:if test="">
+                            <c:if test="${permission != 'admin'}">
 	                            <li class="nav-item"><a class="nav-link" href="book_calendar.do">실시간예약</a></li>                            
                             </c:if>
                             <li class="nav-item"><a class="nav-link" href="boardList.do?category=notice">공지사항</a></li>
@@ -49,11 +49,27 @@
                     </div>
                 </div>
             </nav>
+            
+            <!-- 관리자 로그인 시, 관리자 메뉴 추가로 표시 -->
+            <c:if test="${permission == 'admin'}">
+            	  <!-- Responsive navbar-->
+		            <nav class="navbar navbar-expand-lg navbar-dark bg-deepMint">
+		                <div class="container">
+		                		<h3 class="navbar-brand fw-bolder">관리자메뉴</h3>
+		                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+		                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="memberList.do">회원관리</a></li>
+		                            <li class="nav-item"><a class="nav-link" href="#">예약관리</a></li>
+		                        </ul>
+		                    </div>
+		                </div>
+		            </nav>
+            </c:if>
         </header>
 
         <!-- Page content-->
         <div id="pageContent">
-			<tiles:insertAttribute name="body" />
+					<tiles:insertAttribute name="body" />
         </div>
         
         <!-- Footer-->

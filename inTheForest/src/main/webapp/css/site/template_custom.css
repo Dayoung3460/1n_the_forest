@@ -1,3 +1,6 @@
+* {
+	word-break: keep-all;
+}
 .loginTop {
   display: flex;
   justify-content: end;
@@ -46,6 +49,9 @@ footer span {
 }
 .text-mint {
   color: #39b89a;
+}
+.bg-deepMint {
+  background-color: #236354;
 }
 a {
   text-decoration:none; 

@@ -25,12 +25,14 @@ public class DetailJoinControl implements Control {
 		if(memberId == null) {
 			req.getRequestDispatcher("member/logIn.tiles").forward(req, resp);
 			return;
+		} else if(req.getParameter("memberId") != null) {
+			memberId = req.getParameter("memberId"); // 파라미터 값이 있으면 파라미터 값 이용
 		}
 		
 		MemberService svc = new MemberServiceImpl();
 		MemberVO member = svc.searchMember(memberId);
 		
-		//MemverVO 에서 통합된 address 가져오기
+		// MemverVO 에서 통합된 address 가져오기
 		String fullAddress = member.getAddress();
 		
 		// fullAddress 공백" " 기준으로 3부분으로 나누기 

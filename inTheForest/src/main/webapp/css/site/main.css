@@ -4,7 +4,7 @@
   object-position: 0% 70%;
 }
 .row {
-  gap: 20px;
+	gap: 20px;
 }
 .row .titles {
   min-width: 110px;
@@ -13,7 +13,6 @@
   box-shadow: 5px 10px 5px #ddd;
   color: white;
   text-align: center;
-  word-break: keep-all;
 }
 .row li a {
   display: block;
@@ -36,9 +35,6 @@ img[alt="forest"] {
 	height: 500px;
 	width: 100%;
 	object-fit: cover;
-}
-p {
-  word-break: keep-all;
 }
 #introBox {
   background-color: rgba(150, 150, 150, 0.1);

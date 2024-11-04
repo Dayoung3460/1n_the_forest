@@ -1,8 +1,17 @@
 package com.intheforest.service;
 
+import java.util.List;
+
+import com.intheforest.common.SearchDTO;
 import com.intheforest.vo.MemberVO;
 
 public interface MemberService {
+	//회원목록 조회
+	List<MemberVO> memberList(SearchDTO search);
+	
+	//회원 수 조회
+	int totalCnt();
+	
 	
 	//로그인 
 	MemberVO memberLogin(String memberId ,String password);
