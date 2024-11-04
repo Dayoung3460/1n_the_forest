@@ -11,22 +11,22 @@
 
 <div class="p-3 boardList">
     <c:choose>
-        <c:when test="${category == 'qna'}">
+        <c:when test="${category eq 'qna'}">
             <h3>문의하기</h3>
             <p>궁금하신 사항을 자유롭게 질문해주세요</p>
         </c:when>
-        <c:when test="${category == 'review'}">
+        <c:when test="${category eq 'review'}">
             <h3>후기 작성</h3>
             <p>캠핑장 사용 후기를 남겨주세요</p>
         </c:when>
-        <c:when test="${category == 'notice'}">
+        <c:when test="${category eq 'notice'}">
             <h3>공지사항</h3>
             <p>중요한 소식이나 안내를 작성해 주세요</p>
         </c:when>
-        <c:when test="${category == 'reply'}">
+        <c:otherwise>
             <h3>문의 답글</h3>
             <p>문의에 답글을 남겨 주세요</p>
-        </c:when>
+        </c:otherwise>
     </c:choose>
     <table class="table">
         <thead>
@@ -163,11 +163,12 @@
                 <button type="submit" class="btn btn-success">조회</button>
             </div>
         </form>
-        <c:if test="${member.permission == 'admin'}">
+        <c:if test="${(category eq 'notice' && member.permission eq 'admin') || (category eq 'qna') || (category eq 'review' && bookNoList.size() > 0)}">
             <button type="submit" class="btn btn-success mx-lg-4 write">
                 <a href="addBoardForm.do?category=${ search.category }">글쓰기</a>
             </button>
         </c:if>
+
 
     </div>
 

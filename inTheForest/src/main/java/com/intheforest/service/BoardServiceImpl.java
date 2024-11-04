@@ -6,6 +6,7 @@ import com.intheforest.mapper.BoardMapper;
 import com.intheforest.vo.BoardVO;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -56,9 +57,10 @@ public class BoardServiceImpl implements BoardService {
     return mapper.countByWriter();
   }
   
-  
-  
-  
+  @Override
+  public ArrayList<Integer> getBookNoByMemberId(String memberId) {
+    return mapper.getBookNoByMemberId(memberId);
+  }
   
   
 }

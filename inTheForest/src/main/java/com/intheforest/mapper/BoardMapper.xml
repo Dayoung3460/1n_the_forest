@@ -20,7 +20,7 @@
                 write_date
         from board
         order by
-        board_no desc
+        write_date desc
     </select>
 
     <select id="boardListByPage" resultType="board"
@@ -49,7 +49,7 @@
                 </when>
             </choose>
         </where>
-        order by notice_flag desc, board_no desc
+        order by notice_flag desc, write_date desc
         ) a
         ) b
         where b.rn > (#{currentPage} - 1) * 10
@@ -128,6 +128,12 @@
         from board
         where
         board_no = #{boardNo}
+    </select>
+
+    <select id="getBookNoByMemberId" parameterType="string">
+        select book_no
+        from site_book
+        where member_id = #{memberId}
     </select>
 
 <!--    <select id="countByWriter" resultType="hashmap">-->
