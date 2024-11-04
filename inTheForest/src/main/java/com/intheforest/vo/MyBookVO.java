@@ -16,6 +16,7 @@ public class MyBookVO {
 	private int cancelFlag;
 	private String createDate;
 	private String siteName;
+	private String siteDate;
 	
 
 }
