@@ -27,9 +27,7 @@ public class BookCalCont implements Control {
 		BookService svc = new BookServiceImpl();
 		List<BookVO> list = svc.siteList();
 		
-		//BookVO book = svc.selectBookDate(siteNo, startDate);
 		req.setAttribute("siteList", list);
-		//req.setAttribute("selectBookDate", book);
 		
 		req.setAttribute("siteNo", siteNo);
 		req.setAttribute("siteName",siteName);

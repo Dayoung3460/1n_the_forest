@@ -15,21 +15,20 @@ public class BookAppCont implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		String siteNo = req.getParameter("siteNo");
-		String category = req.getParameter("category");
+		req.setCharacterEncoding("utf-8");
+		int siteNo = Integer.parseInt(req.getParameter("siteNo"));
 		String memberId = req.getParameter("memberId");
 		String memCnt = req.getParameter("memCnt");
 		String siteDate = req.getParameter("siteDate");
 		String endDate = req.getParameter("endDate");
 		String carNum = req.getParameter("carNum");
-		String totalPrice = req.getParameter("totalPrice");
-		System.out.println("category:"+category);		
+		String totalPrice = req.getParameter("sitePrice");
 		
 		BookService svc = new BookServiceImpl();
 		BookVO book = new BookVO();
-		book.setMemberId(memberId);
+		
 		book.setSiteNo(siteNo);
+		book.setMemberId(memberId);
 		book.setMemCnt(memCnt);
 		book.setStartDate(siteDate);
 		book.setEndDate(endDate);

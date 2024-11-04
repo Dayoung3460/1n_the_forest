@@ -3,13 +3,12 @@ import lombok.Data;
 
 @Data
 public class BookVO {
-	private String siteNo;
+	private int siteNo;
 	private String siteName;
 	private String category;
 	private String siteMax;
 	private String sitePrice;
 	
-	private int bookCnt;
 	private String memberId;
 	private String memCnt;
 	private String startDate;
@@ -20,6 +19,4 @@ public class BookVO {
 	private String optionNo;
 	private String optionName;
 	private String optionPrice;
-	
-	
 }

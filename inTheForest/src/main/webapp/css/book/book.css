@@ -42,6 +42,8 @@ a{text-decoration:none; color:black;}
 .res-calendar td li button{font-size:14px;color:#333;word-break:break-all;padding:0 15px;margin-bottom:8px;line-height:1.3;border: none;background-color: #fff;}
 .res-calendar td li button span{color:#a5a5a5;font-size:12px;} 
 .res-calendar td li.out {color:#ccc;}
+.res-calendar td li.out button {color:#ccc;}
+.res-calendar td li.out span {color:#ccc;}
 .res-calendar td li>a{display:block;}
 .res-calendar td li div{display:flex;justify-content:space-between;margin-top:5px;}
 .res-calendar td li span span:last-child{font-weight:500;}

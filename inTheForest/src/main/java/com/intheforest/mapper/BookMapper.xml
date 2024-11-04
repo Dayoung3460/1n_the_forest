@@ -18,15 +18,17 @@
 	<select id="selectSite" parameterType="string">
     select *
     from site 
-    where site_No=#{siteNo}  	
+    where site_no=#{siteNo}  	
   </select>
   
-  <select id="selectSiteDate" parameterType="int">
+  <select id="selectSiteDate" resultType="int">
     select count(*) as cnt
     from site_book 
-    where site_No=#{siteNo} 
-    and start_date>=${startDate} 
-    and end_date>=${endDate}  	
+    where site_no=#{siteNo}
+    <![CDATA[ 
+    and start_date<=#{startDate} 
+    and end_date>=#{startDate}
+    ]]>  	
     and cancel_flag = 0
   </select>
   
