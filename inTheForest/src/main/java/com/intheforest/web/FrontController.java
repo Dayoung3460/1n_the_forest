@@ -16,19 +16,29 @@ import com.intheforest.control.board.BoardControl;
 import com.intheforest.control.board.BoardListControl;
 import com.intheforest.control.board.DeleteBoardControl;
 import com.intheforest.control.board.ModifyBoardControl;
+<<<<<<< HEAD
 import com.intheforest.control.book.BookAppCont;
 import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.book.ModifyBookControl;
+=======
+
+>>>>>>> refs/heads/master
 import com.intheforest.control.member.DetailJoinControl;
 import com.intheforest.control.member.FindIdControl;
 import com.intheforest.control.member.FindPwControl;
 import com.intheforest.control.member.JoinFormControl;
+import com.intheforest.control.member.LogOutControl;
 import com.intheforest.control.member.LoginControl;
 import com.intheforest.control.member.MemberListControl;
 import com.intheforest.control.member.ModifyJoinControl;
+import com.intheforest.control.member.removeJoinControl;
 import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.site.IntroPageControl;
 import com.intheforest.control.site.MainPageControl;
+import com.intheforest.control.book.BookAppCont;
+import com.intheforest.control.book.BookAppFormCont;
+import com.intheforest.control.book.BookCalCont;
+
 
 public class FrontController extends HttpServlet{
 	Map<String, Control> map;
@@ -47,6 +57,8 @@ public class FrontController extends HttpServlet{
 		map.put("/checkId.do",new JoinFormControl());
 		map.put("/DetailJoin.do", new DetailJoinControl());
 		map.put("/modifyJoin.do",new ModifyJoinControl());
+		map.put("/removejoin.do", new removeJoinControl());
+		map.put("/logOut.do", new LogOutControl());
 		
 		
 		
@@ -67,9 +79,16 @@ public class FrontController extends HttpServlet{
 		
 		
 		//캠핑예약
+<<<<<<< HEAD
 		map.put("/book_calendar.do", new BookCalCont());
 		map.put("/book_app.do", new BookAppCont());
 		//map.put("/modifyBook.do", new ModifyBookControl());
+=======
+		map.put("/bookCalendar.do", new BookCalCont());
+		map.put("/bookApp.do", new BookAppCont());
+		map.put("/bookAppForm.do", new BookAppFormCont());
+		
+>>>>>>> refs/heads/master
   
   
   

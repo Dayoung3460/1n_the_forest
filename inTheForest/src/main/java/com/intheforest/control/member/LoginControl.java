@@ -22,6 +22,8 @@ public class LoginControl implements Control {
 		String id = req.getParameter("memberId");
 		String pw = req.getParameter("password");
 		
+		
+		
 		if(req.getMethod().equalsIgnoreCase("GET")) {
 			// login.jsp페이지로 이동
 			req.getRequestDispatcher("member/login.tiles").forward(req, resp);
@@ -32,6 +34,11 @@ public class LoginControl implements Control {
 			if (member == null) {
 				//로그인 실패 (login.jsp로 이동)
 				req.setAttribute("msg", "아이디와 비밀번호를 입력하세요");
+				req.getRequestDispatcher("member/login.tiles").forward(req, resp);
+				return;
+			} 
+			if(member.getQuit() == 1) {
+				req.setAttribute("quitmsg", "탈퇴 한 회원 입니다.");
 				req.getRequestDispatcher("member/login.tiles").forward(req, resp);
 				return;
 			}

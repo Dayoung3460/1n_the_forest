@@ -73,9 +73,32 @@
 				<div class="text-center" style="margin-bottom: 20px;">
 					<!-- 수정 삭제 -->
 					<button type="submit" class="btn btn-outline-success btn-lg">저장</button>
-					<input type="button" value ="회원탈퇴" class="btn btn-outline-success btn-lg" id="removeButton">
+					<input type="button" value ="회원탈퇴" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
 				</div>
 			</form>
+				
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			    
+			      <div class="modal-header">
+			        <h1 class="modal-title fs-5" id="exampleModalLabel">회원 탈퇴</h1> <!-- 모달창 타이틀 -->
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      
+			      <div class="modal-body">
+			        <!-- 모달창 내용  (사용자 입력 타이틀, startStr , endStr )-->
+			       	<p>회원 탈퇴를 진행 하시겠습니까?</p>
+			      </div>
+			      
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="modalClose()">닫기</button> <!-- 닫는 버튼 -->
+			        <button type="button" class="btn btn-outline-success" onclick="modalSave()">회원 탈퇴</button> <!-- 저장버튼 -->
+			      </div>
+			    </div>
+			  </div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -83,15 +106,16 @@
 
 <script>
 //회원탈퇴 버튼 클릭 시
-document.getElementById('removeButton').addEventListener('click', function(e) {
-	if (confirm("정말로 회원 탈퇴를 하시겠습니까?")) {
-		location.href = 'removeJoin.do?memberId=${memberVO.memberId}';
-	}
-});
+//document.getElementById('removeButton').addEventListener('click', function(e) {
+//	if (confirm("정말로 회원 탈퇴를 하시겠습니까?")) {
+//		location.href = 'removeJoin.do?memberId=${memberVO.memberId}';
+//	}
+//});
 </script>
 
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 <script src="js/member/join.js"></script>
+<script src="js/member/modify.js"></script>
 

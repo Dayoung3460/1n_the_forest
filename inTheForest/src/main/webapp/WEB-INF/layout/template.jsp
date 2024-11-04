@@ -23,10 +23,17 @@
         <link href="css/board/boardAddForm.css" rel="stylesheet" />
     </head>
     <body>
+    <%
+    	String memberId = (String)session.getAttribute("memberId");
+    %>
         <header>
             <div class="loginTop container">
                 <a href="myPageBookList.do">마이페이지</a>
+                <%if (memberId == null) {%>
                 <a href="login.do">로그인</a>
+                <%} else{ %>
+                <a href="logOut.do">로그아웃[<%=memberId%>]</a>
+                <%} %>
             </div>
             <!-- Responsive navbar-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
@@ -40,7 +47,7 @@
                             <li class="nav-item"><a class="nav-link active" aria-current="page" href="main.do">홈</a></li>
                             <li class="nav-item"><a class="nav-link" href="intro.do">시설안내</a></li>
                             <c:if test="${permission != 'admin'}">
-	                            <li class="nav-item"><a class="nav-link" href="book_calendar.do">실시간예약</a></li>                            
+	                            <li class="nav-item"><a class="nav-link" href="bookCalendar.do">실시간예약</a></li>
                             </c:if>
                             <li class="nav-item"><a class="nav-link" href="boardList.do?category=notice">공지사항</a></li>
                             <li class="nav-item"><a class="nav-link" href="boardList.do?category=review">이용후기</a></li>
@@ -49,7 +56,7 @@
                     </div>
                 </div>
             </nav>
-            
+
             <!-- 관리자 로그인 시, 관리자 메뉴 추가로 표시 -->
             <c:if test="${permission == 'admin'}">
             	  <!-- Responsive navbar-->
@@ -69,7 +76,7 @@
 
         <!-- Page content-->
         <div id="pageContent">
-					<tiles:insertAttribute name="body" />
+			<tiles:insertAttribute name="body" />
         </div>
         
         <!-- Footer-->

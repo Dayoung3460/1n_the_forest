@@ -133,4 +133,10 @@ and   email= #{email}
 	 where member_id=#{memberId} 
 	</update>
 
+<!-- 회원정보삭제 (quit 1로 변경) -->
+	<update id ="removeJoin" parameterType ="String">
+	update member 
+	set quit = 1
+	where member_id =#{memberId} 
+	</update>
 </mapper>

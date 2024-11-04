@@ -19,7 +19,6 @@ public class DeleteBoardControl implements Control {
     String searchCondition = req.getParameter("searchCondition");
     String keyword = req.getParameter("keyword");
     String category = req.getParameter("category");
-    String isConfirmed = (String) req.getParameter("confirm");
     
     SearchDTO search = new SearchDTO();
     search.setCurrentPage(currentPage);
@@ -27,26 +26,15 @@ public class DeleteBoardControl implements Control {
     search.setKeyword(keyword);
     search.setCategory(category);
     
-    if(isConfirmed == null) {
-      req.setAttribute("bno", bno);
-      req.setAttribute("search", search);
-      
-      req.getRequestDispatcher("board/boardDelete.tiles").forward(req, resp);
+    BoardServiceImpl boardServiceImpl = new BoardServiceImpl();
+    boolean isSuccess = boardServiceImpl.removeBoard(bno);
+    if (isSuccess) {
+      String redirectPage = "boardList.do?currentPage=" + currentPage + "&searchCondition=" + searchCondition + "&keyword=" + keyword + "&category=" + category;
+      resp.sendRedirect(redirectPage);
     } else {
-      BoardServiceImpl boardServiceImpl = new BoardServiceImpl();
-      boolean isSuccess = boardServiceImpl.removeBoard(bno);
-      if (isSuccess) {
-        String redirectPage = "boardList.do?currentPage=" + currentPage + "&searchCondition=" + searchCondition + "&keyword=" + keyword + "&category=" + category;
-        resp.sendRedirect(redirectPage);
-      } else {
-        req.setAttribute("msg", "삭제하는 중 오류가 발생했습니다.");
-        req.getRequestDispatcher("board/boardDelete.tiles").forward(req, resp);
-      }
+      req.setAttribute("msg", "삭제하는 중 오류가 발생했습니다.");
+      req.getRequestDispatcher("board/boardDelete.tiles").forward(req, resp);
     }
-    
-    
-    
-    
   }
   
 }

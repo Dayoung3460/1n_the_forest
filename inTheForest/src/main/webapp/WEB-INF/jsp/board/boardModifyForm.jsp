@@ -4,12 +4,17 @@
 <h3>글 수정(boardModifyForm.jsp)</h3>
 
 <%
-  BoardVO board = (BoardVO) request.getAttribute("boardvo");
+  BoardVO board = (BoardVO) request.getAttribute("board");
   SearchDTO search = (SearchDTO) request.getAttribute("search");
 %>
 
+<div class="boardModifyForm">
+  <h3>글 수정하기</h3>
+  <p>수정할 내용을 입력하고 저장 버튼을 눌러주세요</p>
 
-<form class="form-control" action="modifyBoard.do" method="post">
+</div>
+
+<form class="form-control" action="modifyBoard.do?category=${category}" method="post" enctype="multipart/form-data">
   <table class="table">
 
     <tr>

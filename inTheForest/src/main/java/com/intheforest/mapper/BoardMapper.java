@@ -3,6 +3,7 @@ package com.intheforest.mapper;
 import com.intheforest.common.SearchDTO;
 import com.intheforest.vo.BoardVO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,4 +21,6 @@ public interface BoardMapper {
   
   // 사용자별 게시글 작성개수
   List<Map<String, Object>> countByWriter();
+  
+  ArrayList<Integer> getBookNoByMemberId(String memberId);
 }

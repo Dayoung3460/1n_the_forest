@@ -16,7 +16,7 @@ public class AddBoardControl implements Control {
   
   @Override
   public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String savePath = req.getServletContext().getRealPath("/WEB-INF/image");
+    String savePath = req.getServletContext().getRealPath("image");
     File saveDir = new File(savePath);
     
     // 폴더가 존재하지 않으면 생성

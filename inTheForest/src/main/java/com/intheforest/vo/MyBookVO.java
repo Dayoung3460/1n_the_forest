@@ -14,8 +14,11 @@ public class MyBookVO {
 	private int totalPrice;
 	private int reviewFlag;
 	private int cancelFlag;
+	private int addDate;
 	private String createDate;
 	private String siteName;
+	private String siteDate;
+	private String Category;
 	
 
 }

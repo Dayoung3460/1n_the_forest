@@ -86,7 +86,7 @@ document.querySelector('input[value="수정"]').addEventListener('click', functi
 	/* (3) 수정버튼이 작동 시 페이지 번호와 게시판 번호를 modifyBoard.do 로 넘겨 줍니다. */
 });
 
-//회원탈퇴 버튼 클릭 시
+//돌아가기 버튼 클릭 시 
 document.getElementById('returnButton').addEventListener('click', function(e) {
 	location.href = 'myPageBookList.do?memberId=${memberVO.memberId}';
 });

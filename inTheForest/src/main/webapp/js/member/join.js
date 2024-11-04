@@ -53,10 +53,32 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	
 
-	//아이디 중복 검사 후 + 비밀번호 불일치 체크 후 에 회원가입 완료 하게 해주기
+	//아이디 중복 검사 후 + 비밀번호 불일치 체크 후 + 주소 적은지 확인 후 에 회원가입 완료 하게 해주기
 	form.addEventListener("submit", function(event) {
 		var idChecked = document.getElementById("idChecked").value;
+		var postcode = document.getElementById("postcode").value;
+		var address1 = document.getElementById("address1").value;
+		var address2 = document.getElementById("address2").value;
+		var memberName = document.getElementById("memberName").value;
+		var tel = document.getElementById("tel").value;
+		
+		if(!memberName){
+			event.preventDefault();
+			alert("이름을 입력하세요")
+			return;
+		}
+		if(!tel){
+			event.preventDefault();
+			alert("휴대폰 번호를 입력하세요")
+			return;
+		}
 
+		if (!postcode || !address1 || !address2) {
+			event.preventDefault();
+			alert("주소를 입력해주세요.")
+			return;
+		}
+		
 		if (idChecked !== "yes") {
 			event.preventDefault();
 			alert("아이디 중복 검사를 완료 해 주세요.")
@@ -77,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //아이디 중복 체크 
 document.getElementById("checkIdBtn").addEventListener("click", function() {
 	var memberId = document.getElementById("memberId").value;
+	
 
 	if (!memberId) {
 		alert("아이디 입력 해주세요");
@@ -107,7 +130,6 @@ document.getElementById("checkIdBtn").addEventListener("click", function() {
 //저장 버튼 클릭 시 아이디 중복 검사 했는지 체크
 document.getElementById("joinBtn").addEventListener("click",function(event){
 	var idChecked = document.getElementById("idChecked").value;
-	
 	if(idChecked !== "yes"){
 		event.preventDefault();
 		alert("아이디 중복 검사를 완료 해 주세요.");
