@@ -6,18 +6,18 @@
 
     <select id="boardList" resultType="board">
         select board_no,
-                board_category,
-                book_no,
-                reply_no,
-                secret_flag,
-                title,
-                content,
-                board_pw,
-                notice_flag,
-                board_file,
-                writer,
-                view_cnt,
-                write_date
+        board_category,
+        book_no,
+        reply_no,
+        secret_flag,
+        title,
+        content,
+        board_pw,
+        notice_flag,
+        board_file,
+        writer,
+        view_cnt,
+        write_date
         from board
         order by
         write_date desc
@@ -87,7 +87,8 @@
         insert into
         board(board_no, board_category, book_no, secret_flag, title, content, board_pw, notice_flag, writer, board_file)
         values(board_seq.nextval,
-        #{boardCategory}, #{bookNo}, #{secretFlag}, #{title}, #{content}, #{boardPw}, #{noticeFlag}, #{writer}, #{boardFile})
+        #{boardCategory}, #{bookNo}, #{secretFlag}, #{title}, #{content}, #{boardPw}, #{noticeFlag}, #{writer},
+        #{boardFile})
     </insert>
 
     <update id="updateBoard" parameterType="board">
@@ -129,19 +130,55 @@
         board_no = #{boardNo}
     </select>
 
+    <select id="selectPrevBoard" parameterType="board">
+        select board_no
+        from board
+        where write_date = (
+            select max(write_date)
+            from board
+            <![CDATA[
+                where write_date < #{writeDate}
+            ]]>
+        )
+        <![CDATA[
+        and write_date < #{writeDate}
+        ]]>
+        and lower(board_category) like #{boardCategory}
+        order by write_date desc
+
+    </select>
+
+    <select id="selectNextBoard" parameterType="board">
+        select board_no
+        from board
+        where write_date = (
+        select min(write_date)
+        from board
+        <![CDATA[
+                WHERE write_date > #{writeDate}
+            ]]>
+        )
+        <![CDATA[
+        and write_date > #{writeDate}
+         ]]>
+        and lower(board_category) like #{boardCategory}
+        order by write_date desc
+    </select>
+
+
     <select id="getBookNoByMemberId" parameterType="string">
         select book_no
         from site_book
         where member_id = #{memberId}
     </select>
 
-<!--    <select id="countByWriter" resultType="hashmap">-->
-<!--        select writer as "writer", member_name as "member_name", count(1) as "count"-->
-<!--        from tbl_board b-->
-<!--        join tbl_member m-->
-<!--        on b.writer = m.member_id-->
-<!--        group by writer, member_name-->
-<!--    </select>-->
+    <!--    <select id="countByWriter" resultType="hashmap">-->
+    <!--        select writer as "writer", member_name as "member_name", count(1) as "count"-->
+    <!--        from tbl_board b-->
+    <!--        join tbl_member m-->
+    <!--        on b.writer = m.member_id-->
+    <!--        group by writer, member_name-->
+    <!--    </select>-->
 
 
 </mapper>

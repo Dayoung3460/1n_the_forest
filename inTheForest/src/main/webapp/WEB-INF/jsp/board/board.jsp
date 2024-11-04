@@ -49,8 +49,8 @@
 
         <div class="btnContainer">
             <div class="btnBox1">
-                <button class="btn btn-secondary">이전글</button>
-                <button class="btn btn-secondary">다음글</button>
+                <button class="btn btn-secondary" id="prevBtn">이전글</button>
+                <button class="btn btn-secondary" id="nextBtn">다음글</button>
                 <c:if test="${member.permission eq 'admin'}">
                     <button class="btn btn-success">답글쓰기</button>
                 </c:if>
@@ -61,7 +61,7 @@
                     <button class="btn btn-primary" id="editBtn">수정</button>
                     <button type="button" class="btn btn-danger" id="deleteBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">삭제</button>
                 </c:if>
-                <button class="btn btn-success">목록</button>
+                <button class="btn btn-success" id="goListBtn">목록</button>
             </div>
         </div>
     </form>
@@ -97,6 +97,28 @@
         e.preventDefault()
         location.href = 'modifyBoard.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
     })
+
+    let goListBtn = document.getElementById('goListBtn')
+    goListBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+        location.href = 'boardList.do?currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}'
+    })
+
+    let prevBtn = document.getElementById('prevBtn')
+    prevBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+        // 이전 게시글넘버 구해서 bno 넣기
+        location.href = 'board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}'
+    })
+
+    let nextBtn = document.getElementById('nextBtn')
+    nextBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+        // 다음 게시글넘버 구해서 bno 넣기
+        location.href = 'board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}'
+    })
+
+
 
     <%--let bno = "${board.boardNo}"--%>
     <%--let memberId = "${memberId}"--%>
