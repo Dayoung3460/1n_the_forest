@@ -11,7 +11,7 @@
 <%
     List<MyBookVO> list = (List<MyBookVO>) request.getAttribute("myPageBookList");
     String memberId = (String) session.getAttribute("memberId");
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     PageDTO paging = (PageDTO) request.getAttribute("currentPage");
     String sc = (String) request.getAttribute("searchCondition");
     String kw = (String) request.getAttribute("keyword");
@@ -87,7 +87,7 @@
                 if(paging.isNext()){
             %>
             <li class="page-item" aria-current="page"><a class="page-link"
-                                                         href="myPageBookList.do?page=<%=paging.getEndPage() +1 %>">Next</a>
+                                                         href="myPageBookList.do?page=<%=paging.getEndPage() + 1%>">Next</a>
                     <%} else { %>
             <li class="page-item disabled"><a class="page-link">Next</a>
                 <%} %>
@@ -101,7 +101,7 @@
 
     <!-- 검색창 -->
     <div class="bottom m-4 ">
-        <form class="row g-3" action="myPageBookList.do" method="get">
+        <form class="row g-3" action="myPageBookList.do">
             <div class="col-md-4">
                 <select name="searchCondition" class="form-select">
                     <option selected value="">선택하세요.</option>
@@ -114,7 +114,7 @@
             </div>
             <div class="col-md-6">
                 <input type="text" class="form-control" name="keyword"
-                       value="<%=kw%>">
+                       value='<%=kw%>'>
             </div>
             <div class="col-md-2">
                 <button type="submit" class="btn btn-success">조회</button>

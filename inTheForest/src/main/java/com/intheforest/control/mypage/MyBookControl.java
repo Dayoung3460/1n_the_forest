@@ -49,6 +49,8 @@ public class MyBookControl implements Control {
 		req.setAttribute("searchCondition", sc);
 		req.setAttribute("keyword", kw);
 		
+		System.out.println(kw);
+		
 		//jsp 페이지 tiles로 출력
 		req.getRequestDispatcher("book/myPageBookList.tiles").forward(req, resp);
 	}
