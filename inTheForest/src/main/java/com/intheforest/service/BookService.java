@@ -6,6 +6,7 @@ import com.intheforest.vo.BookVO;
 
 public interface BookService {	
 	List<BookVO> siteList();
+	int bookLast();
 	List<BookVO> optionList();
 	
 	//상세조회
@@ -14,4 +15,5 @@ public interface BookService {
 	
 	// 등록(삽입)
 	boolean registerBook(BookVO book);
+	boolean registerBookOption(BookVO book);
 }
