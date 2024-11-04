@@ -46,6 +46,7 @@ public class DetailJoinControl implements Control {
 		req.setAttribute("postcode", postcode);
 		req.setAttribute("address1", address1);
 		req.setAttribute("address2", address2);
+		System.out.print(member+postcode+address1+address2);
 		
 		req.getRequestDispatcher("member/DetailJoin.tiles").forward(req, resp);
 		

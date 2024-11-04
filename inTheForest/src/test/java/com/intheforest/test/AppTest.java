@@ -19,13 +19,16 @@ public class AppTest {
 		SqlSession sqlSession = DataSource.getInstance().openSession(true);
 		MyBookMapper mapper = sqlSession.getMapper(MyBookMapper.class);
 
-		List<MyBookVO> list = mapper.selectMyPageBookList("mid901");
-		System.out.println(list);
+//		List<MyBookVO> list = mapper.selectMyPageBookList("mid901");
+//		System.out.println(list);
 
-		MemberMapper mapper2 = sqlSession.getMapper(MemberMapper.class);
-		int count = mapper2.checkId("test");
-		System.out.println(count);
-		
+//		MemberMapper mapper2 = sqlSession.getMapper(MemberMapper.class);
+//		int count = mapper2.checkId("test");
+//		System.out.println(count);
+//		
+//		MemberVO member= mapper2.searchMember("test1");
+//		System.out.println(member);
+//		
 
 	}
 }

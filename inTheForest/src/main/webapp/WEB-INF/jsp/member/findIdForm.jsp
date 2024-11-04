@@ -6,6 +6,12 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- 데이터 포맷에 사용 -->
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- c태그 -->
+
+<c:if test="${quitmsg != null }">
+	<p style="color: red;">${quitmsg }</p>
+</c:if>
 
 <div class="container min-vh-100 d-flex justify-content-center align-items-center">
 	<div class="card"  style="width: 70rem">
