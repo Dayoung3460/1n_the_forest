@@ -1,6 +1,8 @@
 <%@ page import="com.intheforest.vo.BoardVO"%>
 <%@ page import="com.intheforest.vo.MyBookVO"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.intheforest.common.PageDTO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -8,7 +10,7 @@
 
 <%
     List<MyBookVO> list = (List<MyBookVO>) request.getAttribute("myPageBookList");
-    String logId = (String) session.getAttribute("memberId");
+    String memberId = (String) session.getAttribute("memberId");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     PageDTO paging = (PageDTO) request.getAttribute("currentPage");
     String sc = (String) request.getAttribute("searchCondition");
