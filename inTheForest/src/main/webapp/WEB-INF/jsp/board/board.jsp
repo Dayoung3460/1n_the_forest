@@ -121,7 +121,6 @@
 
 
     let nextBtn = document.getElementById('nextBtn')
-    let nextBtn = document.getElementById('nextBtn')
     nextBtn.addEventListener('click', (e) => {
         getNextBookNo("${board.writeDate}", "${category}", false, (result) => {
             if (result.result != null) {
