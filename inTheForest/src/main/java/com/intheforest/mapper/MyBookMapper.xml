@@ -27,29 +27,29 @@
 		where b.member_id = #{member_id}
 	</select>
 	<!-- 검색조건 -->
-	<select id="listWithPage"
-		parameterType="com.intheforest.common.SearchDTO" resultType="mybook">
+	<select id="listWithPage" resultType="mybook">
 		select b.*
 		from (select rownum rn, a.*
 		from (select *
 		from site_book
+		<where>member_id = #{memberId}</where>
 		<where>
 			<choose>
-				<when test="searchCondition == 'bno'.toString()">book_no like '%'||#{keyword}||'%'</when>
-				<when test="searchCondition == 'start'.toString()">start_date like '%'||#{keyword}||'%'</when>
-				<when test="searchCondition == 'bnoStart'.toString()">(book_no like '%'||#{keyword}||'%') or (start_date
+				<when test="#{searchCondition} == 'bno'.toString()">book_no like '%'||#{keyword}||'%'</when>
+				<when test="#{searchCondition} == 'start'.toString()">start_date like '%'||#{keyword}||'%'</when>
+				<when test="#{searchCondition} == 'bnoStart'.toString()">(book_no like '%'||#{keyword}||'%') or (start_date
 					like '%'||#{keyword}||'%')</when>
 			</choose>
 		</where>
 		order by book_no) a )b
-		where b.rn > (#{currentPage} - 1 ) * 5
+		where b.rn > (#{currentPage} - 1 ) * 10
 <![CDATA[
-  and b.rn <= (#{currentPage} * 5)
+  and b.rn <= (#{currentPage} * 10)
   ]]>
 	</select>
 
 	<!-- 페이징 카운트 -->
-	<select id="selectCount" resultType="int" parameterType="search">
+	<select id="selectCount" resultType="int">
 		select count(1)
 		from site_book
 		<where>
@@ -60,6 +60,7 @@
 					like '%'||#{keyword}||'%')</when>
 			</choose>
 		</where>
+		<where>member_id = #{memberId}</where>
 	</select>
 	
 <!-- 뭐하는건지 모르겠음 -->

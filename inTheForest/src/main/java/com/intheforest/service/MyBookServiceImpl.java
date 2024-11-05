@@ -14,12 +14,14 @@ public class MyBookServiceImpl implements MyBookService {
 	MyBookMapper mapper = sqlSession.getMapper(MyBookMapper.class);
 	
 	@Override
-	public List<MyBookVO> myPageBookList(SearchDTO search) {
-		return mapper.listWithPage(search);
+	public List<MyBookVO> myPageBookList(SearchDTO search, String memberId) {
+		return mapper.listWithPage(search.getSearchCondition(), search.getKeyword(),
+									search.getCurrentPage(), memberId);
 	}
 
 	@Override
-	public int getTotalCount(SearchDTO search) {
-		return mapper.selectCount(search);
+	public int getTotalCount(SearchDTO search, String memberId) {
+		return mapper.selectCount(search.getSearchCondition(), search.getKeyword(),
+									memberId);
 	}
 }

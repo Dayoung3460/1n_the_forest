@@ -74,15 +74,15 @@
             		System.out.println("시작" + paging.getStartPage() + "마지막" + paging.getEndPage());
                 for(int p = paging.getStartPage(); p <= paging.getEndPage(); p++){
                     if(paging.getCurrentPage() == p){
-            %>
-            <li class="page-item active" aria-current="page"><span
-                    class="page-link"><%=p %></span></li>
-            <%} else { %>
-            <li class="page-item"><a class="page-link"
-                                     href="myPageBookList.do?searchCondition=<%=sc %>&keyword=<%=kw %>&currentPage=<%=p %>">
-                <%=p %></a></li>
-            <%
-                    }}%>
+				            %>
+				            <li class="page-item active" aria-current="page"><span
+				                    class="page-link"><%=p %></span></li>
+				            <%} else { %>
+				            <li class="page-item"><a class="page-link"
+				                                     href="myPageBookList.do?searchCondition=<%=sc %>&keyword=<%=kw %>&currentPage=<%=p %>">
+				                <%=p %></a></li>
+				            <%
+                }}%>
 
             <!-- 다음페이지 -->
             <%
