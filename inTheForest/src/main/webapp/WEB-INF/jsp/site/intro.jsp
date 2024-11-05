@@ -24,7 +24,7 @@
 
 	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 	  <ol class="breadcrumb" style="margin-top:20px">
-	    <li class="breadcrumb-item"><a href="/inTheForest/main.do">Home</a></li>
+	    <li class="breadcrumb-item"><a href="main.do">Home</a></li>
 	    <li class="breadcrumb-item active">시설안내</li>
 	  </ol>
 	</nav>

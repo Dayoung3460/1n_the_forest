@@ -6,6 +6,20 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- 데이터 포맷에 사용 -->
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- c태그 -->
+<c:if test="${msg != null }">
+	<script>
+	alert("이름과 이메일를 입력하세요.")
+	</script>
+</c:if>
+
+
+<c:if test="${quitmsg != null }">
+<script>
+	alert("탈퇴한 회원입니다.")
+</script>
+</c:if>
 
 <div class="container min-vh-100 d-flex justify-content-center align-items-center">
 	<div class="card"  style="width: 70rem">

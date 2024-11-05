@@ -23,7 +23,7 @@ public interface MemberMapper{
 
 	
 	//아이디체크 
-	public MemberVO findMemberId(@Param("memberName")String memberName,@Param("email")String email);
+	public String findMemberId(@Param("memberName")String memberName,@Param("email")String email);
 	
 	// 아이디로 회원 정보 조회
 	MemberVO searchMember(String memberId);

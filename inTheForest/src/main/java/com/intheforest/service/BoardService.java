@@ -22,5 +22,4 @@ public interface BoardService {
   ArrayList<Integer> getBookNoByMemberId(String memberId);
   
   
-  
 }

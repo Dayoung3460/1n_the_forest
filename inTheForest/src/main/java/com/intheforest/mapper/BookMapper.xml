@@ -4,12 +4,32 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.intheforest.mapper.BookMapper">
 
+	<!-- select b.*, o.option_no option_no, o.site_no site_no
+		from   site_book b join site_book_option o
+                             on b.book_no = o.book_no
+		where  b.book_no = 2001; 쓰면 좋을 듯 -->
+
+	<select id="selectBook" resultType="book" parameterType="int">
+		select *
+		from   site_book
+		where  book_no = #{bookNo}
+	</select>
+
 	<select id="siteList" resultType="book">
 	  select *
 	    from site 
 	    order by site_name
 	</select>
 	
+	<select id="bookLast" resultType="int">
+	  select book_no
+	    from site_book
+	    <![CDATA[
+	    where ROWNUM<=1
+	    ]]>
+	    order by book_no desc
+	</select>
+
 	<select id="optionList" resultType="book">
 	  select *
 	    from site_option 
@@ -41,7 +61,7 @@
                         	end_date,
                         	car_num,
                         	total_price)
-	values  (2222,
+	values  (book_seq.nextval,
         	#{memberId},
         	#{siteNo},
         	#{memCnt},
@@ -50,4 +70,16 @@
         	#{carNum},
         	#{totalPrice})
     </insert>
+
+    <insert id="insertBookOption" parameterType = "book">
+    insert into site_book_option (option_no,
+                        	book_no,
+                        	member_id,
+                        	site_no)
+	values  (#{optionNo},
+        	#{bookNo},
+        	#{memberId},
+        	#{siteNo})
+    </insert>
+
 </mapper>

@@ -89,7 +89,7 @@
 			      
 			      <div class="modal-body">
 			        <!-- 모달창 내용  (사용자 입력 타이틀, startStr , endStr )-->
-			       	<p>회원 탈퇴를 진행 하시겠습니까?</p>
+			       	<p>정말로 회원 탈퇴를 진행 하시겠습니까?</p>
 			      </div>
 			      
 			      <div class="modal-footer">

@@ -17,6 +17,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import com.intheforest.control.board.AddBoardControl;
+import com.intheforest.control.board.AddBoardFormControl;
+import com.intheforest.control.board.BoardControl;
+import com.intheforest.control.board.BoardListControl;
+import com.intheforest.control.board.DeleteBoardControl;
+import com.intheforest.control.board.ModifyBoardControl;
+import com.intheforest.control.book.DetailBookControl;
+import com.intheforest.control.book.ModifyBookControl;
+import com.intheforest.control.member.DetailJoinControl;
+import com.intheforest.control.member.FindIdControl;
+import com.intheforest.control.member.FindPwControl;
+import com.intheforest.control.member.JoinFormControl;
+import com.intheforest.control.member.LogOutControl;
+import com.intheforest.control.member.LoginControl;
+import com.intheforest.control.member.MemberListControl;
+import com.intheforest.control.member.ModifyJoinControl;
+import com.intheforest.control.member.removeJoinControl;
 
 
 public class FrontController extends HttpServlet{
@@ -59,11 +76,14 @@ public class FrontController extends HttpServlet{
 		
 		
 		//캠핑예약
+		map.put("/book_calendar.do", new BookCalCont());
+		map.put("/book_app.do", new BookAppCont());
 		map.put("/bookCalendar.do", new BookCalCont());
 		map.put("/bookApp.do", new BookAppCont());
 		map.put("/bookAppForm.do", new BookAppFormCont());
 		
-  
+		map.put("/modifyBook.do", new ModifyBookControl());
+		map.put("/detailBook.do", new DetailBookControl());
   
   
   
@@ -80,7 +100,7 @@ public class FrontController extends HttpServlet{
     
     
     
-    //관리자용 메뉴
+		//관리자용 회원목록 조회
 		map.put("/memberList.do", new MemberListControl());
     
     

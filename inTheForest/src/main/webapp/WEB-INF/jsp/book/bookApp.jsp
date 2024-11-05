@@ -1,20 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.intheforest.vo.BookVO"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.intheforest.vo.BookVO"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <%
+String memberId = (String) session.getAttribute("memberId");
+String siteNo = (String) request.getParameter("siteNo");
 String siteDate = (String) request.getParameter("siteDate");
 String category = (String) request.getParameter("category");
-String siteNo = (String) request.getParameter("siteNo");
 int addDate = Integer.parseInt(request.getParameter("addDate"));
-String memberId = (String) session.getAttribute("memberId");
 
-List<BookVO> optionList = (List<BookVO>)request.getAttribute("optionList");
 BookVO bvo = (BookVO)request.getAttribute("bookvo");
+List<BookVO> optionList = (List<BookVO>)request.getAttribute("optionList");
 
 /*n박 계산[S]*/
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -56,14 +55,13 @@ String endDate = sdf.format(calendar.getTime());
 			
 			var totalPrice = ${bookvo.sitePrice};
 			var viewPrice = "";
-			var selected = [];			
 			
-			 $('input[name="option"]').change(function(){
-				 
+			 $('input[name="option[]"]').change(function(){
+				
 				var optionVal = $("#optionPrice_"+$(this).val()).val();
 				
 				if($(this).is(":checked")){
-					totalPrice += parseInt(optionVal);	
+					totalPrice += parseInt(optionVal);
 				}else{
 					totalPrice -= parseInt(optionVal);
 				}						
@@ -152,19 +150,18 @@ String endDate = sdf.format(calendar.getTime());
 				</div>
 				
 				<div class="addform">		
-				
 					<p class="h4">2. 옵션 선택</p>				
 					<div class="row g-3">
 						<div class="col-md-6">
 							<%for(BookVO ovo : optionList){%>
-							<div class="input-group mb-3">
-							  <div class="input-group-text">
-							    <input class="form-check-input mt-0" type="checkbox" value="<%=ovo.getOptionNo() %>" aria-label="Chec
-							    kbox for following text input" name="option">
-							  </div>
-							  <input type="hidden" id="optionPrice_<%=ovo.getOptionNo() %>" value="<%=ovo.getOptionPrice() %>">
-							  <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%=ovo.getOptionName() %> (<%=ovo.getOptionPrice().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",") %>원)" readonly onclick="">
-							</div>
+								<div class="input-group mb-3">
+								  <div class="input-group-text">
+								    <input class="form-check-input mt-0" type="checkbox" value="<%=ovo.getOptionNo() %>" aria-label="Chec
+								    kbox for following text input" name="option[]">
+								  </div>
+								  <input type="hidden" id="optionPrice_<%=ovo.getOptionNo() %>" value="<%=ovo.getOptionPrice() %>">
+								  <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%=ovo.getOptionName() %> (<%=ovo.getOptionPrice().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",") %>원)" readonly onclick="">
+								</div>
 							<%} %>
 						</div>
 					</div>

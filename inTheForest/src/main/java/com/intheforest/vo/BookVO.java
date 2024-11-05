@@ -16,6 +16,7 @@ public class BookVO {
 	private String carNum;
 	private String totalPrice;
 	
+	private int bookNo;
 	private String optionNo;
 	private String optionName;
 	private String optionPrice;

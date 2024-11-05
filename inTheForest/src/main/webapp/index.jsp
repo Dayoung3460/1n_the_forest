@@ -48,7 +48,7 @@
 			}
       @media (max-width: 768px) {
         #messageBox {
-          left: 25%;
+          left: 30%;
         }
       }
 		</style>

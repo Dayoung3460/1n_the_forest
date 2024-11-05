@@ -26,6 +26,11 @@ public class AppTest {
 		int count = mapper2.checkId("test");
 		System.out.println(count);
 		
-
+		MemberVO member= mapper2.searchMember("nayun124");
+	      System.out.println(member);
+		
+	    String page = "1";
+	      
+	    System.out.println("전체출력" + mapper.listWithPage(null, null, page, null));
 	}
 }
