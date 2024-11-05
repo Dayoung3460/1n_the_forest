@@ -17,4 +17,5 @@ public interface BookMapper {
 	 
 	int insertBook(BookVO book);
 	int insertBookOption(BookVO bookOption);
+	int cancelBook(int bookNo);
 }
