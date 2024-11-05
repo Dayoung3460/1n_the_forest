@@ -12,7 +12,9 @@ public class ModifyBookControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getParameter("");
 		
+		req.getRequestDispatcher("book/modifyBook.tiles").forward(req, resp);
 	}
 
 }
