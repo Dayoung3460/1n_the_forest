@@ -48,9 +48,9 @@ public class LoginControl implements Control {
 			session.setAttribute("permission", member.getPermission());
 			
 			if(member.getPermission().equals("admin")) {
-				req.getRequestDispatcher("member/memberList.tiles").forward(req, resp);
+				resp.sendRedirect("memberList.do");
 			} else {
-				req.getRequestDispatcher("site/main.tiles").forward(req, resp);				
+				resp.sendRedirect("main.do");
 			}
 		
 		}

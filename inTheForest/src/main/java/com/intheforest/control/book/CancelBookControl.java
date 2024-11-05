@@ -11,7 +11,7 @@ import com.intheforest.service.BookService;
 import com.intheforest.service.BookServiceImpl;
 import com.intheforest.vo.BookVO;
 
-public class BookAppCont implements Control {
+public class CancelBookControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

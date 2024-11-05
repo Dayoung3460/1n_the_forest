@@ -51,8 +51,8 @@
                 <c:forEach var="boardList" items="${boardList}" begin="0" end="4" step="1">
 	                <li class="list-group-item">
 		                <a href="board.do?bno=${boardList.boardNo}">${boardList.title}</a>
-		                <span><fmt:formatDate value="${boardList.writeDate}" pattern="yyyy/MM/dd"></fmt:formatDate></span>
-	                </li>                
+		                <span>${boardList.writeDate}</span>
+	                </li>
                 </c:forEach>
                 
             </ul>
@@ -83,7 +83,7 @@
     <div class="col-md-3 text-center my-4">
         <a href="/inTheForest/intro.do?site=deck"><img class="img-fluid rounded-circle mb-4" src="assets/site/main/eco-field_icon.png" alt="deckCamp" /></a>
         <h1 class="text-mint fs-4 fw-bolder">데크캠핑</h1>
-        <p class="text-muted mb-0">한적한 들판에서 즐기는 캠핑의 묘미</p>
+        <p class="text-muted mb-0">한적한 데크에서 즐기는 캠핑의 묘미</p>
     </div>
 </div>
 

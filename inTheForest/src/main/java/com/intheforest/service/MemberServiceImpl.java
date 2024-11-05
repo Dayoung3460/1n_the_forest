@@ -31,10 +31,7 @@ public class MemberServiceImpl implements MemberService {
 	public boolean addMember(MemberVO member) {
 		return mapper.insertMember(member)==1;
 	}
-	@Override
-	public MemberVO findMemberId(String memberName, String email) {
-		return mapper.findMemberId(memberName, email);
-	}
+	
 	@Override
 	public MemberVO searchMember(String memberId) {
 		return mapper.searchMember(memberId);
@@ -76,6 +73,11 @@ public class MemberServiceImpl implements MemberService {
 	public boolean removeJoin(String memberId) {
 		return mapper.removeJoin(memberId)==1;
 	}
+	@Override
+	public String findMemberId(String memberName, String email) {
+		return mapper.findMemberId(memberName, email);
+	}
+	
 	
 	
 }

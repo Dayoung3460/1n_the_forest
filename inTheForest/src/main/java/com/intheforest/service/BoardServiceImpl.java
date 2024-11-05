@@ -53,6 +53,16 @@ public class BoardServiceImpl implements BoardService {
   }
   
   @Override
+  public BoardVO selectPrevBoard(BoardVO board) {
+    return mapper.selectPrevBoard(board);
+  }
+  
+  @Override
+  public BoardVO selectNextBoard(BoardVO board) {
+    return mapper.selectNextBoard(board);
+  }
+  
+  @Override
   public List<Map<String, Object>> countByWriter() {
     return mapper.countByWriter();
   }

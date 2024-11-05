@@ -50,7 +50,13 @@ public class BookServiceImpl implements BookService {
 	
 	//등록
 	@Override
-	public boolean registerBookOption(BookVO book) {
-		return mapper.insertBookOption(book) == 1;
+	public boolean registerBookOption(BookVO bookOption) {
+		return mapper.insertBookOption(bookOption) == 1;
+	}
+	
+	//취소
+	@Override
+	public int cancelBook(int bookNo) {
+		return mapper.cancelBook(bookNo);
 	}
 }

@@ -29,11 +29,11 @@
     %>
         <header>
             <div class="loginTop container">
-                <a href="myPageBookList.do">마이페이지</a>
+                <a href="#" onclick="checkId('<%=memberId%>')" id= "checkId" >마이페이지</a>
                 <%if (memberId == null) {%>
-                <a href="login.do">로그인</a>
+               		<a href="login.do">로그인</a>
                 <%} else{ %>
-                <a href="logOut.do">로그아웃[<%=memberId%>]</a>
+                	<a href="logOut.do">로그아웃[<%=memberId%>]</a>
                 <%} %>
             </div>
             <!-- Responsive navbar-->
@@ -67,7 +67,7 @@
 		                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 		                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="memberList.do">회원관리</a></li>
-		                            <li class="nav-item"><a class="nav-link" href="#">예약관리</a></li>
+		                            <li class="nav-item"><a class="nav-link" href="detailBook.do?bookNo=2001&memberId=mid901&siteNo=1001">예약관리</a></li>
 		                        </ul>
 		                    </div>
 		                </div>
@@ -92,6 +92,7 @@
 	            </span>
             </div>
         </footer>
+        <script src="js/member/checkid.js"></script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>

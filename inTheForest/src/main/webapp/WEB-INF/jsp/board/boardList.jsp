@@ -56,11 +56,12 @@
 
                         <c:when test="${board.boardCategory != 'reply'}">
                             <a href="board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}">
-                                ${board.title}
+                                    ${board.title}
                             </a>
                         </c:when>
                         <c:otherwise>
-                            <a class="reply" href="board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}">
+                            <a class="reply"
+                               href="board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}">
                                 └ [RE] : ${board.title}
                             </a>
                         </c:otherwise>
@@ -69,9 +70,7 @@
                 </td>
                 <td><c:out value="${board.writer}"/></td>
                 <td><c:out value="${board.viewCnt}"/></td>
-                <td>
-                    <fmt:formatDate value="${board.writeDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-                </td>
+                <td>${board.writeDate}</td>
             </tr>
         </c:forEach>
         <c:if test="${fn:length(boardList) == 0}">

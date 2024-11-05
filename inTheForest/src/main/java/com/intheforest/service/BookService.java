@@ -16,5 +16,8 @@ public interface BookService {
 	
 	// 등록(삽입)
 	boolean registerBook(BookVO book);
-	boolean registerBookOption(BookVO book);
+	boolean registerBookOption(BookVO bookOption);
+	
+	//취소
+	int cancelBook(int bookNo);
 }
