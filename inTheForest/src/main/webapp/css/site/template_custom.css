@@ -42,9 +42,11 @@ footer div {
 }
 footer img {
   height: 80px;
+  margin-left: 10px;
 }  
 footer span {
   margin: auto 0;
+  margin-right: 10px;
   word-break: keep-all;
 }
 .text-mint {

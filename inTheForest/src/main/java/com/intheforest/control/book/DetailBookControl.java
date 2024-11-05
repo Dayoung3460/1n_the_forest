@@ -1,7 +1,6 @@
 package com.intheforest.control.book;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,10 +31,8 @@ public class DetailBookControl implements Control {
 		book.setSiteMax(site.getSiteMax());
 		book.setSiteName(site.getSiteName());
 		
-		//주소에서 "|" 제거
 		MemberService mem_svc = new MemberServiceImpl();
 		MemberVO member = mem_svc.searchMember(memId);
-		member.setAddress(member.getAddress().replace("|", " "));
 		
 		req.setAttribute("optionList", book_svc.optionList());
 		req.setAttribute("myOptions", book_svc.selectBookOption(bookNo));//비교용 배열

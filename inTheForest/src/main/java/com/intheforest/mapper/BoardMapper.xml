@@ -173,11 +173,11 @@
     </select>
     
     <select id="reviewOnBook" parameterType="int">
-    		select b.*
-				from board b join site_book sb
-				             on   b.book_no = sb.book_no
-				where b.book_no = #{bookNo}
-				and   b.board_category = 'review'
+    	select b.*
+		from board b join site_book sb
+		             on   b.book_no = sb.book_no
+		where b.book_no = #{bookNo}
+		and   b.board_category = 'review'
     </select>
 
     <!--    <select id="countByWriter" resultType="hashmap">-->

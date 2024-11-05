@@ -44,8 +44,8 @@ let autoCamp = {
 let deckCamp = {
 	name   : '데크캠핑',
 	content: [
-				{title: "캠핑의 묘미", text: "캠핑용품을 가지고 계시다면, 한적한 데크에 설치 가능합니다.", img: "deck2.jpg"},
-				{title: "한적한 공간", text: "간격이 넓고 조용한 숲속에서 데크캠핑을 즐겨보세요.", img: "deck1.jpg"},
+				{title: "넓은 공간", text: "캠핑용품을 가지고 계시다면, 넓고 한적한 데크에 설치 가능합니다.", img: "deck1.jpg"},
+				{title: "한적한 공간", text: "조용한 숲속에서 데크캠핑을 즐겨보세요.", img: "forest.jpg"},
 				{title: "바베큐용품 구비", text: "필요 시, 바베큐 재료와 용품을 제공해드립니다.", img: "bbq1.jpg"},
 				{title: "캠프파이어", text: "저녁에 광장에서 열리는 캠프파이어에 참여해보세요.", img: "campfire.jpg"},
 			],

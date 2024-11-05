@@ -35,10 +35,10 @@
                     <td>상태</td>
                 </tr>
                 <tr>
-                    <td class="fs-5 fw-bolder">${book.siteName}</td>
-                    <td class="fs-5 fw-bolder">${book.startDate} ~ ${book.endDate}</td>
-                    <td class="fs-5 fw-bolder"><fmt:formatNumber value="${book.totalPrice}" pattern="#,###" />원</td>
-                    <td class="fs-5 fw-bolder ${book.cancelFlag == 0 ? 'text-mint' : 'text-danger'}">${book.cancelFlag == 0 ? '확정' : '취소'}</td>
+                    <td class="fs-4 fw-bolder">${book.siteName}</td>
+                    <td class="fs-4 fw-bolder text-success">${book.startDate} ~ ${book.endDate}</td>
+                    <td class="fs-4 fw-bolder"><fmt:formatNumber value="${book.totalPrice}" pattern="#,###" />원</td>
+                    <td class="fs-4 fw-bolder ${book.cancelFlag == 0 ? 'text-mint' : 'text-danger'}">${book.cancelFlag == 0 ? '확정' : '취소'}</td>
                 </tr>
             </table>
         </div>
@@ -97,8 +97,8 @@
 	</div>
 		
 		<div class="text-center m-4">
-      <button type="button" class="btn btn-outline-success" id="backBtn">목록</button>
-      <button type="button" class="btn btn-secondary" id="deleteBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">예약취소</button>
+      <button type="button" class="btn btn-secondary" id="backBtn">목록</button>
+      <button type="button" class="btn btn-success" id="funcBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">예약취소</button>
     </div>
     
     
@@ -114,8 +114,8 @@
                     예약을 취소하시겠습니까?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">아니오</button>
-                    <button type="button" class="btn btn-secondary" id="modalDeleteBtn">예</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니오</button>
+                    <button type="button" class="btn btn-success" id="modalDeleteBtn">예</button>
                 </div>
             </div>
         </div>
@@ -125,19 +125,35 @@
 </div>
 
 <script>
-		let backBtn = document.getElementById('backBtn');
-		backBtn.addEventListener('click', moveBack);
-		
-		function moveBack(e){
-			if(${permission == 'admin'}){
-				location.href = 'myPageBookList.do';
-			} else {
-				location.href = 'myPageBookList.do?memberId=${member.memberId}';
-			}
+	//목록 버튼 클릭 시 페이지 이동 이벤트
+	let backBtn = document.getElementById('backBtn');
+	backBtn.addEventListener('click', moveBack);
+	
+	function moveBack(e){
+		if(${permission == 'admin'}){
+			location.href = 'myPageBookList.do';
+		} else {
+			location.href = 'myPageBookList.do?memberId=${member.memberId}';
 		}
+	}
+	
+	//funcBtn 상태에 따라 다르게 표시
+	let funcBtn = document.getElementById('funcBtn');
+	let endDate = new Date(`${book.endDate}`);
+	let today = new Date();
+	
+	if(${permission == user} && endDate < today && ${isReview == false}){ //이용기간이 지났으며 후기를 작성하지 않은 사용자에게는, 후기작성 버튼을 표시
+	  funcBtn.removeAttribute('data-bs-toggle');
+	  funcBtn.removeAttribute('data-bs-target');
+	  funcBtn.innerText = '후기작성';
+	  funcBtn.addEventListener('click', (e) => {location.href = 'addBoardForm.do?category=review&bookNo=aaaaaaa'});
+	} else if(endDate < today && ${isReview == true}){ //이용기간이 지난 사용자에게는 아무것도 표시 안 함.
+	  funcBtn.style.display = 'none';	
+	}
 
     let modalDeleteBtn = document.getElementById('modalDeleteBtn')
     modalDeleteBtn.addEventListener('click', () => {
         location.href = 'boardList.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
     });
+    
 </script>

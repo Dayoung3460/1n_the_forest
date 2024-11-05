@@ -14,7 +14,7 @@
     
     <h4 class="mt-4 fw-bolder">회원목록</h4>
     
-    <table class="table align-middle text-center mb-5">
+    <table class="table align-middle text-center mb-5 mt-5">
     
         <thead>
         <tr class="table-light">
@@ -30,20 +30,20 @@
         </thead>
         
         <tbody>
-        		<c:forEach var="member" items="${ memberList }">
-		            <tr>
-		                <td>${ member.memberId }</td>
-		                <td>${ member.memberName }</td>
-		                <td class="w-25">${ member.address }</td>
-		                <td>${ member.email }</td>
-		                <td>${ member.tel }</td>
-		                <td><fmt:formatDate value="${ member.joinedDate }" pattern="yyyy/MM/dd" /></td>
-		                <td>${ member.permission }</td>
-		                <td>
-		                    <button type="button" class="btn btn-outline-success btn-sm fw-bolder m-1" onclick="location.href = 'DetailJoin.do?memberId=${ member.memberId }'">상세정보</button>
-		                </td>
-		            </tr>
-        		</c:forEach>
+       		<c:forEach var="member" items="${ memberList }">
+	            <tr>
+	                <td>${ member.memberId }</td>
+	                <td>${ member.memberName }</td>
+	                <td class="w-25">${ member.address }</td>
+	                <td>${ member.email }</td>
+	                <td>${ member.tel }</td>
+	                <td><fmt:formatDate value="${ member.joinedDate }" pattern="yyyy/MM/dd" /></td>
+	                <td>${ member.permission }</td>
+	                <td>
+	                    <button type="button" class="btn btn-outline-success btn-sm fw-bolder m-1" onclick="location.href = 'DetailJoin.do?memberId=${ member.memberId }'">상세정보</button>
+	                </td>
+	            </tr>
+       		</c:forEach>
         </tbody>
     
     </table>
