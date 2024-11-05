@@ -30,6 +30,10 @@ public class MyBookControl implements Control {
 		
 		HttpSession session = req.getSession();
 		String memberId = (String) session.getAttribute("memberId");
+		String permission = (String) session.getAttribute("permission");
+		if(permission.equals("admin")) {
+			memberId = null;
+		}
 		
 		//검색조건
 		SearchDTO search = new SearchDTO();

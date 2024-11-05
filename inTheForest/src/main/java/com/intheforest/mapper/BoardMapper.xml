@@ -171,6 +171,14 @@
         from site_book
         where member_id = #{memberId}
     </select>
+    
+    <select id="reviewOnBook" parameterType="int">
+    		select b.*
+				from board b join site_book sb
+				             on   b.book_no = sb.book_no
+				where b.book_no = #{bookNo}
+				and   b.board_category = 'review'
+    </select>
 
     <!--    <select id="countByWriter" resultType="hashmap">-->
     <!--        select writer as "writer", member_name as "member_name", count(1) as "count"-->

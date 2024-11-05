@@ -13,8 +13,17 @@
 	<select id="selectBook" resultType="book" parameterType="int">
 		select *
 		from   site_book
-		where  book_no = #{bookNo} and use_flag='y'
+		where  book_no = #{bookNo}
 	</select>
+	
+	<!-- 예약에 적용된 옵션 목록 -->
+	<select id="selectBookOption" resultType="string" parameterType="int">
+	  select bo.option_no
+    from   site_book_option bo join site_option o
+                               on   bo.option_no = o.option_no
+    where  book_no = #{bookNo}
+	</select>
+	
 	
 	<!-- 숙소 목록 -->
 	<select id="siteList" resultType="book">

@@ -11,6 +11,7 @@ public interface BookService {
 	
 	//상세조회
 	BookVO selectBook(int bookNo);
+	List<String> selectBookOption(int bookNo);
 	BookVO selectSite(String siteNo);
 	int selectBookDate(int siteNo, String startDate);
 	

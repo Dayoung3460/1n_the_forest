@@ -72,5 +72,9 @@ public class BoardServiceImpl implements BoardService {
     return mapper.getBookNoByMemberId(memberId);
   }
   
+  @Override
+  public boolean isReview(int bookNo) {
+	  return mapper.reviewOnBook(bookNo) != null; // 리뷰 작성했다면 true, 작성 안 했으면 false 반환
+  }
   
 }

@@ -1,16 +1,16 @@
 package com.intheforest.test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.intheforest.common.DataSource;
-import com.intheforest.common.SearchDTO;
 import com.intheforest.mapper.MemberMapper;
 import com.intheforest.mapper.MyBookMapper;
-import com.intheforest.service.BoardService;
-import com.intheforest.service.BoardServiceImpl;
-import com.intheforest.vo.BoardVO;
+import com.intheforest.service.BookService;
+import com.intheforest.service.BookServiceImpl;
+import com.intheforest.vo.BookVO;
 import com.intheforest.vo.MemberVO;
 import com.intheforest.vo.MyBookVO;
 
@@ -27,10 +27,7 @@ public class AppTest {
 		System.out.println(count);
 		
 		MemberVO member= mapper2.searchMember("nayun124");
-	      System.out.println(member);
-		
-	    String page = "1";
+	    System.out.println(member);
 	      
-	    System.out.println("전체출력" + mapper.listWithPage(null, null, page, null));
 	}
 }

@@ -33,6 +33,11 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
+	public List<String> selectBookOption(int bookNo) {
+		return mapper.selectBookOption(bookNo);
+	}
+	
+	@Override
 	public BookVO selectSite(String siteNo){
 		return mapper.selectSite(siteNo);
 	}

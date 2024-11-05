@@ -21,5 +21,7 @@ public interface BoardService {
   List<Map<String, Object>> countByWriter();
   ArrayList<Integer> getBookNoByMemberId(String memberId);
   
+  // 리뷰 작성 여부 확인용
+  boolean isReview(int bookNo);
   
 }

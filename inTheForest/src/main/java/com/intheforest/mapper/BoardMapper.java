@@ -25,4 +25,7 @@ public interface BoardMapper {
   List<Map<String, Object>> countByWriter();
   
   ArrayList<Integer> getBookNoByMemberId(String memberId);
+
+  // 예약번호에 따른 리뷰 조회
+  BoardVO reviewOnBook(int bookNo);
 }
