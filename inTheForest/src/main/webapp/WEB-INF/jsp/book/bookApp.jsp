@@ -68,6 +68,7 @@ String endDate = sdf.format(calendar.getTime());
 					totalPrice -= parseInt(optionVal);
 				}						
 				viewPrice = String(totalPrice);
+				$("#sitePrice").val(viewPrice);
 				$("#totalPrice").html(viewPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 			})
 			
