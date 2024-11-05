@@ -61,6 +61,7 @@ public class JoinFormControl implements Control {
 			try {
 				svc.addMember(mvo);
 				//값이 잘 넣어지는 경우 (login.jsp로 이동 )
+				req.setAttribute("joinSuccess", "회원가입이 완료되었습니다");
 				req.getRequestDispatcher("member/login.tiles").forward(req, resp);	
 			}catch(Exception e) {
 				req.setAttribute("joinError", "회원가입에 실패하였습니다. 다시 시도해 주세요.");

@@ -21,6 +21,12 @@
 	</script>
 </c:if>
 
+<c:if test="${joinSuccess != null}">
+    <script>
+        alert("회원가입이 완료되었습니다.");
+    </script>
+</c:if>
+
 
 <div
 	class="container min-vh-100 d-flex justify-content-center align-items-center">

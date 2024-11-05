@@ -61,6 +61,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		var address2 = document.getElementById("address2").value;
 		var memberName = document.getElementById("memberName").value;
 		var tel = document.getElementById("tel").value;
+		var passwordPattern = /^[a-zA-Z0-9!@#$%^*+=]+$/;
+		
+		//비밀번호 유효성 검사
+		 if (!passwordPattern.test(password.value)) {
+        event.preventDefault();
+        alert("비밀번호는 영문, 숫자, 그리고 !@#$%^*+= 특수문자만 사용할 수 있습니다.");
+        return;
+    	}
 		
 		if(!memberName){
 			event.preventDefault();
@@ -96,16 +104,23 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-//아이디 중복 체크 
+//아이디 유효성 검사 
 document.getElementById("checkIdBtn").addEventListener("click", function() {
 	var memberId = document.getElementById("memberId").value;
 	
+	// 아이디 유효성 검사: 영문과 숫자만 허용
+    if (!/^[a-zA-Z0-9]+$/.test(memberId)) {
+        alert("아이디는 영문과 숫자만 사용 가능합니다.");
+        return;
+    }
 
+	//아이디 없는 경우 
 	if (!memberId) {
 		alert("아이디 입력 해주세요");
 		return;
 	}
-
+	
+	//아이디 중복 체크 
 	$.ajax({
 		url: 'checkId.do',
 		data: { memberId: memberId },
