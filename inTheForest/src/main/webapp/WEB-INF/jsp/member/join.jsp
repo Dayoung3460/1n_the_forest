@@ -26,10 +26,9 @@
 					<div class="form-group row">
 						<label>아이디<em>*</em></label>
 						<div class="form-control-body form-inline">
-							<input class="form-control  w-50" type="text" id="memberId" name="memberId">
-							<pre></pre>
-							<button type="button" id="checkIdBtn" class="btn btn-outline-success">중복 검사</button>
-        					<pre></pre>
+							<input class="form-control  w-50" style="display:inline" type="text" id="memberId" name="memberId">
+							<button type="button" id="checkIdBtn" class="btn btn-outline-success"  >중복 검사</button>
+        					<p style="font-size: 10px;">※한글,특수문자 사용 할 수 없습니다.</p>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -59,7 +58,7 @@
 						<label class="form-control-label">휴대폰번호<em>*</em></label>
 						<div class="form-control-body">
 							<input class="form-control w-50" type="text" name="tel" id="tel"
-								placeholder=" 010 - 1234 - 5678">
+								oninput="autoHyphen(this)">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -69,11 +68,12 @@
 								id="email">
 						</div>
 					</div>
+					<pre></pre>
 					<div class="form-group row">
 						<label class="form-control-label">주소<em>*</em></label>
 						<div class="form-control-body">
 							<div class="col-xs-2">
-								<input type="text" id="postcodeDisplay" placeholder="우편번호" maxlength="6" readonly>
+								<input type="text" id="postcodeDisplay" class="form-control w-25" style="display:inline" placeholder="우편번호" maxlength="6" readonly>
 								<input type="hidden" name="postcode" id="postcode">
 								<button type="button" class="btn btn-outline-success"
 									onclick="sample6_execDaumPostcode()">검색</button>
@@ -98,8 +98,17 @@
 	</div>
 </div>
 
+
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 <script src="js/member/join.js"></script>
+<script>
+const autoHyphen = (target) => {
+    target.value = target.value
+       .replace(/[^0-9]/g, '')
+       .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/g, "$1-$2-$3")
+       .replace(/(\-{1,2})$/g, "");
+ }
+</script>
 
