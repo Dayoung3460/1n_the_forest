@@ -38,6 +38,7 @@ public class ModifyBoardControl implements Control {
       
       req.setAttribute("board", board);
       req.setAttribute("search", search);
+      req.setAttribute("category", category);
       req.getRequestDispatcher("board/boardModifyForm.tiles").forward(req, resp);
     } else {
       board = new BoardVO();

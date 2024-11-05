@@ -18,5 +18,5 @@ public class BoardVO {
   private String boardFile;
   private String writer;
   private int viewCnt;
-  private Date writeDate;
+  private String writeDate;
 }

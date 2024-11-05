@@ -15,6 +15,9 @@ public class BoardControl implements Control {
   
   @Override
   public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    System.out.println("BoardControl.exec");
+    System.out.println("bno = " + req.getParameter("bno"));
+    
     String bno = req.getParameter("bno");
     String currentPage = req.getParameter("currentPage");
     String searchCondition = req.getParameter("searchCondition");
@@ -22,6 +25,7 @@ public class BoardControl implements Control {
     String category = req.getParameter("category");
     
     BoardService svc = new BoardServiceImpl();
+    
     BoardVO board = svc.searchBoard(Integer.parseInt(bno));
     
     req.setAttribute("board", board);

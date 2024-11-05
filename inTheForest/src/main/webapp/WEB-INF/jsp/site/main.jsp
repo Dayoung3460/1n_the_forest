@@ -51,8 +51,8 @@
                 <c:forEach var="boardList" items="${boardList}" begin="0" end="4" step="1">
 	                <li class="list-group-item">
 		                <a href="board.do?bno=${boardList.boardNo}">${boardList.title}</a>
-		                <span><fmt:formatDate value="${boardList.writeDate}" pattern="yyyy/MM/dd"></fmt:formatDate></span>
-	                </li>                
+		                <span>${boardList.writeDate}</span>
+	                </li>
                 </c:forEach>
                 
             </ul>
