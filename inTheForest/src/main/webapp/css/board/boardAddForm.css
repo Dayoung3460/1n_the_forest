@@ -70,6 +70,10 @@
         margin-bottom: 60px;
         .form-check {
             margin-right: 16px;
+            .form-check-input:checked {
+                background-color: var(--bs-green);
+                border-color: var(--bs-green);
+            }
         }
         .table {
             width: 210px;

@@ -46,14 +46,22 @@
         </div>
         <hr/>
 
+        <div class="mb-4 hide" id="replyBox">
+            <textarea rows="4" cols="30" id="replyContent" name="replyContent" placeholder="답글을 입력해주세요"
+                      class="form-control"></textarea>
+        </div>
 
 
         <div class="btnContainer">
             <div class="btnBox1">
-                <button class="btn btn-secondary" id="prevBtn">이전글</button>
-                <button class="btn btn-secondary" id="nextBtn">다음글</button>
+                <button class="btn btn-secondary me-2" id="prevBtn">이전글</button>
+                <button class="btn btn-secondary me-2" id="nextBtn">다음글</button>
                 <c:if test="${member.permission eq 'admin'}">
-                    <button class="btn btn-success">답글쓰기</button>
+                    <button class="btn btn-success" id="replyWriteBtn">답글쓰기</button>
+                    <form>
+                        <button class="btn btn-primary hide" id="replyRegisterBtn" type="submit">답글 등록</button>
+                    </form>
+
                 </c:if>
 
             </div>
@@ -88,6 +96,62 @@
 </div>
 <script src="js/board/board.js"></script>
 <script>
+    console.log(${board.secretFlag} === 0)
+
+    const form = document.getElementsByTagName('form')[0];
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const formData = new FormData(this); // 현재 form 데이터 수집
+
+        // 폼 데이터에 추가할 항목
+        formData.append('category', 'reply' );
+        formData.append('title', '└ [RE] : ' + "${board.title}" );
+        formData.append('content', document.getElementById('replyContent').value);
+        formData.append('writer', "${memberId}");
+        formData.append('secretFlag', ${board.secretFlag} === 1 ? 'on' : 'off');
+        formData.append('boardPw', "${board.boardPw}");
+
+        <%--action="addBoard.do?category=${category}" method="post" enctype="multipart/form-data"--%>
+
+        fetch('addBoard.do', {
+            method: 'POST',
+            body: formData,
+        })
+            // .then(response => response.json())
+            // .then(result => {
+            //     console.log('Success:', result);
+            // })
+            // .catch(error => {
+            //     console.error('Error:', error);
+            // });
+
+        <%--let title = document.getElementById('boardTitle').value// 필수 └ [RE] :--%>
+        <%--let content = document.getElementById('boardContent').value// 필수--%>
+        <%--let writer = document.getElementById('boardWriter').value// 필수--%>
+        <%--let image = document.getElementById('boardImg').value--%>
+        <%--let bookNoArr = "${bookNoList}";// 후기 일 때 필수--%>
+        <%--let secretFlag = document.getElementById('defaultCheck1')?.value--%>
+        <%--let boardPw = document.getElementById('boardPw').value// 문의 일 때 필수--%>
+        <%--let noticeFlag = document.getElementById('defaultCheck2')?.value--%>
+
+    });
+
+    let replyWriteBtn = document.getElementById('replyWriteBtn')
+    let replyRegisterBtn = document.getElementById('replyRegisterBtn')
+    let replyBox = document.getElementById('replyBox')
+
+    replyWriteBtn.addEventListener('click', (e) => {
+        replyBox.classList.toggle('hide')
+        replyBox.getElementsByTagName('textarea')[0].focus()
+
+        replyRegisterBtn.classList.toggle('hide')
+        replyWriteBtn.classList.toggle('hide')
+    })
+
+    replyRegisterBtn.addEventListener('click', (e) => {
+
+    })
+
     let modalDeleteBtn = document.getElementById('modalDeleteBtn')
     modalDeleteBtn.addEventListener('click', () => {
         location.href = 'boardList.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';

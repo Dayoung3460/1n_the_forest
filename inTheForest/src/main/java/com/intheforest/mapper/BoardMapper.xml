@@ -155,11 +155,11 @@
         select min(write_date)
         from board
         <![CDATA[
-                WHERE write_date > #{writeDate}
+                WHERE write_date > TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
             ]]>
         )
         <![CDATA[
-        and write_date > #{writeDate}
+        and write_date > TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
          ]]>
         and lower(board_category) like #{boardCategory}
         order by write_date desc

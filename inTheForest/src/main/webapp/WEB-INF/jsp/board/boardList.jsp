@@ -52,23 +52,21 @@
                 </c:choose>
 
                 <td class="title">
-                    <c:choose>
-
-                        <c:when test="${board.boardCategory != 'reply'}">
-                            <a href="board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}">
-                                    ${board.title}
-                            </a>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="reply"
-                               href="board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}">
-                                └ [RE] : ${board.title}
-                            </a>
-                        </c:otherwise>
-                    </c:choose>
-
+                    <a data-board-no="${board.boardNo}"
+                       data-secret-flag="${board.secretFlag}" data-board-pw="${board.boardPw}">${board.title}</a>
+                    <c:if test="${board.secretFlag == 1}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-lock-fill" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                        </svg>
+                    </c:if>
                 </td>
-                <td><c:out value="${board.writer}"/></td>
+                <c:if test="${board.writer ne null}">
+                    <td>${board.writer}</td>
+                </c:if>
+                <c:if test="${board.writer eq null}">
+                    <td>-</td>
+                </c:if>
                 <td><c:out value="${board.viewCnt}"/></td>
                 <td>${board.writeDate}</td>
             </tr>
@@ -84,11 +82,6 @@
 
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-            <%
-
-
-            %>
-
             <c:choose>
                 <c:when test="${ paging.prev }">
                     <li class="page-item"><a class="page-link"
@@ -171,4 +164,78 @@
 
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <%--                    <h1 class="modal-title fs-5" id="exampleModalLabel">삭제하기</h1>--%>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="board-pw" class="col-form-label">글 비밀번호</label>
+                            <input type="password" class="form-control" id="board-pw" maxlength="4"
+                                   placeholder="숫자 4자리"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                   title="숫자 4자리를 입력하세요"/>
+                        </div>
+                        <p class="fs-6 text-danger hide wrongPw">글 비밀번호가 틀렸습니다.</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-danger" id="okBtn">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<script>
+    let boardPw = 0
+    let boardNo = 0
+    let inputBoardPw = document.getElementById('board-pw')
+    let wrongPw = document.getElementsByClassName('wrongPw')[0]
+
+    let title = document.querySelectorAll('.title')
+    title.forEach((item) => {
+        item.addEventListener('click', (e) => {
+            boardNo = e.currentTarget.getElementsByTagName('a')[0].getAttribute('data-board-no')
+            let secretFlag = e.currentTarget.getElementsByTagName('a')[0].getAttribute('data-secret-flag')
+            boardPw = e.currentTarget.getElementsByTagName('a')[0].getAttribute('data-board-pw')
+
+            if (Number(secretFlag) == 1) {
+                e.currentTarget.setAttribute('data-bs-toggle', 'modal')
+                e.currentTarget.setAttribute('data-bs-target', '#exampleModal')
+                inputBoardPw.value = ''
+                wrongPw.classList.add('hide')
+                wrongPw.classList.remove('show')
+                e.currentTarget.click()
+            } else {
+                location.href = 'board.do?bno=' + boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}'
+            }
+        })
+    })
+
+    let okBtn = document.getElementById('okBtn')
+    okBtn.addEventListener('click', (e) => {
+        wrongPw.classList.add('hide')
+        wrongPw.classList.remove('show')
+
+        if (inputBoardPw.value === boardPw) {
+
+            let closeBtn = document.getElementsByClassName('btn-close')[0]
+            closeBtn.click()
+
+            setTimeout(() => {
+                location.href = 'board.do?bno=' + boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}'
+            }, 200)
+
+        } else {
+            let wrongPw = document.getElementsByClassName('wrongPw')[0]
+            wrongPw.classList.add('show')
+            wrongPw.classList.remove('hide')
+        }
+    })
+</script>

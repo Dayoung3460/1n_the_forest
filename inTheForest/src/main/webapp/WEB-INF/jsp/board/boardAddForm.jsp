@@ -41,10 +41,13 @@
                 <td class="content-col"><input class="form-control" id="boardTitle" autofocus type="text" name="title"/></td>
                 <th>작성자</th>
                 <td class="content-col">
-                    <input readonly class="form-control" type="text" id="boardWriter" name="writer"
-                           value="<%=memberId == null ? "로그인 필요" : memberId%>"/>
-                    <%--                    <input readonly class="form-control" type="text" name="writer" value="<%=memberId%>"/>--%>
-
+                    <c:if test="${memberId == null}">
+                        <input readonly class="form-control" type="text" id="boardWriter" value="로그인 안함"/>
+                    </c:if>
+                    <c:if test="${memberId != null}">
+                        <input readonly class="form-control" type="text" id="boardWriter" name="writer"
+                               value="<%=memberId%>"/>
+                    </c:if>
                 </td>
             </tr>
             <tr class="content">
@@ -118,10 +121,10 @@
         let content = document.getElementById('boardContent').value// 필수
         let writer = document.getElementById('boardWriter').value// 필수
         let image = document.getElementById('boardImg').value
-        let bookNoArr = ${bookNoList};// 후기 일 때 필수
-        let secretFlag = document.getElementById('defaultCheck1').value
+        let bookNoArr = "${bookNoList}";// 후기 일 때 필수
+        let secretFlag = document.getElementById('defaultCheck1')?.value
         let boardPw = document.getElementById('boardPw').value// 문의 일 때 필수
-        let noticeFlag = document.getElementById('defaultCheck2').value
+        let noticeFlag = document.getElementById('defaultCheck2')?.value
 
         if(!title || !content) {
             formFail('제목과 내용을 입력해주세요.', e)
