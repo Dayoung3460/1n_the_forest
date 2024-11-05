@@ -1,6 +1,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.intheforest.vo.BookVO"%>
+<%@ page import="com.intheforest.vo.MemberVO"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
@@ -13,6 +14,7 @@ String category = (String) request.getParameter("category");
 int addDate = Integer.parseInt(request.getParameter("addDate"));
 
 BookVO bvo = (BookVO)request.getAttribute("bookvo");
+MemberVO mvo = (MemberVO)request.getAttribute("MemberVO");
 List<BookVO> optionList = (List<BookVO>)request.getAttribute("optionList");
 
 /*n박 계산[S]*/
@@ -51,7 +53,7 @@ String endDate = sdf.format(calendar.getTime());
 		$(document).ready(function(){
 			var sitePrice = $("#sitePrice").val();
 			sitePrice = sitePrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			$("#totalPrice").html(sitePrice+"원");
+			$("#totalPrice").html(sitePrice);
 			
 			var totalPrice = ${bookvo.sitePrice};
 			var viewPrice = "";
@@ -66,7 +68,7 @@ String endDate = sdf.format(calendar.getTime());
 					totalPrice -= parseInt(optionVal);
 				}						
 				viewPrice = String(totalPrice);
-				$("#totalPrice").html(viewPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원");
+				$("#totalPrice").html(viewPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 			})
 		})
 	</script>
@@ -88,25 +90,15 @@ String endDate = sdf.format(calendar.getTime());
 				<input type="hidden" name="memberId" value="<%=memberId%>">
 				<input type="hidden" name="sitePrice" id="sitePrice" value="${bookvo.sitePrice}">
 					
-				<div class="card text-center">
-				  <div class="card-header">
-				    <%=siteDate%> ~ <%=endDate%>
-				  </div>
-				  <div class="card-body">
-				    <h5 class="card-title">${bookvo.siteName}</h5>
-				    <p class="card-text" id="totalPrice"></p>
-				  </div>
-				</div>
-					
 				<div class="addform">
 					
 					<p class="h4">1. 예약자 정보</p>		
 					
 					<div class="mb-3 row">
 					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약인원</label>
-					  <div class="col-sm-10">
+					  	<div class="col-sm-10">
 						  <select name="memCnt" class="form-select w-25">
-						 	<c:forEach var="i" begin="1" end="${bookvo.siteMax}">
+						 	<c:forEach var="i" begin="2" end="${bookvo.siteMax}">
 								<option value="${i}" selected>${i}인</option>
 							</c:forEach>
 						</select>
@@ -116,7 +108,7 @@ String endDate = sdf.format(calendar.getTime());
 					<div class="mb-3 row">
 					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약자명</label>
 					  <div class="col-sm-10">
-					  	<input type="text" name="name" class="form-control w-50">
+					  	<input type="text" name="name" class="form-control w-50" value="${MemberVO.memberName}">
 					  </div>
 					</div>
 					
@@ -130,21 +122,14 @@ String endDate = sdf.format(calendar.getTime());
 					<div class="mb-3 row">
 					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">연락처</label>
 					  <div class="col-sm-10">
-					  	<input type="text" name="tel" maxlength="13" class="form-control w-50" oninput="autoHyphen(this)">
-					  </div>
-					</div>
-					
-					<div class="mb-3 row">
-					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">주소</label>
-					  <div class="col-sm-10">
-					  <input type="text" name="address" class="form-control w-50">
+					  	<input type="text" name="tel" maxlength="13" class="form-control w-50" oninput="autoHyphen(this)" value="${MemberVO.tel}">
 					  </div>
 					</div>
 					
 					<div class="mb-3 row">
 					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">이메일</label>
 					  <div class="col-sm-10">
-					  	<input type="text" name="email" class="form-control w-50">
+					  	<input type="text" name="email" class="form-control w-50" value="${MemberVO.email}">
 					  </div>
 					</div>
 				</div>
@@ -167,7 +152,22 @@ String endDate = sdf.format(calendar.getTime());
 					</div>
 				</div>
 					
-				<div align="center">
+					
+				<div class="faci-pay">
+					<div class="left">
+						<p class="tit">${bookvo.siteName}</p>
+						<p class="date"><%=siteDate%> ~ <%=endDate%></p>
+						<p class="txt">※ 해당 예약에 대한 결제는 현장결제로 진행됩니다.<br> ※ 추가 문의사항은 053-111-2222로 문의부탁드립니다.</p>
+					</div>
+					<div class="right">
+						<div class="sum">
+							<p class="tit">결제예정금액</p>
+							<p class="txt">총 <span id="totalPrice"></span> 원</p>
+						</div>
+					</div>
+				</div>
+				
+				<div align="center" style="margin-top:30px">
 					<a class="btn btn-secondary btn-lg" href="<%=request.getContextPath()%>/book_calendar.do">이전</a> 
 					<button type="submit" class="btn btn-primary btn-lg">예약확정</button>
 				</div>
