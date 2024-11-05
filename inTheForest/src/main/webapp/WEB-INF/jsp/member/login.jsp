@@ -10,11 +10,15 @@
 
 
 <c:if test="${msg != null }">
-	<p style="color: red;">${msg }</p>
+	<script>
+	alert("아이디와 비밀번호를 입력하세요.")
+	</script>
 </c:if>
 
 <c:if test="${quitmsg != null }">
-	<p style="color: red;">${quitmsg }</p>
+	<script>
+	alert("탈퇴한 회원입니다.")
+	</script>
 </c:if>
 
 

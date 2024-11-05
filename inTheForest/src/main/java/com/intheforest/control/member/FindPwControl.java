@@ -28,13 +28,35 @@ public class FindPwControl implements Control {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			req.getRequestDispatcher("member/findPwForm.tiles").forward(req, resp);	
 		}else if(req.getMethod().equalsIgnoreCase("POST")) {
+			MemberService svc = new MemberServiceImpl();
+			
+			if(id=="" || name =="" || email=="") {
+				//로그인 실패 (login.jsp로 이동)
+				req.setAttribute("msg", "아이디,이름,이메일을 입력하세요");
+				req.getRequestDispatcher("member/findPwForm.tiles").forward(req, resp);
+				return;
+			}
+			
+			MemberVO member = svc.searchMember(id);
+			
+			if(member.getQuit() == 1) {
+				req.setAttribute("quitmsg", "탈퇴 한 회원 입니다.");
+				req.getRequestDispatcher("member/findPwForm.tiles").forward(req, resp);
+				return;
+			}
+			
+			
+			
+		
+			
 			MemberVO mvo = new MemberVO();
 			mvo.setMemberId(id);
 			mvo.setMemberName(name);
 			mvo.setEmail(email);
 			
-			MemberService svc = new MemberServiceImpl();
+
 			int search = svc.pwCheck(mvo);
+			
 			
 			if(search > 0) { //일치정보있는경우 
 				String tempPw = svc.generateRdPw(); //임시비밀번호생성

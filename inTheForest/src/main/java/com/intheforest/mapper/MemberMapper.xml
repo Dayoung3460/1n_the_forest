@@ -75,7 +75,7 @@ values (#{memberId}
 </insert>
 
 <!-- 아이디체크 (이름.이메일 받음)-->
-<select id="findMemberId" resultType="member">
+<select id="findMemberId" resultType="String">
 select member_id
 from member
 where member_name=#{memberName}
