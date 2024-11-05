@@ -59,7 +59,7 @@
                 <c:if test="${member.permission eq 'admin'}">
                     <button class="btn btn-success" id="replyWriteBtn">답글쓰기</button>
 
-                        <button class="btn btn-primary hide" id="replyRegisterBtn" type="submit">답글 등록</button>
+                        <button class="btn btn-primary hide" id="replyRegisterBtn">답글 등록</button>
 
 
                 </c:if>
@@ -114,7 +114,7 @@
 
         // form?.addEventListener('submit', function (e) {
         //     e.preventDefault();
-            const formData = new FormData(this); // 현재 form 데이터 수집
+            const formData = new FormData(); // 현재 form 데이터 수집
 
             // 폼 데이터에 추가할 항목
             // formData.append('category', 'reply' );
@@ -130,11 +130,8 @@
                 body: formData,
             })
                 .then((resolve) => {
-                    console.log(resolve)
-                    console.log(resolve.json())
-                    return resolve.json()
+                    location.href = "boardList.do?category=qna"
                 }).then((result) => {
-                console.log(result)
             })
                 .catch((err) => {
                     console.log(err)

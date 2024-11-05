@@ -11,11 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class AddBoardControl implements Control {
   
@@ -63,32 +58,24 @@ public class AddBoardControl implements Control {
     board.setNoticeFlag(noticeFlag);
     
     BoardServiceImpl boardServiceImpl = new BoardServiceImpl();
-    
-    boolean isSuccess = boardServiceImpl.RegisterBoard(board);
-  
-    if (isSuccess) {
-      
-      resp.sendRedirect("boardList.do?category=" + category);
-    
-      if(isReply != null && isReply.equals("true")) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("result", "boardList.do?category=" + category);
-        
-        try {
-          String json = objectMapper.writeValueAsString(resultMap);
-          System.out.println("json = " + json);
-          resp.getWriter().print(json);
-        } catch (JsonProcessingException e) {
-          e.printStackTrace();
-        }
-      }
+
+    // 답글 등록일 경우
+    if(isReply != null && isReply.equals("true")) {
+
+      // 문의글 등록일 경우
     } else {
-      req.setAttribute("msg", "등록하는 중 오류가 발생했습니다.");
-      // req에서 받은 값을 다시 전달에서 페이지 이동
-      req.getRequestDispatcher("board/boardAddForm.tiles").forward(req, resp);
+      boolean isSuccess = boardServiceImpl.RegisterBoard(board);
+
+      if (isSuccess) {
+        resp.sendRedirect("boardList.do?category=" + category);
+      } else {
+        req.setAttribute("msg", "등록하는 중 오류가 발생했습니다.");
+        // req에서 받은 값을 다시 전달에서 페이지 이동
+        req.getRequestDispatcher("board/boardAddForm.tiles").forward(req, resp);
+      }
     }
+    
+
   }
   
 }

@@ -32,7 +32,16 @@
         <!-- 검색조건이 있으면 where 태그를 타고 아니면 안탐 -->
         <where>
             <choose>
-                <when test="category != null">
+                <when test="category == 'qna'">
+                    lower(board_category) in ('qna', 'reply')
+                </when>
+                <when test="category == 'reply'">
+                    lower(board_category) in ('qna', 'reply')
+                </when>
+                <when test="category == 'notice'">
+                    lower(board_category) like #{category}
+                </when>
+                <when test="category == 'review'">
                     lower(board_category) like #{category}
                 </when>
                 <when test="searchCondition == 'title'">
@@ -65,7 +74,16 @@
         from board
         <where>
             <choose>
-                <when test="category != null">
+                <when test="category == 'qna'">
+                    lower(board_category) in ('qna', 'reply')
+                </when>
+                <when test="category == 'reply'">
+                    lower(board_category) in ('qna', 'reply')
+                </when>
+                <when test="category == 'notice'">
+                    lower(board_category) like #{category}
+                </when>
+                <when test="category == 'review'">
                     lower(board_category) like #{category}
                 </when>
                 <when test="searchCondition == 'title'">

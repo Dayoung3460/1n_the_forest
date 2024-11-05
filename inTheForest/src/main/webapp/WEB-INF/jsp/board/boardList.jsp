@@ -5,10 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<%
-    String category = (String) request.getAttribute("category");
-%>
-
 <div class="p-3 boardList">
     <c:choose>
         <c:when test="${category eq 'qna'}">
