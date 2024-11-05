@@ -16,5 +16,5 @@ public interface BookMapper {
 	int selectSiteDate(@Param("siteNo") int siteNo, @Param("startDate") String startDate);
 	 
 	int insertBook(BookVO book);
-	int insertBookOption(BookVO book);
+	int insertBookOption(BookVO bookOption);
 }
