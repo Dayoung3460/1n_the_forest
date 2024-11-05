@@ -23,6 +23,7 @@
 
         .title {
             text-align: left;
+            cursor: pointer;
         }
 
         .redLabel {
@@ -61,8 +62,16 @@
             color: #ffffff;
             text-decoration: none;
         }
+
     }
 
-
+    .modal-body {
+        .hide {
+            display: none;
+        }
+        .show {
+            display: block;
+        }
+    }
 }
 
