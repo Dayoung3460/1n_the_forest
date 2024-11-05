@@ -32,35 +32,33 @@
 		from (select rownum rn, a.*
 		from (select *
 		from site_book
-		<where>member_id = #{memberId}</where>
-		<where>
-			<choose>
-				<when test="#{searchCondition} == 'bno'.toString()">book_no like '%'||#{keyword}||'%'</when>
-				<when test="#{searchCondition} == 'start'.toString()">start_date like '%'||#{keyword}||'%'</when>
-				<when test="#{searchCondition} == 'bnoStart'.toString()">(book_no like '%'||#{keyword}||'%') or (start_date
-					like '%'||#{keyword}||'%')</when>
-			</choose>
-		</where>
+		where create_date is not null
+		<if test="memberId != null">and member_id = #{memberId}</if>
+		<choose>
+			<when test="searchCondition == 'bno'.toString()">and book_no like '%'||#{keyword}||'%'</when>
+			<when test="searchCondition == 'start'.toString()">and start_date like '%'||#{keyword}||'%'</when>
+			<when test="searchCondition == 'bnoStart'.toString()">and ((book_no like '%'||#{keyword}||'%') or 
+																														(start_date like '%'||#{keyword}||'%'))</when>
+		</choose>
 		order by book_no) a )b
 		where b.rn > (#{currentPage} - 1 ) * 10
-<![CDATA[
-  and b.rn <= (#{currentPage} * 10)
-  ]]>
+		<![CDATA[
+		  and b.rn <= (#{currentPage} * 10)
+		  ]]>
 	</select>
 
 	<!-- 페이징 카운트 -->
 	<select id="selectCount" resultType="int">
 		select count(1)
 		from site_book
-		<where>
-			<choose>
-				<when test="searchCondition == 'bno'.toString()">book_no like '%'||#{keyword}||'%'</when>
-				<when test="searchCondition == 'start'.toString()">start_date like '%'||#{keyword}||'%'</when>
-				<when test="searchCondition == 'bnoStart'.toString()">(book_no like '%'||#{keyword}||'%') or (start_date
-					like '%'||#{keyword}||'%')</when>
-			</choose>
-		</where>
-		<where>member_id = #{memberId}</where>
+		where create_date is not null
+		<if test="memberId != null">and member_id = #{memberId}</if>
+		<choose>
+			<when test="searchCondition == 'bno'.toString()">and book_no like '%'||#{keyword}||'%'</when>
+			<when test="searchCondition == 'start'.toString()">and start_date like '%'||#{keyword}||'%'</when>
+			<when test="searchCondition == 'bnoStart'.toString()">and (book_no like '%'||#{keyword}||'%') or (start_date
+				like '%'||#{keyword}||'%')</when>
+		</choose>
 	</select>
 	
 <!-- 뭐하는건지 모르겠음 -->
