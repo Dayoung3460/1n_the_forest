@@ -118,6 +118,9 @@
                     <option value="tel"
                     ${ search.searchCondition == "tel" ? "selected" : "" }>연락처
                     </option>
+                    <option value="joinDate"
+                    ${ search.searchCondition == "joinDate" ? "selected" : "" }>가입일
+                    </option>
                     <option value="permission"
                     ${ search.searchCondition == "permission" ? "selected" : "" }>권한
                     </option>
@@ -154,7 +157,7 @@
 <script>
     //검색조건을 권한으로 선택했을 경우, user와 admin 중 선택하도록 표시
     let selectBox = document.querySelector('select');
-
+		console.log('${paging}');
     selectBox.addEventListener('change', (e) => {
         let optionVal = e.target.value;
 				let keywordBox = e.target.parentElement.nextSibling.nextSibling;

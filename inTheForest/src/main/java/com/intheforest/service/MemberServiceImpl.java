@@ -20,8 +20,8 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.listMember(search);
 	}
 	@Override
-	public int totalCnt() {
-		return mapper.totalCount();
+	public int totalCnt(SearchDTO search) {
+		return mapper.totalCount(search);
 	}
 	@Override
 	public MemberVO memberLogin(String memberId, String password) {

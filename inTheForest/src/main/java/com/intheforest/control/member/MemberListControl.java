@@ -31,7 +31,7 @@ public class MemberListControl implements Control {
 	    
 		
 		MemberService svc = new MemberServiceImpl();
-		int totalCount = svc.totalCnt();
+		int totalCount = svc.totalCnt(search);
 		List<MemberVO> list = svc.memberList(search);
 		
 		for(MemberVO member : list) {

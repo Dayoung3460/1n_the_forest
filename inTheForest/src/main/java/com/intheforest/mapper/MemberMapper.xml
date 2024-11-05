@@ -29,10 +29,12 @@
 				                  <when test="searchCondition == 'tel'">
 				                      tel like '%' || #{keyword} || '%'
 				                  </when>	
+				                  <when test="searchCondition == 'joinDate'">
+				                      joined_date like '%' || #{keyword} || '%'
+				                  </when>	
 				                  <when test="searchCondition == 'permission'">
 				                      permission = #{keyword}
 				                  </when>	
-				                  <!-- joined_date로 검색조건 넣는 건 추후에... -->
 						  	  		</choose>
 				  			  </where>
   		  					order by joined_date desc
@@ -44,9 +46,36 @@
 </select>
 
 <!-- 페이징을 위한 totalCount -->
-<select id="totalCount" resultType="int">
+<select id="totalCount" resultType="int" parameterType="search">
 	select count(1)
 	from   member
+	<!-- 검색 키워드가 있으면 where 태그 생성 -->
+  <where>
+  		<choose>
+             <when test="searchCondition == 'id'">
+                 <!-- ||: 문자열을 연결하는 연산자 -->
+                 member_id like '%' || #{keyword} || '%'
+             </when>
+             <when test="searchCondition == 'name'">
+                 member_name like '%' || #{keyword} || '%'
+             </when>
+             <when test="searchCondition == 'address'">
+                 address like '%' || #{keyword} || '%'
+             </when>
+             <when test="searchCondition == 'email'">
+                 email like '%' || #{keyword} || '%'
+             </when>	
+             <when test="searchCondition == 'tel'">
+                 tel like '%' || #{keyword} || '%'
+             </when>	
+             <when test="searchCondition == 'joinDate'">
+                 joined_date like '%' || #{keyword} || '%'
+             </when>	
+             <when test="searchCondition == 'permission'">
+                 permission = #{keyword}
+             </when>	
+  		</choose>
+  </where>
 </select>
 
 <!-- 로그인 -->

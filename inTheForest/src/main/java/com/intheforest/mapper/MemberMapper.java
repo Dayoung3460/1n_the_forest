@@ -12,7 +12,7 @@ public interface MemberMapper{
 	public List<MemberVO> listMember(SearchDTO search);
 	
 	//전체 회원 수
-	public int totalCount();
+	public int totalCount(SearchDTO search);
 	
 	
 	//id.password조회 (로그인)
