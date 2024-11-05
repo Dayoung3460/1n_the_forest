@@ -66,14 +66,14 @@
         	#{totalPrice})
     </insert>
 
-    <insert id="insertOption" parameterType = "book">
+    <insert id="insertBookOption" parameterType = "book">
     insert into site_book_option (option_no,
                         	book_no,
                         	member_id,
                         	site_no)
 	values  (#{optionNo},
         	#{bookNo},
-        	#{member_id},
+        	#{memberId},
         	#{siteNo})
     </insert>
 
