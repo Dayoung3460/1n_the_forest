@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.intheforest.mapper.MyBookMapper">
-
+<!-- 전체 출력하는 쿼리 -->
 	<select id="selectMyPageBookList" parameterType="String"
 		resultType="mybook">
 		select b.book_no
@@ -26,25 +26,43 @@
 		on b.site_no = s.site_no
 		where b.member_id = #{member_id}
 	</select>
+	<!-- 마이페이지 페이지네이션 출력하는 쿼리 + 검색어 -->
 	<!-- 검색조건 -->
 	<select id="listWithPage" resultType="mybook">
-		select b.*
+		select b.book_no
+		       ,b.site_no
+		       ,s.site_name
+		       ,s.category
+		       ,b.mem_cnt
+		       ,to_char(to_date(substr(b.start_date,1,10),'YYYY/MM/DD'),
+		       'YYYY-MM-DD') start_date
+		       ,to_char(to_date(substr(b.end_date,1,10),'YYYY/MM/DD'), 'YYYY-MM-DD')
+		       end_date
+		       ,b.total_price
+		       ,b.create_date
+		       ,b.cancel_flag
+		       ,b.car_num
+		       ,b.member_id
+		       ,(to_date(substr(b.end_date,1,10),'YYYY/MM/DD') -
+		       to_date(substr(b.start_date,1,10),'YYYY/MM/DD')) add_date
 		from (select rownum rn, a.*
-		from (select *
-		from site_book
-		where create_date is not null
+		      from (select *
+		            from site_book
+		            where create_date is not null
 		<if test="memberId != null">and member_id = #{memberId}</if>
 		<choose>
 			<when test="searchCondition == 'bno'.toString()">and book_no like '%'||#{keyword}||'%'</when>
 			<when test="searchCondition == 'start'.toString()">and start_date like '%'||#{keyword}||'%'</when>
 			<when test="searchCondition == 'bnoStart'.toString()">and ((book_no like '%'||#{keyword}||'%') or 
-																														(start_date like '%'||#{keyword}||'%'))</when>
+																	(start_date like '%'||#{keyword}||'%'))</when>
 		</choose>
-		order by book_no) a )b
+		            order by book_no) a )b join site s
+                                            on b.site_no = s.site_no
 		where b.rn > (#{currentPage} - 1 ) * 10
 		<![CDATA[
 		  and b.rn <= (#{currentPage} * 10)
 		  ]]>
+		order by b.book_no
 	</select>
 
 	<!-- 페이징 카운트 -->

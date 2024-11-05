@@ -43,7 +43,7 @@
 			<%
 			for (MyBookVO bvo : list) {
 			%>
-            <tr onClick="location.href='book_app.do?siteDate=<%=bvo.getStartDate()%>&category=<%=bvo.getCategory()%>&siteNo=<%=bvo.getSiteNo()%>&addDate=<%=bvo.getAddDate()%>&endDate=<%=bvo.getEndDate()%>'">
+            <tr onClick="location.href='bookAppForm.do?siteDate=<%=bvo.getStartDate()%>&category=<%=bvo.getCategory()%>&siteNo=<%=bvo.getSiteNo()%>&addDate=<%=bvo.getAddDate()%>&endDate=<%=bvo.getEndDate()%>'">
 				<th scope="row"><%=bvo.getBookNo()%></th>
 				<td><%=bvo.getSiteName()%></td>
 				<td><%=bvo.getMemCnt()%>명</td>
