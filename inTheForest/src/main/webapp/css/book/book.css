@@ -19,7 +19,7 @@ a{text-decoration:none; color:black;}
 .res-calendar ul{margin-top: 0; margin-bottom: 1rem; list-style:none; padding:0;}
 .res-calendar table{width:100%;}
 .res-calendar td, .res-calendar th	{min-width:90px;width:14.285714%;transition:all 0.2s ease-out;}
-.res-calendar td{border:1px solid #E5E9EE;}
+.res-calendar td{border:1px solid #dcdddf;}
 .res-calendar thead th	{background:#74bfa9;border-top:none;border-bottom:none;padding:20px;text-align:center;font-size:15px;font-weight:500;color:#fff;}
 .res-calendar tbody td	{vertical-align:top;height:150px;position:relative;}
 .res-calendar tbody td li input, .res-calendar tbody td li label{cursor:pointer;}
@@ -57,7 +57,7 @@ a{text-decoration:none; color:black;}
 .card .card-header {background-color: #e3e3e3;}
 .card .card-text {font-size: 21px;font-weight: 600; color:#74bfa9}
 
-.faci-pay{display:flex;border-radius:10px;overflow:hidden;border:1px solid #ccc;margin-top:30px}
+.faci-pay{display:flex;border-radius:20px;overflow:hidden;border:1px solid #ccc;margin-top:30px}
 .faci-pay>div{padding:1.5rem;}
 .faci-pay .left{width:100%;}
 .faci-pay .left .tit{font-size:24px;font-weight:700;color:#74bfa9;margin-bottom:20px;line-height:1.3;}
