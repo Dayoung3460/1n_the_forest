@@ -43,7 +43,7 @@
 			<%
 			for (MyBookVO bvo : list) {
 			%>
-            <tr onClick="location.href='bookAppForm.do?siteDate=<%=bvo.getStartDate()%>&category=<%=bvo.getCategory()%>&siteNo=<%=bvo.getSiteNo()%>&addDate=<%=bvo.getAddDate()%>&endDate=<%=bvo.getEndDate()%>'">
+            <tr onClick="location.href='detailBook.do?bookNo=<%=bvo.getBookNo()%>&memberId=<%=bvo.getMemberId()%>&siteNo=<%=bvo.getSiteNo()%>'">
 				<th scope="row"><%=bvo.getBookNo()%></th>
 				<td><%=bvo.getSiteName()%></td>
 				<td><%=bvo.getMemCnt()%>명</td>
@@ -61,38 +61,37 @@
     <!-- 페이지 네이션 -->
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
+        
             <!-- 이전페이지 -->
-            <%if (paging.isPrev()){ %>
+         <%if (paging.isPrev()){ %>
             <li class="page-item" aria-current="page"><a class="page-link"
                                                          href="myPageBookList.do?page=<%=paging.getStartPage()-1 %>">Previous</a>
-                    <%} else { %>
+         <%} else { %>
             <li class="page-item disabled"><a class="page-link">Previous</a>
-                <%} %></li>
+         <%} %></li>
 
             <!-- 페이지 출력 -->
-            <%
-            		System.out.println("시작" + paging.getStartPage() + "마지막" + paging.getEndPage());
-                for(int p = paging.getStartPage(); p <= paging.getEndPage(); p++){
-                    if(paging.getCurrentPage() == p){
-				            %>
-				            <li class="page-item active" aria-current="page"><span
-				                    class="page-link"><%=p %></span></li>
-				            <%} else { %>
-				            <li class="page-item"><a class="page-link"
-				                                     href="myPageBookList.do?searchCondition=<%=sc %>&keyword=<%=kw %>&currentPage=<%=p %>">
-				                <%=p %></a></li>
-				            <%
-                }}%>
+         <%
+            System.out.println("시작" + paging.getStartPage() + "마지막" + paging.getEndPage());
+            for(int p = paging.getStartPage(); p <= paging.getEndPage(); p++){
+            if(paging.getCurrentPage() == p){
+		 %>
+			<li class="page-item active" aria-current="page">
+			<span class="page-link"><%=p %></span></li>
+		<%} else { %>
+			<li class="page-item"><a class="page-link"
+				 href="myPageBookList.do?searchCondition=<%=sc %>&keyword=<%=kw %>&currentPage=<%=p %>">
+		<%=p %></a></li>
+		<% }}%>
 
             <!-- 다음페이지 -->
-            <%
-                if(paging.isNext()){
-            %>
-            <li class="page-item" aria-current="page"><a class="page-link"
-                                                         href="myPageBookList.do?page=<%=paging.getEndPage() + 1%>">Next</a>
-                    <%} else { %>
+        <% if(paging.isNext()){ %>
+            <li class="page-item" aria-current="page">
+            <a class="page-link" href="myPageBookList.do?page=<%=paging.getEndPage() + 1%>">
+            Next</a>
+        <%} else { %>
             <li class="page-item disabled"><a class="page-link">Next</a>
-                <%} %>
+        <%} %>
             </li>
 
         </ul>
