@@ -1,12 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.intheforest.vo.BoardVO" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
     BoardVO board = (BoardVO) request.getAttribute("board");
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    String wdate = sdf.format(board.getWriteDate());
+//    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//    String wdate = sdf.format(board.getWriteDate());
     String category = (String) request.getAttribute("category");
 %>
 <div class="board">
@@ -29,11 +30,11 @@
         </c:otherwise>
     </c:choose>
     <hr/>
-    <form>
+    <div>
         <div class="top">
             <span>${board.title}</span>
             <span>작성자: ${board.writer}</span>
-            <span><%=wdate%></span>
+            <span>${board.writeDate}</span>
         </div>
         <hr/>
         <div class="content">
@@ -64,7 +65,7 @@
                 <button class="btn btn-success" id="goListBtn">목록</button>
             </div>
         </div>
-    </form>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -92,8 +93,9 @@
         location.href = 'boardList.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
     })
 
+
     let editBtn = document.getElementById('editBtn')
-    editBtn.addEventListener('click', (e) => {
+    editBtn?.addEventListener('click', (e) => {
         e.preventDefault()
         location.href = 'modifyBoard.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
     })
@@ -106,17 +108,30 @@
 
     let prevBtn = document.getElementById('prevBtn')
     prevBtn.addEventListener('click', (e) => {
-        e.preventDefault()
-        // 이전 게시글넘버 구해서 bno 넣기
-        getPrevBookNo(${board.writeDate}, ${category})
-        location.href = 'board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}'
-    })
+        getPrevBookNo("${board.writeDate}", "${category}", true, (result) => {
+            if (result.result != null) {
+                if (result.result.boardNo) {
+                    location.href = 'board.do?bno=' + result.result.boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}';
+                }
+            } else {
+                alert("이전글이 없습니다.");
+            }
+        });
+    });
+
 
     let nextBtn = document.getElementById('nextBtn')
+    let nextBtn = document.getElementById('nextBtn')
     nextBtn.addEventListener('click', (e) => {
-        e.preventDefault()
-        // 다음 게시글넘버 구해서 bno 넣기
-        location.href = 'board.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}'
+        getNextBookNo("${board.writeDate}", "${category}", false, (result) => {
+            if (result.result != null) {
+                if (result.result.boardNo) {
+                    location.href = 'board.do?bno=' + result.result.boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}';
+                }
+            } else {
+                alert("다음글이 없습니다.");
+            }
+        });
     })
 
 

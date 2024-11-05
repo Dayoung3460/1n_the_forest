@@ -131,17 +131,17 @@
     </select>
 
     <select id="selectPrevBoard" parameterType="board">
-        select board_no
+        select *
         from board
         where write_date = (
             select max(write_date)
             from board
             <![CDATA[
-                where write_date < #{writeDate}
+                where write_date < TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
             ]]>
         )
         <![CDATA[
-        and write_date < #{writeDate}
+        and write_date < TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
         ]]>
         and lower(board_category) like #{boardCategory}
         order by write_date desc
@@ -149,7 +149,7 @@
     </select>
 
     <select id="selectNextBoard" parameterType="board">
-        select board_no
+        select *
         from board
         where write_date = (
         select min(write_date)
