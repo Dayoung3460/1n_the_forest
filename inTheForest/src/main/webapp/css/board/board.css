@@ -36,9 +36,22 @@
     .content {
         min-height: 400px;
     }
+
+    #replyBox {
+        &.hide {
+            display: none;
+        }
+    }
+
     .btnContainer {
         display: flex;
         justify-content: space-between;
+        .btnBox1 {
+            display: flex;
+        }
+        .hide {
+            display: none;
+        }
     }
 }
 
