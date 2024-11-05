@@ -6,9 +6,11 @@ import org.apache.ibatis.annotations.Param;
 import com.intheforest.vo.BookVO;
 
 public interface BookMapper {
-	//예약 상세내역 조회
+	//예약 조회용
 	BookVO selectBook(int bookNo);
+	List<String> selectBookOption(int bookNo);
 	
+	//예약용
 	List<BookVO> siteList();
 	int bookLast();
 	List<BookVO> optionList();

@@ -29,7 +29,9 @@
     %>
         <header>
             <div class="loginTop container">
-                <a href="#" onclick="checkId('<%=memberId%>')" id= "checkId" >마이페이지</a>
+            		<c:if test="${permission != 'admin'}">
+                		<a href="#" onclick="checkId('<%=memberId%>')" id= "checkId" >마이페이지</a>
+            		</c:if>
                 <%if (memberId == null) {%>
                		<a href="login.do">로그인</a>
                 <%} else{ %>
@@ -67,7 +69,7 @@
 		                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 		                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="memberList.do">회원관리</a></li>
-		                            <li class="nav-item"><a class="nav-link" href="detailBook.do?bookNo=2001&memberId=mid901&siteNo=1001">예약관리</a></li>
+		                            <li class="nav-item"><a class="nav-link" href="myPageBookList.do">예약관리</a></li>
 		                        </ul>
 		                    </div>
 		                </div>

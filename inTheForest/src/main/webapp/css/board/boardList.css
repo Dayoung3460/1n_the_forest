@@ -39,11 +39,6 @@
         }
     }
 
-    .page-link.active, .active > .page-link {
-        background-color: var(--bs-teal);
-        border-color: var(--bs-teal);
-    }
-
     .bottom {
         position: relative;
         margin-right: 0 !important;

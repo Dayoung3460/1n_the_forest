@@ -10,7 +10,7 @@ public interface MemberService {
 	List<MemberVO> memberList(SearchDTO search);
 	
 	//회원 수 조회
-	int totalCnt();
+	int totalCnt(SearchDTO search);
 	
 	
 	//로그인 

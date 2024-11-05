@@ -88,7 +88,8 @@ document.querySelector('input[value="수정"]').addEventListener('click', functi
 
 //돌아가기 버튼 클릭 시 
 document.getElementById('returnButton').addEventListener('click', function(e) {
-	location.href = 'myPageBookList.do?memberId=${memberVO.memberId}';
+	//location.href = 'myPageBookList.do?memberId=${memberVO.memberId}';
+	history.back();
 });
 </script>
 
