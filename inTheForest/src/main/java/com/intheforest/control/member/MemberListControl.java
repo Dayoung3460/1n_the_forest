@@ -34,6 +34,10 @@ public class MemberListControl implements Control {
 		int totalCount = svc.totalCnt();
 		List<MemberVO> list = svc.memberList(search);
 		
+		for(MemberVO member : list) {
+			member.setAddress(member.getAddress().replace("|", " "));
+		}
+		
 		req.setAttribute("memberList", list);
 		req.setAttribute("search", search);
 		req.setAttribute("paging", new PageDTO(Integer.parseInt(currentPage), totalCount));

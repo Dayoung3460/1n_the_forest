@@ -53,6 +53,10 @@ footer span {
 .bg-deepMint {
   background-color: #236354;
 }
+.page-link.active, .active > .page-link {
+    background-color: #74bfa9;
+    border-color: #74bfa9;
+}
 a {
   text-decoration:none; 
   color:black;

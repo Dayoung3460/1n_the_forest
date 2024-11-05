@@ -34,6 +34,7 @@ public class DetailBookControl implements Control {
 		
 		MemberService mem_svc = new MemberServiceImpl();
 		MemberVO member = mem_svc.searchMember(memId);
+		member.setAddress(member.getAddress().replace("|", " "));
 		
 		req.setAttribute("book", book);
 		req.setAttribute("member", member);
