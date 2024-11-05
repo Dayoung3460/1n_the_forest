@@ -5,6 +5,7 @@ import com.intheforest.control.board.*;
 import com.intheforest.control.book.BookAppCont;
 import com.intheforest.control.book.BookAppFormCont;
 import com.intheforest.control.book.BookCalCont;
+import com.intheforest.control.book.CancelBookControl;
 import com.intheforest.control.member.*;
 import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.site.IntroPageControl;
@@ -83,6 +84,7 @@ public class FrontController extends HttpServlet{
 		map.put("/bookAppForm.do", new BookAppFormCont());
 		
 		map.put("/modifyBook.do", new ModifyBookControl());
+		map.put("/cancelBook.do", new CancelBookControl());
 		map.put("/detailBook.do", new DetailBookControl());
   
   

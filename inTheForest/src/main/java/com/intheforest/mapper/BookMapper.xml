@@ -8,19 +8,22 @@
 		from   site_book b join site_book_option o
                              on b.book_no = o.book_no
 		where  b.book_no = 2001; 쓰면 좋을 듯 -->
-
+	
+	<!-- 예약정보 조회 -->
 	<select id="selectBook" resultType="book" parameterType="int">
 		select *
 		from   site_book
-		where  book_no = #{bookNo}
+		where  book_no = #{bookNo} and use_flag='y'
 	</select>
-
+	
+	<!-- 숙소 목록 -->
 	<select id="siteList" resultType="book">
 	  select *
 	    from site 
 	    order by site_name
 	</select>
 	
+	<!-- 마지막으로 등록된 예약번호 조회 -->
 	<select id="bookLast" resultType="int">
 	  select book_no
 	    from site_book
@@ -30,17 +33,20 @@
 	    order by book_no desc
 	</select>
 
+	<!-- 숙소 옵션 목록 -->
 	<select id="optionList" resultType="book">
 	  select *
 	    from site_option 
 	</select>
 	
+	<!-- 숙소정보 조회 -->
 	<select id="selectSite" parameterType="string">
     select *
     from site 
     where site_no=#{siteNo}  	
   </select>
   
+  <!-- 기준날짜에 해당 숙소에 대한 예약이 있는지 조회 -->
   <select id="selectSiteDate" resultType="int">
     select count(*) as cnt
     from site_book 
@@ -52,6 +58,12 @@
     and cancel_flag = 0
   </select>
   
+  <!-- 예약 취소 -->
+   <update id="cancelBook" parameterType = "int">
+    update site_book set cancel_flag=1 where book_no=#{bookNo} 
+  </update>
+  
+  <!-- 예약정보 입력 -->
   <insert id="insertBook" parameterType = "book">
     insert into site_book (book_no,
                         	member_id,
@@ -70,7 +82,8 @@
         	#{carNum},
         	#{totalPrice})
     </insert>
-
+	
+	<!-- 예약 확정 시 선택한 옵션목록 추가 -->
     <insert id="insertBookOption" parameterType = "book">
     insert into site_book_option (option_no,
                         	book_no,
