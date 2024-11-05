@@ -53,7 +53,7 @@ public class BookAppCont implements Control {
 					
 					svc.registerBookOption(bookOption);
 				}
-				resp.sendRedirect("/inTheForest/bookCalendar.do");
+				resp.sendRedirect("/inTheForest/detailBook.do?bookNo="+lastNo+"&memberId="+memberId+"&siteNo="+siteNo);
 			}
 		}catch(Exception e){
 			req.setAttribute("msg","등록하는중 오류가 발생했습니다.");

@@ -70,6 +70,14 @@ String endDate = sdf.format(calendar.getTime());
 				viewPrice = String(totalPrice);
 				$("#totalPrice").html(viewPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 			})
+			
+			$('input[name="carYn"]').change(function(){
+				if($('input[name=carYn]:checked').val() == "carY"){
+					$('#carNumDiv').show();
+				}else{
+					$('#carNumDiv').hide();
+				}
+			})
 		})
 	</script>
 	<body>
@@ -82,7 +90,7 @@ String endDate = sdf.format(calendar.getTime());
 		</nav>
 	
 			<h1>실시간예약 상세</h1>
-			<form action="bookApp.do" method="POST">
+			<form action="bookApp.do" method="POST" name="form">
 				<input type="hidden" name="siteDate" value="<%=siteDate%>"> 
 				<input type="hidden" name="category" value="<%=category%>">
 				<input type="hidden" name="siteNo" value="<%=siteNo%>">
@@ -108,28 +116,42 @@ String endDate = sdf.format(calendar.getTime());
 					<div class="mb-3 row">
 					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약자명</label>
 					  <div class="col-sm-10">
-					  	<input type="text" name="name" class="form-control w-50" value="${MemberVO.memberName}">
+					  	<input type="text" name="name" class="form-control w-50" value="${MemberVO.memberName}" readonly disabled >
 					  </div>
-					</div>
-					
-					<div class="mb-3 row">
-					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">차량번호</label>
-					  <div class="col-sm-10">
-					  	<input type="text" name="carNum" class="form-control w-50">
-					  </div>
-					</div>
+					</div>					
 					
 					<div class="mb-3 row">
 					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">연락처</label>
 					  <div class="col-sm-10">
-					  	<input type="text" name="tel" maxlength="13" class="form-control w-50" oninput="autoHyphen(this)" value="${MemberVO.tel}">
+					  	<input type="text" name="tel" maxlength="13" class="form-control w-50" oninput="autoHyphen(this)" value="${MemberVO.tel}" readonly disabled >
 					  </div>
 					</div>
 					
 					<div class="mb-3 row">
 					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">이메일</label>
 					  <div class="col-sm-10">
-					  	<input type="text" name="email" class="form-control w-50" value="${MemberVO.email}">
+					  	<input type="text" name="email" class="form-control w-50" value="${MemberVO.email}" readonly disabled >
+					  </div>
+					</div>
+					
+					<div class="mb-3 row">
+					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">차량유무</label>
+					  <div class="col-sm-10">
+					  	<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="carYn" id="carY" value="carY" checked>
+						  <label class="form-check-label" for="carY">유</label>
+						</div>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="carYn" id="carN" value="carN">
+						  <label class="form-check-label" for="carN">무</label>
+						</div>
+					  </div>
+					</div>
+					
+					<div class="mb-3 row" id="carNumDiv">
+					  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">차량번호</label>
+					  <div class="col-sm-10">
+					  	<input type="text" name="carNum" class="form-control w-50" placeholder="00가 1234">
 					  </div>
 					</div>
 				</div>
@@ -152,7 +174,6 @@ String endDate = sdf.format(calendar.getTime());
 					</div>
 				</div>
 					
-					
 				<div class="faci-pay">
 					<div class="left">
 						<p class="tit">${bookvo.siteName}</p>
@@ -169,7 +190,7 @@ String endDate = sdf.format(calendar.getTime());
 				
 				<div align="center" style="margin-top:30px">
 					<a class="btn btn-secondary btn-lg" href="<%=request.getContextPath()%>/book_calendar.do">이전</a> 
-					<button type="submit" class="btn btn-primary btn-lg">예약확정</button>
+					<button type="submit" class="btn btn-success btn-lg">예약확정</button>
 				</div>
 			</form>
 		</div>

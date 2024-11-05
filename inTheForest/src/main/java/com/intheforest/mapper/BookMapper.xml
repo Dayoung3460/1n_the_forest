@@ -13,7 +13,7 @@
 	<select id="selectBook" resultType="book" parameterType="int">
 		select *
 		from   site_book
-		where  book_no = #{bookNo} and use_flag='y'
+		where  book_no = #{bookNo}
 	</select>
 	
 	<!-- 숙소 목록 -->
