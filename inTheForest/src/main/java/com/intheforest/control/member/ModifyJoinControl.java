@@ -64,7 +64,7 @@ public class ModifyJoinControl implements Control {
 			member.setEmail(email);
 			member.setTel(tel);
 			member.setAddress(fullAddress);
-			System.out.println(member);
+			//System.out.println(member);
 			
 			try {
 				if(svc.modifyJoin(member)) {
@@ -101,7 +101,7 @@ public class ModifyJoinControl implements Control {
 				}	
 			}catch (Exception e) {
 		        e.printStackTrace(); // 예외 로그 출력
-		        req.setAttribute("msg", "회원 정보 수정 중 오류가 발생했습니다.");
+		        req.setAttribute("errmsg", "회원 정보 수정 중 오류가 발생했습니다.");
 		        req.getRequestDispatcher("member/ModifyJoin.tiles").forward(req, resp);
 		    }
 			

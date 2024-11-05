@@ -24,7 +24,7 @@
 
 <div
 	class="container min-vh-100 d-flex justify-content-center align-items-center">
-	<form action="login.do" method="POST" class="text-center">
+	<form action="login.do" method="POST" class="text-center" id="loginForm" onsubmit="return frm_check();">
 	
 		<!-- ID  -->
 		<div data-mdb-input-init class="form-outline mb-4">
@@ -43,9 +43,8 @@
 			<div class="col d-flex justify-content-center">
 				<!-- Checkbox -->
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value=""
-						id="checkId" name="checkId"/> <label
-						class="form-check-label" for="form2Example31">아이디기억하기</label>
+					<input class="save_id" type="checkbox" value="" id="saveId" name="saveId"> 
+						<label for="saveId">아이디기억하기</label>
 				</div>
 			</div>
 		</div>

@@ -1,80 +1,84 @@
 /**
  * login.js
  */
-$(document).ready(function(){
-    // 쿠키에 저장된 memberId 값을 가져와 ID 칸에 넣기 
-    var memberId = getCookie("memberId");
-    $("#memberId").val(memberId);
-    
-    
-    // memberId가 쿠키에 있으면 체크박스 체크 상태로 설정
-    if ($("#memberId").val() !== "") {
-        $("#checkId").prop("checked", true);
-    }
-    
-    // 체크박스 상태 변경 시 쿠키 설정 또는 삭제
-    $("#checkId").change(function(){
-		console.log("Checkbox changed. Checked:", $("#checkId").is(":checked"));
-        if($("#checkId").is(":checked")) {
-            setCookie("memberId", $("#memberId").val(), 7); // 7일 동안 쿠키 저장
-        } else {
-            deleteCookie("memberId"); // 체크 해제 시 쿠키 삭제
-        }
-    });
-    
-    // ID 저장하기를 체크한 상태에서 ID 입력 시 ID 쿠키에 저장
-    $("#memberId").keyup(function(){
-        if($("#checkId").is(":checked")) { // ID 저장 체크박스에 체크되어 있으면
-            setCookie("memberId", $("#memberId").val(), 7); // 7일 동안 쿠키 저장
-        }
-    });
-    
-    // 쿠키 저장하기
-    function setCookie(cookieName, value, exdays) {
-		 console.log("Setting cookie:", cookieName, value);
-        var exdate = new Date();
-        exdate.setDate(exdate.getDate() + exdays);
-        var cookieValue = escape(value)
-                          + "; expires=" + exdate.toGMTString()
-                          + "; path=/; SameSite=Lax";
-        document.cookie = cookieName + "=" + cookieValue;
-        console.log("current cookies:", document.cookie);
-        
-       
-    }
-    
-    // 쿠키 삭제
-    function deleteCookie(cookieName) {
-		console.log("deleting cookies:",cookieName);
-        var expireDate = new Date();
-        expireDate.setDate(expireDate.getDate() - 1);
-        document.cookie = cookieName + "=; expires=" + expireDate.toGMTString();
-        console.log("Current cookies after delete:", document.cookie); // 쿠키 삭제 후 확인
-    }
-    
-    // 쿠키 가져오기
-    function getCookie(cookieName) {
+	$(function() {
+		//페이지 시작할때 실행하도록 기본실행함수인 $(function(){} 에  fnInit(); 함수를 넣어 실행하도록 합니다.
+	
+		fnInit();
+	
+	});
+	//로그인 submit시 실행 
+	function frm_check(){
+		saveid();
+	}
+	
+	
+	/**만약 만약에 getCookie(name) 함수에 'saveid' 를 넣어 
+	getCookie(name) 값이 비어있지 않다면 
+	아이디 값의 이름이 saveid 체크박스에 체크를하고, 
+	logId의 아이디 값에 getCookie(name) 값을 넣어줍니다.**/
+	
+	function fnInit(){
+		var cookieid = getCookie("saveid");
+		console.log("현재저장된 id=" + cookieid);
+		if(cookieid != ""){
+			$("input:checkbox[id='saveId']").prop("checked",true);
+			$("#memberId").val(cookieid);
+		}
+	}
+	
+	function setCookie(name, value, expiredays){
+		var todayDate= new Date(); // 오늘날짜 객체
+		todayDate.setTime(todayDate.getTime() + 0);
 		
-        cookieName = cookieName + '=';
-        var cookieData = document.cookie;
-        var start = cookieData.indexOf(cookieName);
-        var cookieValue = '';
-        
-        if (start != -1) {
-            start += cookieName.length;
-            var end = cookieData.indexOf(';', start);
-            if (end == -1) {
-                end = cookieData.length;
-            }
-            cookieValue = cookieData.substring(start, end);
-            
-            console.log("Getting cookie:", cookieName, "Value:", cookieValue);
-        }
-        return unescape(cookieValue);
-    }
-});
-
-
-
-
+		if(todayDate > expiredays){
+			// saveid함수가 넘겨준 시간이 현재시간 보다 작으면 => 마이너스 값 넣어 쿠키 지우기
+			document.cookie = name + "=" + decodeURIComponent(value) + "; path=/; expires=" + expiredays + ";";
+		}else if (todayDate < expiredays){
+			// saveid함수가 넘겨준 시간이 현재시간 보다 크다면 => 한달치 시간 넣어 쿠키 생성 
+			todayDate.setDate(todayDate.getDate()+expiredays);// 30일 넣기 
+			document.cookie = name + "=" + decodeURIComponent(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+		}
+		
+		//console.log(document.cookie);
+	}
+	
+	function getCookie(Name){
+		var search = Name + "=";
+		//console.log("search:" + search);
+		
+		if(document.cookie.length > 0){ //쿠키 설정 이 되어 있다면 
+			offset = document.cookie.indexOf(search);
+			//console.log("offset : " + offset);
+			
+			if(offset != -1){ // 쿠키가 존재한다면
+				offset += search.length;
+				//set index of beginning of value
+				end = document.cookie.indexOf(";",offset);
+				//console.log("end : " + end);
+				
+				//쿠키 값의 마지막 위치 인덱스 번호 설정 
+				if (end == -1) 
+					end = document.cookie.length;
+				//console.log("end위치 : "+ end);
+				
+				return encodeURIComponent(document.cookie.substring(offset,end));
+				
+			}
+		} return "";
+	}
+	
+	function saveid(){
+		var expdate = new Date();
+		if ($("#saveId").is(":checked")){
+			//체크박스 체크 시 현재시간 + 한달 => setCookie함수에 넣기 
+			expdate.setTime(expdate.getTime() + 1000 * 3600 * 24 * 30);
+			setCookie("saveid", $("#memberId").val(), expdate);
+		}else{
+			//체크박스 해제 시 마이너스 값 => setCookie함수에 넣기
+			expdate.setTime(expdate.getTime() - 1000 * 3600 * 24 * 30);
+			setCookie("saveid", $("#memberId").val(), expdate);
+		}
+		
+	}
 

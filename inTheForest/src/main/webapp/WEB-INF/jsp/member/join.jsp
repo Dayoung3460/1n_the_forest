@@ -6,6 +6,14 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- 데이터 포맷에 사용 -->
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- c태그 -->
+
+<c:if test="${joinError != null }">
+	<script>
+	alert("회원가입에 실패하였습니다. 다시 시도해 주세요.")
+	</script>
+</c:if>
 
 <div
 	class="container min-vh-100 d-flex justify-content-center align-items-center">

@@ -6,6 +6,17 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<c:if test="${msg != null }">
+	<script>
+	alert("수정할 회원정보가 없습니다.")
+	</script>
+</c:if>
+
+<c:if test="${errmsg != null }">
+	<script>
+	alert("회원 정보 수정 중 오류가 발생했습니다.")
+	</script>
+</c:if>
 
 <div
 	class="container min-vh-100 d-flex justify-content-center align-items-center">

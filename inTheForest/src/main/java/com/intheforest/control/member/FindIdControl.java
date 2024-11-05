@@ -46,7 +46,7 @@ public class FindIdControl implements Control {
 			//정상처리
 			try {
 				req.setAttribute("findId", memberId); // 요청 받은 결과
-				System.out.println(memberId);
+				//System.out.println(memberId);
 				req.getRequestDispatcher("member/findId.tiles").forward(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
