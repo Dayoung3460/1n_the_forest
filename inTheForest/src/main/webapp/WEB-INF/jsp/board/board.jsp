@@ -1,12 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.intheforest.vo.BoardVO" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
     BoardVO board = (BoardVO) request.getAttribute("board");
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    String wdate = sdf.format(board.getWriteDate());
+//    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//    String wdate = sdf.format(board.getWriteDate());
     String category = (String) request.getAttribute("category");
 %>
 <div class="board">
@@ -29,11 +30,11 @@
         </c:otherwise>
     </c:choose>
     <hr/>
-    <form>
+    <div>
         <div class="top">
             <span>${board.title}</span>
             <span>작성자: ${board.writer}</span>
-            <span><%=wdate%></span>
+            <span>${board.writeDate}</span>
         </div>
         <hr/>
         <div class="content">
@@ -49,8 +50,8 @@
 
         <div class="btnContainer">
             <div class="btnBox1">
-                <button class="btn btn-secondary">이전글</button>
-                <button class="btn btn-secondary">다음글</button>
+                <button class="btn btn-secondary" id="prevBtn">이전글</button>
+                <button class="btn btn-secondary" id="nextBtn">다음글</button>
                 <c:if test="${member.permission eq 'admin'}">
                     <button class="btn btn-success">답글쓰기</button>
                 </c:if>
@@ -61,10 +62,10 @@
                     <button class="btn btn-primary" id="editBtn">수정</button>
                     <button type="button" class="btn btn-danger" id="deleteBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">삭제</button>
                 </c:if>
-                <button class="btn btn-success">목록</button>
+                <button class="btn btn-success" id="goListBtn">목록</button>
             </div>
         </div>
-    </form>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -85,18 +86,54 @@
         </div>
     </div>
 </div>
-
+<script src="js/board/board.js"></script>
 <script>
     let modalDeleteBtn = document.getElementById('modalDeleteBtn')
     modalDeleteBtn.addEventListener('click', () => {
         location.href = 'boardList.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
     })
 
+
     let editBtn = document.getElementById('editBtn')
-    editBtn.addEventListener('click', (e) => {
+    editBtn?.addEventListener('click', (e) => {
         e.preventDefault()
         location.href = 'modifyBoard.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
     })
+
+    let goListBtn = document.getElementById('goListBtn')
+    goListBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+        location.href = 'boardList.do?currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}'
+    })
+
+    let prevBtn = document.getElementById('prevBtn')
+    prevBtn.addEventListener('click', (e) => {
+        getPrevBookNo("${board.writeDate}", "${category}", true, (result) => {
+            if (result.result != null) {
+                if (result.result.boardNo) {
+                    location.href = 'board.do?bno=' + result.result.boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}';
+                }
+            } else {
+                alert("이전글이 없습니다.");
+            }
+        });
+    });
+
+
+    let nextBtn = document.getElementById('nextBtn')
+    nextBtn.addEventListener('click', (e) => {
+        getNextBookNo("${board.writeDate}", "${category}", false, (result) => {
+            if (result.result != null) {
+                if (result.result.boardNo) {
+                    location.href = 'board.do?bno=' + result.result.boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}';
+                }
+            } else {
+                alert("다음글이 없습니다.");
+            }
+        });
+    })
+
+
 
     <%--let bno = "${board.boardNo}"--%>
     <%--let memberId = "${memberId}"--%>

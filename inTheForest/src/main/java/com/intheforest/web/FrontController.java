@@ -1,25 +1,30 @@
 package com.intheforest.web;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import com.intheforest.common.Control;
+import com.intheforest.control.board.*;
+import com.intheforest.control.book.BookAppCont;
+import com.intheforest.control.book.BookAppFormCont;
+import com.intheforest.control.book.BookCalCont;
+import com.intheforest.control.member.*;
+import com.intheforest.control.mypage.MyBookControl;
+import com.intheforest.control.site.IntroPageControl;
+import com.intheforest.control.site.MainPageControl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.intheforest.common.Control;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import com.intheforest.control.board.AddBoardControl;
 import com.intheforest.control.board.AddBoardFormControl;
 import com.intheforest.control.board.BoardControl;
 import com.intheforest.control.board.BoardListControl;
 import com.intheforest.control.board.DeleteBoardControl;
 import com.intheforest.control.board.ModifyBoardControl;
-import com.intheforest.control.book.BookAppCont;
-import com.intheforest.control.book.BookAppFormCont;
-import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.book.DetailBookControl;
+import com.intheforest.control.book.ModifyBookControl;
 import com.intheforest.control.member.DetailJoinControl;
 import com.intheforest.control.member.FindIdControl;
 import com.intheforest.control.member.FindPwControl;
@@ -29,9 +34,6 @@ import com.intheforest.control.member.LoginControl;
 import com.intheforest.control.member.MemberListControl;
 import com.intheforest.control.member.ModifyJoinControl;
 import com.intheforest.control.member.removeJoinControl;
-import com.intheforest.control.mypage.MyBookControl;
-import com.intheforest.control.site.IntroPageControl;
-import com.intheforest.control.site.MainPageControl;
 
 
 public class FrontController extends HttpServlet{
@@ -67,7 +69,8 @@ public class FrontController extends HttpServlet{
 		map.put("/addBoard.do", new AddBoardControl());
 		map.put("/modifyBoard.do", new ModifyBoardControl());
 		map.put("/deleteBoard.do", new DeleteBoardControl());
-		
+		map.put("/boardPrevNext.do", new BoardPrevNextControl());
+
 		
 	
 		
@@ -78,7 +81,8 @@ public class FrontController extends HttpServlet{
 		map.put("/bookCalendar.do", new BookCalCont());
 		map.put("/bookApp.do", new BookAppCont());
 		map.put("/bookAppForm.do", new BookAppFormCont());
-		//map.put("/modifyBook.do", new ModifyBookControl());
+		
+		map.put("/modifyBook.do", new ModifyBookControl());
 		map.put("/detailBook.do", new DetailBookControl());
   
   
@@ -100,7 +104,7 @@ public class FrontController extends HttpServlet{
 		map.put("/memberList.do", new MemberListControl());
     
     
-		// 사이트
+    // 사이트
 		map.put("/main.do", new MainPageControl());
 		map.put("/intro.do", new IntroPageControl());
 		

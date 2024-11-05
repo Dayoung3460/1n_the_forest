@@ -6,21 +6,15 @@
 
     <select id="boardList" resultType="board">
         select board_no,
-        board_category,
-        book_no,
-        reply_no,
-        secret_flag,
         title,
         content,
-        board_pw,
-        notice_flag,
-        board_file,
         writer,
         view_cnt,
-        write_date
-        from board
+        write_date,
+        update_date
+        from tbl_board
         order by
-        write_date desc
+        board_no desc
     </select>
 
     <select id="boardListByPage" resultType="board"
@@ -28,13 +22,10 @@
         select b.*
         from (select rownum rn, a.*
         from (select *
-        from board
+        from tbl_board
         <!-- 검색조건이 있으면 where 태그를 타고 아니면 안탐 -->
         <where>
             <choose>
-                <when test="category != null">
-                    lower(board_category) like #{category}
-                </when>
                 <when test="searchCondition == 'title'">
                     <!-- ||: 문자열을 연결하는 연산자 -->
                     title like '%' || #{keyword} || '%'
@@ -49,25 +40,22 @@
                 </when>
             </choose>
         </where>
-        order by notice_flag desc, write_date desc
+        order by board_no desc
         ) a
         ) b
-        where b.rn > (#{currentPage} - 1) * 10
-        <!-- 꺽쇠를 연산자로 쓰기 위해 태그가 아니고 -->
+        where b.rn > (#{currentPage} - 1) * 5
+        <!-- 꺽새를 연산자로 쓰기 위해 태그가 아니고 -->
         <![CDATA[
-				and b.rn <= (#{currentPage} * 10)
-				]]>
+		and b.rn <= (#{currentPage} * 5)
+		]]>
     </select>
 
     <select id="boardTotalCount" resultType="int"
             parameterType="search">
         select count(1)
-        from board
+        from tbl_board
         <where>
             <choose>
-                <when test="category != null">
-                    lower(board_category) like #{category}
-                </when>
                 <when test="searchCondition == 'title'">
                     title like '%' || #{keyword} || '%'
                 </when>
@@ -85,15 +73,14 @@
 
     <insert id="insertBoard" parameterType="board">
         insert into
-        board(board_no, board_category, book_no, secret_flag, title, content, board_pw, notice_flag, writer, board_file)
+        tbl_board(board_no, title, content, writer, image)
         values(board_seq.nextval,
-        #{boardCategory}, #{bookNo}, #{secretFlag}, #{title}, #{content}, #{boardPw}, #{noticeFlag}, #{writer},
-        #{boardFile})
+        #{title}, #{content}, #{writer}, #{image})
     </insert>
 
     <update id="updateBoard" parameterType="board">
-        update board
-        set write_date = sysdate
+        update tbl_board
+        set update_date = sysdate
         <!--파라미터로 받은 보드의 타이틀이 널이 아니면 기존 title을 넣겠다. 널이면 업데이트 치겠다 -->
         <if test="title != null">
             ,title = #{title}
@@ -101,84 +88,42 @@
         <if test="content != null">
             ,content = #{content}
         </if>
-        <if test="secretFlag != null">
-            ,secret_flag = #{secretFlag}
-        </if>
-        <if test="boardFile != null">
-            ,board_file = #{boardFile}
-        </if>
         where board_no = #{boardNo}
 
     </update>
 
     <update id="updateCount" parameterType="int">
-        update board
+        update tbl_board
         set
         view_cnt = view_cnt + 1
         where board_no = #{boardNo}
     </update>
 
     <delete id="deleteBoard" parameterType="int">
-        delete from board
+        delete from tbl_board
         where board_no = #{boardNo}
     </delete>
 
     <select id="selectBoard" parameterType="int">
-        select *
-        from board
+        select board_no,
+        title,
+        content,
+        writer,
+        view_cnt,
+        write_date,
+        update_date,
+        image
+        from tbl_board
         where
         board_no = #{boardNo}
     </select>
 
-    <select id="selectPrevBoard" parameterType="board">
-        select *
-        from board
-        where write_date = (
-            select max(write_date)
-            from board
-            <![CDATA[
-                where write_date < TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
-            ]]>
-        )
-        <![CDATA[
-        and write_date < TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
-        ]]>
-        and lower(board_category) like #{boardCategory}
-        order by write_date desc
-
+    <select id="countByWriter" resultType="hashmap">
+        select writer as "writer", member_name as "member_name", count(1) as "count"
+        from tbl_board b
+        join tbl_member m
+        on b.writer = m.member_id
+        group by writer, member_name
     </select>
-
-    <select id="selectNextBoard" parameterType="board">
-        select *
-        from board
-        where write_date = (
-        select min(write_date)
-        from board
-        <![CDATA[
-                WHERE write_date > #{writeDate}
-            ]]>
-        )
-        <![CDATA[
-        and write_date > #{writeDate}
-         ]]>
-        and lower(board_category) like #{boardCategory}
-        order by write_date desc
-    </select>
-
-
-    <select id="getBookNoByMemberId" parameterType="string">
-        select book_no
-        from site_book
-        where member_id = #{memberId}
-    </select>
-
-    <!--    <select id="countByWriter" resultType="hashmap">-->
-    <!--        select writer as "writer", member_name as "member_name", count(1) as "count"-->
-    <!--        from tbl_board b-->
-    <!--        join tbl_member m-->
-    <!--        on b.writer = m.member_id-->
-    <!--        group by writer, member_name-->
-    <!--    </select>-->
-
 
 </mapper>

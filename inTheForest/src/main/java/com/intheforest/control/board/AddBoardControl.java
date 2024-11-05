@@ -41,23 +41,9 @@ public class AddBoardControl implements Control {
 //    문의하기: 로그인필요없 / 글 비밀번호 필요 / 비밀글 체크박스 필요
 //    후기: 로그인해야함 / 글 비밀번호 필요 / 비밀글 체크박스 필요
     
-    System.out.println("mr.getParameter(\"secretFlag\") = " + mr.getParameter("secretFlag"));
-    System.out.println("mr.getParameter(\"boardPw\") " + mr.getParameter("boardPw"));
-    System.out.println("req.getParameter(\"noticeFlag\")" + req.getParameter("noticeFlag"));
-    
     int secretFlag = mr.getParameter("secretFlag") == null ? 0 : Integer.parseInt(mr.getParameter("secretFlag")); // category가 qna일 때만 0 or 1
     int boardPw = mr.getParameter("boardPw") == null ? 0 : Integer.parseInt(mr.getParameter("boardPw"));
     int noticeFlag = mr.getParameter("noticeFlag") == null ? 0 : 1; // 중요 공지 체크: 1, 아니면 0
-    
-    System.out.println("title = " + title);
-    System.out.println("category = " + category);
-    System.out.println("content = " + content);
-    System.out.println("writer = " + writer);
-    System.out.println("image = " + image);
-    System.out.println("bookNo = " + bookNo);
-    System.out.println("secretFlag = " + secretFlag);
-    System.out.println("boardPw = " + boardPw);
-    System.out.println("noticeFlag = " + noticeFlag);
     
     BoardVO board = new BoardVO();
     board.setTitle(title);

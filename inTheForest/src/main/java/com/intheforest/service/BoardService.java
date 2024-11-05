@@ -15,8 +15,11 @@ public interface BoardService {
   boolean removeBoard(int boardNo);
   boolean modifyBoard(BoardVO board);
   BoardVO searchBoard(int boardNo);
+  BoardVO selectPrevBoard(BoardVO board);
+  BoardVO selectNextBoard(BoardVO board);
   
   List<Map<String, Object>> countByWriter();
   ArrayList<Integer> getBookNoByMemberId(String memberId);
- 
+  
+  
 }
