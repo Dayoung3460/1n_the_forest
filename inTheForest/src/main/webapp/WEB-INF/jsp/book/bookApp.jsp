@@ -55,7 +55,6 @@ String endDate = sdf.format(calendar.getTime());
 			
 			var totalPrice = ${bookvo.sitePrice};
 			var viewPrice = "";
-			var selected = [];			
 			
 			 $('input[name="option[]"]').change(function(){
 				
@@ -63,10 +62,8 @@ String endDate = sdf.format(calendar.getTime());
 				
 				if($(this).is(":checked")){
 					totalPrice += parseInt(optionVal);
-					checkBoxArr.push($(this).val());
 				}else{
 					totalPrice -= parseInt(optionVal);
-					checkBoxArr.pop($(this).val());
 				}						
 				viewPrice = String(totalPrice);
 				$("#totalPrice").html(viewPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원");
