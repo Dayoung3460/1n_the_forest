@@ -24,82 +24,77 @@
     </nav>
   
     <h4 class="mt-4 fw-bolder mb-4">예약 상세내역</h4>
-					
-		<div class="addform">
-		
-			<p class="h4">1. 예약자 정보</p>		
-			
-			<div class="mb-3 row">
-			  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약인원</label>
-		  	<div class="col-sm-10">
-           <input type="text" name="name" class="form-control w-50" value="${book.memCnt}인" readonly>
+    
+    <div class="card">
+        <div class="card-header">
+            <table class="table table-borderless text-center">
+                <tr>
+                    <td>시설명</td>
+                    <td>예약기간</td>
+                    <td>결제금액</td>
+                    <td>상태</td>
+                </tr>
+                <tr>
+                    <td class="fs-5 fw-bolder">${book.siteName}</td>
+                    <td class="fs-5 fw-bolder">${book.startDate} ~ ${book.endDate}</td>
+                    <td class="fs-5 fw-bolder"><fmt:formatNumber value="${book.totalPrice}" pattern="#,###" />원</td>
+                    <td class="fs-5 fw-bolder ${book.cancelFlag == 0 ? 'text-mint' : 'text-danger'}">${book.cancelFlag == 0 ? '확정' : '취소'}</td>
+                </tr>
+            </table>
         </div>
-			</div>
-			
+		<div class="card-body">
 			<div class="mb-3 row">
-			  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약자명</label>
-			  <div class="col-sm-10">
-			  	<input type="text" name="name" class="form-control w-50" value="${member.memberName}" readonly>
-			  </div>
-			</div>
-			
-			<div class="mb-3 row">
-			  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">차량번호</label>
-			  <div class="col-sm-10">
-			  	<input type="text" name="carNum" class="form-control w-50" value="${book.carNum}" readonly>
-			  </div>
-			</div>
-			
-			<div class="mb-3 row">
-			  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">연락처</label>
-			  <div class="col-sm-10">
-			  	<input type="text" name="tel" maxlength="13" class="form-control w-50" oninput="autoHyphen(this)" value="${member.tel}" readonly>
-			  </div>
-			</div>
-			
-			<div class="mb-3 row">
-			  <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">이메일</label>
-			  <div class="col-sm-10">
-			  	<input type="text" name="email" class="form-control w-50" value="${member.email}" readonly>
-			  </div>
-			</div>
+                <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약인원</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control w-50" value="${book.memCnt}인" readonly>
+                </div>
+            </div>
+            
+            <div class="mb-3 row">
+                <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약자명</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control w-50" value="${member.memberName}" readonly>
+                </div>
+            </div>
+            
+            <div class="mb-3 row">
+                <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">차량번호</label>
+                <div class="col-sm-10">
+                    <input type="text" name="carNum" class="form-control w-50" value="${book.carNum}" readonly>
+                </div>
+            </div>
+            
+            <div class="mb-3 row">
+                <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">연락처</label>
+                <div class="col-sm-10">
+                    <input type="text" name="tel" maxlength="13" class="form-control w-50" oninput="autoHyphen(this)" value="${member.tel}" readonly>
+                </div>
+            </div>
+            
+            <div class="mb-3 row">
+                <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">이메일</label>
+                <div class="col-sm-10">
+                    <input type="text" name="email" class="form-control w-50" value="${member.email}" readonly>
+                </div>
+            </div>
 		</div>
-		
-		<div class="addform">		
-			<p class="h4">2. 옵션 선택</p>				
-			<div class="row g-3">
-				<div class="col-md-6">
-					<c:forEach var="option" items="${optionList}">
-						<div class="input-group mb-3">
-						  <div class="input-group-text">
-						    <input class="form-check-input mt-0" type="checkbox" value="${option.optionNo}" 
-						    	aria-label="Checkbox for following text input" name="option[]"
-						    	<c:if test="${myOptions.indexOf(option.optionNo) != -1}">checked</c:if> disabled>
-						  </div>
-						  <input type="text" class="form-control" aria-label="Text input with checkbox" 
-						  	value="${option.optionName} (<fmt:formatNumber value="${option.optionPrice}" pattern="#,###" />원)" readonly onclick="">
-						</div>
-					</c:forEach>
-				</div>
-			</div>
-		</div>
-			
-			
-		<div class="faci-pay">
-			<div class="left">
-				<p class="tit">${book.siteName}</p>
-				<p class="date">${book.startDate} ~ ${book.endDate}</p>
-				<p class="txt">※ 해당 예약에 대한 결제는 현장결제로 진행됩니다.<br> ※ 추가 문의사항은 053-133-1333로 문의부탁드립니다.</p>
-			</div>
-			<div class="right">
-				<div class="sum">
-					<p class="tit">결제예정금액</p>
-					<p class="txt">
-						총 <span id="totalPrice"><fmt:formatNumber value="${book.totalPrice}" pattern="#,###" /></span> 원
-					</p>
-				</div>
-			</div>
-		</div>
+
+        <h5 class="fw-bolder ms-4">옵션 내역</h4>
+
+        <div class="row g-3 m-3 mb-4">
+            <c:forEach var="option" items="${optionList}">
+                <div class="input-group w-50">
+                  <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="checkbox" value="${option.optionNo}" 
+                        aria-label="Checkbox for following text input" name="option[]"
+                        <c:if test="${myOptions.indexOf(option.optionNo) != -1}">checked</c:if> disabled>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Text input with checkbox" 
+                      value="${option.optionName} (<fmt:formatNumber value="${option.optionPrice}" pattern="#,###" />원)" readonly onclick="">
+                </div>
+            </c:forEach>
+        </div>
+	</div>
 		
 		<div class="text-center m-4">
       <button type="button" class="btn btn-outline-success" id="backBtn">목록</button>

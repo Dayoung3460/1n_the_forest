@@ -61,3 +61,6 @@ a {
   text-decoration:none; 
   color:black;
 }
+.card .card-header {
+  background-color: rgb(247, 247, 247) !important;
+}

@@ -15,6 +15,7 @@ public class BookVO {
 	private String endDate;
 	private String carNum;
 	private String totalPrice;
+	private String cancelFlag;
 	
 	private int bookNo;
 	private String optionNo;
