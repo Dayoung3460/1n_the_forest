@@ -66,7 +66,7 @@
         <div class="bottom">
             <c:if test="${category eq 'qna'}">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="secretFlag" id="defaultCheck1">
+                    <input class="form-check-input" type="checkbox" name="secretFlag" id="defaultCheck1" value="true">
                     <label class="form-check-label" for="defaultCheck1">
                         비밀글
                     </label>
@@ -116,19 +116,19 @@
 
 
     const form = document.getElementsByTagName('form')[0];
-    form.addEventListener('submit', function (e) {
+    form?.addEventListener('submit', function (e) {
         let title = document.getElementById('boardTitle').value// 필수
         let content = document.getElementById('boardContent').value// 필수
         let writer = document.getElementById('boardWriter').value// 필수
         let image = document.getElementById('boardImg').value
         let bookNoArr = "${bookNoList}";// 후기 일 때 필수
-        let secretFlag = document.getElementById('defaultCheck1')?.value
+        let secretFlag = document.getElementById('defaultCheck1')?.checked
         let boardPw = document.getElementById('boardPw').value// 문의 일 때 필수
         let noticeFlag = document.getElementById('defaultCheck2')?.value
 
         if(!title || !content) {
             formFail('제목과 내용을 입력해주세요.', e)
-        } else if(${category eq 'qna'} && !boardPw) {
+        } else if(${category eq 'qna'} && secretFlag && !boardPw) {
             formFail('글 비밀번호를 입력해주세요.', e)
         } else if(${category eq 'review'} && !bookNoArr.length) {
             formFail('예약 내역이 있는 회원만 후기를 작성할 수 있습니다.', e)

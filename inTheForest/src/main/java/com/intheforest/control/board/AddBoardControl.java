@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class AddBoardControl implements Control {
   
@@ -30,6 +35,7 @@ public class AddBoardControl implements Control {
     
     MultipartRequest mr = new MultipartRequest(req, savePath, maxSize, "utf-8", new DefaultFileRenamePolicy());
     
+    String isReply = mr.getParameter("isReply");
     String title = mr.getParameter("title");
     String category = req.getParameter("category");
     String content = mr.getParameter("content");
@@ -41,8 +47,8 @@ public class AddBoardControl implements Control {
 //    문의하기: 로그인필요없 / 글 비밀번호 필요 / 비밀글 체크박스 필요
 //    후기: 로그인해야함 / 글 비밀번호 필요 / 비밀글 체크박스 필요
     
-    int secretFlag = mr.getParameter("secretFlag").equals("on") ? 1 : 0; // category가 qna일 때만 0 or 1
-    int boardPw = mr.getParameter("boardPw") == null ? 0 : Integer.parseInt(mr.getParameter("boardPw"));
+    int secretFlag = (mr.getParameter("secretFlag") == null || mr.getParameter("secretFlag").equals("0")) ? 0 : 1; // category가 qna일 때만 0 or 1
+    int boardPw = mr.getParameter("boardPw").isEmpty() ? 0 : Integer.parseInt(mr.getParameter("boardPw"));
     int noticeFlag = mr.getParameter("noticeFlag") == null ? 0 : 1; // 중요 공지 체크: 1, 아니면 0
     
     BoardVO board = new BoardVO();
@@ -55,12 +61,29 @@ public class AddBoardControl implements Control {
     board.setSecretFlag(secretFlag);
     board.setBoardPw(boardPw);
     board.setNoticeFlag(noticeFlag);
-
+    
     BoardServiceImpl boardServiceImpl = new BoardServiceImpl();
+    
     boolean isSuccess = boardServiceImpl.RegisterBoard(board);
+  
     if (isSuccess) {
-      // page 재지정
+      
       resp.sendRedirect("boardList.do?category=" + category);
+    
+      if(isReply != null && isReply.equals("true")) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("result", "boardList.do?category=" + category);
+        
+        try {
+          String json = objectMapper.writeValueAsString(resultMap);
+          System.out.println("json = " + json);
+          resp.getWriter().print(json);
+        } catch (JsonProcessingException e) {
+          e.printStackTrace();
+        }
+      }
     } else {
       req.setAttribute("msg", "등록하는 중 오류가 발생했습니다.");
       // req에서 받은 값을 다시 전달에서 페이지 이동
