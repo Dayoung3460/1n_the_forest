@@ -12,7 +12,8 @@
     List<MyBookVO> list = (List<MyBookVO>) request.getAttribute("myPageBookList");
     String memberId = (String) session.getAttribute("memberId");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    PageDTO paging = (PageDTO) request.getAttribute("currentPage");
+    PageDTO paging = (PageDTO) request.getAttribute("paging");
+    System.out.println(paging);
     String sc = (String) request.getAttribute("searchCondition");
     String kw = (String) request.getAttribute("keyword");
     kw = (kw == null) ? "" : kw;
@@ -70,6 +71,7 @@
 
             <!-- 페이지 출력 -->
             <%
+            		System.out.println("시작" + paging.getStartPage() + "마지막" + paging.getEndPage());
                 for(int p = paging.getStartPage(); p <= paging.getEndPage(); p++){
                     if(paging.getCurrentPage() == p){
             %>
@@ -77,7 +79,7 @@
                     class="page-link"><%=p %></span></li>
             <%} else { %>
             <li class="page-item"><a class="page-link"
-                                     href="myPageBookList.do?searchCondition=<%=sc %>&keyword=<%=kw %>&page=<%=p %>">
+                                     href="myPageBookList.do?searchCondition=<%=sc %>&keyword=<%=kw %>&currentPage=<%=p %>">
                 <%=p %></a></li>
             <%
                     }}%>

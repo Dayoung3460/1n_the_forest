@@ -14,8 +14,8 @@ public class MyBookServiceImpl implements MyBookService {
 	MyBookMapper mapper = sqlSession.getMapper(MyBookMapper.class);
 	
 	@Override
-	public List<MyBookVO> myPageBookList(String bookNo) {
-		return mapper.selectMyPageBookList(bookNo);
+	public List<MyBookVO> myPageBookList(SearchDTO search) {
+		return mapper.listWithPage(search);
 	}
 
 	@Override

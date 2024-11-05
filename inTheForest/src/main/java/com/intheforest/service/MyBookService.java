@@ -7,7 +7,7 @@ import com.intheforest.vo.MyBookVO;
 
 public interface MyBookService {
 	//출력
-	List<MyBookVO> myPageBookList(String bookNo);
+	List<MyBookVO> myPageBookList(SearchDTO search);
 	
 	//
 	int getTotalCount(SearchDTO search);

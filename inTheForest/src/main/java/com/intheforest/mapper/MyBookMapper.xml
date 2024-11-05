@@ -49,7 +49,7 @@
 	</select>
 
 	<!-- 페이징 카운트 -->
-	<select id="selectCount" resultType="int" parameterType="mybook">
+	<select id="selectCount" resultType="int" parameterType="search">
 		select count(1)
 		from site_book
 		<where>
@@ -61,6 +61,7 @@
 			</choose>
 		</where>
 	</select>
+	
 <!-- 뭐하는건지 모르겠음 -->
 	<select id="countByWriter" resultType="hashmap">
 		select writer as "writer"
