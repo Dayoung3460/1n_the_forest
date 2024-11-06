@@ -30,6 +30,7 @@ public class AddBoardControl implements Control {
     
     MultipartRequest mr = new MultipartRequest(req, savePath, maxSize, "utf-8", new DefaultFileRenamePolicy());
     
+    String isReply = mr.getParameter("isReply");
     String title = mr.getParameter("title");
     String category = req.getParameter("category");
     String content = mr.getParameter("content");
@@ -41,8 +42,8 @@ public class AddBoardControl implements Control {
 //    문의하기: 로그인필요없 / 글 비밀번호 필요 / 비밀글 체크박스 필요
 //    후기: 로그인해야함 / 글 비밀번호 필요 / 비밀글 체크박스 필요
     
-    int secretFlag = mr.getParameter("secretFlag").equals("on") ? 1 : 0; // category가 qna일 때만 0 or 1
-    int boardPw = mr.getParameter("boardPw") == null ? 0 : Integer.parseInt(mr.getParameter("boardPw"));
+    int secretFlag = (mr.getParameter("secretFlag") == null || mr.getParameter("secretFlag").equals("0")) ? 0 : 1; // category가 qna일 때만 0 or 1
+    int boardPw = mr.getParameter("boardPw").isEmpty() ? 0 : Integer.parseInt(mr.getParameter("boardPw"));
     int noticeFlag = mr.getParameter("noticeFlag") == null ? 0 : 1; // 중요 공지 체크: 1, 아니면 0
     
     BoardVO board = new BoardVO();
@@ -55,17 +56,26 @@ public class AddBoardControl implements Control {
     board.setSecretFlag(secretFlag);
     board.setBoardPw(boardPw);
     board.setNoticeFlag(noticeFlag);
-
+    
     BoardServiceImpl boardServiceImpl = new BoardServiceImpl();
-    boolean isSuccess = boardServiceImpl.RegisterBoard(board);
-    if (isSuccess) {
-      // page 재지정
-      resp.sendRedirect("boardList.do?category=" + category);
+
+    // 답글 등록일 경우
+    if(isReply != null && isReply.equals("true")) {
+
+      // 문의글 등록일 경우
     } else {
-      req.setAttribute("msg", "등록하는 중 오류가 발생했습니다.");
-      // req에서 받은 값을 다시 전달에서 페이지 이동
-      req.getRequestDispatcher("board/boardAddForm.tiles").forward(req, resp);
+      boolean isSuccess = boardServiceImpl.RegisterBoard(board);
+
+      if (isSuccess) {
+        resp.sendRedirect("boardList.do?category=" + category);
+      } else {
+        req.setAttribute("msg", "등록하는 중 오류가 발생했습니다.");
+        // req에서 받은 값을 다시 전달에서 페이지 이동
+        req.getRequestDispatcher("board/boardAddForm.tiles").forward(req, resp);
+      }
     }
+    
+
   }
   
 }
