@@ -140,6 +140,7 @@
 	//funcBtn 상태에 따라 다르게 표시
 	let funcBtn = document.getElementById('funcBtn');
 	let endDate = new Date(`${book.endDate}`);
+	let startDate = new Date(`${book.startDate}`);
 	let today = new Date();
 	
 	if(${permission == user} && endDate < today && ${isReview == false}){ //이용기간이 지났으며 후기를 작성하지 않은 사용자에게는, 후기작성 버튼을 표시
@@ -147,7 +148,7 @@
 	  funcBtn.removeAttribute('data-bs-target');
 	  funcBtn.innerText = '후기작성';
 	  funcBtn.addEventListener('click', (e) => {location.href = 'addBoardForm.do?category=review&bookNo=aaaaaaa'});
-	} else if(endDate < today && ${isReview == true}){ //이용기간이 지난 사용자에게는 아무것도 표시 안 함.
+	} else if(${book.cancelFlag == 1} || startDate <= today || ${isReview == true}){ //이미 취소했거나 이용기간 중에 있거나 후기를 작성한 예약건에는 아무것도 표시 안 함.
 	  funcBtn.style.display = 'none';	
 	}
 

@@ -27,7 +27,11 @@ public class OptionManageControl implements Control {
 			req.getRequestDispatcher("book/optionManagement.tiles").forward(req, resp);
 		
 		} else if(req.getMethod().equals("POST")) {
-		
+			
+			//배열 형태의 파라미터값을 하나씩 가져옴.
+			String[] nos = req.getParameterValues("optionNo");
+			String[] prices = req.getParameterValues("price");
+			
 			
 			
 		}

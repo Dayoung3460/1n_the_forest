@@ -23,5 +23,8 @@ public interface BookService {
 	
 	//취소
 	int cancelBook(int bookNo);
+	
+	//옵션 가격 수정
+	int modifyOptPrice(int price, int optNo);
 	int siteUse(int siteNo, String useFlag);
 }
