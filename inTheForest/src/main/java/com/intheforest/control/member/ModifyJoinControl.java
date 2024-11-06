@@ -19,8 +19,8 @@ public class ModifyJoinControl implements Control {
 		req.setCharacterEncoding("utf-8"); // 값을 받을 때 (클라이언트가 보낸 값) 문자 안깨지게 해주는 것 
 		resp.setContentType("application/json;charset=utf-8"); // 값을 보낼 때 문자 안깨지게 해주는것
 		
-		HttpSession session = req.getSession();
-		String memberId = (String) session.getAttribute("memberId");
+		String memberId = req.getParameter("memberId");	
+
 		
 		if(memberId == null) {
 			req.setAttribute("msg", "세션이 만료되었습니다. 다시 로그인 해 주세요");
@@ -48,19 +48,22 @@ public class ModifyJoinControl implements Control {
 			req.setAttribute("address2", address2);
 			
 			req.getRequestDispatcher("member/ModifyJoin.tiles").forward(req, resp);
+			
 		}else if (req.getMethod().equalsIgnoreCase("POST")) {
 			String password = req.getParameter("password");
-			String email = req.getParameter("email");
+			String memberName = req.getParameter("memberName");
 			String tel = req.getParameter("tel");
+			String email = req.getParameter("email");
 			String postcode = req.getParameter("postcode");
 			String address1= req.getParameter("address1");
 			String address2= req.getParameter("address2");
 			String fullAddress = postcode +"|"+ address1 +"|"+ address2;
-			
+			//System.out.println(password+memberName);
 			
 			MemberVO member = new MemberVO();
 			member.setMemberId(memberId);
 			member.setPassword(password);
+			member.setMemberName(memberName);
 			member.setEmail(email);
 			member.setTel(tel);
 			member.setAddress(fullAddress);
@@ -80,6 +83,8 @@ public class ModifyJoinControl implements Control {
 					req.setAttribute("postcode", postcode);
 					req.setAttribute("address1", address1);
 					req.setAttribute("address2", address2);
+					//System.out.println("member="+member);
+					req.setAttribute("modifysuccess", "회원정보가 수정 되었습니다.");
 					req.getRequestDispatcher("member/DetailJoin.tiles").forward(req, resp);
 				}else {
 					member = svc.searchMember(memberId);
