@@ -22,6 +22,7 @@ import com.intheforest.control.book.BookAppFormCont;
 import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.book.CancelBookControl;
 import com.intheforest.control.book.DetailBookControl;
+import com.intheforest.control.book.MyBookControl;
 import com.intheforest.control.book.OptionListControl;
 import com.intheforest.control.member.DetailJoinControl;
 import com.intheforest.control.member.FindIdControl;
@@ -32,7 +33,6 @@ import com.intheforest.control.member.LoginControl;
 import com.intheforest.control.member.MemberListControl;
 import com.intheforest.control.member.ModifyJoinControl;
 import com.intheforest.control.member.removeJoinControl;
-import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.site.IntroPageControl;
 import com.intheforest.control.site.MainPageControl;
 

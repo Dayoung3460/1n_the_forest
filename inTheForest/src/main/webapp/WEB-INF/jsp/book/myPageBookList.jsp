@@ -46,7 +46,7 @@
 		</c:if>
 	</div>
 	
-</div>	
+
 	
 <div class="p-3 boardList">
 	
@@ -71,12 +71,13 @@
 				<td><%=bvo.getSiteName()%></td>
 				<td><%=bvo.getMemCnt()%>명</td>
 				<td><%=bvo.getStartDate()%> ~ <%=bvo.getEndDate()%></td>
-				<td><%=bvo.getTotalPrice()%>원</td>
+				
+				<td><fmt:formatNumber value="<%=bvo.getTotalPrice()%>" pattern="#,###" />원</td>
 				<td><%=bvo.getCreateDate()%></td>
 				<%if(bvo.getCancelFlag()==0) { %>
-				<td>확정</td>
+				<td><span class="btn btn-sm btn-success disabled">확정</span></td>
 				<%} else { %>
-				<td><span style="color:red">예약취소</span></td>
+				<td><span class="btn btn-sm btn-danger disabled">예약취소</span></td>
 				<%}}%>
 			</tr>
 		</tbody>
@@ -152,3 +153,4 @@
     <!-- 검색창 끝-->
 
 </div>
+</div>	
