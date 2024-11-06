@@ -10,14 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
-import com.intheforest.control.board.*;
+import com.intheforest.control.board.AddBoardControl;
+import com.intheforest.control.board.AddBoardFormControl;
+import com.intheforest.control.board.AddReplyControl;
+import com.intheforest.control.board.BoardControl;
+import com.intheforest.control.board.BoardListControl;
+import com.intheforest.control.board.BoardPrevNextControl;
+import com.intheforest.control.board.DeleteBoardControl;
+import com.intheforest.control.board.ModifyBoardControl;
 import com.intheforest.control.book.BookAppCont;
 import com.intheforest.control.book.BookAppFormCont;
 import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.book.CancelBookControl;
 import com.intheforest.control.book.DetailBookControl;
 import com.intheforest.control.book.MyBookControl;
-import com.intheforest.control.book.OptionListControl;
 import com.intheforest.control.book.OptionManageControl;
 import com.intheforest.control.member.DetailJoinControl;
 import com.intheforest.control.member.FindIdControl;
@@ -101,10 +107,9 @@ public class FrontController extends HttpServlet{
     
 		//관리자용 회원목록 조회
 		map.put("/memberList.do", new MemberListControl());
-		map.put("/optionList.do", new OptionListControl());
+		map.put("/optionManagement.do", new OptionManageControl());
 		map.put("/siteList.do", new SiteListControl());
 		map.put("/siteUse.do", new SiteUseControl());
-    map.put("/optionManagement.do", new OptionManageControl());
     
     
     // 사이트
