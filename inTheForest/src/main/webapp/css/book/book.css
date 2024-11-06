@@ -1,7 +1,7 @@
 @charset "UTF-8";
 a{text-decoration:none; color:black;}
 .res-month		{position:relative;padding:30px 0 30px;text-align:center;}
-.res-month>span	{font-size:35px;color:#236354;font-weight:600;line-height:1;}
+.res-month>span	{font-size:35px;color:#222;font-weight:600;line-height:1;}
 .res-month a	{position:absolute;top:0px;font-size:1.1rem;color:#5b6678;}
 .res-month .prev	{left:0; top:35px;}
 .res-month .next	{right:0; top:35px;}
@@ -20,7 +20,7 @@ a{text-decoration:none; color:black;}
 .res-calendar table{width:100%;}
 .res-calendar td, .res-calendar th	{min-width:90px;width:14.285714%;transition:all 0.2s ease-out;}
 .res-calendar td{border:1px solid #dcdddf;}
-.res-calendar thead th	{background:#236354;border-top:none;border-bottom:none;padding:20px;text-align:center;font-size:15px;font-weight:500;color:#fff;}
+.res-calendar thead th	{background:#4c9176;border-top:none;border-bottom:none;padding:20px;text-align:center;font-size:15px;font-weight:500;color:#fff;}
 .res-calendar tbody td	{vertical-align:top;height:150px;position:relative;}
 .res-calendar tbody td li input, .res-calendar tbody td li label{cursor:pointer;}
 .res-calendar thead th:first-child	{border-left:none;}
@@ -55,16 +55,16 @@ a{text-decoration:none; color:black;}
 .edu-calendar .res-calendar tbody td{cursor:default;}
 
 .card .card-header {background-color: #e3e3e3;}
-.card .card-text {font-size: 21px;font-weight: 600; color:#236354}
+.card .card-text {font-size: 21px;font-weight: 600; color:#54ab96}
 
 .faci-pay{display:flex;border-radius:20px;overflow:hidden;border:1px solid #ccc;margin-top:30px}
 .faci-pay>div{padding:1.5rem;}
 .faci-pay .left{width:100%;}
-.faci-pay .left .tit{font-size:24px;font-weight:700;color : #236354;margin-bottom:20px;line-height:1.3;}
+.faci-pay .left .tit{font-size:24px;font-weight:700;color : #54ab96;margin-bottom:20px;line-height:1.3;}
 .faci-pay .left .date{line-height:1.5;color:#888;font-size:17px;}
 .faci-pay .left .txt{line-height:1.5;color:#888;font-size:14px;}
 .faci-pay .left .txt span{width:80px;display:inline-block;font-weight:500;color:#111;}
-.faci-pay .right{width:300px;text-align:center;color:#fff;background-color:#236354;line-height:1.05;position:relative;}
+.faci-pay .right{width:300px;text-align:center;color:#fff;background-color:#4c9176;line-height:1.05;position:relative;}
 .faci-pay .sum {width:100%;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);}
 .faci-pay .sum .tit{font-size:18px;}
 .faci-pay .sum .txt span{font-size:2.5rem;font-weight:700;color:#fff;}

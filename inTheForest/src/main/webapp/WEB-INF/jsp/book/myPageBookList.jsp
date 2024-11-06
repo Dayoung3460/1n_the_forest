@@ -62,7 +62,7 @@ text-align:center;
 		
 		<table class="table table-hover">
 			<thead>
-				<tr class="align-middle">
+				<tr class="align-middle table-light">
 					<th>예약번호</th>
 					<th>숙소종류</th>
 					<th>예약인원</th>
@@ -136,8 +136,8 @@ text-align:center;
 	
 	    <!-- 검색창 -->
 	    <div class="bottom m-4 ">
-	        <form class="row g-3" action="myPageBookList.do">
-	            <div class="col-md-4">
+	        <form class="row justify-content-center gap-2" action="myPageBookList.do">
+	            <div class="col-md-2">
 	                <select name="searchCondition" class="form-select">
 	                    <option selected value="">선택하세요.</option>
 	                    <option value="bno"
@@ -151,7 +151,7 @@ text-align:center;
 	                    >번호&일자</option>
 	                </select>
 	            </div>
-	            <div class="col-md-6">
+	            <div class="col-md-3">
 	                <input type="text" class="form-control" name="keyword"
 	                       value='<%=kw%>'>
 	            </div>

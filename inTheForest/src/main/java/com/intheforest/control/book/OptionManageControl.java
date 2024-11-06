@@ -18,24 +18,11 @@ public class OptionManageControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		BookService bsvc = new BookServiceImpl();
+		List<BookVO> options = bsvc.optionList();
 		
+		req.setAttribute("options", options);
+		req.getRequestDispatcher("book/optionManagement.tiles").forward(req, resp);
 		
-		if(req.getMethod().equals("GET")) {			
-			
-			List<BookVO> options = bsvc.optionList();
-			req.setAttribute("options", options);
-			req.getRequestDispatcher("book/optionManagement.tiles").forward(req, resp);
-		
-		} else if(req.getMethod().equals("POST")) {
-			
-			//배열 형태의 파라미터값을 하나씩 가져옴.
-			String[] nos = req.getParameterValues("optionNo");
-			String[] prices = req.getParameterValues("price");
-			
-			
-			
-		}
-	
 	}
 
 }

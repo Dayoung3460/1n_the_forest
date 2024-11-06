@@ -47,11 +47,11 @@ List<BookVO> list = (List<BookVO>) request.getAttribute("siteListAdmin");
 			</ol>
 		</nav>
 
-		<h4 class="mt-2 fw-bolder mb-3">숙소관리</h4>
-		<div class="alert alert-primary" role="alert">
-		  사용유무 값을 '사용안함'으로 변경 시 실시간예약 달력에서 제외됩니다.
-		</div>
-		<table class="table siteList" >
+		<h3 class="mt-4 mb-4 fw-bolder">숙소관리</h3>
+        <div class="alert alert-primary" role="alert">
+            사용유무 값을 '사용안함'으로 변경 시 실시간예약 달력에서 제외됩니다.
+        </div>
+		<table class="table siteList" style="margin-top:30px">
 			<colgroup>
 				<col width="10%">
 				<col width="15%">

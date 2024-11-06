@@ -19,34 +19,35 @@
     </nav>
     
     <h4 class="mt-4 fw-bolder">예약옵션 관리</h4>
-	
-	  	<form action="optionManagement.do" method="post">
-		    <div class="bottom me-4 text-end">
-		        <button type="submit" id="submitBtn" class="btn btn-lg btn-success">적용</button>
-		    </div>
-	    
-		    <table class="table align-middle text-center mt-4 fs-5">
-		        <thead>
+			
+    <div class="text-end">
+				<h5 id="msgBox" class="text-center"></h5>
+        <button type="button" id="submitBtn" class="btn btn-lg btn-success">적용</button>
+    </div>
+   
+    <table class="table align-middle text-center mt-4 fs-5">
+        <thead>
 		        <tr class="table-light">
-		            <th>번호</th>
+		        		<th>순번</th>
+		            <th>옵션코드</th>
 		            <th>옵션명</th>
 		            <th>가격</th>
 		        </tr>
-		        </thead>
-		        
-		        <tbody>
-		        <c:forEach var="opt" items="${options}">
-		            <tr>
-		                <td class="w-25"><input type="hidden" name="optionNo" value="${opt.optionNo}">${opt.optionNo}</td>
-		                <td class="w-50">${opt.optionName}</td>
-		                <td class="d-flex justify-content-center">
-		                	<input type="text" name="price" value="${opt.optionPrice}" class="form-control text-end w-75 fs-5">
-	                	</td>
-		            </tr>
-		        </c:forEach>
-		        </tbody>
-		    </table>
-	  	</form>
+        </thead>
+        
+        <tbody>
+        <c:forEach var="i" begin="0" end="${options.size()-1}" step="1">
+            <tr>
+            		<td>${i+1}</td>
+                <td class="w-25">${options[i].optionNo}</td>
+                <td class="w-50">${options[i].optionName}</td>
+                <td class="d-flex justify-content-center">
+                	<input type="text" name="price" value="${options[i].optionPrice}" class="form-control text-end w-75 fs-5">
+               	</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 
 </div>
 

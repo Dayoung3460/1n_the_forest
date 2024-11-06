@@ -32,7 +32,7 @@
 	  </ol>
 	</nav>
 	
-	<h1 class="fw-bolder mt-4">시설안내</h1>
+	<h3 class="fw-bolder mt-4">시설안내</h3>
 	
 	<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
 	  <div class="carousel-indicators"></div>
