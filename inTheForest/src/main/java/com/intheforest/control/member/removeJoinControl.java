@@ -23,14 +23,15 @@ public class removeJoinControl implements Control {
 		req.setCharacterEncoding("utf-8"); // 값을 받을 때 (클라이언트가 보낸 값) 문자 안깨지게 해주는 것 
 		resp.setContentType("text/json;charset=utf-8"); // 값을 보낼 때 문자 안깨지게 해주는것
 		
-		//session 에서 접속한 아이디 받기 
+		//session 에서 접속한 아이디 받기 （접속한아이디）
 		HttpSession session = req.getSession();
 		String memberId = (String) session.getAttribute("memberId");
 		
-		// 멤버 아이디 parameter 받기
+		// 멤버 아이디 parameter 받기（삭제할아이디）
+		String memberID = req.getParameter("memberId");
+		
 		MemberService svc = new MemberServiceImpl();
 		
-		String memberID = req.getParameter("memberId");
 		MemberVO member = svc.searchMember(memberId);
 		String permission = member.getPermission();
 		

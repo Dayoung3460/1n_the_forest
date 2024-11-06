@@ -37,9 +37,8 @@ function modalSave(){
 		.then (resolve => resolve.json())
 		//성공시 회원 quit 1 처리 
 		.then(result =>{
-			console.log(result.retVal);
 			if (result.retCode == 'OK'){
-				alert("성공적으로 탈퇴 되었습니다..")
+				alert("성공적으로 탈퇴 되었습니다.")
 				
 				if(result.retVal == 'admin'){
 					location.replace('memberList.do');
@@ -48,7 +47,7 @@ function modalSave(){
 				}	
 					
 			} else if (result.retCode == 'FAIL'){
-				alert("탈퇴 오류 발생")
+				alert("탈퇴 오류 발생　하였습니다．")
 			}
 		})
 		.catch(err => console.log(err));

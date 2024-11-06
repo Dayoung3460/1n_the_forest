@@ -46,9 +46,6 @@ public class FindPwControl implements Control {
 			}
 			
 			
-			
-		
-			
 			MemberVO mvo = new MemberVO();
 			mvo.setMemberId(id);
 			mvo.setMemberName(name);
