@@ -29,6 +29,14 @@
 	<select id="siteList" resultType="book">
 	  select *
 	    from site 
+	    where use_flag='y'
+	    order by site_name
+	</select>
+	
+	<!-- 숙소 목록 -->
+	<select id="siteListAdmin" resultType="book">
+	  select *
+	    from site 
 	    order by site_name
 	</select>
 	
@@ -62,10 +70,21 @@
     where site_no=#{siteNo}
     <![CDATA[ 
     and start_date<=#{startDate} 
-    and end_date>=#{startDate}
+    and end_date>#{startDate}
     ]]>  	
     and cancel_flag = 0
   </select>
+    
+    <!-- 예약하려는 기간에 해당 숙소에 대한 예약이 있는지 조회 -->
+	<select id="selectSiteTerm" resultType="int">
+		select count(*) as cnt
+		from site_book
+		where site_no=#{siteNo}
+		<![CDATA[ 
+		and start_date >=#{startDate} and start_date <#{endDate}
+		]]> 
+		and cancel_flag = 0
+	</select>
   
   <!-- 예약 취소 -->
    <update id="cancelBook" parameterType = "int">
@@ -98,10 +117,15 @@
                         	book_no,
                         	member_id,
                         	site_no)
-	values  (#{optionNo},
+	values (#{optionNo},
         	#{bookNo},
         	#{memberId},
         	#{siteNo})
     </insert>
+    
+    <!-- 숙소 사용유무 변경 -->
+   <update id="siteUse">
+    update site set use_flag=#{useFlag} where site_no=#{siteNo} 
+  </update>
 
 </mapper>

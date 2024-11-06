@@ -71,6 +71,7 @@
 		                            <li class="nav-item"><a class="nav-link" href="memberList.do">회원관리</a></li>
 		                            <li class="nav-item"><a class="nav-link" href="myPageBookList.do">예약관리</a></li>
 		                        	<li class="nav-item"><a class="nav-link" href="optionList.do">예약옵션</a></li>
+		                        	<li class="nav-item"><a class="nav-link" href="siteList.do">숙소관리</a></li>
 		                        </ul>
 		                    </div>
 		                </div>

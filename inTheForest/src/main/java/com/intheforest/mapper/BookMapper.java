@@ -12,12 +12,16 @@ public interface BookMapper {
 	
 	//예약용
 	List<BookVO> siteList();
+	List<BookVO> siteListAdmin();
 	int bookLast();
 	List<BookVO> optionList();
 	BookVO selectSite(String siteNo);
 	int selectSiteDate(@Param("siteNo") int siteNo, @Param("startDate") String startDate);
+	int selectSiteTerm(@Param("siteNo") int siteNo, @Param("startDate") String startDate, @Param("endDate") String endDate);
 	 
 	int insertBook(BookVO book);
 	int insertBookOption(BookVO bookOption);
 	int cancelBook(int bookNo);
+	
+	int siteUse(@Param("siteNo") int siteNo, @Param("useFlag") String useFlag);
 }

@@ -22,7 +22,6 @@ public class BookCalCont implements Control {
 		String category = req.getParameter("category");
 		String siteMax = req.getParameter("siteMax");
 		String sitePrice = req.getParameter("sitePrice");
-		String startDate = req.getParameter("startDate");
 		
 		BookService svc = new BookServiceImpl();
 		List<BookVO> list = svc.siteList();

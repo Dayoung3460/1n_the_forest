@@ -43,15 +43,17 @@ public class BookAppCont implements Control {
 			if(svc.registerBook(book)) {
 				
 				int lastNo = svc.bookLast();
-				System.out.println("option: " +option.length);
-				for(int i=0; i<option.length; i++) {	
-					BookVO bookOption = new BookVO();
-					bookOption.setOptionNo(option[i]);
-					bookOption.setBookNo(lastNo);
-					bookOption.setMemberId(memberId);
-					bookOption.setSiteNo(siteNo);
-					
-					svc.registerBookOption(bookOption);
+				
+				if(option != null) {
+					for(int i=0; i<option.length; i++) {	
+						BookVO bookOption = new BookVO();
+						bookOption.setOptionNo(option[i]);
+						bookOption.setBookNo(lastNo);
+						bookOption.setMemberId(memberId);
+						bookOption.setSiteNo(siteNo);
+						
+						svc.registerBookOption(bookOption);
+					}
 				}
 				resp.sendRedirect("/inTheForest/detailBook.do?bookNo="+lastNo+"&memberId="+memberId+"&siteNo="+siteNo);
 			}

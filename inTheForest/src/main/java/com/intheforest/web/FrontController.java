@@ -35,6 +35,8 @@ import com.intheforest.control.member.removeJoinControl;
 import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.site.IntroPageControl;
 import com.intheforest.control.site.MainPageControl;
+import com.intheforest.control.site.SiteListControl;
+import com.intheforest.control.site.SiteUseControl;
 
 
 public class FrontController extends HttpServlet{
@@ -104,6 +106,8 @@ public class FrontController extends HttpServlet{
 		//관리자용 회원목록 조회
 		map.put("/memberList.do", new MemberListControl());
 		map.put("/optionList.do", new OptionListControl());
+		map.put("/siteList.do", new SiteListControl());
+		map.put("/siteUse.do", new SiteUseControl());
     
     
     // 사이트

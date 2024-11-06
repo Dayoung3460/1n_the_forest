@@ -18,6 +18,11 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
+	public List<BookVO> siteListAdmin(){
+		return mapper.siteListAdmin();
+	}
+	
+	@Override
 	public int bookLast(){
 		return mapper.bookLast();
 	}
@@ -47,6 +52,11 @@ public class BookServiceImpl implements BookService {
 		return mapper.selectSiteDate(siteNo, startDate);
 	}
 	
+	@Override
+	public int selectBookTerm(int siteNo, String startDate, String endDate){
+		return mapper.selectSiteTerm(siteNo, startDate, endDate);
+	}
+	
 	//등록
 	@Override
 	public boolean registerBook(BookVO book) {
@@ -63,5 +73,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public int cancelBook(int bookNo) {
 		return mapper.cancelBook(bookNo);
+	}
+	
+	//취소
+	@Override
+	public int siteUse(int siteNo, String useFlag) {
+		return mapper.siteUse(siteNo, useFlag);
 	}
 }

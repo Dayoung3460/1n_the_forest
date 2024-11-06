@@ -178,7 +178,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 							//지난날 계산[E]							
 																	
 						%>
-						<td <%if(result > 0){ %>class="last"<%} %> <%=result %>>
+						<td <%if(result > 0){ %>class="last"<%} %>>
 						
 							<%if (i > startBlankCnt && i <= startBlankCnt + lastDate) {
 								
@@ -196,7 +196,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 										String newDate = thisDate.replace("-","/");
 										result2 = svc.selectBookDate(bvo.getSiteNo(), newDate);
 									%>
-										<li <%if(result2 > 0){ %>class="out"<%}%>>
+										<li <%if(result2 > 0){ %>class="out"<%}%> <%=result2 %>>
 										
 											<!--지난 날 또는 예약완료된 숙소-->
 											<%if(result > 0 || result2 > 0){ %>
