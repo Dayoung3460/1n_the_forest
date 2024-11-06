@@ -37,7 +37,7 @@
 	</nav>
 	
 	<div class="d-flex justify-content-between align-items-end">
-		<h4 class="mt-2 fw-bolder mb-3">예약목록조회</h4>
+		<h4 class="mt-2 fw-bolder mb-4">예약목록</h4>
 		<c:if test="${permission != 'admin'}">
 			<button type="button" class="btn btn-outline-success mb-3" value="Submit"
 				style="float: right">
@@ -45,13 +45,10 @@
 			</button>
 		</c:if>
 	</div>
-	
-</div>	
-	
-<div class="p-3 boardList">
+
 	
 	<table class="table table-hover">
-		<thead>
+		<thead class="table-light">
 			<tr>
 				<th>예약번호</th>
 				<th>숙소종류</th>
@@ -151,4 +148,4 @@
     </div>
     <!-- 검색창 끝-->
 
-</div>
+</div>	

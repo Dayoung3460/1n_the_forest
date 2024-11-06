@@ -22,7 +22,7 @@ import com.intheforest.control.book.BookAppFormCont;
 import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.book.CancelBookControl;
 import com.intheforest.control.book.DetailBookControl;
-import com.intheforest.control.book.OptionListControl;
+import com.intheforest.control.book.OptionManageControl;
 import com.intheforest.control.member.DetailJoinControl;
 import com.intheforest.control.member.FindIdControl;
 import com.intheforest.control.member.FindPwControl;
@@ -85,6 +85,7 @@ public class FrontController extends HttpServlet{
 		
 		map.put("/cancelBook.do", new CancelBookControl());
 		map.put("/detailBook.do", new DetailBookControl());
+		
   
   
   
@@ -103,10 +104,10 @@ public class FrontController extends HttpServlet{
     
 		//관리자용 회원목록 조회
 		map.put("/memberList.do", new MemberListControl());
-		map.put("/optionList.do", new OptionListControl());
+		map.put("/optionManagement.do", new OptionManageControl());
     
     
-    // 사이트
+		// 사이트
 		map.put("/main.do", new MainPageControl());
 		map.put("/intro.do", new IntroPageControl());
 		

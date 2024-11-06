@@ -12,9 +12,9 @@
         </ol>
     </nav>
     
-    <h4 class="mt-4 fw-bolder">회원목록</h4>
+    <h4 class="mt-4 mb-4 fw-bolder">회원목록</h4>
     
-    <table class="table align-middle text-center mb-5 mt-5">
+    <table class="table align-middle text-center mb-5">
     
         <thead>
         <tr class="table-light">
@@ -40,7 +40,14 @@
 	                <td><fmt:formatDate value="${ member.joinedDate }" pattern="yyyy/MM/dd" /></td>
 	                <td>${ member.permission }</td>
 	                <td>
-	                    <button type="button" class="btn btn-outline-success btn-sm fw-bolder m-1" onclick="location.href = 'DetailJoin.do?memberId=${ member.memberId }'">상세정보</button>
+	                <c:choose>
+		                <c:when test="${ member.quit == 0 }">
+		                    <button type="button" class="btn btn-outline-success btn-sm fw-bolder m-1" onclick="location.href = 'DetailJoin.do?memberId=${ member.memberId }'">상세정보</button>
+		                </c:when>
+	                	<c:otherwise>
+	                			<span class="btn btn-sm btn-danger disabled">탈퇴한회원</span>
+	                	</c:otherwise>
+	                </c:choose>
 	                </td>
 	            </tr>
        		</c:forEach>

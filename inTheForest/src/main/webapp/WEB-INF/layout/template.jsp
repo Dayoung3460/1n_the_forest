@@ -66,11 +66,11 @@
 		            <nav class="navbar navbar-expand-lg navbar-dark bg-deepMint">
 		                <div class="container">
 		                		<h3 class="navbar-brand fw-bolder">관리자메뉴</h3>
-		                    <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+		                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 		                            <li class="nav-item"><a class="nav-link" href="memberList.do">회원관리</a></li>
 		                            <li class="nav-item"><a class="nav-link" href="myPageBookList.do">예약관리</a></li>
-		                        	<li class="nav-item"><a class="nav-link" href="optionList.do">예약옵션</a></li>
+		                        	<li class="nav-item"><a class="nav-link" href="optionManagement.do">예약옵션</a></li>
 		                        </ul>
 		                    </div>
 		                </div>
@@ -80,7 +80,7 @@
 
         <!-- Page content-->
         <div id="pageContent">
-			<tiles:insertAttribute name="body" />
+					<tiles:insertAttribute name="body" />
         </div>
         
         <!-- Footer-->
