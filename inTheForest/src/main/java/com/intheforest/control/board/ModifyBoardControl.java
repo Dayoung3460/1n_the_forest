@@ -19,10 +19,13 @@ public class ModifyBoardControl implements Control {
     
     BoardVO board;
     int bno = Integer.parseInt(req.getParameter("bno"));
+    String memberPermission = req.getParameter("memberPermission");
     String currentPage = req.getParameter("currentPage");
     String searchCondition = req.getParameter("searchCondition");
     String keyword = req.getParameter("keyword");
     String category = req.getParameter("category");
+   
+    int noticeFlag = req.getParameter("noticeFlag") == null ? 0 : 1;
     
     SearchDTO search = new SearchDTO();
     search.setCurrentPage(currentPage);
@@ -37,6 +40,7 @@ public class ModifyBoardControl implements Control {
       board = svc.searchBoard(bno);
       
       req.setAttribute("board", board);
+      req.setAttribute("memberPermission", memberPermission);
       req.setAttribute("search", search);
       req.setAttribute("category", category);
       req.getRequestDispatcher("board/boardModifyForm.tiles").forward(req, resp);
@@ -49,6 +53,8 @@ public class ModifyBoardControl implements Control {
       board.setBoardNo(bno);
       board.setTitle(title);
       board.setContent(content);
+     
+      board.setNoticeFlag(noticeFlag);
       
       boolean isSuccess = svc.modifyBoard(board);
       if(isSuccess) {

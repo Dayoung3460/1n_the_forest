@@ -33,7 +33,6 @@ public class BoardControl implements Control {
     HttpSession session = req.getSession();
     String memberId = (String) session.getAttribute("memberId");
     MemberVO member = MemberService.searchMember(memberId);
-    System.out.println("member = " + member);
     req.setAttribute("member", member);
     
     SearchDTO search = new SearchDTO();

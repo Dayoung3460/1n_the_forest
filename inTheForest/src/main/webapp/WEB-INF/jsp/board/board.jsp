@@ -4,13 +4,7 @@
 <%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%
-    BoardVO board = (BoardVO) request.getAttribute("board");
-//    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//    String wdate = sdf.format(board.getWriteDate());
-    String category = (String) request.getAttribute("category");
-%>
-<div class="board">
+<div class="board container">
     <c:choose>
         <c:when test="${category eq 'qna'}">
             <h3>문의하기</h3>
@@ -24,15 +18,23 @@
             <h3>공지사항</h3>
             <p>중요한 소식이나 안내를 작성해 주세요</p>
         </c:when>
-        <c:otherwise>
-            <h3>문의 답글</h3>
-            <p>문의에 답글을 남겨 주세요</p>
-        </c:otherwise>
     </c:choose>
     <hr/>
     <div>
         <div class="top">
-            <span>${board.title}</span>
+            <span>
+                ${board.title}
+                <c:if test="${board.boardCategory eq 'qna' && board.replyNo > 0}">
+                    <span class="label">문의 - 답글 완료</span>
+                </c:if>
+                <c:if test="${board.boardCategory eq 'qna' && board.replyNo == 0}">
+                    <span class="label">문의 - 답글 대기중</span>
+                </c:if>
+            <c:if test="${board.boardCategory eq 'reply'}">
+                <span class="label">답글</span>
+            </c:if>
+
+            </span>
             <span>작성자: ${board.writer}</span>
             <span>${board.writeDate}</span>
         </div>
@@ -56,19 +58,20 @@
             <div class="btnBox1">
                 <button class="btn btn-secondary me-2" id="prevBtn">이전글</button>
                 <button class="btn btn-secondary me-2" id="nextBtn">다음글</button>
-                <c:if test="${member.permission eq 'admin'}">
+
+                <c:if test="${category eq 'qna' && member.permission eq 'admin' && board.replyNo eq 0}">
                     <button class="btn btn-success" id="replyWriteBtn">답글쓰기</button>
-
-                        <button class="btn btn-primary hide" id="replyRegisterBtn">답글 등록</button>
-
-
+                    <button class="btn btn-primary hide" id="replyRegisterBtn">답글 등록</button>
                 </c:if>
+
 
             </div>
             <div class="btnBox2">
                 <c:if test="${memberId eq board.writer}">
                     <button class="btn btn-primary" id="editBtn">수정</button>
-                    <button type="button" class="btn btn-danger" id="deleteBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">삭제</button>
+                    <button type="button" class="btn btn-danger" id="deleteBtn" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">삭제
+                    </button>
                 </c:if>
                 <button class="btn btn-success" id="goListBtn">목록</button>
             </div>
@@ -102,7 +105,7 @@
     let replyRegisterBtn = document.getElementById('replyRegisterBtn')
     let replyBox = document.getElementById('replyBox')
 
-    replyWriteBtn.addEventListener('click', (e) => {
+    replyWriteBtn?.addEventListener('click', (e) => {
         replyBox.classList.toggle('hide')
         replyBox.getElementsByTagName('textarea')[0].focus()
 
@@ -110,43 +113,27 @@
         replyWriteBtn.classList.toggle('hide')
     })
 
-    replyRegisterBtn.addEventListener('click', (e) => {
+    replyRegisterBtn?.addEventListener('click', function (e) {
+        const formData = new FormData(); // 현재 form 데이터 수집
 
-        // form?.addEventListener('submit', function (e) {
-        //     e.preventDefault();
-            const formData = new FormData(); // 현재 form 데이터 수집
+        formData.append('title', '└ [RE] : ' + "${board.title}");
+        formData.append('boardNo', "${board.boardNo}");
+        formData.append('content', document.getElementById('replyContent').value);
+        formData.append('writer', "${memberId}");
+        formData.append('secretFlag', "${board.secretFlag}");
+        formData.append('boardPw', "${board.boardPw}");
 
-            // 폼 데이터에 추가할 항목
-            // formData.append('category', 'reply' );
-            formData.append('title', '└ [RE] : ' + "${board.title}" );
-            formData.append('content', document.getElementById('replyContent').value);
-            formData.append('writer', "${memberId}");
-            formData.append('secretFlag', "${board.secretFlag}");
-            formData.append('boardPw', "${board.boardPw}");
-            formData.append('isReply', "true");
-
-            fetch('addBoard.do?category=reply', {
-                method: 'POST',
-                body: formData,
+        fetch('addReply.do?category=reply', {
+            method: 'POST',
+            body: formData,
+        })
+            .then((response) => response.text())
+            .then((result) => {
+                location.href = result
             })
-                .then((resolve) => {
-                    location.href = "boardList.do?category=qna"
-                }).then((result) => {
-            })
-                .catch((err) => {
-                    console.log(err)
-                })
-
-            <%--let title = document.getElementById('boardTitle').value// 필수 └ [RE] :--%>
-            <%--let content = document.getElementById('boardContent').value// 필수--%>
-            <%--let writer = document.getElementById('boardWriter').value// 필수--%>
-            <%--let image = document.getElementById('boardImg').value--%>
-            <%--let bookNoArr = "${bookNoList}";// 후기 일 때 필수--%>
-            <%--let secretFlag = document.getElementById('defaultCheck1')?.value--%>
-            <%--let boardPw = document.getElementById('boardPw').value// 문의 일 때 필수--%>
-            <%--let noticeFlag = document.getElementById('defaultCheck2')?.value--%>
-
-        // });
+            .catch((err) => {
+                console.log(err);
+            });
     })
 
     let modalDeleteBtn = document.getElementById('modalDeleteBtn')
@@ -158,7 +145,7 @@
     let editBtn = document.getElementById('editBtn')
     editBtn?.addEventListener('click', (e) => {
         e.preventDefault()
-        location.href = 'modifyBoard.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
+        location.href = 'modifyBoard.do?bno=${board.boardNo}&memberPermission=${member.permission}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
     })
 
     let goListBtn = document.getElementById('goListBtn')
@@ -193,25 +180,4 @@
             }
         });
     })
-
-
-
-    <%--let bno = "${board.boardNo}"--%>
-    <%--let memberId = "${memberId}"--%>
-
-
-    <%--document.querySelector('.modifyBtn')?.addEventListener('click', (e) => {--%>
-    <%--    // get method--%>
-    <%--    location.href = 'modifyBoard.do?bno=<%=board.getBoardNo()%>&currentPage=<%=search.getCurrentPage()%>&searchCondition=<%=search.getSearchCondition()%>&keyword=<%=search.getKeyword()%>';--%>
-    <%--})--%>
-
-    <%--document.querySelector('.deleteBtn')?.addEventListener('click', (e) => {--%>
-    <%--    location.href = 'deleteBoard.do?bno=<%=board.getBoardNo()%>&currentPage=<%=search.getCurrentPage()%>&searchCondition=<%=search.getSearchCondition()%>&keyword=<%=search.getKeyword()%>';--%>
-    <%--})--%>
-
-
 </script>
-<%--<script src="js/jquery-3.7.1.js"></script>--%>
-<%--<script src="js/replyService.js"></script>--%>
-<%--<!--<script src="js/reply.js"></script>-->--%>
-<%--<script src="js/jreply.js"></script>--%>
