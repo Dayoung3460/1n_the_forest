@@ -34,9 +34,15 @@ public class BoardServiceImpl implements BoardService {
   }
   
   @Override
-  public boolean RegisterBoard(BoardVO board) {
-    return mapper.insertBoard(board) == 1;
+  public int registerBoard(BoardVO board) {
+    return mapper.insertBoard(board);
   }
+  
+  @Override
+  public boolean updateReplyNo(BoardVO board) {
+    return mapper.updateReplyNo(board) == 1;
+  }
+  
   @Override
   public boolean removeBoard(int boardNo) {
     return mapper.deleteBoard(boardNo) == 1;
@@ -60,11 +66,6 @@ public class BoardServiceImpl implements BoardService {
   @Override
   public BoardVO selectNextBoard(BoardVO board) {
     return mapper.selectNextBoard(board);
-  }
-  
-  @Override
-  public List<Map<String, Object>> countByWriter() {
-    return mapper.countByWriter();
   }
   
   @Override

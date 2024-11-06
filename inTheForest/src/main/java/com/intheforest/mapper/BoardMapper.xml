@@ -29,20 +29,13 @@
         from (select rownum rn, a.*
         from (select *
         from board
-        <!-- 검색조건이 있으면 where 태그를 타고 아니면 안탐 -->
         <where>
             <choose>
-                <when test="category == 'qna'">
+                <when test="category == 'qna' || category == 'reply'">
                     lower(board_category) in ('qna', 'reply')
                 </when>
-                <when test="category == 'reply'">
-                    lower(board_category) in ('qna', 'reply')
-                </when>
-                <when test="category == 'notice'">
-                    lower(board_category) like #{category}
-                </when>
-                <when test="category == 'review'">
-                    lower(board_category) like #{category}
+                <when test="!(category == 'qna' || category == 'reply')">
+                    lower(board_category) = lower(#{category})
                 </when>
                 <when test="searchCondition == 'title'">
                     <!-- ||: 문자열을 연결하는 연산자 -->
@@ -58,7 +51,14 @@
                 </when>
             </choose>
         </where>
-        order by notice_flag desc, write_date desc
+        order by
+        notice_flag desc,
+        <!--       원본 글은 자신의 board_no로, 답글은 원본 글의 board_no로 정렬-->
+        COALESCE(reply_no, board_no),
+        <!--        원본 글은 write_date DESC로 정렬-->
+        CASE WHEN reply_no IS NULL THEN write_date END DESC,
+        <!--        답글은 최신순으로 원본 글 아래에 위치-->
+        CASE WHEN reply_no IS NOT NULL THEN write_date END
         ) a
         ) b
         where b.rn > (#{currentPage} - 1) * 10
@@ -74,17 +74,11 @@
         from board
         <where>
             <choose>
-                <when test="category == 'qna'">
+                <when test="category == 'qna' || category == 'reply'">
                     lower(board_category) in ('qna', 'reply')
                 </when>
-                <when test="category == 'reply'">
-                    lower(board_category) in ('qna', 'reply')
-                </when>
-                <when test="category == 'notice'">
-                    lower(board_category) like #{category}
-                </when>
-                <when test="category == 'review'">
-                    lower(board_category) like #{category}
+                <when test="!(category == 'qna' || category == 'reply')">
+                    lower(board_category) = lower(#{category})
                 </when>
                 <when test="searchCondition == 'title'">
                     title like '%' || #{keyword} || '%'
@@ -101,10 +95,13 @@
         </where>
     </select>
 
-    <insert id="insertBoard" parameterType="board">
+    <insert id="insertBoard" parameterType="board" useGeneratedKeys="true" keyProperty="boardNo">
+        <selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
+            SELECT board_seq.nextval FROM dual
+        </selectKey>
         insert into
         board(board_no, board_category, book_no, secret_flag, title, content, board_pw, notice_flag, writer, board_file)
-        values(board_seq.nextval,
+        values(#{boardNo},
         #{boardCategory}, #{bookNo}, #{secretFlag}, #{title}, #{content}, #{boardPw}, #{noticeFlag}, #{writer},
         #{boardFile})
     </insert>
@@ -125,6 +122,13 @@
         <if test="boardFile != null">
             ,board_file = #{boardFile}
         </if>
+        where board_no = #{boardNo}
+
+    </update>
+
+    <update id="updateReplyNo" parameterType="board">
+        update board
+        set reply_no = #{replyNo}
         where board_no = #{boardNo}
 
     </update>
@@ -152,19 +156,25 @@
         select *
         from board
         where write_date = (
-            select max(write_date)
-            from board
-            <![CDATA[
-                where write_date < TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
-            ]]>
-        )
+        select max(write_date)
+        from board
         <![CDATA[
+        where write_date < TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
+        )
         and write_date < TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
         ]]>
-        and lower(board_category) like #{boardCategory}
-        order by write_date desc
+        <choose>
+            <when test="boardCategory == 'qna' || boardCategory == 'reply'">
+                and lower(board_category) in ('qna', 'reply')
+            </when>
+            <when test="!(boardCategory == 'qna' || boardCategory == 'reply')">
+                and lower(board_category) = lower(#{boardCategory})
+            </when>
+        </choose>
 
+        order by write_date desc
     </select>
+
 
     <select id="selectNextBoard" parameterType="board">
         select *
@@ -173,13 +183,19 @@
         select min(write_date)
         from board
         <![CDATA[
-                WHERE write_date > TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
-            ]]>
+        where write_date > TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
         )
-        <![CDATA[
         and write_date > TO_DATE(#{writeDate}, 'YYYY-MM-DD HH24:MI:SS')
-         ]]>
-        and lower(board_category) like #{boardCategory}
+        ]]>
+        <choose>
+            <when test="boardCategory == 'qna' || boardCategory == 'reply'">
+                and lower(board_category) in ('qna', 'reply')
+            </when>
+            <when test="!(boardCategory == 'qna' || boardCategory == 'reply')">
+                and lower(board_category) = lower(#{boardCategory})
+            </when>
+        </choose>
+
         order by write_date desc
     </select>
 
@@ -189,22 +205,12 @@
         from site_book
         where member_id = #{memberId}
     </select>
-    
+
     <select id="reviewOnBook" parameterType="int">
-    	select b.*
-		from board b join site_book sb
-		             on   b.book_no = sb.book_no
-		where b.book_no = #{bookNo}
-		and   b.board_category = 'review'
+        select b.*
+        from board b join site_book sb
+        on b.book_no = sb.book_no
+        where b.book_no = #{bookNo}
+        and b.board_category = 'review'
     </select>
-
-    <!--    <select id="countByWriter" resultType="hashmap">-->
-    <!--        select writer as "writer", member_name as "member_name", count(1) as "count"-->
-    <!--        from tbl_board b-->
-    <!--        join tbl_member m-->
-    <!--        on b.writer = m.member_id-->
-    <!--        group by writer, member_name-->
-    <!--    </select>-->
-
-
 </mapper>
