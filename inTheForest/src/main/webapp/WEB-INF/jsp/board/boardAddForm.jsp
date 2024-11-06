@@ -8,7 +8,7 @@
 <% String memberId = (String) session.getAttribute("memberId");%>
 <% String category = (String) request.getAttribute("category");%>
 
-<div class="boardAddForm">
+<div class="boardAddForm container">
     <c:choose>
         <c:when test="${category eq 'qna'}">
             <h3>문의하기</h3>
@@ -22,10 +22,6 @@
             <h3>공지사항</h3>
             <p>중요한 소식이나 안내를 작성해 주세요</p>
         </c:when>
-        <c:otherwise>
-            <h3>문의 답글</h3>
-            <p>문의에 답글을 남겨 주세요</p>
-        </c:otherwise>
     </c:choose>
 
 

@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<div class="p-3 boardList">
+<div class="p-3 boardList container">
     <c:choose>
         <c:when test="${category eq 'qna'}">
             <h3>문의하기</h3>
@@ -19,10 +19,6 @@
             <h3>공지사항</h3>
             <p>중요한 소식이나 안내를 작성해 주세요</p>
         </c:when>
-        <c:otherwise>
-            <h3>문의 답글</h3>
-            <p>문의에 답글을 남겨 주세요</p>
-        </c:otherwise>
     </c:choose>
     <table class="table">
         <thead>
@@ -49,7 +45,7 @@
 
                 <td class="title">
                     <a data-board-no="${board.boardNo}"
-                       data-secret-flag="${board.secretFlag}" data-board-pw="${board.boardPw}">${board.title}</a>
+                       data-secret-flag="${board.secretFlag}" data-board-pw="${board.boardPw}" data-board-category="${board.boardCategory}">${board.title}</a>
                     <c:if test="${board.secretFlag == 1}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-lock-fill" viewBox="0 0 16 16">
@@ -195,7 +191,13 @@
     let wrongPw = document.getElementsByClassName('wrongPw')[0]
 
     let title = document.querySelectorAll('.title')
+
     title.forEach((item) => {
+        let category = item.getElementsByTagName('a')[0].getAttribute('data-board-category')
+        if(category === 'reply') {
+            item.getElementsByTagName('a')[0].classList.add('reply')
+        }
+
         item.addEventListener('click', (e) => {
             boardNo = e.currentTarget.getElementsByTagName('a')[0].getAttribute('data-board-no')
             let secretFlag = e.currentTarget.getElementsByTagName('a')[0].getAttribute('data-secret-flag')

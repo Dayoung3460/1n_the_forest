@@ -3,6 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<style>
+  table th:last-of-type{
+      width: 100px;
+  }
+</style>
+
 <div class="container">
 
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -20,7 +26,7 @@
         <tr class="table-light">
             <th>아이디</th>
             <th>이름</th>
-            <th>주소</th>
+            <th class="w-25">주소</th>
             <th>이메일</th>
             <th>연락처</th>
             <th>가입일</th>
@@ -34,7 +40,7 @@
 	            <tr>
 	                <td>${ member.memberId }</td>
 	                <td>${ member.memberName }</td>
-	                <td class="w-25">${ member.address }</td>
+	                <td>${ member.address }</td>
 	                <td>${ member.email }</td>
 	                <td>${ member.tel }</td>
 	                <td><fmt:formatDate value="${ member.joinedDate }" pattern="yyyy/MM/dd" /></td>

@@ -7,7 +7,7 @@
     SearchDTO search = (SearchDTO) request.getAttribute("search");
 %>
 
-<div class="boardModifyForm">
+<div class="boardModifyForm container">
     <h3>글 수정하기</h3>
     <p>수정할 내용을 입력하고 수정완료 버튼을 눌러주세요</p>
     <form class="form-control" action="modifyBoard.do?&bno=${board.boardNo}" method="post">
@@ -43,21 +43,40 @@
             </c:if>
 
         </table>
+        <div class="bottom">
+            <c:if test="${(memberPermission eq 'admin') && (category eq 'notice')}">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="noticeFlag" id="noticeFlag" value="${board.noticeFlag eq 1}">
+                    <label class="form-check-label" for="noticeFlag">
+                        중요 공지
+                    </label>
+                </div>
+            </c:if>
+            <div class="btns">
+                <input name="currentPage" type="text" value="<%=search.getCurrentPage() %>" hidden="hidden"/>
+                <input name="searchCondition" type="text" value="<%=search.getSearchCondition() %>" hidden="hidden"/>
+                <input name="keyword" type="text" value="<%=search.getKeyword() %>" hidden="hidden"/>
+                <input name="category" type="text" value="<%=search.getCategory() %>" hidden="hidden"/>
 
-        <div class="btns">
+                <input class="btn btn-success" type="submit" value="수정완료"/>
 
-
-            <input name="currentPage" type="text" value="<%=search.getCurrentPage() %>" hidden="hidden"/>
-            <input name="searchCondition" type="text" value="<%=search.getSearchCondition() %>" hidden="hidden"/>
-            <input name="keyword" type="text" value="<%=search.getKeyword() %>" hidden="hidden"/>
-            <input name="category" type="text" value="<%=search.getCategory() %>" hidden="hidden"/>
-
-            <input class="btn btn-success" type="submit" value="수정완료"/>
-
-            <a href="#" onclick="history.back(); return false;">
-                <input class="btn btn-secondary" type="text" value="취소"/>
-            </a>
+                <a href="#" onclick="history.back(); return false;">
+                    <input class="btn btn-secondary" type="text" value="취소"/>
+                </a>
+            </div>
         </div>
+
+
     </form>
 </div>
+<script>
+    <%--let noticeFlag = document.getElementById('noticeFlag')--%>
+    <%--console.log(${board.noticeFlag})--%>
+    <%--console.log(typeof ${board.noticeFlag})--%>
+    <%--if (${board.noticeFlag} === 1){--%>
+    <%--    noticeFlag.checked = true--%>
+    <%--}else{--%>
+    <%--    noticeFlag.checked = false--%>
+    <%--}--%>
+</script>
 

@@ -70,8 +70,9 @@
 		                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 		                            <li class="nav-item"><a class="nav-link" href="memberList.do">회원관리</a></li>
 		                            <li class="nav-item"><a class="nav-link" href="myPageBookList.do">예약관리</a></li>
-		                        	<li class="nav-item"><a class="nav-link" href="optionManagement.do">예약옵션</a></li>
-		                        </ul>
+                                    <li class="nav-item"><a class="nav-link" href="siteList.do">숙소관리</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="optionManagement.do">예약옵션</a></li>
+                                </ul>
 		                    </div>
 		                </div>
 		            </nav>
@@ -80,7 +81,7 @@
 
         <!-- Page content-->
         <div id="pageContent">
-					<tiles:insertAttribute name="body" />
+			<tiles:insertAttribute name="body" />
         </div>
         
         <!-- Footer-->

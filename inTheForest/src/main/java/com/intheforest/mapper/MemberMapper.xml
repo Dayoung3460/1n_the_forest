@@ -149,7 +149,10 @@
 	set
 	 <if test= "password != null">
 	  password = #{password}
-	 </if>  
+	 </if> 
+	 <if test= "memberName != null">
+	  ,member_name = #{memberName}
+	 </if> 
 	 <if test= "email != null">
 	 ,email =#{email}
 	 </if>

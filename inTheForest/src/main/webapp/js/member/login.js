@@ -20,7 +20,7 @@
 	
 	function fnInit(){
 		var cookieid = getCookie("saveid");
-		console.log("현재저장된 id=" + cookieid);
+		//console.log("현재저장된 id=" + cookieid);
 		if(cookieid != ""){
 			$("input:checkbox[id='saveId']").prop("checked",true);
 			$("#memberId").val(cookieid);

@@ -6,6 +6,7 @@ import com.intheforest.vo.BookVO;
 
 public interface BookService {	
 	List<BookVO> siteList();
+	List<BookVO> siteListAdmin();
 	int bookLast();
 	List<BookVO> optionList();
 	
@@ -14,6 +15,7 @@ public interface BookService {
 	List<String> selectBookOption(int bookNo);
 	BookVO selectSite(String siteNo);
 	int selectBookDate(int siteNo, String startDate);
+	int selectBookTerm(int siteNo, String startDate, String endDate);
 	
 	// 등록(삽입)
 	boolean registerBook(BookVO book);
@@ -24,4 +26,5 @@ public interface BookService {
 	
 	//옵션 가격 수정
 	int modifyOptPrice(int price, int optNo);
+	int siteUse(int siteNo, String useFlag);
 }

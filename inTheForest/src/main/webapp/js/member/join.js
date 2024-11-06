@@ -56,9 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	//아이디 중복 검사 후 + 비밀번호 불일치 체크 후 + 주소 적은지 확인 후 에 회원가입 완료 하게 해주기
 	form.addEventListener("submit", function(event) {
 		var idChecked = document.getElementById("idChecked").value;
-		var postcode = document.getElementById("postcode").value;
-		var address1 = document.getElementById("address1").value;
-		var address2 = document.getElementById("address2").value;
+		var email = document.getElementById("email").value;
 		var memberName = document.getElementById("memberName").value;
 		var tel = document.getElementById("tel").value;
 		var passwordPattern = /^[a-zA-Z0-9!@#$%^*+=]+$/;
@@ -72,18 +70,18 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 		if(!memberName){
 			event.preventDefault();
-			alert("이름을 입력하세요")
+			alert("이름을 입력하세요.")
 			return;
 		}
 		if(!tel){
 			event.preventDefault();
-			alert("휴대폰 번호를 입력하세요")
+			alert("휴대폰 번호를 입력하세요.")
 			return;
 		}
 
-		if (!postcode || !address1 || !address2) {
+		if (!email) {
 			event.preventDefault();
-			alert("주소를 입력해주세요.")
+			alert("이메일을 입력 해 주세요.")
 			return;
 		}
 		
@@ -97,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		checkPwMatch();
 		if (password.value !== checkPw.value) {
 			event.preventDefault();
-			alert("비밀번호가 일치 하지 않습니다. 확인 해 주세요");
+			alert("비밀번호가 일치 하지 않습니다. 확인 해 주세요.");
 		}
 	});
 

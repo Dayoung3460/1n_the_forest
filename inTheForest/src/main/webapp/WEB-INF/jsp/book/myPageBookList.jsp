@@ -37,7 +37,7 @@
 	</nav>
 	
 	<div class="d-flex justify-content-between align-items-end">
-		<h4 class="mt-2 fw-bolder mb-4">예약목록</h4>
+		<h4 class="mt-2 fw-bolder mb-3">예약목록조회</h4>
 		<c:if test="${permission != 'admin'}">
 			<button type="button" class="btn btn-outline-success mb-3" value="Submit"
 				style="float: right">
@@ -45,10 +45,11 @@
 			</button>
 		</c:if>
 	</div>
-
+	
+<div class="p-3 boardList">
 	
 	<table class="table table-hover">
-		<thead class="table-light">
+		<thead>
 			<tr>
 				<th>예약번호</th>
 				<th>숙소종류</th>
@@ -59,24 +60,25 @@
 				<th>상태</th>
 			</tr>
 		</thead>
-		<tbody>
-			<%
-			for (MyBookVO bvo : list) {
-			%>
-            <tr onClick="location.href='detailBook.do?bookNo=<%=bvo.getBookNo()%>&memberId=<%=bvo.getMemberId()%>&siteNo=<%=bvo.getSiteNo()%>'">
-				<th scope="row"><%=bvo.getBookNo()%></th>
-				<td><%=bvo.getSiteName()%></td>
-				<td><%=bvo.getMemCnt()%>명</td>
-				<td><%=bvo.getStartDate()%> ~ <%=bvo.getEndDate()%></td>
-				<td><%=bvo.getTotalPrice()%>원</td>
-				<td><%=bvo.getCreateDate()%></td>
-				<%if(bvo.getCancelFlag()==0) { %>
-				<td>확정</td>
-				<%} else { %>
-				<td><span style="color:red">예약취소</span></td>
-				<%}}%>
-			</tr>
-		</tbody>
+        <tbody>
+        <%
+            for (MyBookVO bvo : list) {
+        %>
+        <tr onClick="location.href='detailBook.do?bookNo=<%=bvo.getBookNo()%>&memberId=<%=bvo.getMemberId()%>&siteNo=<%=bvo.getSiteNo()%>'">
+            <th scope="row"><%=bvo.getBookNo()%></th>
+            <td><%=bvo.getSiteName()%></td>
+            <td><%=bvo.getMemCnt()%>명</td>
+            <td><%=bvo.getStartDate()%> ~ <%=bvo.getEndDate()%></td>
+
+            <td><fmt:formatNumber value="<%=bvo.getTotalPrice()%>" pattern="#,###" />원</td>
+            <td><%=bvo.getCreateDate()%></td>
+            <%if(bvo.getCancelFlag()==0) { %>
+            <td><span class="btn btn-sm btn-success disabled">확정</span></td>
+            <%} else { %>
+            <td><span class="btn btn-sm btn-danger disabled">예약취소</span></td>
+            <%}}%>
+        </tr>
+        </tbody>
 	</table>
     <!-- 페이지 네이션 -->
     <nav aria-label="Page navigation example">
@@ -148,4 +150,5 @@
     </div>
     <!-- 검색창 끝-->
 
-</div>	
+</div>
+</div>

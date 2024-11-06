@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.intheforest.common.Control;
 import com.intheforest.control.board.AddBoardControl;
 import com.intheforest.control.board.AddBoardFormControl;
+import com.intheforest.control.board.AddReplyControl;
 import com.intheforest.control.board.BoardControl;
 import com.intheforest.control.board.BoardListControl;
 import com.intheforest.control.board.BoardPrevNextControl;
@@ -22,6 +23,7 @@ import com.intheforest.control.book.BookAppFormCont;
 import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.book.CancelBookControl;
 import com.intheforest.control.book.DetailBookControl;
+import com.intheforest.control.book.MyBookControl;
 import com.intheforest.control.book.OptionManageControl;
 import com.intheforest.control.member.DetailJoinControl;
 import com.intheforest.control.member.FindIdControl;
@@ -32,9 +34,10 @@ import com.intheforest.control.member.LoginControl;
 import com.intheforest.control.member.MemberListControl;
 import com.intheforest.control.member.ModifyJoinControl;
 import com.intheforest.control.member.removeJoinControl;
-import com.intheforest.control.mypage.MyBookControl;
 import com.intheforest.control.site.IntroPageControl;
 import com.intheforest.control.site.MainPageControl;
+import com.intheforest.control.site.SiteListControl;
+import com.intheforest.control.site.SiteUseControl;
 
 
 public class FrontController extends HttpServlet{
@@ -71,6 +74,7 @@ public class FrontController extends HttpServlet{
 		map.put("/modifyBoard.do", new ModifyBoardControl());
 		map.put("/deleteBoard.do", new DeleteBoardControl());
 		map.put("/boardPrevNext.do", new BoardPrevNextControl());
+		map.put("/addReply.do", new AddReplyControl());
 
 		
 	
@@ -85,7 +89,6 @@ public class FrontController extends HttpServlet{
 		
 		map.put("/cancelBook.do", new CancelBookControl());
 		map.put("/detailBook.do", new DetailBookControl());
-		
   
   
   
@@ -105,6 +108,8 @@ public class FrontController extends HttpServlet{
 		//관리자용 회원목록 조회
 		map.put("/memberList.do", new MemberListControl());
 		map.put("/optionManagement.do", new OptionManageControl());
+		map.put("/siteList.do", new SiteListControl());
+		map.put("/siteUse.do", new SiteUseControl());
     
     
 		// 사이트
