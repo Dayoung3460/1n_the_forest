@@ -10,7 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
-import com.intheforest.control.board.*;
+import com.intheforest.control.board.AddBoardControl;
+import com.intheforest.control.board.AddBoardFormControl;
+import com.intheforest.control.board.AddReplyControl;
+import com.intheforest.control.board.BoardControl;
+import com.intheforest.control.board.BoardListControl;
+import com.intheforest.control.board.BoardPrevNextControl;
+import com.intheforest.control.board.DeleteBoardControl;
+import com.intheforest.control.board.ModifyBoardControl;
 import com.intheforest.control.book.BookAppCont;
 import com.intheforest.control.book.BookAppFormCont;
 import com.intheforest.control.book.BookCalCont;
