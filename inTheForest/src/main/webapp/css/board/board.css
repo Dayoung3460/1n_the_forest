@@ -12,6 +12,9 @@
         color: var(--bs-gray-700);
         margin-bottom: 60px;
     }
+    .content {
+        padding: 0 20px;
+    }
     .top {
         display: flex;
         justify-content: center;

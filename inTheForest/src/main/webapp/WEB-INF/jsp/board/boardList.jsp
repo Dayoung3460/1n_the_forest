@@ -20,7 +20,7 @@
             <p>중요한 소식이나 안내를 작성해 주세요</p>
         </c:when>
     </c:choose>
-    <table class="table">
+    <table class="table table-hover">
         <thead>
         <tr class="align-middle">
             <th>글번호</th>
