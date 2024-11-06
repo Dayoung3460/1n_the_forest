@@ -48,6 +48,13 @@
 	    from site_option 
 	</select>
 	
+	<!-- 숙소 옵션 가격 수정 -->
+	<update id="modifyOptionPrice" parameterType="int">
+		update site_option
+		set    option_price = #{newPrice}
+		where  option_no = #{optionNo}
+	</update>
+	
 	<!-- 숙소정보 조회 -->
 	<select id="selectSite" parameterType="string">
     select *

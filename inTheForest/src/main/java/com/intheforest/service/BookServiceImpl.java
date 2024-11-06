@@ -64,4 +64,11 @@ public class BookServiceImpl implements BookService {
 	public int cancelBook(int bookNo) {
 		return mapper.cancelBook(bookNo);
 	}
+	
+	//옵션 가격 수정
+	@Override
+	public int modifyOptPrice(int price, int optNo) {
+		return mapper.modifyOptionPrice(price, optNo);
+	}
+	
 }

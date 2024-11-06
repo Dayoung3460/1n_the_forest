@@ -20,7 +20,7 @@
     
     <h4 class="mt-4 fw-bolder">예약옵션 관리</h4>
 	
-		<form action="optionManagement.do" method="post">
+		<form action="optionManagement.do" method="get">
 		
 		    <div class="bottom me-4 text-end">
 		        <button type="submit" class="btn btn-lg btn-success">적용</button>
@@ -36,12 +36,12 @@
 		        </thead>
 		        
 		        <tbody>
-		        <c:forEach var="i" begin="0" end="${options.size() - 1}"> <!-- List 타입이므로 size()로 길이 반환 -->
+		        <c:forEach var="opt" items="options"> <!-- List 타입이므로 size()로 길이 반환 -->
 		            <tr>
-		                <td class="w-25"><input type="hidden" name="opt[${i}].optionNo">${options[i].optionNo}</td>
-		                <td class="w-50">${options[i].optionName}</td>
-		                <td class="d-flex justify-content-center"><input type="text" name="opt[${i}].price" 
-		                	value="${options[i].optionPrice}" class="form-control text-end w-75 fs-5"></td>
+		                <td class="w-25"><input type="hidden" name="optionNo" value="${opt.optionNo}">${opt.optionNo}</td>
+		                <td class="w-50">${opt.optionName}</td>
+		                <td class="d-flex justify-content-center"><input type="text" name="price" 
+		                	value="${opt.optionPrice}" class="form-control text-end w-75 fs-5"></td>
 		            </tr>
 		        </c:forEach>
 		        </tbody>
@@ -53,11 +53,10 @@
 
 <script>
 	
-		//천단위 입력값 , 표시
+		//보여줄 때 천단위 입력값 , 표시
 		let inputs = document.querySelectorAll('td input');
 		
 		document.addEventListener('DOMContentLoaded', (e) => {
-			
 			for(let i = 0; i < inputs.length; i++){
 					inputs[i].value = numberFormating(inputs[i].value); //로드된 값에 , 표시해서 보여줌
 				
@@ -71,7 +70,6 @@
 			        e.target.value = numberFormating(e.target.value);
 			    });
 			}
-			
 		});
 		
 		// , 제거

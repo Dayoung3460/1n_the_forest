@@ -20,4 +20,5 @@ public interface BookMapper {
 	int insertBook(BookVO book);
 	int insertBookOption(BookVO bookOption);
 	int cancelBook(int bookNo);
+	int modifyOptionPrice(@Param("newPrice") int newPrice, @Param("optionNo") int optionNo);
 }

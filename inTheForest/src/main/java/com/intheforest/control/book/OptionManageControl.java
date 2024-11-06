@@ -27,7 +27,7 @@ public class OptionManageControl implements Control {
 			req.getRequestDispatcher("book/optionManagement.tiles").forward(req, resp);
 		
 		} else if(req.getMethod().equals("POST")) {
-		
+			
 			
 			
 		}
