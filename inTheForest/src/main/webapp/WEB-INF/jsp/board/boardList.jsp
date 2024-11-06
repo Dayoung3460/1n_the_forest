@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<div class="p-3 boardList">
+<div class="p-3 boardList container">
     <c:choose>
         <c:when test="${category eq 'qna'}">
             <h3>문의하기</h3>

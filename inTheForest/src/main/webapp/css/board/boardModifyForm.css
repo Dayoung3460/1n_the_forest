@@ -62,19 +62,34 @@
     .form-control::file-selector-button {
         border: none;
     }
-    .btns {
-        outline: none;
-        border: none;
+    .bottom {
         display: flex;
         justify-content: center;
         align-items: center;
-        input {
-            margin-right: 20px;
+        margin-top: 40px;
+        margin-bottom: 60px;
+        .form-check {
+            margin-right: 16px;
+            .form-check-input:checked {
+                background-color: var(--bs-green);
+                border-color: var(--bs-green);
+            }
         }
-        > a {
-            > input {
-                width: 60px;
+        .btns {
+            outline: none;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            input {
+                margin-right: 20px;
+            }
+            > a {
+                > input {
+                    width: 60px;
+                }
             }
         }
     }
+
 }

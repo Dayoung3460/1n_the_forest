@@ -4,7 +4,7 @@
 <%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div class="board">
+<div class="board container">
     <c:choose>
         <c:when test="${category eq 'qna'}">
             <h3>문의하기</h3>
@@ -59,7 +59,7 @@
                 <button class="btn btn-secondary me-2" id="prevBtn">이전글</button>
                 <button class="btn btn-secondary me-2" id="nextBtn">다음글</button>
 
-                <c:if test="${member.permission eq 'admin' && board.replyNo eq 0}">
+                <c:if test="${category eq 'qna' && member.permission eq 'admin' && board.replyNo eq 0}">
                     <button class="btn btn-success" id="replyWriteBtn">답글쓰기</button>
                     <button class="btn btn-primary hide" id="replyRegisterBtn">답글 등록</button>
                 </c:if>
@@ -145,7 +145,7 @@
     let editBtn = document.getElementById('editBtn')
     editBtn?.addEventListener('click', (e) => {
         e.preventDefault()
-        location.href = 'modifyBoard.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
+        location.href = 'modifyBoard.do?bno=${board.boardNo}&memberPermission=${member.permission}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
     })
 
     let goListBtn = document.getElementById('goListBtn')
