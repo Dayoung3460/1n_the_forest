@@ -151,9 +151,10 @@
 	  funcBtn.style.display = 'none';	
 	}
 
-    let modalDeleteBtn = document.getElementById('modalDeleteBtn')
-    modalDeleteBtn.addEventListener('click', () => {
-        location.href = 'boardList.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
-    });
+	//모달에서 '예' 클릭 시 삭제페이지로 이동
+  let modalDeleteBtn = document.getElementById('modalDeleteBtn')
+  modalDeleteBtn.addEventListener('click', () => {
+      location.href = `cancelBook.do?bookNo=${book.bookNo}`;
+  });
     
 </script>

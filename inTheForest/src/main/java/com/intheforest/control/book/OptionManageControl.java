@@ -1,6 +1,7 @@
 package com.intheforest.control.book;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,22 +10,28 @@ import javax.servlet.http.HttpServletResponse;
 import com.intheforest.common.Control;
 import com.intheforest.service.BookService;
 import com.intheforest.service.BookServiceImpl;
+import com.intheforest.vo.BookVO;
 
-public class CancelBookControl implements Control {
+public class OptionManageControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int bookNo = Integer.parseInt(req.getParameter("bookNo"));
 		
-		BookService svc = new BookServiceImpl();
+		BookService bsvc = new BookServiceImpl();
 		
-		if(svc.cancelBook(bookNo) >0){
-			// 정상적으로 수정 되면 -> 목록 화면 출력 
-			resp.sendRedirect("myPageBookList.do");
-		}else {
-			req.setAttribute("msg", "잘못된 값입니다.");
-			req.getRequestDispatcher("myPageBookList.do").forward(req, resp);
+		
+		if(req.getMethod().equals("GET")) {			
+			
+			List<BookVO> options = bsvc.optionList();
+			req.setAttribute("options", options);
+			req.getRequestDispatcher("book/optionManagement.tiles").forward(req, resp);
+		
+		} else if(req.getMethod().equals("POST")) {
+		
+			
+			
 		}
+	
 	}
 
 }

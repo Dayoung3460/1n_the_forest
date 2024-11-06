@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', (e) => {
 	
-    let currentLocation = window.location.pathname; //현재 페이지의 경로 /inTheForest/main.do 식으로 받아옴.
+  let currentLocation = window.location.pathname; //현재 페이지의 경로 /inTheForest/main.do 식으로 받아옴.
 	currentLocation = currentLocation.replace('/inTheForest/', ''); //main.do만 남김
 	
 	//모든 a링크와 비교
@@ -8,8 +8,17 @@ document.addEventListener('DOMContentLoaded', (e) => {
 	for(let i = 0; i < alinks.length; i++){
 		let alink = alinks[i].getAttribute('href');
 		
+		let param = window.location.search;
+		
+		//메뉴에서 하위 페이지 이동 시, 상위 메뉴로 적용
 		if(currentLocation == 'boardList.do'){ 
-			currentLocation += window.location.search; //bookList.do는 파라미터가 링크에 포함되므로, 파라미터 추가
+			currentLocation += '?' + param.substr(param.indexOf('category')); //bookList.do는 파라미터가 링크에 포함되므로, 파라미터 추가
+		} else if(currentLocation == 'board.do'){
+			currentLocation = 'boardList.do' + '?' + param.substr(param.indexOf('category')); 
+		} else if(currentLocation == 'DetailJoin.do' || currentLocation == 'modifyJoin.do'){
+			currentLocation = 'memberList.do';
+		} else if(currentLocation == 'detailBook.do'){
+			currentLocation = 'myPageBookList.do';
 		}
 		
 		//최종값으로 active 적용		

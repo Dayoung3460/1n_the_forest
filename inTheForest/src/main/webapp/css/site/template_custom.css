@@ -47,7 +47,6 @@ footer img {
 footer span {
   margin: auto 0;
   margin-right: 10px;
-  word-break: keep-all;
 }
 .text-mint {
   color: #39b89a;
@@ -65,4 +64,8 @@ a {
 }
 .card .card-header {
   background-color: rgb(247, 247, 247) !important;
+}
+table {
+	table-layout: fixed;
+  word-wrap: break-word;
 }

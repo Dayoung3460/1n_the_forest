@@ -14,6 +14,9 @@
                 1px -1px 2px #555,
                 -1px -1px 2px #555;
   }
+  table tr td:first-of-type, table tr td:nth-of-type(2) {
+    width: 15%;
+  }
   table tr td:last-of-type {
     text-align: left;
   }
