@@ -60,7 +60,7 @@
             <div class="mb-3 row">
                 <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">차량번호</label>
                 <div class="col-sm-10">
-                    <input type="text" name="carNum" class="form-control w-50" value="${book.carNum}" readonly>
+                    <input type="text" name="carNum" class="form-control w-50" value="${book.carNum == null ? '없음' : book.carNum}" readonly>
                 </div>
             </div>
             
