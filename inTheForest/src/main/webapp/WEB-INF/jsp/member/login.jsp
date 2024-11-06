@@ -8,10 +8,15 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- 데이터 포맷에 사용 -->
 </head>
+<c:if test="${Emptymsg != null }">
+	<script>
+		alert("아이디 혹은 비밀번호를 입력하세요.")
+	</script>
+</c:if>
 
 <c:if test="${msg != null }">
 	<script>
-		alert("아이디와 비밀번호를 입력하세요.")
+		alert("아이디 혹은 비밀번호가 틀렸습니다.")
 	</script>
 </c:if>
 

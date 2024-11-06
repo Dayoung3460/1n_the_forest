@@ -36,11 +36,19 @@ public class FindIdControl implements Control {
 				return;
 			} 
 			
+			if(member == null) {
+				req.setAttribute("errormsg", "아이디 혹은 이메일이 틀렸습니다.");
+				req.getRequestDispatcher("member/findIdForm.tiles").forward(req, resp);
+				return;
+			}
+			
+			
 			if(member.getQuit() == 1) {
 				req.setAttribute("quitmsg", "탈퇴 한 회원 입니다.");
 				req.getRequestDispatcher("member/findIdForm.tiles").forward(req, resp);
 				return;
 			}
+			
 			
 			
 			//정상처리

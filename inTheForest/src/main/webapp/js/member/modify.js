@@ -39,10 +39,15 @@ function modalSave(){
 		.then(result =>{
 			if (result.retCode == 'OK'){
 				alert("성공적으로 탈퇴 되었습니다.")
-				location.replace('logOut.do');
 				
+				if(result.retVal == 'admin'){
+					location.replace('memberList.do');
+				}else if(result.retVal == 'user'){
+					location.replace('logOut.do');
+				}	
+					
 			} else if (result.retCode == 'FAIL'){
-				alert("탈퇴 오류 발생")
+				alert("탈퇴 오류 발생　하였습니다．")
 			}
 		})
 		.catch(err => console.log(err));

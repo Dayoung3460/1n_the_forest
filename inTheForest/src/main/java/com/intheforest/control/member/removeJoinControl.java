@@ -7,12 +7,14 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.intheforest.common.Control;
 import com.intheforest.service.MemberService;
 import com.intheforest.service.MemberServiceImpl;
+import com.intheforest.vo.MemberVO;
 
 public class removeJoinControl implements Control {
 
@@ -21,16 +23,25 @@ public class removeJoinControl implements Control {
 		req.setCharacterEncoding("utf-8"); // 값을 받을 때 (클라이언트가 보낸 값) 문자 안깨지게 해주는 것 
 		resp.setContentType("text/json;charset=utf-8"); // 값을 보낼 때 문자 안깨지게 해주는것
 		
-		// 멤버 아이디 parameter 받기
+		//session 에서 접속한 아이디 받기 （접속한아이디）
+		HttpSession session = req.getSession();
+		String memberId = (String) session.getAttribute("memberId");
+		
+		// 멤버 아이디 parameter 받기（삭제할아이디）
 		String memberID = req.getParameter("memberId");
 		
 		MemberService svc = new MemberServiceImpl();
+		
+		MemberVO member = svc.searchMember(memberId);
+		String permission = member.getPermission();
+		
 		Map<String,Object> result = new HashMap<>();
 		
 		try {
 			///성공시에는 {retCode:OK} 반환
 			svc.removeJoin(memberID);
 			result.put("retCode", "OK");
+			result.put("retVal", permission);
 			
 		}catch(Exception e) {
 			result.put("retCode","FAIL");

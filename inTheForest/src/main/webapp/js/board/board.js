@@ -4,10 +4,10 @@ const getPrevBookNo = (writeDate, category, isPrev, success) => {
         .then((resolve) => {
             return resolve.json()
         }).then(success)
-        .catch((err) => {
-            console.log(err)
-        })
-}
+        .catch((err) =>
+        {console.log(err)})
+        }
+
 
 const getNextBookNo = (writeDate, category, isPrev, success) => {
     let url= `boardPrevNext.do?writeDate=${writeDate}&category=${category}&isPrev=${isPrev}`

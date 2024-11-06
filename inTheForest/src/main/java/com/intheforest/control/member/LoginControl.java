@@ -31,9 +31,15 @@ public class LoginControl implements Control {
 			MemberService svc = new MemberServiceImpl();
 			MemberVO member = svc.memberLogin(id, pw);
 			
+			if(id == "" || pw == "") {
+				req.setAttribute("Emptymsg", "아이디 혹은 비밀번호를 입력하세요");
+				req.getRequestDispatcher("member/login.tiles").forward(req, resp);
+				return;
+			}
+			 
 			if (member == null) {
 				//로그인 실패 (login.jsp로 이동)
-				req.setAttribute("msg", "아이디와 비밀번호를 입력하세요");
+				req.setAttribute("msg", "아이디 혹은 비밀번호가 틀렸습니다.");
 				req.getRequestDispatcher("member/login.tiles").forward(req, resp);
 				return;
 			} 

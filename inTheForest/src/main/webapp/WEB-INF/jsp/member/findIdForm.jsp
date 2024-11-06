@@ -13,6 +13,12 @@
 	</script>
 </c:if>
 
+<c:if test="${errormsg != null }">
+<script>
+	alert("아이디 혹은 이메일이 틀렸습니다.")
+</script>
+</c:if>
+
 <c:if test="${quitmsg != null }">
 <script>
 	alert("탈퇴한 회원입니다.")

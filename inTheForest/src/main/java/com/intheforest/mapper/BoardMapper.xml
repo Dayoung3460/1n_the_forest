@@ -23,11 +23,12 @@
         write_date desc
     </select>
 
-    <select id="boardListByPage" resultType="board"
-            parameterType="search">
+    <select id="boardListByPage" resultType="board" parameterType="search">
         select b.*
-        from (select rownum rn, a.*
-        from (select *
+        from (
+        select rownum rn, a.*
+        from (
+        select *
         from board
         <where>
             <choose>
@@ -38,7 +39,6 @@
                     lower(board_category) = lower(#{category})
                 </when>
                 <when test="searchCondition == 'title'">
-                    <!-- ||: 문자열을 연결하는 연산자 -->
                     title like '%' || #{keyword} || '%'
                 </when>
                 <when test="searchCondition == 'writer'">
@@ -46,27 +46,23 @@
                 </when>
                 <when test="searchCondition == 'titleAndWriter'">
                     (title like '%' || #{keyword} || '%')
-                    or (writer like
-                    '%' || #{keyword} || '%')
+                    or (writer like '%' || #{keyword} || '%')
                 </when>
             </choose>
         </where>
         order by
         notice_flag desc,
-        <!--       원본 글은 자신의 board_no로, 답글은 원본 글의 board_no로 정렬-->
         COALESCE(reply_no, board_no),
-        <!--        원본 글은 write_date DESC로 정렬-->
         CASE WHEN reply_no IS NULL THEN write_date END DESC,
-        <!--        답글은 최신순으로 원본 글 아래에 위치-->
-        CASE WHEN reply_no IS NOT NULL THEN write_date END
+        CASE WHEN reply_no IS NOT NULL THEN 1 ELSE 0 END
         ) a
         ) b
         where b.rn > (#{currentPage} - 1) * 10
-        <!-- 꺽쇠를 연산자로 쓰기 위해 태그가 아니고 -->
         <![CDATA[
-				and b.rn <= (#{currentPage} * 10)
-				]]>
+        and b.rn <= (#{currentPage} * 10)
+    ]]>
     </select>
+
 
     <select id="boardTotalCount" resultType="int"
             parameterType="search">
@@ -121,6 +117,24 @@
         </if>
         <if test="boardFile != null">
             ,board_file = #{boardFile}
+        </if>
+        <if test="noticeFlag != null">
+            ,notice_flag = #{noticeFlag}
+        </if>
+        <if test="boardCategory != null">
+            ,board_category = #{boardCategory}
+        </if>
+        <if test="bookNo != null">
+            ,book_no = #{bookNo}
+        </if>
+        <if test="replyNo != null">
+            ,reply_no = #{replyNo}
+        </if>
+        <if test="boardPw != null">
+            ,board_pw = #{boardPw}
+        </if>
+        <if test="writer != null">
+            ,writer = #{writer}
         </if>
         where board_no = #{boardNo}
 

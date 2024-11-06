@@ -107,12 +107,12 @@ public class FrontController extends HttpServlet{
     
 		//관리자용 회원목록 조회
 		map.put("/memberList.do", new MemberListControl());
-		map.put("/optionManagement.do", new OptionManageControl());
 		map.put("/siteList.do", new SiteListControl());
 		map.put("/siteUse.do", new SiteUseControl());
+    map.put("/optionManagement.do", new OptionManageControl());
     
     
-		// 사이트
+    // 사이트
 		map.put("/main.do", new MainPageControl());
 		map.put("/intro.do", new IntroPageControl());
 		

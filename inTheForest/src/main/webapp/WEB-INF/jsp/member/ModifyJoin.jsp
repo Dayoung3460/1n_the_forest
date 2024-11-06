@@ -19,7 +19,7 @@
 </c:if>
 <body>
 	<div
-		class="container min-vh-100 d-flex justify-content-center align-items-center" style="width:960px">
+		class="container min-vh-100 d-flex justify-content-center align-items-center mt-5" style="width:960px">
 		<div class="card border-success mb-3" style="width: 100%">
 			<div class="card-header text-white text-center" style="background-color: #347C2C !important;">회원정보수정</div>
 			<div class="card-body" >
