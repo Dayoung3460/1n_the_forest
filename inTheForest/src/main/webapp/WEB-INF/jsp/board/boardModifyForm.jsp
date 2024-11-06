@@ -38,7 +38,16 @@
                 <tr class="align-middle">
                     <th>파일 첨부</th>
                     <td colspan="3" class="content-col file-input">
-                        <img src="image/${ board.boardFile }">
+                        <div class="image-container">
+                            <img src="image/${board.boardFile}" alt="Image">
+                            <button type="button" class="delete-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input class="form-control hide" type="file" id="newBoardImg" name="image"/>
                     </td>
                 </tr>
             </c:if>
@@ -75,6 +84,18 @@
     </form>
 </div>
 <script>
+    let deleteBtn = document.getElementsByClassName('delete-button')[0]
+    let imageContainer = document.getElementsByClassName('image-container')[0]
+    let newBoardImg = document.getElementById('newBoardImg')
+    deleteBtn.addEventListener('click', (e) => {
+        imageContainer.classList.toggle('hide')
+        newBoardImg.classList.toggle('hide')
+
+        if(imageContainer.classList.contains('hide')) {
+            newBoardImg.value = null
+        }
+    })
+
     const form = document.getElementsByTagName('form')[0];
     form?.addEventListener('submit', function (e) {
         e.preventDefault(); // 실제 제출을 막고 데이터 확인
