@@ -10,8 +10,12 @@
 <div class="boardModifyForm container">
     <h3>글 수정하기</h3>
     <p>수정할 내용을 입력하고 수정완료 버튼을 눌러주세요</p>
-    <form class="form-control" action="modifyBoard.do?&bno=${board.boardNo}" method="post">
-        <%--    <form class="form-control" action="modifyBoard.do?category=${category}&bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}" method="post">--%>
+    <form class="form-control" action="modifyBoard.do?&bno=${board.boardNo}" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" name="currentPage" value="<%=search.getCurrentPage() %>"/>
+        <input type="hidden" name="searchCondition" value="<%=search.getSearchCondition() %>"/>
+        <input type="hidden" name="keyword" value="<%=search.getKeyword() %>"/>
+        <input type="hidden" name="category" value="<%=search.getCategory() %>"/>
         <table class="table">
             <tr class="align-middle">
                 <th>제목</th>
@@ -34,10 +38,24 @@
                 <tr class="align-middle">
                     <th>파일 첨부</th>
                     <td colspan="3" class="content-col file-input">
-
-                            <%--          <input class="form-control" type="file" id="boardImg" name="image"/>--%>
-                        <img src="image/${ board.boardFile }">
-                            <%--                    <span aria-hidden="true">${board.boardFile}</span>--%>
+                        <div class="image-container">
+                            <img src="image/${board.boardFile}" alt="Image">
+                            <button type="button" class="delete-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input class="form-control hide" type="file" id="newBoardImg" name="image"/>
+                    </td>
+                </tr>
+            </c:if>
+            <c:if test="${ board.boardFile == null }">
+                <tr class="align-middle">
+                    <th>파일 첨부</th>
+                    <td colspan="3" class="content-col file-input">
+                        <input class="form-control" type="file" id="boardImg" name="image"/>
                     </td>
                 </tr>
             </c:if>
@@ -53,10 +71,7 @@
                 </div>
             </c:if>
             <div class="btns">
-                <input name="currentPage" type="text" value="<%=search.getCurrentPage() %>" hidden="hidden"/>
-                <input name="searchCondition" type="text" value="<%=search.getSearchCondition() %>" hidden="hidden"/>
-                <input name="keyword" type="text" value="<%=search.getKeyword() %>" hidden="hidden"/>
-                <input name="category" type="text" value="<%=search.getCategory() %>" hidden="hidden"/>
+
 
                 <input class="btn btn-success" type="submit" value="수정완료"/>
 
@@ -64,19 +79,47 @@
                     <input class="btn btn-secondary" type="text" value="취소"/>
                 </a>
             </div>
+
         </div>
-
-
     </form>
 </div>
 <script>
+    let deleteBtn = document.getElementsByClassName('delete-button')[0]
+    let imageContainer = document.getElementsByClassName('image-container')[0]
+    let newBoardImg = document.getElementById('newBoardImg')
+    deleteBtn.addEventListener('click', (e) => {
+        imageContainer.classList.toggle('hide')
+        newBoardImg.classList.toggle('hide')
+
+        if(imageContainer.classList.contains('hide')) {
+            newBoardImg.value = null
+        }
+    })
+
+    const form = document.getElementsByTagName('form')[0];
+    form?.addEventListener('submit', function (e) {
+        e.preventDefault(); // 실제 제출을 막고 데이터 확인
+
+        const formData = new FormData(form);
+
+        // FormData의 모든 키와 값을 확인하는 방법
+        for (const [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+
+        // 데이터 확인 후 폼을 제출하려면
+        form.submit();
+    });
+
     let noticeFlag = document.getElementById('noticeFlag')
-    console.log(${board.noticeFlag})
-    console.log(typeof ${board.noticeFlag})
     if (${board.noticeFlag} === 1){
-        noticeFlag.checked = true
+        if(noticeFlag) {
+            noticeFlag.checked = true
+        }
     }else{
-        noticeFlag.checked = false
+        if(noticeFlag) {
+            noticeFlag.checked = false
+        }
     }
 </script>
 

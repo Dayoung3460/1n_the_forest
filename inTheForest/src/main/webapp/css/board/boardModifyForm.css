@@ -18,6 +18,42 @@
         width: 100%;
         border-collapse: collapse;
     }
+
+    .image-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .image-container img {
+        width: 100%; /* 필요에 따라 크기 조정 */
+        height: auto;
+    }
+
+    .delete-button {
+        opacity: 0;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: black;
+        border-radius: 50%;
+        color: white;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: opacity 0.3s ease;
+        svg {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    .image-container:hover .delete-button {
+        opacity: 1;
+    }
+
+
+
     tr.content {
         th,
         td {
@@ -57,6 +93,9 @@
     .file-input {
         display: table-cell;
         align-items: center;
+    }
+    .hide {
+        display: none;
     }
 
     .form-control::file-selector-button {
