@@ -15,7 +15,7 @@
 
 <c:if test="${errormsg != null }">
 <script>
-	alert("아이디 혹은 이메일이 틀렸습니다.")
+	alert("입력하신 정보와 일치하는 계정이 없습니다..")
 </script>
 </c:if>
 

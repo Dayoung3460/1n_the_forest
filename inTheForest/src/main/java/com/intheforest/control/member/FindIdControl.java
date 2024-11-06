@@ -36,8 +36,8 @@ public class FindIdControl implements Control {
 				return;
 			} 
 			
-			if(member == null) {
-				req.setAttribute("errormsg", "아이디 혹은 이메일이 틀렸습니다.");
+			if(memberId == null) {
+				req.setAttribute("errormsg", "입력하신 정보와 일치하는 계정이 없습니다.");
 				req.getRequestDispatcher("member/findIdForm.tiles").forward(req, resp);
 				return;
 			}

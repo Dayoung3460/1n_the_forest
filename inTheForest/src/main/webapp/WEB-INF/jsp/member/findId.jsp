@@ -15,11 +15,11 @@
 			<div class="card-header text-white text-center" style="background-color: #347C2C !important;">아이디찾기</div>
 			<div class="card-body result-box">
 				<c:choose>
-					<c:when test="${empty findId}">
-						<p class="inquiry">조회결과가 없습니다.</p>
+					<c:when test="${not empty findId}">
+						<p>${findId}</p>
 					</c:when>
 					<c:otherwise>
-						<p>${findId}</p>
+						<p class="inquiry">입력하신 정보와 일치하는 계정이 없습니다.</p>
 					</c:otherwise>
 				</c:choose>
 			</div>
