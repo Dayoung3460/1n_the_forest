@@ -64,7 +64,12 @@ public class BoardListControl implements Control {
       
       // 글 삭제 후 게시판 목록으로 이동
     } else {
+      String replyNo = req.getParameter("replyNo");
+      if(replyNo != null) {
+        boardService.removeBoard(Integer.parseInt(replyNo));
+      }
       boolean isSuccess = boardService.removeBoard(Integer.parseInt(bno));
+      
       if (isSuccess) {
         String redirectPage = "boardList.do?currentPage=" + currentPage + "&searchCondition=" + searchCondition + "&keyword=" + keyword + "&category=" + category;
         resp.sendRedirect(redirectPage);

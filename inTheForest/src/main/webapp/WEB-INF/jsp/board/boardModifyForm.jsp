@@ -13,7 +13,7 @@
     <form class="form-control" action="modifyBoard.do?&bno=${board.boardNo}" method="post">
         <%--    <form class="form-control" action="modifyBoard.do?category=${category}&bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}" method="post">--%>
         <table class="table">
-            <tr>
+            <tr class="align-middle">
                 <th>제목</th>
                 <td class="content-col"><input class="form-control" id="boardTitle" autofocus type="text" name="title"
                                                value="<%=board.getTitle()%>"/></td>
@@ -23,7 +23,7 @@
                            value="<%=board.getWriter()%>"/>
                 </td>
             </tr>
-            <tr class="content">
+            <tr class="content align-middle">
                 <th>내용</th>
                 <td colspan="3" class="content-col">
                     <textarea rows="4" cols="30" id="boardContent" name="content"
@@ -31,8 +31,8 @@
                 </td>
             </tr>
             <c:if test="${ board.boardFile != null }">
-                <tr>
-                    <th>파일 첨부56</th>
+                <tr class="align-middle">
+                    <th>파일 첨부</th>
                     <td colspan="3" class="content-col file-input">
 
                             <%--          <input class="form-control" type="file" id="boardImg" name="image"/>--%>
@@ -46,7 +46,7 @@
         <div class="bottom">
             <c:if test="${(memberPermission eq 'admin') && (category eq 'notice')}">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="noticeFlag" id="noticeFlag" value="${board.noticeFlag eq 1}">
+                    <input class="form-check-input" type="checkbox" name="noticeFlag" id="noticeFlag">
                     <label class="form-check-label" for="noticeFlag">
                         중요 공지
                     </label>
@@ -70,13 +70,13 @@
     </form>
 </div>
 <script>
-    <%--let noticeFlag = document.getElementById('noticeFlag')--%>
-    <%--console.log(${board.noticeFlag})--%>
-    <%--console.log(typeof ${board.noticeFlag})--%>
-    <%--if (${board.noticeFlag} === 1){--%>
-    <%--    noticeFlag.checked = true--%>
-    <%--}else{--%>
-    <%--    noticeFlag.checked = false--%>
-    <%--}--%>
+    let noticeFlag = document.getElementById('noticeFlag')
+    console.log(${board.noticeFlag})
+    console.log(typeof ${board.noticeFlag})
+    if (${board.noticeFlag} === 1){
+        noticeFlag.checked = true
+    }else{
+        noticeFlag.checked = false
+    }
 </script>
 

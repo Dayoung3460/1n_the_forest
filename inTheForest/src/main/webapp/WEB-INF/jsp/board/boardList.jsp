@@ -22,7 +22,7 @@
     </c:choose>
     <table class="table">
         <thead>
-        <tr>
+        <tr class="align-middle">
             <th>글번호</th>
             <th>제목</th>
             <th>작성자</th>
@@ -32,7 +32,7 @@
         </thead>
         <tbody>
         <c:forEach var="board" items="${ boardList }">
-            <tr>
+            <tr class="align-middle">
                 <c:choose>
                     <c:when test="${board.noticeFlag eq '0'}">
                         <td>${board.boardNo}</td>
@@ -64,7 +64,7 @@
             </tr>
         </c:forEach>
         <c:if test="${fn:length(boardList) == 0}">
-            <tr>
+            <tr class="align-middle">
                 <td align="center" colspan="5">no data</td>
             </tr>
         </c:if>
@@ -217,6 +217,12 @@
     })
 
     let okBtn = document.getElementById('okBtn')
+    inputBoardPw.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();  // 기본 폼 제출 방지
+            okBtn.click();  // 확인 버튼 클릭 이벤트 실행
+        }
+    })
     okBtn.addEventListener('click', (e) => {
         wrongPw.classList.add('hide')
         wrongPw.classList.remove('show')

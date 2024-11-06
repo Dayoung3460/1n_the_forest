@@ -16,7 +16,14 @@
         </c:when>
         <c:when test="${category eq 'review'}">
             <h3>후기 작성</h3>
-            <p>캠핑장 사용 후기를 남겨주세요</p>
+            <c:if test="${book ne null}">
+                <p>${book.memberId}님, 저희 1n the 숲 캠핑장을 이용해주셔서 감사합니다.<br/>
+                ${book.startDate} ~ ${book.endDate}에 사용하셨던 캠핑장 사용 후기를 남겨주세요!</p>
+            </c:if>
+            <c:if test="${book eq null}">
+                <p>캠핑장 사용 후기를 남겨주세요</p>
+            </c:if>
+
         </c:when>
         <c:when test="${category eq 'notice'}">
             <h3>공지사항</h3>
@@ -32,7 +39,7 @@
 
     <form action="addBoard.do?category=<%=category%>" method="post" enctype="multipart/form-data">
         <table>
-            <tr>
+            <tr class="align-middle">
                 <th>제목</th>
                 <td class="content-col"><input class="form-control" id="boardTitle" autofocus type="text" name="title"/></td>
                 <th>작성자</th>
@@ -46,13 +53,13 @@
                     </c:if>
                 </td>
             </tr>
-            <tr class="content">
+            <tr class="content align-middle">
                 <th>내용</th>
                 <td colspan="3" class="content-col">
                     <textarea rows="4" cols="30" id="boardContent" name="content" class="form-control"></textarea>
                 </td>
             </tr>
-            <tr>
+            <tr class="align-middle">
                 <th>파일 첨부</th>
                 <td colspan="3" class="content-col file-input">
                     <input class="form-control" type="file" id="boardImg" name="image"/>
@@ -68,7 +75,7 @@
                     </label>
                 </div>
                 <table class="table">
-                    <tr>
+                    <tr class="align-middle">
                         <td class="label-cell">비밀번호</td>
                         <td class="password-cell">
                             <input

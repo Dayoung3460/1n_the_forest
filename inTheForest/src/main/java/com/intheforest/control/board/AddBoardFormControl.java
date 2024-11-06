@@ -1,9 +1,8 @@
 package com.intheforest.control.board;
 
 import com.intheforest.common.Control;
-import com.intheforest.service.BoardServiceImpl;
-import com.intheforest.service.MemberService;
-import com.intheforest.service.MemberServiceImpl;
+import com.intheforest.service.*;
+import com.intheforest.vo.BookVO;
 import com.intheforest.vo.MemberVO;
 
 import javax.servlet.ServletException;
@@ -18,6 +17,7 @@ public class AddBoardFormControl implements Control {
   @Override
   public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String category = req.getParameter("category");
+    String bookNo = req.getParameter("bookNo");
     req.setAttribute("category", category);
     
     MemberService MemberService = new MemberServiceImpl();
@@ -33,6 +33,14 @@ public class AddBoardFormControl implements Control {
       if(!bookNoList.isEmpty()) {
         req.setAttribute("bookNoList", bookNoList);
       }
+      
+      // 예약 상세 페이지에서 넘어왔을 때
+      if(bookNo != null) {
+        BookService bookService = new BookServiceImpl();
+        BookVO book = bookService.selectBook(Integer.parseInt(bookNo));
+        req.setAttribute("book", book);
+      }
+      
     }
     
     req.getRequestDispatcher("board/boardAddForm.tiles").forward(req, resp);
