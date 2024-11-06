@@ -25,24 +25,26 @@ public class FindIdControl implements Control {
 			// findIdForm.jsp페이지로 이동
 			req.getRequestDispatcher("member/findIdForm.tiles").forward(req, resp);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
-			MemberService svc = new MemberServiceImpl();
-			String memberId = svc.findMemberId(name,email);
-			MemberVO member = svc.searchMember(memberId);
 			
-			if (name =="" || email == "") {
+			
+			if (name == null || name ==""  ||email == null || email == "") {
 				//입력
 				req.setAttribute("msg", "아이디 와 이메일을 입력하세요");
 				req.getRequestDispatcher("member/findIdForm.tiles").forward(req, resp);
 				return;
 			} 
 			
+			MemberService svc = new MemberServiceImpl();
+			String memberId = svc.findMemberId(name,email);
+			
+			
 			if(memberId == null) {
-				req.setAttribute("errormsg", "입력하신 정보와 일치하는 계정이 없습니다.");
-				req.getRequestDispatcher("member/findIdForm.tiles").forward(req, resp);
+				req.setAttribute("findId", null);
+				req.getRequestDispatcher("member/findId.tiles").forward(req, resp);
 				return;
 			}
 			
-			
+			MemberVO member = svc.searchMember(memberId);
 			if(member.getQuit() == 1) {
 				req.setAttribute("quitmsg", "탈퇴 한 회원 입니다.");
 				req.getRequestDispatcher("member/findIdForm.tiles").forward(req, resp);

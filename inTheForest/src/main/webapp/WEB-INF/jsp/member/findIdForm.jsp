@@ -13,12 +13,6 @@
 	</script>
 </c:if>
 
-<c:if test="${errormsg != null }">
-<script>
-	alert("입력하신 정보와 일치하는 계정이 없습니다..")
-</script>
-</c:if>
-
 <c:if test="${quitmsg != null }">
 <script>
 	alert("탈퇴한 회원입니다.")
