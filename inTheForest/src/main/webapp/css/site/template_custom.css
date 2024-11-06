@@ -49,14 +49,14 @@ footer span {
   margin-right: 10px;
 }
 .text-mint {
-  color: #39b89a;
+  color: #54ab96;
 }
 .bg-deepMint {
   background-color: #236354;
 }
 .page-link.active, .active > .page-link {
-    background-color: #74bfa9;
-    border-color: #74bfa9;
+    background-color: #91c9ae;
+    border-color: #9dc7b2;
 }
 a {
   text-decoration:none; 
@@ -68,4 +68,21 @@ a {
 table {
 	table-layout: fixed;
   word-wrap: break-word;
+}
+thead {
+	background-color: #d3e8df !important;
+}
+
+.table-light {
+  --bs-table-color: #000;
+  --bs-table-bg: #d3e8df;
+  --bs-table-border-color: #dfe0e1;
+  --bs-table-striped-bg: #ecedee;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #dfe0e1;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #e5e6e7;
+  --bs-table-hover-color: #000;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
 }

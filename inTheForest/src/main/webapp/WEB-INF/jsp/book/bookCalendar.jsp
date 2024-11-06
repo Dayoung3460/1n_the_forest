@@ -84,7 +84,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 	  </ol>
 	</nav>
 	
-	<h1>실시간예약</h1>
+	<h3 class="mt-4 mb-4 fw-bolder">실시간예약</h3>
 		
 		<%		
 		int calMonth = month+1;

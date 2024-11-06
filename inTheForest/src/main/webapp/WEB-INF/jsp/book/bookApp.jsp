@@ -101,7 +101,7 @@ int result = svc.selectBookTerm(Integer.parseInt(siteNo), siteDate.replace("-","
 		  </ol>
 		</nav>
 	
-			<h1>실시간예약 상세</h1>
+			<h3 class="mt-4 mb-4 fw-bolder">실시간예약 상세</h3>
 			<form action="bookApp.do" method="POST" name="form">
 				<input type="hidden" name="siteDate" value="<%=siteDate%>"> 
 				<input type="hidden" name="category" value="<%=category%>">

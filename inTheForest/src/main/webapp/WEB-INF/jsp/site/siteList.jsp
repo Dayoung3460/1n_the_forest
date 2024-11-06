@@ -47,7 +47,7 @@ List<BookVO> list = (List<BookVO>) request.getAttribute("siteListAdmin");
 			</ol>
 		</nav>
 
-		<h1>숙소관리</h1>
+		<h3 class="mt-4 mb-4 fw-bolder">숙소관리</h3>
 		<table class="table siteList" style="margin-top:30px">
 			<colgroup>
 				<col width="10%">
