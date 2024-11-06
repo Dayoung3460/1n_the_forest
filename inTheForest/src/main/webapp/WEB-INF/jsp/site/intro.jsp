@@ -62,7 +62,7 @@
 	<table class="table align-middle text-center mb-5">
 	
 	  <thead>
-	    <tr class="table-light">
+	    <tr>
 	      <th>구분</th>
 	      <th>항목</th>
 	      <th>보유량</th>
@@ -72,7 +72,7 @@
 	
 	  <tbody>
 	    <tr>
-	      <td rowspan="3" class="table-success text-center">캠핑시설</td>
+	      <td rowspan="3" class="table-light text-center">캠핑시설</td>
 	      <td>카라반</td>
 	      <td>2</td>
 	      <td>카라반 사이즈 : 3 × 7M<br>※ 카라반 1대 당 등록차량 2대 주차</td>
@@ -88,7 +88,7 @@
 	      <td>데크 사이즈 : 4 × 6M</td>
 	    </tr>
 	    <tr>
-	      <td rowspan="2" class="table-success text-center">공용시설</td>
+	      <td rowspan="2" class="table-light text-center">공용시설</td>
 	      <td>야외 샤워실</td>
 	      <td>4</td>
 	      <td>데크캠핑장(2), 오토캠핑장(2)</td>
@@ -99,7 +99,7 @@
 	      <td>관리사무소에 필요 물품 구비</td>
 	    </tr>
 	    <tr>
-	      <td rowspan="3" class="table-success text-center">주차장</td>
+	      <td rowspan="3" class="table-light text-center">주차장</td>
 	      <td>카라반 구역</td>
 	      <td>10</td>
 	      <td>카라반 1대당 등록차량 2대 주차</td>
@@ -115,7 +115,7 @@
 	      <td>데크 이용객 및 기타 방문객은 1개 사이트당 등록차량 1대 주차</td>
 	    </tr>
 	    <tr>
-	      <td class="table-success text-center">기타</td>
+	      <td class="table-light text-center">기타</td>
 	      <td>분리수거장</td>
 	      <td>2</td>
 	      <td>관리사무소 옆 위치</td>

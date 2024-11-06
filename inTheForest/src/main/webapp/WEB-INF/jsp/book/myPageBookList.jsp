@@ -62,7 +62,7 @@ text-align:center;
 		
 		<table class="table table-hover">
 			<thead>
-				<tr class="align-middle table-light">
+				<tr class="align-middle">
 					<th>예약번호</th>
 					<th>숙소종류</th>
 					<th>예약인원</th>

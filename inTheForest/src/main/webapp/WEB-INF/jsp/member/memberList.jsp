@@ -23,7 +23,7 @@
     <table class="table align-middle text-center mb-5">
     
         <thead>
-        <tr class="table-light">
+        <tr>
             <th>아이디</th>
             <th>이름</th>
             <th class="w-25">주소</th>

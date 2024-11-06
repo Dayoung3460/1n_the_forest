@@ -58,7 +58,7 @@ List<BookVO> list = (List<BookVO>) request.getAttribute("siteListAdmin");
 				<col width="20%">
 			</colgroup>
 			<thead class="table-light" align="center">
-				<tr class="table-secondary">
+				<tr class="table-success">
 					<th scope="col">순번</th>
 					<th scope="col">숙소코드</th>
 					<th scope="col">숙소명</th>

@@ -27,7 +27,7 @@
    
     <table class="table align-middle text-center mt-4 fs-5">
         <thead>
-		        <tr class="table-light">
+		        <tr class="table-success">
 		        		<th>순번</th>
 		            <th>옵션코드</th>
 		            <th>옵션명</th>
