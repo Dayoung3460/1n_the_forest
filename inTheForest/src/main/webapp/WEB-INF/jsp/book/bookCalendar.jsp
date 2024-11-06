@@ -266,7 +266,7 @@ int tdCnt = startBlankCnt + lastDate + endBlankCnt;
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal" onclick="modalClose()">닫기</button>
 					<!-- 닫는 버튼 -->
-					<button type="button" class="btn btn-primary" id="modalSave">다음단계</button>
+					<button type="button" class="btn btn-success" id="modalSave">다음단계</button>
 					<!-- 저장버튼 -->
 				</div>
 			</div>

@@ -24,6 +24,9 @@ public class MainPageControl implements Control {
 	    search.setCategory("notice");
 	    
 	    List<BoardVO> list = svc.boardListByPage(search);
+	    for(BoardVO board : list) {
+	    	board.setWriteDate(board.getWriteDate().substring(0, 10));
+	    }
 	    
 	    req.setAttribute("boardList", list);
 		req.getRequestDispatcher("site/main.tiles").forward(req, resp);

@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
 
-public class ModifyBookControl implements Control {
+public class OptionListControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getParameter("");
-		
-		req.getRequestDispatcher("book/modifyBook.tiles").forward(req, resp);
+		req.getRequestDispatcher("book/optionList.tiles").forward(req, resp);
+	
 	}
 
 }

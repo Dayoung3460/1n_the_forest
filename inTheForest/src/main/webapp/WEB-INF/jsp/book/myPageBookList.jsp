@@ -11,6 +11,7 @@
 <%
     List<MyBookVO> list = (List<MyBookVO>) request.getAttribute("myPageBookList");
     String memberId = (String) session.getAttribute("memberId");
+    String permission = (String) session.getAttribute("permission");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     PageDTO paging = (PageDTO) request.getAttribute("paging");
     System.out.println(paging);
@@ -19,14 +20,36 @@
     kw = (kw == null) ? "" : kw;
 %>
 
-<div class="p-3 boardList">
-	<h3>마이페이지</h3>
-	<button type="button" class="btn btn-outline-secondary" value="Submit"
-		style="float: right">
-		<a href="DetailJoin.do?memberId=<%=memberId%>" style="text-decoration:none">회원정보 수정</a>
-	</button>
-	<p style="text-align:left">예약목록조회</p>
+<div class="container">
 
+	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+	    <ol class="breadcrumb" style="margin-top:20px">
+	      <li class="breadcrumb-item"><a href="main.do">Home</a></li>
+	      <c:choose>
+	       <c:when test="${permission == 'admin'}">
+	        <li class="breadcrumb-item active" aria-current="page">예약관리</li>
+	       </c:when>
+	       <c:otherwise>
+	       	<li class="breadcrumb-item active" aria-current="page">마이페이지</li>
+	       </c:otherwise>
+	      </c:choose>
+	    </ol>
+	</nav>
+	
+	<div class="d-flex justify-content-between align-items-end">
+		<h4 class="mt-2 fw-bolder mb-3">예약목록조회</h4>
+		<c:if test="${permission != 'admin'}">
+			<button type="button" class="btn btn-outline-success mb-3" value="Submit"
+				style="float: right">
+				<a href="DetailJoin.do?memberId=<%=memberId%>" style="text-decoration:none">회원정보 수정</a>
+			</button>
+		</c:if>
+	</div>
+	
+</div>	
+	
+<div class="p-3 boardList">
+	
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -109,8 +132,12 @@
                     <option value="bno"
                     <%=(sc != null && sc.equals("bno") ? "selected" : "") %>
                     >예약번호</option>
-                    <option value="start">예약일자</option>
-                    <option value="bnoStart">번호&일자</option>
+                    <option value="start"
+                    <%=(sc != null && sc.equals("start") ? "selected" : "") %>
+                    >예약일자</option>
+                    <option value="bnoStart"
+                    <%=(sc != null && sc.equals("bnoStart") ? "selected" : "") %>
+                    >번호&일자</option>
                 </select>
             </div>
             <div class="col-md-6">
@@ -123,6 +150,5 @@
         </form>
     </div>
     <!-- 검색창 끝-->
-
 
 </div>
