@@ -94,6 +94,9 @@
         display: table-cell;
         align-items: center;
     }
+    .hide {
+        display: none;
+    }
 
     .form-control::file-selector-button {
         border: none;
