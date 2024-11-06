@@ -1,5 +1,4 @@
-package com.intheforest.control.mypage;
-
+package com.intheforest.control.book;
 import java.io.IOException;
 import java.util.List;
 
