@@ -3,6 +3,8 @@
 <%@ page import="com.intheforest.vo.BookVO"%>
 <%@ page import="com.intheforest.vo.MemberVO"%>
 <%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="com.intheforest.service.BookService"%>
+<%@ page import="com.intheforest.service.BookServiceImpl"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
@@ -26,6 +28,9 @@ calendar.setTime(dt);
 calendar.add(Calendar.DATE, addDate); 
 String endDate = sdf.format(calendar.getTime());
 /*n박 계산[E]*/      
+
+BookService svc = new BookServiceImpl();
+int result = svc.selectBookTerm(Integer.parseInt(siteNo), siteDate.replace("-","/"), endDate.replace("-","/"));
 %>
 
 <!DOCTYPE html>
@@ -43,6 +48,12 @@ String endDate = sdf.format(calendar.getTime());
 	
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script>
+		<%if(result>0){%>
+		$(document).ready(function(){
+			alert("해당일자는 마감되었습니다.");
+			$(location).attr("href", "/inTheForest/bookCalendar.do");
+		})
+		<%}%>
 		const autoHyphen = (target) => {
 			target.value = target.value
 				.replace(/[^0-9]/g, '')

@@ -8,6 +8,7 @@ public class BookVO {
 	private String category;
 	private String siteMax;
 	private String sitePrice;
+	private String useFlag;
 	
 	private String memberId;
 	private String memCnt;
