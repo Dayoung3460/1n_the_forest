@@ -5,10 +5,13 @@ import com.intheforest.common.SearchDTO;
 import com.intheforest.service.BoardService;
 import com.intheforest.service.BoardServiceImpl;
 import com.intheforest.vo.BoardVO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 
 public class ModifyBoardControl implements Control {
@@ -19,14 +22,12 @@ public class ModifyBoardControl implements Control {
     
     BoardVO board;
     int bno = Integer.parseInt(req.getParameter("bno"));
+    int noticeFlag = req.getParameter("noticeFlag") == null ? 0 : 1;
     String memberPermission = req.getParameter("memberPermission");
     String currentPage = req.getParameter("currentPage");
     String searchCondition = req.getParameter("searchCondition");
     String keyword = req.getParameter("keyword");
     String category = req.getParameter("category");
-   
-    int noticeFlag = req.getParameter("noticeFlag") == null ? 0 : 1;
-    
     SearchDTO search = new SearchDTO();
     search.setCurrentPage(currentPage);
     search.setSearchCondition(searchCondition);
@@ -34,8 +35,7 @@ public class ModifyBoardControl implements Control {
     search.setCategory(category);
     
     BoardService svc = new BoardServiceImpl();
-    
-    
+    /////////GET일 때
     if(req.getMethod().equals("GET")) {
       board = svc.searchBoard(bno);
       
@@ -44,20 +44,44 @@ public class ModifyBoardControl implements Control {
       req.setAttribute("search", search);
       req.setAttribute("category", category);
       req.getRequestDispatcher("board/boardModifyForm.tiles").forward(req, resp);
+      
+      
+      /////////post일 때
     } else {
+      
+      String savePath = req.getServletContext().getRealPath("image");
+      File saveDir = new File(savePath);
+      
+      // 폴더가 존재하지 않으면 생성
+      if (!saveDir.exists()) {
+        saveDir.mkdirs();
+      }
+      
+      int maxSize = 1024 * 1024 * 5;
+      
+      req.setCharacterEncoding("utf-8");
+      
+      MultipartRequest mr = new MultipartRequest(req, savePath, maxSize, "utf-8", new DefaultFileRenamePolicy());
+      
       board = new BoardVO();
       
-      String title = req.getParameter("title");
-      String content = req.getParameter("content");
+      String title = mr.getParameter("title");
+      String content = mr.getParameter("content");
+      String image = mr.getFilesystemName("image");
+      String postCurrentPage = mr.getParameter("currentPage");
+      String postSearchCondition = mr.getParameter("searchCondition");
+      String postKeyword = mr.getParameter("keyword");
+      String postCategory = mr.getParameter("category");
       
       board.setBoardNo(bno);
       board.setTitle(title);
       board.setContent(content);
       board.setNoticeFlag(noticeFlag);
+      board.setBoardFile(image);
       
       boolean isSuccess = svc.modifyBoard(board);
       if(isSuccess) {
-        String redirectPage = "boardList.do?currentPage=" + currentPage + "&searchCondition=" + searchCondition + "&keyword=" + keyword + "&category=" + category;
+        String redirectPage = "boardList.do?currentPage=" + postCurrentPage + "&searchCondition=" + postSearchCondition + "&keyword=" + postKeyword + "&category=" + postCategory;
         resp.sendRedirect(redirectPage);
       } else {
         req.setAttribute("msg", "수정하는 중 오류가 발생했습니다.");

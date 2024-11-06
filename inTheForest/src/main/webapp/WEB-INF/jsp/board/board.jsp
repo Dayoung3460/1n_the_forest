@@ -143,8 +143,8 @@
 
 
     let editBtn = document.getElementById('editBtn')
+    console.log("editBtn", editBtn)
     editBtn?.addEventListener('click', (e) => {
-        e.preventDefault()
         location.href = 'modifyBoard.do?bno=${board.boardNo}&memberPermission=${member.permission}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
     })
 

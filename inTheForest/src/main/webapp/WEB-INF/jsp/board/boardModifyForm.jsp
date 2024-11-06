@@ -10,8 +10,12 @@
 <div class="boardModifyForm container">
     <h3>글 수정하기</h3>
     <p>수정할 내용을 입력하고 수정완료 버튼을 눌러주세요</p>
-    <form class="form-control" action="modifyBoard.do?&bno=${board.boardNo}" method="post">
-        <%--    <form class="form-control" action="modifyBoard.do?category=${category}&bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}" method="post">--%>
+    <form class="form-control" action="modifyBoard.do?&bno=${board.boardNo}" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" name="currentPage" value="<%=search.getCurrentPage() %>"/>
+        <input type="hidden" name="searchCondition" value="<%=search.getSearchCondition() %>"/>
+        <input type="hidden" name="keyword" value="<%=search.getKeyword() %>"/>
+        <input type="hidden" name="category" value="<%=search.getCategory() %>"/>
         <table class="table">
             <tr class="align-middle">
                 <th>제목</th>
@@ -34,10 +38,15 @@
                 <tr class="align-middle">
                     <th>파일 첨부</th>
                     <td colspan="3" class="content-col file-input">
-
-                            <%--          <input class="form-control" type="file" id="boardImg" name="image"/>--%>
                         <img src="image/${ board.boardFile }">
-                            <%--                    <span aria-hidden="true">${board.boardFile}</span>--%>
+                    </td>
+                </tr>
+            </c:if>
+            <c:if test="${ board.boardFile == null }">
+                <tr class="align-middle">
+                    <th>파일 첨부</th>
+                    <td colspan="3" class="content-col file-input">
+                        <input class="form-control" type="file" id="boardImg" name="image"/>
                     </td>
                 </tr>
             </c:if>
@@ -53,10 +62,7 @@
                 </div>
             </c:if>
             <div class="btns">
-                <input name="currentPage" type="text" value="<%=search.getCurrentPage() %>" hidden="hidden"/>
-                <input name="searchCondition" type="text" value="<%=search.getSearchCondition() %>" hidden="hidden"/>
-                <input name="keyword" type="text" value="<%=search.getKeyword() %>" hidden="hidden"/>
-                <input name="category" type="text" value="<%=search.getCategory() %>" hidden="hidden"/>
+
 
                 <input class="btn btn-success" type="submit" value="수정완료"/>
 
@@ -64,19 +70,35 @@
                     <input class="btn btn-secondary" type="text" value="취소"/>
                 </a>
             </div>
+
         </div>
-
-
     </form>
 </div>
 <script>
+    const form = document.getElementsByTagName('form')[0];
+    form?.addEventListener('submit', function (e) {
+        e.preventDefault(); // 실제 제출을 막고 데이터 확인
+
+        const formData = new FormData(form);
+
+        // FormData의 모든 키와 값을 확인하는 방법
+        for (const [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+
+        // 데이터 확인 후 폼을 제출하려면
+        form.submit();
+    });
+
     let noticeFlag = document.getElementById('noticeFlag')
-    console.log(${board.noticeFlag})
-    console.log(typeof ${board.noticeFlag})
     if (${board.noticeFlag} === 1){
-        noticeFlag.checked = true
+        if(noticeFlag) {
+            noticeFlag.checked = true
+        }
     }else{
-        noticeFlag.checked = false
+        if(noticeFlag) {
+            noticeFlag.checked = false
+        }
     }
 </script>
 
