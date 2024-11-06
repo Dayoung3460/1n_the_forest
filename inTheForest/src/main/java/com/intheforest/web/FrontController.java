@@ -17,7 +17,6 @@ import com.intheforest.control.book.BookCalCont;
 import com.intheforest.control.book.CancelBookControl;
 import com.intheforest.control.book.DetailBookControl;
 import com.intheforest.control.book.MyBookControl;
-import com.intheforest.control.book.OptionListControl;
 import com.intheforest.control.book.OptionManageControl;
 import com.intheforest.control.member.DetailJoinControl;
 import com.intheforest.control.member.FindIdControl;
@@ -101,7 +100,6 @@ public class FrontController extends HttpServlet{
     
 		//관리자용 회원목록 조회
 		map.put("/memberList.do", new MemberListControl());
-		map.put("/optionList.do", new OptionListControl());
 		map.put("/siteList.do", new SiteListControl());
 		map.put("/siteUse.do", new SiteUseControl());
     map.put("/optionManagement.do", new OptionManageControl());
