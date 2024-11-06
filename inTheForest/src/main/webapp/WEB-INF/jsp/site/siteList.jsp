@@ -48,9 +48,10 @@ List<BookVO> list = (List<BookVO>) request.getAttribute("siteListAdmin");
 		</nav>
 
 		<h1>숙소관리</h1>
-		<table class="table siteList">
+		<table class="table siteList" style="margin-top:30px">
 			<colgroup>
 				<col width="10%">
+				<col width="15%">
 				<col>
 				<col width="15%">
 				<col width="20%">
@@ -59,6 +60,7 @@ List<BookVO> list = (List<BookVO>) request.getAttribute("siteListAdmin");
 			<thead class="table-light" align="center">
 				<tr class="table-secondary">
 					<th scope="col">순번</th>
+					<th scope="col">숙소코드</th>
 					<th scope="col">숙소명</th>
 					<th scope="col">최대인원</th>
 					<th scope="col">가격</th>
@@ -71,19 +73,20 @@ List<BookVO> list = (List<BookVO>) request.getAttribute("siteListAdmin");
 				for (BookVO bvo : list) {
 					i++;
 				%>
-				<tr class="align-middle <%if(bvo.getUseFlag().equals("n")){ %>off <%} %>" align="center">
-					<th scope="row"><%=i%></th>
-					<td><%=bvo.getSiteName()%></td>
-					<td><%=bvo.getSiteMax()%>명</td>
-					<td><%=bvo.getSitePrice().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",")%>원</td>
-					<td>
-						<select class="form-select"
-						aria-label="Default select example" name="use" onchange="siteUse(<%=bvo.getSiteNo()%>, this.value)">
-							<option value="y" <%if(bvo.getUseFlag().equals("y")){ %>selected <%} %>>사용</option>
-							<option value="n" <%if(bvo.getUseFlag().equals("n")){ %>selected <%} %>>사용안함</option>
-						</select>
-					</td>
-				</tr>
+					<tr class="align-middle <%if(bvo.getUseFlag().equals("n")){ %>off <%} %>" align="center">
+						<th scope="row"><%=i%></th>
+						<td><%=bvo.getSiteNo()%></td>
+						<td><%=bvo.getSiteName()%></td>
+						<td><%=bvo.getSiteMax()%>명</td>
+						<td><%=bvo.getSitePrice().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",")%>원</td>
+						<td>
+							<select class="form-select"
+							aria-label="Default select example" name="use" onchange="siteUse(<%=bvo.getSiteNo()%>, this.value)">
+								<option value="y" <%if(bvo.getUseFlag().equals("y")){ %>selected <%} %>>사용</option>
+								<option value="n" <%if(bvo.getUseFlag().equals("n")){ %>selected <%} %>>사용안함</option>
+							</select>
+						</td>
+					</tr>
 				<%}%>
 			</tbody>
 		</table>
