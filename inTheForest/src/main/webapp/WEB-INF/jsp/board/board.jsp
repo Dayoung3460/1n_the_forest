@@ -59,7 +59,7 @@
                 <button class="btn btn-secondary me-2" id="prevBtn">이전글</button>
                 <button class="btn btn-secondary me-2" id="nextBtn">다음글</button>
 
-                <c:if test="${category eq 'qna' && member.permission eq 'admin' && board.replyNo eq 0}">
+                <c:if test="${board.boardCategory eq 'qna' && member.permission eq 'admin' && board.replyNo eq 0}">
                     <button class="btn btn-success" id="replyWriteBtn">답글쓰기</button>
                     <button class="btn btn-primary hide" id="replyRegisterBtn">답글 등록</button>
                 </c:if>
@@ -138,7 +138,7 @@
 
     let modalDeleteBtn = document.getElementById('modalDeleteBtn')
     modalDeleteBtn.addEventListener('click', () => {
-        location.href = 'boardList.do?bno=${board.boardNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
+        location.href = 'boardList.do?bno=${board.boardNo}&replyNo=${board.replyNo}&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
     })
 
 
