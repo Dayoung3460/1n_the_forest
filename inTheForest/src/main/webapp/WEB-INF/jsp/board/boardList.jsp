@@ -17,12 +17,13 @@
         </c:when>
         <c:when test="${category eq 'notice'}">
             <h3>공지사항</h3>
-            <p>중요한 소식이나 안내를 작성해 주세요</p>
+            <p>중요한 소식이나 안내사항을 전합니다</p>
         </c:when>
     </c:choose>
     <table class="table table-hover">
         <thead>
         <tr class="align-middle">
+            <th class="rownum">순번</th>
             <th>글번호</th>
             <th>제목</th>
             <th>작성자</th>
@@ -31,8 +32,12 @@
         </tr>
         </thead>
         <tbody>
+        <c:set var="n" value="${paging.currentPage * 10 - 10 }"/>
         <c:forEach var="board" items="${ boardList }">
+            <c:set var="n" value="${n+1}"/>
             <tr class="align-middle">
+                <td class="fw-bolder">${ n }</td>
+
                 <c:choose>
                     <c:when test="${board.noticeFlag eq '0'}">
                         <td>${board.boardNo}</td>
@@ -45,7 +50,8 @@
 
                 <td class="title">
                     <a data-board-no="${board.boardNo}"
-                       data-secret-flag="${board.secretFlag}" data-board-pw="${board.boardPw}" data-board-category="${board.boardCategory}">${board.title}</a>
+                       data-secret-flag="${board.secretFlag}" data-board-pw="${board.boardPw}"
+                       data-board-category="${board.boardCategory}">${board.title}</a>
                     <c:if test="${board.secretFlag == 1}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-lock-fill" viewBox="0 0 16 16">
@@ -178,14 +184,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-danger" id="okBtn">확인</button>
+                    <button type="button" class="btn btn-success" id="okBtn">확인</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    let boardPw = 0
+    let boardPw = "0"
     let boardNo = 0
     let inputBoardPw = document.getElementById('board-pw')
     let wrongPw = document.getElementsByClassName('wrongPw')[0]
@@ -194,7 +200,7 @@
 
     title.forEach((item) => {
         let category = item.getElementsByTagName('a')[0].getAttribute('data-board-category')
-        if(category === 'reply') {
+        if (category === 'reply') {
             item.getElementsByTagName('a')[0].classList.add('reply')
         }
 
@@ -227,7 +233,7 @@
         wrongPw.classList.add('hide')
         wrongPw.classList.remove('show')
 
-        if (inputBoardPw.value === boardPw) {
+        if (inputBoardPw.value.toString() === boardPw.toString()) {
 
             let closeBtn = document.getElementsByClassName('btn-close')[0]
             closeBtn.click()

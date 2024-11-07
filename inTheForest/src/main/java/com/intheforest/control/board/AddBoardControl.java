@@ -42,7 +42,7 @@ public class AddBoardControl implements Control {
 //    후기: 로그인해야함 / 글 비밀번호 필요 / 비밀글 체크박스 필요
     
     int secretFlag = (mr.getParameter("secretFlag") == null || mr.getParameter("secretFlag").equals("0")) ? 0 : 1; // category가 qna일 때만 0 or 1
-    int boardPw = (mr.getParameter("boardPw") == null || mr.getParameter("boardPw").equals("")) ? 0 : Integer.parseInt(mr.getParameter("boardPw"));
+    String boardPw = (mr.getParameter("boardPw") == null || mr.getParameter("boardPw").equals("")) ? "0" : mr.getParameter("boardPw");
     int noticeFlag = mr.getParameter("noticeFlag") == null ? 0 : 1; // 중요 공지 체크: 1, 아니면 0
     
     BoardVO board = new BoardVO();

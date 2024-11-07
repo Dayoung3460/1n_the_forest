@@ -85,15 +85,14 @@
 </div>
 <script>
     let deleteBtn = document.getElementsByClassName('delete-button')[0]
+
     let imageContainer = document.getElementsByClassName('image-container')[0]
     let newBoardImg = document.getElementById('newBoardImg')
     deleteBtn.addEventListener('click', (e) => {
+
         imageContainer.classList.toggle('hide')
         newBoardImg.classList.toggle('hide')
-
-        if(imageContainer.classList.contains('hide')) {
-            newBoardImg.value = null
-        }
+        newBoardImg.value = null
     })
 
     const form = document.getElementsByTagName('form')[0];

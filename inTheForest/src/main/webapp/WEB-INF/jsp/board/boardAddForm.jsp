@@ -27,7 +27,7 @@
         </c:when>
         <c:when test="${category eq 'notice'}">
             <h3>공지사항</h3>
-            <p>중요한 소식이나 안내를 작성해 주세요</p>
+            <p>중요한 소식이나 안내사항을 전합니다</p>
         </c:when>
     </c:choose>
 

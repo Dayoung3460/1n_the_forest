@@ -16,7 +16,7 @@
         </c:when>
         <c:when test="${category eq 'notice'}">
             <h3>공지사항</h3>
-            <p>중요한 소식이나 안내를 작성해 주세요</p>
+            <p>중요한 소식이나 안내사항을 전합니다</p>
         </c:when>
     </c:choose>
     <hr/>
@@ -61,7 +61,7 @@
 
                 <c:if test="${board.boardCategory eq 'qna' && member.permission eq 'admin' && board.replyNo eq 0}">
                     <button class="btn btn-success" id="replyWriteBtn">답글쓰기</button>
-                    <button class="btn btn-primary hide" id="replyRegisterBtn">답글 등록</button>
+                    <button class="btn btn-success hide" id="replyRegisterBtn">답글 등록</button>
                 </c:if>
 
 
@@ -92,6 +92,24 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                     <button type="button" class="btn btn-danger" id="modalDeleteBtn">삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+<%--                <div class="modal-header">--%>
+<%--                    <h1 class="modal-title fs-5" id="exampleModalLabel2">삭제하기</h1>--%>
+<%--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--                </div>--%>
+                <div class="modal-body">
+                    이전글이 없습니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                 </div>
             </div>
         </div>
@@ -162,7 +180,8 @@
                     location.href = 'board.do?bno=' + result.result.boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}';
                 }
             } else {
-                alert("이전글이 없습니다.");
+                data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                // alert("이전글이 없습니다.");
             }
         });
     });

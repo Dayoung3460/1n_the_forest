@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class BoardServiceImpl implements BoardService {
   SqlSession sqlSession = DataSource.getInstance().openSession(true);
