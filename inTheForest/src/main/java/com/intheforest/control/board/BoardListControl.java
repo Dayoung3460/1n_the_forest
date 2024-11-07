@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BoardListControl implements Control {
@@ -57,16 +56,17 @@ public class BoardListControl implements Control {
       
       // 글 삭제 후 게시판 목록으로 이동
     } else {
-      String replyNo = req.getParameter("replyNo");
-      if(replyNo != null) {
-        boardService.removeBoard(Integer.parseInt(replyNo));
-      }
-      boolean isSuccess = boardService.removeBoard(Integer.parseInt(bno));
-      
-      if (isSuccess) {
-        String redirectPage = "boardList.do?currentPage=" + currentPage + "&searchCondition=" + searchCondition + "&keyword=" + keyword + "&category=" + category;
-        resp.sendRedirect(redirectPage);
-      }
+        // 문의 삭제 시 답글도 같이 삭제
+        BoardVO board = boardService.isReply(Integer.parseInt(bno));
+        if(board != null) {
+          boardService.removeBoard(board.getBoardNo());
+        }
+        boolean isSuccess = boardService.removeBoard(Integer.parseInt(bno));
+        
+        if (isSuccess) {
+          String redirectPage = "boardList.do?currentPage=" + currentPage + "&searchCondition=" + searchCondition + "&keyword=" + keyword + "&category=" + category;
+          resp.sendRedirect(redirectPage);
+        }
     }
   }
 }

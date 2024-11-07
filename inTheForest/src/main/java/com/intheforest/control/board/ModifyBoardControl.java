@@ -72,12 +72,14 @@ public class ModifyBoardControl implements Control {
       String postSearchCondition = mr.getParameter("searchCondition");
       String postKeyword = mr.getParameter("keyword");
       String postCategory = mr.getParameter("category");
+      String postReplyNo = mr.getParameter("replyNo");
       
       board.setBoardNo(bno);
       board.setTitle(title);
       board.setContent(content);
       board.setNoticeFlag(noticeFlag);
       board.setBoardFile(image);
+      board.setReplyNo(Integer.parseInt(postReplyNo));
       
       boolean isSuccess = svc.modifyBoard(board);
       if(isSuccess) {

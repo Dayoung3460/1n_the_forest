@@ -25,6 +25,6 @@ public interface BoardService {
   boolean isReview(int bookNo);
   
   // 답글 여부 확인
-  boolean isReply(int boardNo);
+  BoardVO isReply(int boardNo);
   
 }

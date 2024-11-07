@@ -78,8 +78,8 @@ public class BoardServiceImpl implements BoardService {
   }
 
   @Override
-  public boolean isReply(int boardNo) {
-      return mapper.myReply(boardNo) != null;
+  public BoardVO isReply(int boardNo) {
+      return mapper.myReply(boardNo);
   }
   
 }

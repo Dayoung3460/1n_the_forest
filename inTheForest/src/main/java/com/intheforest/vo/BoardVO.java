@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.util.Date;
 
+// board table의 replyNo(parent_no)는 qna의 boardNo임
+// qna의 replyNo는 무조건 null
+// reply에는 reply_no가 있는데 해당 답글의 부모(문의글)임
+
 @Data
 public class BoardVO {
   private int boardNo;
