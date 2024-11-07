@@ -56,9 +56,8 @@
 
         <div class="btnContainer">
             <div class="btnBox1">
-                <button class="btn btn-secondary me-2" id="prevBtn">이전글</button>
-                <button class="btn btn-secondary me-2" id="nextBtn">다음글</button>
-
+                <button class="btn btn-secondary me-2" id="prevBtn" >이전글</button>
+                <button class="btn btn-secondary me-2" id="nextBtn" >다음글</button>
                 <c:if test="${board.boardCategory eq 'qna' && member.permission eq 'admin' && board.replyNo eq 0}">
                     <button class="btn btn-success" id="replyWriteBtn">답글쓰기</button>
                     <button class="btn btn-success hide" id="replyRegisterBtn">답글 등록</button>
@@ -101,15 +100,24 @@
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-<%--                <div class="modal-header">--%>
-<%--                    <h1 class="modal-title fs-5" id="exampleModalLabel2">삭제하기</h1>--%>
-<%--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                </div>--%>
+                <div class="modal-header alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <div class="modal-body">
                     이전글이 없습니다.
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    다음글이 없습니다.
                 </div>
             </div>
         </div>
@@ -173,29 +181,30 @@
     })
 
     let prevBtn = document.getElementById('prevBtn')
-    prevBtn.addEventListener('click', (e) => {
+    prevBtn.addEventListener('mousedown', (e) => {
+        prevBtn.setAttribute('data-bs-toggle', 'modal')
+        prevBtn.setAttribute('data-bs-target', '#exampleModal2')
+
         getPrevBookNo("${board.writeDate}", "${category}", true, (result) => {
             if (result.result != null) {
-                if (result.result.boardNo) {
+                if(result.result.boardNo){
                     location.href = 'board.do?bno=' + result.result.boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}';
                 }
-            } else {
-                data-bs-toggle="modal" data-bs-target="#exampleModal2"
-                // alert("이전글이 없습니다.");
             }
         });
     });
 
 
     let nextBtn = document.getElementById('nextBtn')
-    nextBtn.addEventListener('click', (e) => {
+    nextBtn.addEventListener('mousedown', (e) => {
+        nextBtn.setAttribute('data-bs-toggle', 'modal')
+        nextBtn.setAttribute('data-bs-target', '#exampleModal3')
+
         getNextBookNo("${board.writeDate}", "${category}", false, (result) => {
             if (result.result != null) {
                 if (result.result.boardNo) {
                     location.href = 'board.do?bno=' + result.result.boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}';
                 }
-            } else {
-                alert("다음글이 없습니다.");
             }
         });
     })

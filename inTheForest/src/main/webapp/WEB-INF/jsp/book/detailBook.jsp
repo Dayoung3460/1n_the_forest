@@ -150,7 +150,7 @@
 	  funcBtn.removeAttribute('data-bs-toggle');
 	  funcBtn.removeAttribute('data-bs-target');
 	  funcBtn.innerText = '후기작성';
-	  funcBtn.addEventListener('click', (e) => {location.href = `addBoardForm.do?category=review&bookNo=${book.bookNo}`});
+	  funcBtn.addEventListener('click', (e) => {location.href = `addBoardForm.do?category=review&bookNo=${book.bookNo}&siteName=${book.siteName}`});
 	} else if(${book.cancelFlag == 1} || startDate <= today || ${isReview == true}){ //이미 취소했거나 이용기간 중에 있거나 후기를 작성한 예약건에는 아무것도 표시 안 함.
 	  funcBtn.style.display = 'none';	
 	}

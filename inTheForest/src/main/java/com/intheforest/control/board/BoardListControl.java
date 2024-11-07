@@ -47,13 +47,6 @@ public class BoardListControl implements Control {
       String memberId = (String) session.getAttribute("memberId");
       MemberVO member = MemberService.searchMember(memberId);
       
-      if(category.equals("review")) {
-        ArrayList<Integer> bookNoList = boardService.getBookNoByMemberId(memberId);
-        if(!bookNoList.isEmpty()) {
-          req.setAttribute("bookNoListSize", bookNoList.size());
-        }
-      }
-      
       req.setAttribute("member", member);
       req.setAttribute("search", search);
       req.setAttribute("boardList", list);

@@ -68,5 +68,13 @@
             display: none;
         }
     }
+    .alert {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding: 20px;
+    }
+    .modal-body {
+        position: absolute;
+    }
 }
 
