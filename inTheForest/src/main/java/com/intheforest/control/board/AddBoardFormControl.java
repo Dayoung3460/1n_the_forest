@@ -18,6 +18,7 @@ public class AddBoardFormControl implements Control {
   public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String category = req.getParameter("category");
     String bookNo = req.getParameter("bookNo");
+    String siteName = req.getParameter("siteName");
     req.setAttribute("category", category);
     
     MemberService MemberService = new MemberServiceImpl();
@@ -39,6 +40,7 @@ public class AddBoardFormControl implements Control {
         BookService bookService = new BookServiceImpl();
         BookVO book = bookService.selectBook(Integer.parseInt(bookNo));
         req.setAttribute("book", book);
+        req.setAttribute("siteName", siteName);
       }
       
     }
