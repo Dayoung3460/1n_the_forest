@@ -28,7 +28,7 @@
                     <span class="label">문의 - 답글 완료</span>
                 </c:if>
                 <c:if test="${board.boardCategory eq 'qna' && isReply.boardNo == null}">
-                    <span class="label">문의 - 답글 대기중</span>
+                    <span class="label bg-secondary">문의 - 답글 대기중</span>
                 </c:if>
             <c:if test="${board.boardCategory eq 'reply'}">
                 <span class="label">답글</span>
