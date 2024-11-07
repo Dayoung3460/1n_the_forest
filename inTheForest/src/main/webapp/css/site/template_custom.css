@@ -72,6 +72,9 @@ table {
 thead {
 	background-color: #d3e8df !important;
 }
+.w-40 {
+	width: 40%
+}
 .w-15 {
 	width: 15%
 }
