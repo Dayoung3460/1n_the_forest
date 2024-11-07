@@ -80,10 +80,10 @@
             SELECT board_seq.nextval FROM dual
         </selectKey>
         insert into
-        board(board_no, board_category, book_no, secret_flag, title, content, board_pw, notice_flag, writer, board_file, reply_no)
+        board(board_no, board_category, book_no, secret_flag, title, content, board_pw, notice_flag, writer, board_file)
         values(#{boardNo},
         #{boardCategory}, #{bookNo}, #{secretFlag}, #{title}, #{content}, #{boardPw}, #{noticeFlag}, #{writer},
-        #{boardFile}, #{replyNo})
+        #{boardFile})
     </insert>
 
     <update id="updateBoard" parameterType="board">
@@ -212,12 +212,5 @@
         on b.book_no = sb.book_no
         where b.book_no = #{bookNo}
         and b.board_category = 'review'
-    </select>
-    
-    <select id="myReply" parameterType="int">
-    		select a.*
-				from board a join board b
-											 on a.reply_no = b.board_no
-				where a.reply_no = #{boardNo}
     </select>
 </mapper>

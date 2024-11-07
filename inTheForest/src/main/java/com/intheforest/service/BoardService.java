@@ -24,7 +24,4 @@ public interface BoardService {
   // 리뷰 작성 여부 확인용
   boolean isReview(int bookNo);
   
-  // 답글 여부 확인
-  boolean isReply(int boardNo);
-  
 }

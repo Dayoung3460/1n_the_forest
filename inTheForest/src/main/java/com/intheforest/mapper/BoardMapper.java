@@ -25,7 +25,4 @@ public interface BoardMapper {
 
   // 예약번호에 따른 리뷰 조회
   BoardVO reviewOnBook(int bookNo);
-  
-  // 답글이 있는 게시물인지?
-  BoardVO myReply(int boardNo);
 }
