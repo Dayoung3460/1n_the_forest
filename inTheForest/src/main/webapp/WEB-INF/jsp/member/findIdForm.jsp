@@ -26,18 +26,14 @@
 				<form action="findId.do" method="POST">
 					<!--<input type="hidden" name="id_go_flag" id="id_go_flag" value="no">-->
 					<div class="board-write">
-						<div class="form-group row">
-							<label class="form-control-label">성명</label>
-							<div class="form-control-body form-inline">
-								<input class="form-control w-50" type="text" id="memberName"
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >성명</label>
+						  <input class="form-control w-50" type="text" id="memberName"
 									name="memberName">
-							</div>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">이메일</label>
-							<div class="form-control-body form-inline">
-								<input class="form-control" type="text" name="email" id="email">
-							</div>
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >이메일</label>
+						  <input class="form-control" type="text" name="email" id="email">
 						</div>
 					</div>
 					<pre></pre>

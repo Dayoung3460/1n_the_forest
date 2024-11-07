@@ -25,65 +25,52 @@
 			<div class="card-body" >
 				<form action="modifyJoin.do" method="POST">
 					<div class="board-write">
-						<div class="form-group row">
-							<label>아이디</label>
-							<div class="form-control-body form-inline">
-								<input class="form-control  w-50" type="text" id="memberId"
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >아이디</label>
+						  <input class="form-control  w-50" type="text" id="memberId"
 									name="memberId" value="${MemberVO.memberId}" readonly>
 								<input type="hidden" name="memberId" value="${MemberVO.memberId}">
-							</div>
 						</div>
-						<div class="form-group row">
-							<label>비밀번호</label>
-							<div class="form-control-body">
-								<input class="form-control  w-50" type="text" id="password"
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >비밀번호</label>
+						  <input class="form-control  w-50" type="text" id="password"
 									name="password" value="${MemberVO.password}">
-							</div>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">성명</label>
-							<div class="form-control-body form-inline">
-								<input class="form-control w-50" type="text" id="memberName"
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >성명</label>
+						  <input class="form-control w-50" type="text" id="memberName"
 									name="memberName" value="${MemberVO.memberName}">
-							</div>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">휴대폰번호</label>
-							<div class="form-control-body">
-								<input class="form-control w-50" type="text" name="tel" id="tel"
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >휴대폰번호</label>
+						  <input class="form-control w-50" type="text" name="tel" id="tel"
 									value="${MemberVO.tel}">
-							</div>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">이메일</label>
-							<div class="form-control-body form-inline">
-								<input class="form-control w-50" type="text" name="email"
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >이메일</label>
+						  <input class="form-control w-50" type="text" name="email"
 									id="email" value="${MemberVO.email}">
-							</div>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">주소</label>
-							<div class="form-control-body">
-								<div class="col-xs-2">
-									<input type="text" id="postcodeDisplay"  class="form-control w-25" style="display:inline" value="${postcode}" maxlength="6" readonly>
-									<input type="hidden" name="postcode" id="postcode" value="${postcode}">
-									<button type="button" class="btn btn-outline-success"
-										onclick="sample6_execDaumPostcode()">검색</button>
-								</div>
-								<pre></pre>
-								<input class="form-control" type="text" id="address1"
-									name="address1" value="${address1}">
-								<pre></pre>
-								<input class="form-control" type="text" id="address2"
-									name="address2" value="${address2}">
-							</div>
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >주소</label>
+						  <input type="text" id="postcodeDisplay"  class="form-control w-25" style="display:inline" value="${postcode}" maxlength="6" readonly>
+						  <input type="hidden" name="postcode" id="postcode" value="${postcode}">
+						  <button type="button" class="btn btn-outline-success" onclick="sample6_execDaumPostcode()">검색</button>
+						  <input class="form-control" type="text" id="address1" name="address1" value="${address1}" style="margin-top: 5px;">
+						  <input class="form-control" type="text" id="address2" name="address2" value="${address2}" style="margin-top: 5px;">
 						</div>
+						
 					</div>
 					<pre></pre>
 					<div class="text-center" style="margin-bottom: 20px;">
 						<!-- 수정 삭제 -->
 						<button type="submit" class="btn btn-outline-success btn-lg">저장</button>
-						<input type="button" value ="회원탈퇴" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						<input type="button" value ="회원탈퇴" class="btn btn-outline-danger btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
 					</div>
 				</form>
 					
@@ -104,7 +91,7 @@
 				      
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="modalClose()">닫기</button> <!-- 닫는 버튼 -->
-				        <button type="button" class="btn btn-outline-success" onclick="modalSave()">회원 탈퇴</button> <!-- 저장버튼 -->
+				        <button type="button" class="btn btn-outline-danger" onclick="modalSave()">회원 탈퇴</button> <!-- 저장버튼 -->
 				      </div>
 				    </div>
 				  </div>

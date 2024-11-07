@@ -7,6 +7,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 </head>
+<style>
+em {color:#4c9176}
+</style>
 
 <c:if test="${joinError != null }">
 	<script>
@@ -21,75 +24,59 @@
 				<form action="joinForm.do" method="POST">
 					<input type="hidden" name="idChecked" id="idChecked" value="no">
 					<div class="board-write">
-						<div class="form-group row">
-							<label>아이디<em>*</em></label>
-							<div class="form-control-body form-inline">
-								<input class="form-control  w-50" style="display:inline" type="text" id="memberId" name="memberId">
-								<button type="button" id="checkIdBtn" class="btn btn-success" >중복 검사</button>
-	        					<p style="font-size: 10px;">※한글,특수문자 사용 할 수 없습니다.</p>
-							</div>
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >아이디<em>*</em></label>
+						  <input class="form-control  w-50" style="display:inline" type="text" id="memberId" name="memberId">
+						  <button type="button" id="checkIdBtn" class="btn btn-success" >중복 검사</button>
+						  <p style="font-size: 12px;">※한글,특수문자 사용 할 수 없습니다.</p>
 						</div>
-						<div class="form-group row">
-							<label>비밀번호<em>*</em></label>
-							<div class="form-control-body">
-								<input class="form-control  w-50" type="password" id="password"
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >비밀번호<em>*</em></label>
+						  <input class="form-control  w-50" type="password" id="password"
 									name="password">
-								<p style="font-size: 10px;">※해당 특수 문자는 사용할 수 없습니다. !@#$%^*+=
+							<p style="font-size: 12px;">※해당 특수 문자는 사용할 수 없습니다. !@#$%^*+=
 									만 사용가능</p>
-							</div>
 						</div>
-						<div class="form-group row">
-							<label>비밀번호 확인</label>
-							<div class="form-control-body">
-								<input class="form-control  w-50" type="password" id="ckPasswd"
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >비밀번호 확인<em>*</em></label>
+						  <input class="form-control  w-50" type="password" id="ckPasswd"
 									name="ckPasswd">
-							</div>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">성명<em>*</em></label>
-							<div class="form-control-body form-inline">
-								<input class="form-control w-50" type="text" id="memberName"
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >성명<em>*</em></label>
+						  <input class="form-control w-50" type="text" id="memberName"
 									name="memberName">
-							</div>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">휴대폰번호<em>*</em></label>
-							<div class="form-control-body">
-								<input class="form-control w-50" type="text" name="tel" id="tel"
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >휴대폰번호<em>*</em></label>
+						  <input class="form-control w-50" type="text" name="tel" id="tel"
 									oninput="autoHyphen(this)">
-							</div>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">이메일<em>*</em></label>
-							<div class="form-control-body form-inline">
-								<input class="form-control w-50" type="text" name="email"
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >이메일<em>*</em></label>
+						  <input class="form-control w-50" type="text" name="email"
 									id="email">
-							</div>
 						</div>
-						<pre></pre>
-						<div class="form-group row">
-							<label class="form-control-label">주소</label>
-							<div class="form-control-body">
-								<div class="col-xs-2">
-									<input type="text" id="postcodeDisplay" class="form-control w-25" style="display:inline" placeholder="우편번호" maxlength="6" readonly>
-									<input type="hidden" name="postcode" id="postcode">
-									<button type="button" class="btn btn-success"
-										onclick="sample6_execDaumPostcode()">검색</button>
-								</div>
-								<pre></pre>
-								<input class="form-control" type="text" id="address1"
-									name="address1">
-								<pre></pre>
-								<input class="form-control" type="text" id="address2"
-									name="address2" placeholder="상세주소">
-							</div>
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >주소</label>
+						  <input type="text" id="postcodeDisplay" class="form-control w-25" style="display:inline" placeholder="우편번호" maxlength="6" readonly>
+						  <input type="hidden" name="postcode" id="postcode">
+						  <button type="button" class="btn btn-success" onclick="sample6_execDaumPostcode()">검색</button>
+						  <input class="form-control" type="text" id="address1" name="address1" style="margin-top: 5px;">
+						  <input class="form-control" type="text" id="address2"	name="address2" placeholder="상세주소" style="margin-top: 5px;">
 						</div>
 					</div>
-					<pre></pre>
+					
 					<div class="text-center" style="margin-bottom: 20px;">
 						<!-- Submit 로그인버튼-->
 						<button type="reset" class="btn btn-outline-success btn-lg" id="resetBtn">취소</button>
-						<button type="submit" class="btn btn-outline-success btn-lg" id="joinBtn">저장</button>
+						<button type="submit" class="btn btn-success btn-lg" id="joinBtn">저장</button>
 					</div>
 				</form>
 			</div>

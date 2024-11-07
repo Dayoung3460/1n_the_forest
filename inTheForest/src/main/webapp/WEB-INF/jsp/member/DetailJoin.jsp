@@ -21,57 +21,45 @@
 			<div class="card-body">
 				<form action="modifyJoin.do" method="GET">
 					<div class="board-write">
-						<div class="form-group row">
-							<label>아이디</label>
-							<div class="form-control-body form-inline">
-								<input class="form-control  w-50" type="text" id="memberId"
-									name="memberId" value="${MemberVO.memberId}" readonly>
-							</div>
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >아이디</label>
+						  <input class="form-control  w-50" type="text" id="memberId"
+									name="memberId" value="${MemberVO.memberId}" readonly disabled>
 						</div>
-						<div class="form-group row">
-							<label>비밀번호</label>
-							<div class="form-control-body">
-								<input class="form-control  w-50" type="text" id="password"
-									name="password" value="${MemberVO.password}" readonly>
-							</div>
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >비밀번호</label>
+						  <input class="form-control  w-50" type="text" id="password"
+									name="password" value="${MemberVO.password}" readonly disabled>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">성명</label>
-							<div class="form-control-body form-inline">
-								<input class="form-control w-50" type="text" id="memberName"
-									name="memberName" value="${MemberVO.memberName}" readonly>
-							</div>
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >성명</label>
+						  <input class="form-control w-50" type="text" id="memberName"
+									name="memberName" value="${MemberVO.memberName}" readonly disabled>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">휴대폰번호</label>
-							<div class="form-control-body">
-								<input class="form-control w-50" type="text" name="tel" id="tel"
-									value="${MemberVO.tel}" readonly>
-							</div>
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >휴대폰번호</label>
+						  <input class="form-control w-50" type="text" name="tel" id="tel"
+									value="${MemberVO.tel}" readonly disabled>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">이메일</label>
-							<div class="form-control-body form-inline">
-								<input class="form-control w-50" type="text" name="email"
-									id="email" value="${MemberVO.email}" readonly>
-							</div>
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >이메일</label>
+						  <input class="form-control w-50" type="text" name="email"
+									id="email" value="${MemberVO.email}" readonly disabled>
 						</div>
-						<div class="form-group row">
-							<label class="form-control-label">주소</label>
-							<div class="form-control-body">
-								<div class="col-xs-2">
-									<input type="text" id="postcodeDisplay" class="form-control w-25" style="display:inline" value="${postcode}" maxlength="6" readonly>
-									<input type="hidden" name="postcode" id="postcode">
-									<button type="button" class="btn btn-outline-success"
-										onclick="sample6_execDaumPostcode()">검색</button>
-								</div>
-								<pre></pre>
-								<input class="form-control" type="text" id="address1"
-									name="address1" value="${address1}" readonly>
-								<pre></pre>
-								<input class="form-control" type="text" id="address2"
-									name="address2" value="${address2}" readonly>
-							</div>
+						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label" style="display:block" >주소</label>
+						  <input type="text" id="postcodeDisplay" class="form-control w-25" style="display:inline" value="${postcode}" maxlength="6" readonly disabled>
+						  <input type="hidden" name="postcode" id="postcode">
+						  
+						  <input class="form-control" type="text" id="address1"
+									name="address1" value="${address1}" readonly style="margin-top: 5px;" disabled>
+						  <input class="form-control" type="text" id="address2"
+									name="address2" value="${address2}" readonly style="margin-top: 5px;" disabled>
 						</div>
 					</div>
 					<pre></pre>
