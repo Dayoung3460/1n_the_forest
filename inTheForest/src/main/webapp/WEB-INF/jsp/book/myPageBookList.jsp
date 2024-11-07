@@ -21,7 +21,11 @@
 %>
 <style>
 .myPageMinWidth{
-width: 20%;
+width: 22%;
+}
+
+.smallWidth{
+width: 5%;
 }
 
 .container{
@@ -63,6 +67,7 @@ text-align:center;
 		<table class="table table-hover">
 			<thead>
 				<tr class="align-middle table-light">
+					<th class="smallWidth">순번</th>
 					<th>예약번호</th>
 					<th>숙소종류</th>
 					<th>예약인원</th>
@@ -74,9 +79,12 @@ text-align:center;
 			</thead>
 	        <tbody>
 	        <%
+	        int n = paging.getCurrentPage()*10 - 10;
 	            for (MyBookVO bvo : list) {
+	            	n++;
 	        %>
 	        <tr class="align-middle" onClick="location.href='detailBook.do?bookNo=<%=bvo.getBookNo()%>&memberId=<%=bvo.getMemberId()%>&siteNo=<%=bvo.getSiteNo()%>'">
+	            <td><%=n %></td>
 	            <th scope="row"><%=bvo.getBookNo()%></th>
 	            <td><%=bvo.getSiteName()%></td>
 	            <td><%=bvo.getMemCnt()%>명</td>
