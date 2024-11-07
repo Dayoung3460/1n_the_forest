@@ -23,72 +23,56 @@
         write_date desc
     </select>
 
+		<!-- 답글(꼬리글) 구현하기 위해, 계층형 쿼리 이용 -->
     <select id="boardListByPage" resultType="board" parameterType="search">
-        select b.*
-        from (
-        select rownum rn, a.*
-        from (
-        select *
-        from board
-        <where>
-            <choose>
-                <when test="category == 'qna' || category == 'reply'">
-                    lower(board_category) in ('qna', 'reply')
-                </when>
-                <when test="!(category == 'qna' || category == 'reply')">
-                    lower(board_category) = lower(#{category})
-                </when>
-                <when test="searchCondition == 'title'">
-                    title like '%' || #{keyword} || '%'
-                </when>
-                <when test="searchCondition == 'writer'">
-                    writer like '%' || #{keyword} || '%'
-                </when>
-                <when test="searchCondition == 'titleAndWriter'">
-                    (title like '%' || #{keyword} || '%')
-                    or (writer like '%' || #{keyword} || '%')
-                </when>
-            </choose>
-        </where>
-        order by
-        notice_flag desc,
-        COALESCE(reply_no, board_no),
-        CASE WHEN reply_no IS NULL THEN write_date END DESC,
-        CASE WHEN reply_no IS NOT NULL THEN 1 ELSE 0 END
-        ) a
-        ) b
-        where b.rn > (#{currentPage} - 1) * 10
+    		select b.*
+				from   (select rownum rn, a.*
+          			from   (SELECT *
+                    		FROM   board START WITH 0 = 0 <!-- 계층형 쿼리의 시작점(답글이 없어도 조회되도록, 항상 참인 조건으로 설정) -->
+                    		AND   (lower(board_category) = lower(#{category}) 
+	        	      			<choose>
+						                <when test="searchCondition == 'title'">
+						                    AND title like '%' || #{keyword} || '%'
+						                </when>
+						                <when test="searchCondition == 'writer'">
+						                    AND writer like '%' || #{keyword} || '%'
+						                </when>
+						                <when test="searchCondition == 'titleAndWriter'">
+						                    AND ((title like '%' || #{keyword} || '%')
+						                         OR (writer like '%' || #{keyword} || '%'))
+						                </when>
+						            </choose>
+	        	      			)
+	        							OR notice_flag = 1 <!-- 중요 공지는 항상 선택되도록 -->
+                    		CONNECT BY PRIOR board_no = reply_no <!-- board_no(부모글) 밑에 자식글(답글) 오도록 -->
+                    		ORDER SIBLINGS BY notice_flag DESC, write_date DESC) a) b <!-- 같은 계층의 정렬조건 -->
+				WHERE b.rn > (#{currentPage} - 1) * 10
         <![CDATA[
-        and b.rn <= (#{currentPage} * 10)
-    ]]>
+          AND b.rn <= (#{currentPage} * 10)
+        ]]>
     </select>
 
 
     <select id="boardTotalCount" resultType="int"
             parameterType="search">
-        select count(1)
-        from board
-        <where>
-            <choose>
-                <when test="category == 'qna' || category == 'reply'">
-                    lower(board_category) in ('qna', 'reply')
-                </when>
-                <when test="!(category == 'qna' || category == 'reply')">
-                    lower(board_category) = lower(#{category})
-                </when>
-                <when test="searchCondition == 'title'">
-                    title like '%' || #{keyword} || '%'
-                </when>
-                <when test="searchCondition == 'writer'">
-                    writer like '%' || #{keyword} || '%'
-                </when>
-                <when test="searchCondition == 'titleAndWriter'">
-                    (title like '%' || #{keyword} || '%')
-                    or (writer like
-                    '%' || #{keyword} || '%')
-                </when>
-            </choose>
-        </where>
+				SELECT count(1)
+     		FROM   board START WITH 0 = 0
+     		AND   (lower(board_category) = lower(#{category})
+ 				<choose>
+       		<when test="searchCondition == 'title'">
+           AND title like '%' || #{keyword} || '%'
+       		</when>
+       		<when test="searchCondition == 'writer'">
+           AND writer like '%' || #{keyword} || '%'
+       		</when>
+       		<when test="searchCondition == 'titleAndWriter'">
+           AND ((title like '%' || #{keyword} || '%')
+                OR (writer like '%' || #{keyword} || '%'))
+       		</when>
+   			</choose>
+ 				)
+				OR notice_flag = 1
+     		CONNECT BY PRIOR board_no = reply_no
     </select>
 
     <insert id="insertBoard" parameterType="board" useGeneratedKeys="true" keyProperty="boardNo">

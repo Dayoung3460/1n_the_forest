@@ -49,35 +49,35 @@
 			<div class="mb-3 row">
                 <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약인원</label>
                 <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control w-50" value="${book.memCnt}인" readonly>
+                    <input type="text" name="name" class="form-control" value="${book.memCnt}인" readonly>
                 </div>
             </div>
             
             <div class="mb-3 row">
                 <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">예약자명</label>
                 <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control w-50" value="${member.memberName}" readonly>
+                    <input type="text" name="name" class="form-control" value="${member.memberName}" readonly>
                 </div>
             </div>
             
             <div class="mb-3 row">
                 <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">차량번호</label>
                 <div class="col-sm-10">
-                    <input type="text" name="carNum" class="form-control w-50" value="${book.carNum == null ? '없음' : book.carNum}" readonly>
+                    <input type="text" name="carNum" class="form-control" value="${book.carNum == null ? '없음' : book.carNum}" readonly>
                 </div>
             </div>
             
             <div class="mb-3 row">
                 <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">연락처</label>
                 <div class="col-sm-10">
-                    <input type="text" name="tel" maxlength="13" class="form-control w-50" oninput="autoHyphen(this)" value="${member.tel}" readonly>
+                    <input type="text" name="tel" maxlength="13" class="form-control" oninput="autoHyphen(this)" value="${member.tel}" readonly>
                 </div>
             </div>
             
             <div class="mb-3 row">
                 <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">이메일</label>
                 <div class="col-sm-10">
-                    <input type="text" name="email" class="form-control w-50" value="${member.email}" readonly>
+                    <input type="text" name="email" class="form-control" value="${member.email}" readonly>
                 </div>
             </div>
 		</div>
@@ -146,11 +146,11 @@
 	let startDate = new Date(`${book.startDate}`);
 	let today = new Date();
 	
-	if(${permission == user} && endDate < today && ${isReview == false}){ //이용기간이 지났으며 후기를 작성하지 않은 사용자에게는, 후기작성 버튼을 표시
+	if(${permission == 'user'} && endDate < today && ${isReview == false}){ //이용기간이 지났으며 후기를 작성하지 않은 사용자에게는, 후기작성 버튼을 표시
 	  funcBtn.removeAttribute('data-bs-toggle');
 	  funcBtn.removeAttribute('data-bs-target');
 	  funcBtn.innerText = '후기작성';
-	  funcBtn.addEventListener('click', (e) => {location.href = 'addBoardForm.do?category=review&bookNo=aaaaaaa'});
+	  funcBtn.addEventListener('click', (e) => {location.href = `addBoardForm.do?category=review&bookNo=${book.bookNo}`});
 	} else if(${book.cancelFlag == 1} || startDate <= today || ${isReview == true}){ //이미 취소했거나 이용기간 중에 있거나 후기를 작성한 예약건에는 아무것도 표시 안 함.
 	  funcBtn.style.display = 'none';	
 	}

@@ -27,6 +27,7 @@ public class BoardControl implements Control {
     
     BoardService svc = new BoardServiceImpl();
     BoardVO board = svc.searchBoard(Integer.parseInt(bno));
+    board.setContent(board.getContent().replace("\n", "<br>"));
     req.setAttribute("board", board);
     
     MemberService MemberService = new MemberServiceImpl();
