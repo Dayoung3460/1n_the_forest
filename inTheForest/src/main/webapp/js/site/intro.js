@@ -99,8 +99,8 @@ function shiftContent(site){
 	li.innerText = site.name;
 	document.querySelector('.breadcrumb').appendChild(li);
 	
-	//h1 교체
-	document.querySelector('nav[aria-label="breadcrumb"] + h1').innerText = site.name + ' 소개';
+	//h3 교체
+	document.querySelector('nav[aria-label="breadcrumb"] + h3').innerText = site.name + ' 소개';
 
 
 
@@ -162,7 +162,7 @@ function shiftContent(site){
 		//tr 생성
 		let tr = document.createElement('tr');
 		
-		tr.innerHTML = `<td class="table-success text-center">${site.state[i].category}</td>`
+		tr.innerHTML = `<td class="table-light text-center">${site.state[i].category}</td>`
 								 + `<td>${site.state[i].item}</td>`
 								 + `<td>${site.state[i].cnt == 0 ? '-' : site.state[i].cnt}</td>` //0일 시 텍스트 대체
 								 + `<td>${site.state[i].etc}</td>`;
@@ -183,7 +183,7 @@ function shiftContent(site){
 	}
 	
 	//체크한 개수 이용해, 남은 td 다시 가져와 rowspan 적용
-	first_tds = document.querySelectorAll('td.table-success');
+	first_tds = document.querySelectorAll('td.table-light');
 	for(let i = 0; i < first_tds.length; i++){
 		let num = obj[first_tds[i].innerText]; //체크한 개수 불러오기
 		first_tds[i].setAttribute('rowspan', num);

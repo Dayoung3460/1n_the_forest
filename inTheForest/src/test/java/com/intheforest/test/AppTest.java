@@ -1,6 +1,5 @@
 package com.intheforest.test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,9 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import com.intheforest.common.DataSource;
 import com.intheforest.mapper.MemberMapper;
 import com.intheforest.mapper.MyBookMapper;
-import com.intheforest.service.BookService;
-import com.intheforest.service.BookServiceImpl;
-import com.intheforest.vo.BookVO;
 import com.intheforest.vo.MemberVO;
 import com.intheforest.vo.MyBookVO;
 

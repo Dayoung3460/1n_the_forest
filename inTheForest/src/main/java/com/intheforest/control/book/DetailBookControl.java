@@ -34,6 +34,7 @@ public class DetailBookControl implements Control {
 		MemberService mem_svc = new MemberServiceImpl();
 		MemberVO member = mem_svc.searchMember(memId);
 		
+		req.setAttribute("msg", req.getParameter("msg"));//예약확정페이지에서 넘어올 경우 구분하기 위함
 		req.setAttribute("optionList", book_svc.optionList());
 		req.setAttribute("myOptions", book_svc.selectBookOption(bookNo));//비교용 배열
 		req.setAttribute("book", book);

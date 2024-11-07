@@ -23,27 +23,31 @@
     <table class="table align-middle text-center mb-5">
     
         <thead>
-        <tr class="table-light">
+        <tr>
+        		<th>순번</th>
             <th>아이디</th>
             <th>이름</th>
             <th class="w-25">주소</th>
-            <th>이메일</th>
-            <th>연락처</th>
-            <th>가입일</th>
+            <th class="w-15">이메일</th>
+            <th class="w-10">연락처</th>
+            <th class="w-10">가입일</th>
             <th>권한</th>
             <th></th>
         </tr>
         </thead>
         
         <tbody>
+        	<c:set var="n" value="${paging.currentPage * 10 - 10 }"/>
        		<c:forEach var="member" items="${ memberList }">
+       				<c:set var="n" value="${n+1}"/>
 	            <tr>
+	            		<td class="fw-bolder">${ n }</td>
 	                <td>${ member.memberId }</td>
 	                <td>${ member.memberName }</td>
 	                <td>${ member.address }</td>
 	                <td>${ member.email }</td>
 	                <td>${ member.tel }</td>
-	                <td><fmt:formatDate value="${ member.joinedDate }" pattern="yyyy/MM/dd" /></td>
+	                <td><fmt:formatDate value="${ member.joinedDate }" pattern="yyyy-MM-dd" /></td>
 	                <td>${ member.permission }</td>
 	                <td>
 	                <c:choose>
