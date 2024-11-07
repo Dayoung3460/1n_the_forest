@@ -24,10 +24,10 @@
         <div class="top">
             <span>
                 ${board.title}
-                <c:if test="${board.boardCategory eq 'qna' && isReply != null}">
+                <c:if test="${board.boardCategory eq 'qna' && isReply.boardNo != null}">
                     <span class="label">문의 - 답글 완료</span>
                 </c:if>
-                <c:if test="${board.boardCategory eq 'qna' && isReply != null}">
+                <c:if test="${board.boardCategory eq 'qna' && isReply.boardNo == null}">
                     <span class="label">문의 - 답글 대기중</span>
                 </c:if>
             <c:if test="${board.boardCategory eq 'reply'}">
@@ -58,7 +58,7 @@
             <div class="btnBox1">
                 <button class="btn btn-secondary me-2" id="prevBtn" >이전글</button>
                 <button class="btn btn-secondary me-2" id="nextBtn" >다음글</button>
-                <c:if test="${board.boardCategory eq 'qna' && member.permission eq 'admin' && isReply == null}">
+                <c:if test="${board.boardCategory eq 'qna' && member.permission eq 'admin' && isReply.boardNo == null}">
                     <button class="btn btn-success" id="replyWriteBtn">답글쓰기</button>
                     <button class="btn btn-success hide" id="replyRegisterBtn">답글 등록</button>
                 </c:if>
@@ -164,7 +164,7 @@
 
     let modalDeleteBtn = document.getElementById('modalDeleteBtn')
     modalDeleteBtn.addEventListener('click', () => {
-        location.href = 'boardList.do?bno=${board.boardNo}&hasReply=true&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
+        location.href = 'boardList.do?bno=${board.boardNo}&isDelete=true&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${category}';
     })
 
 
@@ -182,14 +182,14 @@
 
     let prevBtn = document.getElementById('prevBtn')
     prevBtn.addEventListener('mousedown', (e) => {
-        prevBtn.setAttribute('data-bs-toggle', 'modal')
-        prevBtn.setAttribute('data-bs-target', '#exampleModal2')
-
         getPrevBookNo("${board.writeDate}", "${category}", true, (result) => {
             if (result.result != null) {
                 if(result.result.boardNo){
                     location.href = 'board.do?bno=' + result.result.boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}';
                 }
+            } else {
+                prevBtn.setAttribute('data-bs-toggle', 'modal')
+                prevBtn.setAttribute('data-bs-target', '#exampleModal2')
             }
         });
     });
@@ -197,14 +197,14 @@
 
     let nextBtn = document.getElementById('nextBtn')
     nextBtn.addEventListener('mousedown', (e) => {
-        nextBtn.setAttribute('data-bs-toggle', 'modal')
-        nextBtn.setAttribute('data-bs-target', '#exampleModal3')
-
         getNextBookNo("${board.writeDate}", "${category}", false, (result) => {
             if (result.result != null) {
                 if (result.result.boardNo) {
                     location.href = 'board.do?bno=' + result.result.boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}';
                 }
+            }else {
+                nextBtn.setAttribute('data-bs-toggle', 'modal')
+                nextBtn.setAttribute('data-bs-target', '#exampleModal3')
             }
         });
     })

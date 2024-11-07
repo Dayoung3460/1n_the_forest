@@ -16,6 +16,7 @@
         <input type="hidden" name="searchCondition" value="<%=search.getSearchCondition() %>"/>
         <input type="hidden" name="keyword" value="<%=search.getKeyword() %>"/>
         <input type="hidden" name="category" value="<%=search.getCategory() %>"/>
+        <input type="hidden" name="replyNo" value="${board.replyNo}"/>
         <table class="table">
             <tr class="align-middle">
                 <th>제목</th>
