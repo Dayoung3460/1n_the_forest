@@ -23,6 +23,9 @@
         .rownum {
             width: 80px;
         }
+        .titleCol {
+            width: 410px;
+        }
         .title {
             text-align: left;
             cursor: pointer;
