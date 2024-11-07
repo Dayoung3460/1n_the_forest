@@ -213,4 +213,10 @@
         where b.book_no = #{bookNo}
         and b.board_category = 'review'
     </select>
+    <select id="myReply" parameterType="int">
+        select a.*
+        from board a join board b
+        on a.reply_no = b.board_no
+        where a.reply_no = #{boardNo}
+    </select>
 </mapper>
