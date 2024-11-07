@@ -47,6 +47,9 @@
     }
     .content {
         min-height: 400px;
+        img {
+        	max-width: 1024px;
+        }
     }
 
     #replyBox {

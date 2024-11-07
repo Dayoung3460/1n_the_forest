@@ -50,7 +50,7 @@
 
                 <c:forEach var="boardList" items="${boardList}" begin="0" end="4" step="1">
 	                <li class="list-group-item">
-		                <a href="board.do?bno=${boardList.boardNo}">${boardList.title}</a>
+		                <a href="board.do?bno=${boardList.boardNo}&category=notice">${boardList.title}</a>
 		                <span>${boardList.writeDate}</span>
 	                </li>
                 </c:forEach>
