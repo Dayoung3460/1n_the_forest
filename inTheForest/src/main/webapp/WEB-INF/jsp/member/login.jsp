@@ -60,20 +60,20 @@
 							<!-- Checkbox -->
 							<div class="form-check">
 								<input class="save_id" type="checkbox"
-									style="accent-color: green;" value="" id="saveId" name="saveId">
+									style="accent-color: #4c9176;" value="" id="saveId" name="saveId">
 								<label for="saveId">아이디기억하기</label>
 							</div>
 						</div>
 					</div>
 					<!-- Submit 로그인버튼-->
-					<button type="submit" class="btn btn-outline-success">Sign
-						in</button>
+					<button type="submit" class="btn btn-success">로그인</button>
 					<pre></pre>
 					<div class="text-center">
 						<!-- Register 회원가입 링크 -->
-						<a href="joinForm.do">| 회원가입</a>
+						<li style="display:inline;" ><a href="joinForm.do">회원가입</a></li>	
 						<!-- id.password찾기 링크-->
-						<a href="findId.do">| 아이디 찾기</a> <a href="findPw.do">| 비밀번호 찾기</a>
+						<li style="display:inline;"><a href="findId.do">| 아이디 찾기</a></li>
+						<li style="display:inline;"><a href="findPw.do">| 비밀번호 찾기</a></li>
 					</div>
 				</form>
 			</div>
