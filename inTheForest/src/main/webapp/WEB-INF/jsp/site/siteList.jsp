@@ -48,7 +48,7 @@ List<BookVO> list = (List<BookVO>) request.getAttribute("siteListAdmin");
 		</nav>
 
 		<h3 class="mt-4 mb-4 fw-bolder">숙소관리</h3>
-        <div class="alert alert-primary" role="alert">
+        <div class="alert alert-warning" role="alert">
             사용유무 값을 '사용안함'으로 변경 시 실시간예약 달력에서 제외됩니다.
         </div>
 		<table class="table siteList" style="margin-top:30px">
@@ -60,7 +60,7 @@ List<BookVO> list = (List<BookVO>) request.getAttribute("siteListAdmin");
 				<col width="20%">
 				<col width="20%">
 			</colgroup>
-			<thead class="table-light" align="center">
+			<thead class="table-success" align="center">
 				<tr class="table-success">
 					<th scope="col">순번</th>
 					<th scope="col">숙소코드</th>

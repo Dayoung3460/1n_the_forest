@@ -20,14 +20,12 @@
     kw = (kw == null) ? "" : kw;
 %>
 <style>
-.myPageMinWidth{
-width: 20%;
-}
-
-.container{
-text-align:center;
-}
-
+	.myPageMinWidth{
+		width: 20%;
+	}
+	table th:last-of-type{
+      width: 100px;
+  }
 </style>
 
 
@@ -49,35 +47,39 @@ text-align:center;
 	</nav>
 	
 	<div class="d-flex justify-content-between align-items-end">
-		<h4 class="mt-2 fw-bolder mb-3">예약목록조회</h4>
+		<h4 class="mt-2 fw-bolder mb-4">예약목록조회</h4>
 		<c:if test="${permission != 'admin'}">
 			<button type="button" class="btn btn-outline-success mb-3" value="Submit"
-				style="float: right">
-				<a href="DetailJoin.do?memberId=<%=memberId%>" style="text-decoration:none">회원정보 수정</a>
+				style="float: right" onclick="location.href='DetailJoin.do?memberId=<%=memberId%>'">
+				회원정보 수정
 			</button>
 		</c:if>
 	</div>
 
 	<div>
 		
-		<table class="table table-hover">
+		<table class="table table-hover text-center">
 			<thead>
 				<tr class="align-middle">
+					<th>순번</th>
 					<th>예약번호</th>
 					<th>숙소종류</th>
 					<th>예약인원</th>
 					<th class="myPageMinWidth">이용기간</th>
 					<th>금액</th>
-					<th>등록일</th>
+					<th class="myPageMinWidth">등록일</th>
 					<th>상태</th>
 				</tr>
 			</thead>
 	        <tbody>
 	        <%
+	        		int n = paging.getCurrentPage() * 10 - 10;
 	            for (MyBookVO bvo : list) {
+	            	n++;
 	        %>
 	        <tr class="align-middle" onClick="location.href='detailBook.do?bookNo=<%=bvo.getBookNo()%>&memberId=<%=bvo.getMemberId()%>&siteNo=<%=bvo.getSiteNo()%>'">
-	            <th scope="row"><%=bvo.getBookNo()%></th>
+	            <th scope="row"><%=n%></th>
+	            <td><%=bvo.getBookNo()%></td>
 	            <td><%=bvo.getSiteName()%></td>
 	            <td><%=bvo.getMemCnt()%>명</td>
 	            <td><%=bvo.getStartDate()%> ~ <%=bvo.getEndDate()%></td>

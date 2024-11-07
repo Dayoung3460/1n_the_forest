@@ -25,21 +25,22 @@ public class OptionModifyControl implements Control {
 		String[] prices = req.getParameterValues("price");
 		
 				
-		boolean success = false;
+		int cnt = 0;
 		
 		for(int i = 0; i < optionNos.length; i++) {
 			//가격이 변한 경우에만 수정 컨트롤 실행
 			if(!prices[i].equals(options.get(i).getOptionPrice())){ 
 				try {
-					bsvc.modifyOptPrice(Integer.parseInt(prices[i]), Integer.parseInt(optionNos[i]));
-					success = true;
+					cnt += bsvc.modifyOptPrice(Integer.parseInt(prices[i]), Integer.parseInt(optionNos[i]));
+					System.out.println(Integer.parseInt(optionNos[i]) + "옵션의 가격을 변경했습니다. => " + Integer.parseInt(prices[i]));
 				} catch (Exception e) {
-					success = false;
+					e.printStackTrace();
+					resp.getWriter().print("{\"retCode\":\"FAIL\"}");
 				}
 			}
 		}
 		
-		if(success) {
+		if(cnt == optionNos.length) {
 			resp.getWriter().print("{\"retCode\":\"OK\"}");
 		}
 	

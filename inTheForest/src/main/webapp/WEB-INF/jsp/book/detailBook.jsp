@@ -24,6 +24,9 @@
     </nav>
   
     <h4 class="mt-4 fw-bolder mb-4">예약 상세내역</h4>
+    <c:if test="${msg == 'confirm'}">
+    		<h4 class="text-center text-success mb-4">예약이 완료되었습니다.</h4>
+    </c:if>
     
     <div class="card">
         <div class="card-header">
@@ -38,7 +41,7 @@
                     <td class="fs-4 fw-bolder">${book.siteName}</td>
                     <td class="fs-4 fw-bolder text-success">${book.startDate} ~ ${book.endDate}</td>
                     <td class="fs-4 fw-bolder"><fmt:formatNumber value="${book.totalPrice}" pattern="#,###" />원</td>
-                    <td class="fs-4 fw-bolder ${book.cancelFlag == 0 ? 'text-mint' : 'text-danger'}">${book.cancelFlag == 0 ? '확정' : '취소'}</td>
+                    <td class="fs-4 fw-bolder ${book.cancelFlag == 0 ? 'text-mint' : 'text-danger'}">${book.cancelFlag == 0 ? '확정' : '예약취소'}</td>
                 </tr>
             </table>
         </div>

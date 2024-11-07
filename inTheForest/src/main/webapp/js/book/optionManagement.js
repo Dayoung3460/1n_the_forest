@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
     
     //값이 변동되고 나면 , 표시하며 배열에 모음
     inputs[i].addEventListener('change', (e) => {
-				let optNo = inputs[i].parentElement.parentElement.firstElementChild.innerText;
-				let price = e.target.value;
+				let optNo = inputs[i].parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
+				let price = e.target.value == '' ? 0 : e.target.value;
 				
 				//있는지 없는지 확인하여 배열에 추가 혹은 변경
 				let idx = values.findIndex(obj => obj.optionNo == optNo);
@@ -63,26 +63,28 @@ let msgBox = document.querySelector('#msgBox');
 document.querySelector('#submitBtn').onclick = function() {
 		
 		//변동된 값이 있을 때만 수정 실행
-		if(inputs.length != 0){
+		if(values.length != 0){
 				let str = '';
 				for(let i = 0; i < values.length; i++){
+					if(i != 0) str += '&';
 					str += 'optionNo=' + values[i].optionNo + '&price=' + values[i].price;
-					if(i != values.length - 1){
-						str += '?';
-					}
+					if(i != values.length - 1) str += '&';
 				}
 			
 				fetch('optionModify.do?' + str)
 				.then((resolve) => resolve.json())
 				.then((result) => {
-					if(result.retCode != 'OK'){
-						msgBox.style.color = 'red';
-						msgBox.innerText = '오류가 발생했습니다.'
-					} else {
+					if(result.retCode == 'OK'){
 						msgBox.style.color = 'green';
 						msgBox.innerText = '수정에 성공했습니다.'
+					} else {
+						msgBox.style.color = 'red';
+						msgBox.innerText = '수정사항을 반영하지 못했습니다.'
 					}
 				})
 				.catch((err) => console.log(err));
+		} else {
+				msgBox.style.color = 'gray';
+				msgBox.innerText = '변경사항이 없습니다.'
 		}
 }
