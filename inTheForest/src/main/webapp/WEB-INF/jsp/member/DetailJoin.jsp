@@ -17,7 +17,7 @@
 	<div
 		class="container  d-flex justify-content-center align-items-center mt-5" style="width:960px">
 		<div class="card border-success mb-3" style="width: 100%">
-			<div class="card-header text-white text-center" style="background-color: #347C2C !important;">회원정보</div>
+			<div class="card-header text-white text-center" style="background-color: #4c9176 !important;">회원정보</div>
 			<div class="card-body">
 				<form action="modifyJoin.do" method="GET">
 					<div class="board-write">

@@ -25,7 +25,7 @@
 	<div
 		class="container min-vh-100 d-flex justify-content-center align-items-center"  style="width:450px">
 		<div class="card border-success mb-3" style="width: 100%">
-			<div class="card-header text-white text-center" style="background-color: #347C2C !important;">비밀번호찾기</div>
+			<div class="card-header text-white text-center" style="background-color: #4c9176 !important;">비밀번호찾기</div>
 			<div class="card-body">
 				<form action="findPw.do" method="POST">
 					<!--<input type="hidden" name="id_go_flag" id="id_go_flag" value="no">-->
