@@ -28,7 +28,7 @@
                     <span class="label">문의 - 답글 완료</span>
                 </c:if>
                 <c:if test="${board.boardCategory eq 'qna' && isReply == false}">
-                    <span class="label">문의 - 답글 대기중</span>
+                    <span class="label bg-secondary">문의 - 답글 대기중</span>
                 </c:if>
             <c:if test="${board.boardCategory eq 'reply'}">
                 <span class="label">답글</span>
@@ -67,8 +67,8 @@
             </div>
             <div class="btnBox2">
                 <c:if test="${memberId eq board.writer}">
-                    <button class="btn btn-primary" id="editBtn">수정</button>
-                    <button type="button" class="btn btn-danger" id="deleteBtn" data-bs-toggle="modal"
+                    <button class="btn btn-outline-success" id="editBtn">수정</button>
+                    <button type="button" class="btn btn-outline-danger" id="deleteBtn" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">삭제
                     </button>
                 </c:if>

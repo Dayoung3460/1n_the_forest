@@ -25,7 +25,7 @@
 
 		<!-- 답글(꼬리글) 구현하기 위해, 계층형 쿼리 이용 -->
     <select id="boardListByPage" resultType="board" parameterType="search">
-    		select b.*
+    		(select b.*
 				from   (select rownum rn, a.*
           			from   (SELECT *
                     		FROM   board START WITH 0 = 0 <!-- 계층형 쿼리의 시작점(답글이 없어도 조회되도록, 항상 참인 조건으로 설정) -->
@@ -43,13 +43,20 @@
 						                </when>
 						            </choose>
 	        	      			)
-	        							OR notice_flag = 1 <!-- 중요 공지는 항상 선택되도록 -->
                     		CONNECT BY PRIOR board_no = reply_no <!-- board_no(부모글) 밑에 자식글(답글) 오도록 -->
                     		ORDER SIBLINGS BY notice_flag DESC, write_date DESC) a) b <!-- 같은 계층의 정렬조건 -->
 				WHERE b.rn > (#{currentPage} - 1) * 10
         <![CDATA[
-          AND b.rn <= (#{currentPage} * 10)
+          AND b.rn <= (#{currentPage} * 10))
         ]]>
+        
+        UNION ALL
+
+				(SELECT rownum rn, c.*
+				 FROM   board c 
+				 WHERE  notice_flag = 1)
+				
+				ORDER BY 8 desc, 12 desc
     </select>
 
 
