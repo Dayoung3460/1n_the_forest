@@ -44,6 +44,8 @@ public class BoardControl implements Control {
     
     req.setAttribute("search", search);
     req.setAttribute("category", category);
+    System.out.println(bno);
+    req.setAttribute("isReply", svc.isReply(Integer.parseInt(bno)));
     
     req.getRequestDispatcher("board/board.tiles").forward(req, resp);
     

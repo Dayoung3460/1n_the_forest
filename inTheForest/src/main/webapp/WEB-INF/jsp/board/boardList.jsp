@@ -25,7 +25,7 @@
         <tr class="align-middle">
             <th class="rownum">순번</th>
             <th>글번호</th>
-            <th class="titleCol">제목</th>
+            <th class="w-40">제목</th>
             <th>작성자</th>
             <th>조회수</th>
             <th>작성일자</th>
