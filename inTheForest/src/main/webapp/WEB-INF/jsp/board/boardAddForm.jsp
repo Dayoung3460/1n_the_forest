@@ -56,7 +56,11 @@
             <tr class="content align-middle">
                 <th>내용</th>
                 <td colspan="3" class="content-col">
-                    <textarea rows="4" cols="30" id="boardContent" name="content" class="form-control"><c:if test="${category eq 'review'}">${siteName} 후기입니다. 이번에 다녀온 캠핑장은 정말 최고의 경험이었어요. 우선, 시설이 매우 잘 갖춰져 있어서 캠핑 초보자도 쉽게 적응할 수 있었습니다. 깨끗한 화장실과 샤워시설 덕분에 불편함 없이 지낼 수 있었고, 넓고 잘 정리된 사이트 공간이 인상적이었습니다.</c:if></textarea>
+                    <textarea rows="4" cols="30" id="boardContent" name="content" class="form-control">
+                        <c:if test="${category eq 'review'}">
+                            ${siteName} 후기입니다. 이번에 다녀온 캠핑장은 정말 최고의 경험이었어요. 우선, 시설이 매우 잘 갖춰져 있어서 캠핑 초보자도 쉽게 적응할 수 있었습니다. 깨끗한 화장실과 샤워시설 덕분에 불편함 없이 지낼 수 있었고, 넓고 잘 정리된 사이트 공간이 인상적이었습니다.
+                        </c:if>
+                        </textarea>
                 </td>
             </tr>
             <tr class="align-middle">
