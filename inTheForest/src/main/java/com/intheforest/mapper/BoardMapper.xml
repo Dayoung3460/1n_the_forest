@@ -105,7 +105,6 @@
     <update id="updateBoard" parameterType="board">
         update board
         set write_date = sysdate
-        <!--파라미터로 받은 보드의 타이틀이 널이 아니면 기존 title을 넣겠다. 널이면 업데이트 치겠다 -->
         <if test="title != null">
             ,title = #{title}
         </if>
@@ -117,6 +116,9 @@
         </if>
         <if test="boardFile != null">
             ,board_file = #{boardFile}
+        </if>
+        <if test="boardFile == null">
+            ,board_file = null
         </if>
         <if test="noticeFlag != null">
             ,notice_flag = #{noticeFlag}

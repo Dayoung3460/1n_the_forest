@@ -17,7 +17,7 @@
         </c:when>
         <c:when test="${category eq 'notice'}">
             <h3>공지사항</h3>
-            <p>중요한 소식이나 안내를 작성해 주세요</p>
+            <p>중요한 소식이나 안내사항을 전합니다</p>
         </c:when>
     </c:choose>
     <table class="table table-hover">
@@ -178,14 +178,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-danger" id="okBtn">확인</button>
+                    <button type="button" class="btn btn-success" id="okBtn">확인</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    let boardPw = 0
+    let boardPw = "0"
     let boardNo = 0
     let inputBoardPw = document.getElementById('board-pw')
     let wrongPw = document.getElementsByClassName('wrongPw')[0]
@@ -227,7 +227,7 @@
         wrongPw.classList.add('hide')
         wrongPw.classList.remove('show')
 
-        if (inputBoardPw.value === boardPw) {
+        if (inputBoardPw.value.toString() === boardPw.toString()) {
 
             let closeBtn = document.getElementsByClassName('btn-close')[0]
             closeBtn.click()

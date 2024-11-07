@@ -16,7 +16,7 @@
         </c:when>
         <c:when test="${category eq 'notice'}">
             <h3>공지사항</h3>
-            <p>중요한 소식이나 안내를 작성해 주세요</p>
+            <p>중요한 소식이나 안내사항을 전합니다</p>
         </c:when>
     </c:choose>
     <hr/>
@@ -61,7 +61,7 @@
 
                 <c:if test="${board.boardCategory eq 'qna' && member.permission eq 'admin' && board.replyNo eq 0}">
                     <button class="btn btn-success" id="replyWriteBtn">답글쓰기</button>
-                    <button class="btn btn-primary hide" id="replyRegisterBtn">답글 등록</button>
+                    <button class="btn btn-success hide" id="replyRegisterBtn">답글 등록</button>
                 </c:if>
 
 
