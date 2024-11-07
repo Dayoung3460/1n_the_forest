@@ -20,7 +20,9 @@
         td {
             text-align: center;
         }
-
+        .rownum {
+            width: 80px;
+        }
         .title {
             text-align: left;
             cursor: pointer;

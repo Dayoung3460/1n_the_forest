@@ -16,7 +16,6 @@ public class AddReplyControl implements Control {
   
   @Override
   public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    System.out.println("AddReplyControl.exec");
     String savePath = req.getServletContext().getRealPath("image");
     File saveDir = new File(savePath);
 

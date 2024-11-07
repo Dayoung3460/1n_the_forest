@@ -23,6 +23,7 @@
     <table class="table table-hover">
         <thead>
         <tr class="align-middle">
+            <th class="rownum">순번</th>
             <th>글번호</th>
             <th>제목</th>
             <th>작성자</th>
@@ -31,8 +32,12 @@
         </tr>
         </thead>
         <tbody>
+        <c:set var="n" value="${paging.currentPage * 10 - 10 }"/>
         <c:forEach var="board" items="${ boardList }">
+            <c:set var="n" value="${n+1}"/>
             <tr class="align-middle">
+                <td class="fw-bolder">${ n }</td>
+
                 <c:choose>
                     <c:when test="${board.noticeFlag eq '0'}">
                         <td>${board.boardNo}</td>
@@ -45,7 +50,8 @@
 
                 <td class="title">
                     <a data-board-no="${board.boardNo}"
-                       data-secret-flag="${board.secretFlag}" data-board-pw="${board.boardPw}" data-board-category="${board.boardCategory}">${board.title}</a>
+                       data-secret-flag="${board.secretFlag}" data-board-pw="${board.boardPw}"
+                       data-board-category="${board.boardCategory}">${board.title}</a>
                     <c:if test="${board.secretFlag == 1}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-lock-fill" viewBox="0 0 16 16">
@@ -194,7 +200,7 @@
 
     title.forEach((item) => {
         let category = item.getElementsByTagName('a')[0].getAttribute('data-board-category')
-        if(category === 'reply') {
+        if (category === 'reply') {
             item.getElementsByTagName('a')[0].classList.add('reply')
         }
 
