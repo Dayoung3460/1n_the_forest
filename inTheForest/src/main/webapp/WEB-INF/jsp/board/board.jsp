@@ -56,9 +56,8 @@
 
         <div class="btnContainer">
             <div class="btnBox1">
-                <button class="btn btn-secondary me-2" id="prevBtn" data-bs-toggle="modal" data-bs-target="#exampleModal2">이전글</button>
-                <button class="btn btn-secondary me-2" id="nextBtn" data-bs-toggle="modal" data-bs-target="#exampleModal3">다음글</button>
-
+                <button class="btn btn-secondary me-2" id="prevBtn" >이전글</button>
+                <button class="btn btn-secondary me-2" id="nextBtn" >다음글</button>
                 <c:if test="${board.boardCategory eq 'qna' && member.permission eq 'admin' && board.replyNo eq 0}">
                     <button class="btn btn-success" id="replyWriteBtn">답글쓰기</button>
                     <button class="btn btn-success hide" id="replyRegisterBtn">답글 등록</button>
@@ -182,10 +181,13 @@
     })
 
     let prevBtn = document.getElementById('prevBtn')
-    prevBtn.addEventListener('click', (e) => {
+    prevBtn.addEventListener('mousedown', (e) => {
+        prevBtn.setAttribute('data-bs-toggle', 'modal')
+        prevBtn.setAttribute('data-bs-target', '#exampleModal2')
+
         getPrevBookNo("${board.writeDate}", "${category}", true, (result) => {
             if (result.result != null) {
-                if (result.result.boardNo) {
+                if(result.result.boardNo){
                     location.href = 'board.do?bno=' + result.result.boardNo + '&currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&category=${search.category}';
                 }
             }
@@ -194,7 +196,10 @@
 
 
     let nextBtn = document.getElementById('nextBtn')
-    nextBtn.addEventListener('click', (e) => {
+    nextBtn.addEventListener('mousedown', (e) => {
+        nextBtn.setAttribute('data-bs-toggle', 'modal')
+        nextBtn.setAttribute('data-bs-target', '#exampleModal3')
+
         getNextBookNo("${board.writeDate}", "${category}", false, (result) => {
             if (result.result != null) {
                 if (result.result.boardNo) {
