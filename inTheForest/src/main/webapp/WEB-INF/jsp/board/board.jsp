@@ -67,8 +67,8 @@
             </div>
             <div class="btnBox2">
                 <c:if test="${memberId eq board.writer}">
-                    <button class="btn btn-primary" id="editBtn">수정</button>
-                    <button type="button" class="btn btn-danger" id="deleteBtn" data-bs-toggle="modal"
+                    <button class="btn btn-outline-success" id="editBtn">수정</button>
+                    <button type="button" class="btn btn-outline-danger" id="deleteBtn" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">삭제
                     </button>
                 </c:if>
