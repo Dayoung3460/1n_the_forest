@@ -17,6 +17,7 @@
         <input type="hidden" name="keyword" value="<%=search.getKeyword() %>"/>
         <input type="hidden" name="category" value="<%=search.getCategory() %>"/>
         <input type="hidden" name="replyNo" value="${board.replyNo}"/>
+
         <table class="table">
             <tr class="align-middle">
                 <th>제목</th>
@@ -65,17 +66,16 @@
         <div class="bottom">
             <c:if test="${(memberPermission eq 'admin') && (category eq 'notice')}">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="noticeFlag" id="noticeFlag">
+                    <input class="form-check-input" type="checkbox" name="noticeFlag" id="noticeFlag"
+                           <c:if test="${board.noticeFlag == 1}">checked</c:if>
+                    />
                     <label class="form-check-label" for="noticeFlag">
                         중요 공지
                     </label>
                 </div>
             </c:if>
             <div class="btns">
-
-
                 <input class="btn btn-success" type="submit" value="수정완료"/>
-
                 <a href="#" onclick="history.back(); return false;">
                     <input class="btn btn-secondary" type="text" value="취소"/>
                 </a>
@@ -89,7 +89,7 @@
 
     let imageContainer = document.getElementsByClassName('image-container')[0]
     let newBoardImg = document.getElementById('newBoardImg')
-    deleteBtn.addEventListener('click', (e) => {
+    deleteBtn?.addEventListener('click', (e) => {
 
         imageContainer.classList.toggle('hide')
         newBoardImg.classList.toggle('hide')
@@ -98,28 +98,16 @@
 
     const form = document.getElementsByTagName('form')[0];
     form?.addEventListener('submit', function (e) {
-        e.preventDefault(); // 실제 제출을 막고 데이터 확인
-
-        const formData = new FormData(form);
-
-        // FormData의 모든 키와 값을 확인하는 방법
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
+        e.preventDefault()
+        const noticeFlagCheckbox = document.getElementById('noticeFlag');
+        if (noticeFlagCheckbox && !noticeFlagCheckbox.checked) {
+            noticeFlagCheckbox.value = 0
+        } else {
+            noticeFlagCheckbox.value = 1
         }
-
-        // 데이터 확인 후 폼을 제출하려면
-        form.submit();
+        form.submit(); // 폼 제출
     });
 
-    let noticeFlag = document.getElementById('noticeFlag')
-    if (${board.noticeFlag} === 1){
-        if(noticeFlag) {
-            noticeFlag.checked = true
-        }
-    }else{
-        if(noticeFlag) {
-            noticeFlag.checked = false
-        }
-    }
+
 </script>
 

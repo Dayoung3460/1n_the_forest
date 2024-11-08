@@ -22,7 +22,7 @@ public class ModifyBoardControl implements Control {
     
     BoardVO board;
     int bno = Integer.parseInt(req.getParameter("bno"));
-    int noticeFlag = req.getParameter("noticeFlag") == null ? 0 : 1;
+    
     String memberPermission = req.getParameter("memberPermission");
     String currentPage = req.getParameter("currentPage");
     String searchCondition = req.getParameter("searchCondition");
@@ -73,11 +73,12 @@ public class ModifyBoardControl implements Control {
       String postKeyword = mr.getParameter("keyword");
       String postCategory = mr.getParameter("category");
       String postReplyNo = mr.getParameter("replyNo");
+      int postNoticeFlag = mr.getParameter("noticeFlag") == null ? 0 : Integer.parseInt(mr.getParameter("noticeFlag"));
       
       board.setBoardNo(bno);
       board.setTitle(title);
       board.setContent(content);
-      board.setNoticeFlag(noticeFlag);
+      board.setNoticeFlag(postNoticeFlag);
       board.setBoardFile(image);
       board.setReplyNo(Integer.parseInt(postReplyNo));
       
