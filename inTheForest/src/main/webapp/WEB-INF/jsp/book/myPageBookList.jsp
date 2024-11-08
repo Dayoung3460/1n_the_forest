@@ -59,8 +59,8 @@
 		<h4 class="mt-2 fw-bolder mb-3">예약목록조회</h4>
 		<c:if test="${permission != 'admin'}">
 			<button type="button" class="btn btn-outline-success mb-3" value="Submit"
-				style="float: right">
-				<a href="DetailJoin.do?memberId=<%=memberId%>" style="text-decoration:none">회원정보 수정</a>
+				style="float: right" onclick="location.href='DetailJoin.do?memberId=<%=memberId%>'">
+				회원정보 수정
 			</button>
 		</c:if>
 	</div>

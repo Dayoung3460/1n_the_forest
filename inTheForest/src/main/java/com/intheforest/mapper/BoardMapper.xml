@@ -80,10 +80,10 @@
             SELECT board_seq.nextval FROM dual
         </selectKey>
         insert into
-        board(board_no, board_category, book_no, secret_flag, title, content, board_pw, notice_flag, writer, board_file)
+        board(board_no, board_category, book_no, secret_flag, title, content, board_pw, notice_flag, writer, board_file, reply_no)
         values(#{boardNo},
         #{boardCategory}, #{bookNo}, #{secretFlag}, #{title}, #{content}, #{boardPw}, #{noticeFlag}, #{writer},
-        #{boardFile})
+        #{boardFile}, #{replyNo})
     </insert>
 
     <update id="updateBoard" parameterType="board">
