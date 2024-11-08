@@ -66,7 +66,7 @@
                     <td>-</td>
                 </c:if>
                 <td><c:out value="${board.viewCnt}"/></td>
-                <td>${board.writeDate}</td>
+                <td>${fn:substring(board.writeDate, 0, 16)}</td>
             </tr>
         </c:forEach>
         <c:if test="${fn:length(boardList) == 0}">
