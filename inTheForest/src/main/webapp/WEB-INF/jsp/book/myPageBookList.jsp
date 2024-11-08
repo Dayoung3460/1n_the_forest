@@ -111,7 +111,7 @@
 	            <!-- 이전페이지 -->
 	         <%if (paging.isPrev()){ %>
 	            <li class="page-item" aria-current="page"><a class="page-link"
-	                                                         href="myPageBookList.do?page=<%=paging.getStartPage()-1 %>">Previous</a>
+	                                                         href="myPageBookList.do?currentPage=<%=paging.getStartPage()-1 %>">Previous</a>
 	         <%} else { %>
 	            <li class="page-item disabled"><a class="page-link">Previous</a>
 	         <%} %></li>
@@ -133,7 +133,7 @@
 	            <!-- 다음페이지 -->
 	        <% if(paging.isNext()){ %>
 	            <li class="page-item" aria-current="page">
-	            <a class="page-link" href="myPageBookList.do?page=<%=paging.getEndPage() + 1%>">
+	            <a class="page-link" href="myPageBookList.do?currentPage=<%=paging.getEndPage() + 1%>">
 	            Next</a>
 	        <%} else { %>
 	            <li class="page-item disabled"><a class="page-link">Next</a>
