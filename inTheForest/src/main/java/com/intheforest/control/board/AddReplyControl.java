@@ -58,19 +58,20 @@ public class AddReplyControl implements Control {
     board.setSecretFlag(secretFlag);
     board.setBoardPw(boardPw);
     board.setNoticeFlag(noticeFlag);
+    board.setReplyNo(Integer.parseInt(boardNo));
     
     BoardServiceImpl boardServiceImpl = new BoardServiceImpl();
-    boardServiceImpl.registerBoard(board);
+    //boardServiceImpl.registerBoard(board);
     // newBoardNo를 해당 qna의 reploy_no로 값 넣기
-    int newBoardNo = board.getBoardNo();
+    //int newBoardNo = board.getBoardNo();
     
     // 해당 문의에 대한 답글 번호 업데이트를 위한 board 객체
-    BoardVO board2 = new BoardVO();
-    board2.setBoardNo(Integer.parseInt(boardNo));
-    board2.setReplyNo(newBoardNo);
+    //BoardVO board2 = new BoardVO();
+    ///board2.setBoardNo(Integer.parseInt(boardNo));
+    //board2.setReplyNo(newBoardNo);
     
     try {
-      boolean isSuccess = boardServiceImpl.updateReplyNo(board2);
+      boolean isSuccess = boardServiceImpl.registerBoard(board) == 1;
       System.out.println("isSuccess = " + isSuccess);
       if(isSuccess) {
         resp.getWriter().write("boardList.do?category=qna");
