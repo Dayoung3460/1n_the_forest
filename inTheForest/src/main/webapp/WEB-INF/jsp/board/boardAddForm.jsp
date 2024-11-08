@@ -37,7 +37,7 @@
     </p>
     <% }%>
 
-    <form action="addBoard.do?category=<%=category%>" method="post" enctype="multipart/form-data">
+    <form action="addBoard.do?category=<%=category%>&bookNo=${bookNo}" method="post" enctype="multipart/form-data">
         <table>
             <tr class="align-middle">
                 <th>제목</th>

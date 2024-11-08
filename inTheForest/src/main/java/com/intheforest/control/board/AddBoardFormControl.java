@@ -41,6 +41,7 @@ public class AddBoardFormControl implements Control {
         BookVO book = bookService.selectBook(Integer.parseInt(bookNo));
         req.setAttribute("book", book);
         req.setAttribute("siteName", siteName);
+        req.setAttribute("bookNo", bookNo);
       }
       
     }

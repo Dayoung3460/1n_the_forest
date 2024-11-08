@@ -48,6 +48,7 @@ public class DetailBookControl implements Control {
 		req.setAttribute("search", search);
 		
 		BoardService board_svc = new BoardServiceImpl();
+		System.out.println(board_svc.isReview(bookNo));
 		req.setAttribute("isReview", board_svc.isReview(bookNo));
 		
 		req.getRequestDispatcher("book/detailBook.tiles").forward(req, resp);
