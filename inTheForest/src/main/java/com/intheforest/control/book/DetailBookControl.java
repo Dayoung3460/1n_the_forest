@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.intheforest.common.Control;
+import com.intheforest.common.SearchDTO;
 import com.intheforest.service.BoardService;
 import com.intheforest.service.BoardServiceImpl;
 import com.intheforest.service.BookService;
@@ -39,6 +40,12 @@ public class DetailBookControl implements Control {
 		req.setAttribute("myOptions", book_svc.selectBookOption(bookNo));//비교용 배열
 		req.setAttribute("book", book);
 		req.setAttribute("member", member);
+		
+		SearchDTO search = new SearchDTO();
+		search.setCurrentPage(req.getParameter("currentPage"));
+		search.setSearchCondition(req.getParameter("searchCondition"));
+		search.setKeyword(req.getParameter("keyword"));
+		req.setAttribute("search", search);
 		
 		BoardService board_svc = new BoardServiceImpl();
 		req.setAttribute("isReview", board_svc.isReview(bookNo));
