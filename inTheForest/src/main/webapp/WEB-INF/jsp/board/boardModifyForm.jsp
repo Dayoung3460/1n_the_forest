@@ -101,9 +101,14 @@
         e.preventDefault()
         const noticeFlagCheckbox = document.getElementById('noticeFlag');
         if (noticeFlagCheckbox && !noticeFlagCheckbox.checked) {
-            noticeFlagCheckbox.value = 0
+            if(noticeFlagCheckbox) {
+                noticeFlagCheckbox.value = 0
+            }
+
         } else {
-            noticeFlagCheckbox.value = 1
+            if(noticeFlagCheckbox) {
+                noticeFlagCheckbox.value = 1
+            }
         }
         form.submit(); // 폼 제출
     });
