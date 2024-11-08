@@ -92,9 +92,8 @@
 	            <td><%=bvo.getSiteName()%></td>
 	            <td><%=bvo.getMemCnt()%>명</td>
 	            <td><%=bvo.getStartDate()%> ~ <%=bvo.getEndDate()%></td>
-	
-	            <td><fmt:formatNumber value="<%=bvo.getTotalPrice()%>" pattern="#,###" />원</td>
-	            <td><%=bvo.getCreateDate()%></td>
+		        <td><fmt:formatNumber value="<%=bvo.getTotalPrice()%>" pattern="#,###" />원</td>
+	            <td><%=bvo.getCreateDate().substring(0,16)%></td>
 	            <%if(bvo.getCancelFlag()==0) { %>
 	            <td><span class="btn btn-sm btn-success disabled">확정</span></td>
 	            <%} else { %>

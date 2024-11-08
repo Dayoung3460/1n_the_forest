@@ -38,10 +38,11 @@
 		       'YYYY-MM-DD') start_date
 		       ,to_char(to_date(substr(b.end_date,1,10),'YYYY/MM/DD'), 'YYYY-MM-DD')
 		       end_date
-		       ,nvl((select sum(option_price) 
-                 from site_option so join site_book_option sbo
-                     on so.option_no = sbo.option_no
-                 where sbo.book_no = b.book_no), 0) + b.total_price as total_price
+		       --,nvl((select sum(option_price) 
+               --  from site_option so join site_book_option sbo
+               --      on so.option_no = sbo.option_no
+               --  where sbo.book_no = b.book_no), 0) + b.total_price as total_price
+               ,b.total_price
 		       ,b.create_date
 		       ,b.cancel_flag
 		       ,b.car_num
