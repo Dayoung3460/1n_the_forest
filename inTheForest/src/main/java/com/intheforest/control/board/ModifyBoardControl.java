@@ -73,6 +73,8 @@ public class ModifyBoardControl implements Control {
       String postKeyword = mr.getParameter("keyword");
       String postCategory = mr.getParameter("category");
       String postReplyNo = mr.getParameter("replyNo");
+      int postSecretFlag = (mr.getParameter("secretFlag") == null || mr.getParameter("secretFlag").equals("0")) ? 0 : 1;
+      String postBoardPw = (mr.getParameter("boardPw") == null || mr.getParameter("boardPw").equals("")) ? "0" : mr.getParameter("boardPw");
       int postNoticeFlag = mr.getParameter("noticeFlag") == null ? 0 : Integer.parseInt(mr.getParameter("noticeFlag"));
       
       board.setBoardNo(bno);
@@ -80,6 +82,8 @@ public class ModifyBoardControl implements Control {
       board.setContent(content);
       board.setNoticeFlag(postNoticeFlag);
       board.setBoardFile(image);
+      board.setSecretFlag(postSecretFlag);
+      board.setBoardPw(postBoardPw);
       board.setReplyNo(Integer.parseInt(postReplyNo));
       
       boolean isSuccess = svc.modifyBoard(board);

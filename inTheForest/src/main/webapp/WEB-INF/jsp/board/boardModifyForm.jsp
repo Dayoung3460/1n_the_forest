@@ -17,6 +17,8 @@
         <input type="hidden" name="keyword" value="<%=search.getKeyword() %>"/>
         <input type="hidden" name="category" value="<%=search.getCategory() %>"/>
         <input type="hidden" name="replyNo" value="${board.replyNo}"/>
+        <input type="hidden" name="secretFlag" value="${board.secretFlag}"/>
+        <input type="hidden" name="boardPw" value="${board.boardPw}"/>
 
         <table class="table">
             <tr class="align-middle">

@@ -67,7 +67,7 @@ public class AddReplyControl implements Control {
     
     // 해당 문의에 대한 답글 번호 업데이트를 위한 board 객체
     //BoardVO board2 = new BoardVO();
-    ///board2.setBoardNo(Integer.parseInt(boardNo));
+    //board2.setBoardNo(Integer.parseInt(boardNo));
     //board2.setReplyNo(newBoardNo);
     
     try {
