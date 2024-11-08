@@ -134,9 +134,9 @@
 	
 	function moveBack(e){
 		if(${permission == 'admin'}){
-			location.href = 'myPageBookList.do';
+			location.href = `myPageBookList.do?currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}`;
 		} else {
-			location.href = 'myPageBookList.do?memberId=${member.memberId}';
+			location.href = `myPageBookList.do?currentPage=${search.currentPage}&searchCondition=${search.searchCondition}&keyword=${search.keyword}&memberId=${member.memberId}`;
 		}
 	}
 	

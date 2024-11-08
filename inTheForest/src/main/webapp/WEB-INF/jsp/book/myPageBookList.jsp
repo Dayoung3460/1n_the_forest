@@ -72,6 +72,7 @@
 				<tr class="align-middle">
 					<th>순번</th>
 					<th>예약번호</th>
+					<th>예약자ID</th>
 					<th>숙소종류</th>
 					<th>예약인원</th>
 					<th class="myPageMinWidth">이용기간</th>
@@ -86,13 +87,14 @@
                 for (MyBookVO bvo : list) {
                     n++;
             %>
-	        <tr class="align-middle" onClick="location.href='detailBook.do?bookNo=<%=bvo.getBookNo()%>&memberId=<%=bvo.getMemberId()%>&siteNo=<%=bvo.getSiteNo()%>'">
-                <th scope="row"><%=n%></th>
-                <th><%=bvo.getBookNo()%></th>
+	        <tr class="align-middle" onClick="location.href='detailBook.do?bookNo=<%=bvo.getBookNo()%>&memberId=<%=bvo.getMemberId()%>&siteNo=<%=bvo.getSiteNo()%>&currentPage=<%=paging.getCurrentPage()%>&searchCondition=<%=sc%>&keyword=<%=kw%>'">
+              <th scope="row"><%=n%></th>
+              <td><%=bvo.getBookNo()%></td>
+              <td><%=bvo.getMemberId()%></td>
 	            <td><%=bvo.getSiteName()%></td>
 	            <td><%=bvo.getMemCnt()%>명</td>
 	            <td><%=bvo.getStartDate()%> ~ <%=bvo.getEndDate()%></td>
-		        <td><fmt:formatNumber value="<%=bvo.getTotalPrice()%>" pattern="#,###" />원</td>
+		        	<td><fmt:formatNumber value="<%=bvo.getTotalPrice()%>" pattern="#,###" />원</td>
 	            <td><%=bvo.getCreateDate().substring(0,16)%></td>
 	            <%if(bvo.getCancelFlag()==0) { %>
 	            <td><span class="btn btn-sm btn-success disabled">확정</span></td>
